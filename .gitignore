@@ -1,0 +1,107 @@
+# Unity generated files
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+[Uu]serSettings/
+[Ll]udiq*
+
+# Visual Studio / MonoDevelop generated files
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+
+# Unity metadata files
+*.unitypackage
+
+# OS-specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+desktop.ini
+
+# IDE-specific files
+.idea/
+.vscode/
+.vscode/*
+.vscode/settings.json
+.vscode/launch.json
+.vscode/tasks.json
+*.code-workspace
+
+# JetBrains Rider
+.idea/
+*.iml
+
+# Other files to exclude
+*.log
+*.stackdump
+*.tmp
+*.bak
+*.swp
+*.lock
+*.gid
+*.mdf
+*.scc
+
+# Node.js related files (if using npm for tools)
+node_modules/
+npm-debug.log
+
+# Generated lightmap files
+*/[Ll]ightmap-*
+*/[Ll]ightingData.asset
+
+# Cache files
+/Assets/StreamingAssets/aa.meta
+/Assets/StreamingAssets/aa/*
+
+# YAML
+*.unity merge=unityyamlmerge  
+*.prefab merge=unityyamlmerge  
+*.asset merge=unityyamlmerge  
+*.mat merge=unityyamlmerge  
+
+# Ignore Unity Render Pipeline settings (.meta files)
+Assets/Settings/*_PipelineAsset*.meta
+Assets/Settings/*_PipelineAsset_ForwardRenderer*.meta
+Assets/UniversalRenderPipelineGlobalSettings.asset.meta
+Assets/AddressableAssetsData/*
+
+# Vscode
+.vs/*
+*.vsconfig
+*.UpgradeLoh.htm
+
+# Blender
+*.blend1
+Assets/AssetStoreTools*
+
+# Unity3D generated meta files
+*.pidb.meta
+*.pdb.meta
+
+# Unity generated crash files
+sysinfo.txt
+
+# Builds
+*.apk
+
+# Changes
+**/*.aseprite
+Assets/Sprites/Premium/
+Assets/Sprites/World of Solaria Enemy Sprite Pack Update 01b/
+Assets/Sprites/World of Solaria Rural Village Update 08d DEMO/
