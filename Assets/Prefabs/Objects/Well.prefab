@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 463255277409326595}
   - component: {fileID: 7189956933472369818}
   - component: {fileID: 162525885257143985}
+  - component: {fileID: 6290848501567511877}
   m_Layer: 0
   m_Name: Well
   m_TagString: Untagged
@@ -94,3 +95,17 @@ MonoBehaviour:
   followSprite: {fileID: 1934833403, guid: 1c87a5e3297abc0428373fc8dbe589cd, type: 3}
   angleZ: 35
   spriteDepth: 10
+--- !u!114 &6290848501567511877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3785188585700924626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2753c2948d72db44b790ffa1a0461db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currencyType: 0
+  _clickSound: {fileID: 8300000, guid: 0b8ef4c4aa1b7854da9d04c8c1aea215, type: 3}

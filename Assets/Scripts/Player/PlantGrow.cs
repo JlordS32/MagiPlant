@@ -76,7 +76,7 @@ public class PlantGrow : MonoBehaviour
         _currentSprite = Instantiate(_levelPrefabs[index], _spriteParent);
     }
 
-    void OnMouseDown()
+    void OnMouseUpAsButton()
     {
         AudioManager.Instance.PlaySound(_waterPlantSound);
         WaterPlant();

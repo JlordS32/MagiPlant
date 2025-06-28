@@ -12,7 +12,7 @@ public class ObjectClicker : MonoBehaviour
         _currencyClick = FindFirstObjectByType<CurrencyClicker>();
     }
 
-    void OnMouseDown()
+    void OnMouseUpAsButton()
     {
         AudioManager.Instance.PlaySound(_clickSound);
         CropIsPressed();
