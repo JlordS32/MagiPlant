@@ -22,6 +22,8 @@ public class TileManager : MonoBehaviour
     public int[,] Grid { get; private set; }
     public BoundsInt Bounds { get; private set; }
 
+    public Tilemap Map => _map;
+
     void Update()
     {
         BuildGrid();
@@ -63,7 +65,7 @@ public class TileManager : MonoBehaviour
     // For testing only
     void OnDrawGizmos()
     {
-        if (Grid == null && !_enableDebug) return;
+        if (Grid == null || !_enableDebug) return;
         
         for (int x = 0; x < Grid.GetLength(0); x++)
         {
