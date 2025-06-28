@@ -31,6 +31,8 @@ public static class AStar
                 fScore[x, y] = int.MaxValue;
             }
 
+
+        // Base setup
         gScore[start.x, start.y] = 0;
         fScore[start.x, start.y] = Heuristic(start, goal);
 
@@ -83,11 +85,17 @@ public static class AStar
         return path;
     }
 
+    // Euclidean
+    // static int Heuristic(Vector2Int a, Vector2Int b)
+    // {
+    //     float dx = a.x - b.x;
+    //     float dy = a.y - b.y;
+    //     return Mathf.RoundToInt(Mathf.Sqrt(dx * dx + dy * dy));
+    // }
+
     static int Heuristic(Vector2Int a, Vector2Int b)
     {
-        float dx = a.x - b.x;
-        float dy = a.y - b.y;
-        return Mathf.RoundToInt(Mathf.Sqrt(dx * dx + dy * dy));
+        return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
     }
 
     static bool InBounds(Vector2Int pos, int width, int height) =>
