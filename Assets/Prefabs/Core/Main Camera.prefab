@@ -169,4 +169,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _zoomValue: 0.5
   _minZoom: 1
-  _maxZoom: 20
+  _maxZoom: 10
+  _zoomLerpSpeed: 5
+  _grid: {fileID: 0}
