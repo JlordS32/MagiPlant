@@ -47,7 +47,7 @@ public class CameraZoom : MonoBehaviour
     float GetMaxZoomFit(Bounds bounds)
     {
         float maxY = bounds.size.y / 2f;
-        float maxX = (bounds.size.x / 2f) / _cam.aspect;
+        float maxX = bounds.size.x / 2f / _cam.aspect;
         return Mathf.Min(maxX, maxY);
     }
 }
