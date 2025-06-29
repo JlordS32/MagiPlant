@@ -86,17 +86,18 @@ public static class AStar
     }
 
     // Euclidean
-    // static int Heuristic(Vector2Int a, Vector2Int b)
-    // {
-    //     float dx = a.x - b.x;
-    //     float dy = a.y - b.y;
-    //     return Mathf.RoundToInt(Mathf.Sqrt(dx * dx + dy * dy));
-    // }
-
     static int Heuristic(Vector2Int a, Vector2Int b)
     {
-        return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
+        float dx = a.x - b.x;
+        float dy = a.y - b.y;
+        return Mathf.RoundToInt(Mathf.Sqrt(dx * dx + dy * dy));
     }
+
+    // Manhattan
+    // static int Heuristic(Vector2Int a, Vector2Int b)
+    // {
+    //     return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
+    // }
 
     static bool InBounds(Vector2Int pos, int width, int height) =>
         pos.x >= 0 && pos.x < width && pos.y >= 0 && pos.y < height;
