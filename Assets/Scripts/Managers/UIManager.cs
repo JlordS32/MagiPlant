@@ -8,6 +8,9 @@ using System;
 public class UIManager : MonoBehaviour
 {
     // PROPERTIES
+    [Header("General")]
+    [SerializeField] TextMeshProUGUI _timeTextUI;
+
     [Header("Sidebar UI")]
     [SerializeField] UpgradePanelUI _upgradePanel;
 
@@ -26,7 +29,7 @@ public class UIManager : MonoBehaviour
     UpgradeManager _upgradeManager;
     CurrencyGenerator _currencyGenerator;
     CurrencyClicker _currencyClicker;
-
+    TimeManager _timeManager;
 
     // VARIABLES
     Dictionary<CurrencyType, TextMeshProUGUI> _currencyTexts = new();
@@ -39,7 +42,8 @@ public class UIManager : MonoBehaviour
 
         _upgradeManager = FindFirstObjectByType<UpgradeManager>();
         _currencyGenerator = FindFirstObjectByType<CurrencyGenerator>();
-        _currencyClicker = FindAnyObjectByType<CurrencyClicker>();
+        _currencyClicker = FindFirstObjectByType<CurrencyClicker>();
+        _timeManager = FindFirstObjectByType<TimeManager>();
     }
 
     void Start()
@@ -51,6 +55,11 @@ public class UIManager : MonoBehaviour
             () => $"Level: {_currencyGenerator.GetRateLevel(CurrencyType.Water)}");
 
         _upgradePanel.Build(_entries);
+    }
+
+    void Update()
+    {
+        _timeTextUI.text = _timeManager.GetTimeString();
     }
 
     public void AddUpgrade(string name, UnityAction logic, Func<string> getRate, Func<string> getButtonLabel, Func<string> getLevel)
