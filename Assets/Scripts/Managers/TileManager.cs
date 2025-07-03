@@ -13,6 +13,8 @@ public class TileManager : MonoBehaviour
 {
     // PROPERTIES
     [SerializeField] Tilemap _map;
+
+    [Tooltip("List of nodes used for pathfinding or navigation. Think of it as a rule tile, where a tile is a node.")]
     [SerializeField] List<Node> _nodes;
 
     [Header("Debug Mode")]
@@ -21,7 +23,6 @@ public class TileManager : MonoBehaviour
     // VARIABLES
     public int[,] Grid { get; private set; }
     public BoundsInt Bounds { get; private set; }
-
     public Tilemap Map => _map;
 
     void Update()

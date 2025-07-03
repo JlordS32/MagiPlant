@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Setup")]
     [SerializeField] Transform _target;
+    [SerializeField] bool _enableDebug;
+
+    [Header("Enemy Properties")]
     [SerializeField] float _speed = 2f;
     [SerializeField] int _stoppingDistance;
-    [SerializeField] bool _enableDebug;
 
     // VARIABLES
     TileManager _tileManager;
@@ -27,9 +30,8 @@ public class Enemy : MonoBehaviour
     {
         Queue<Vector3> newPath = new();
 
-        // Convert world to cell
+        // Convert start and goal pos to tilemap cells
         Vector3Int startCell = _tileManager.Map.WorldToCell(transform.position);
-
         Vector2 to_Target = (transform.position - _target.position).normalized;
         Vector3 off_Target = _target.position + (Vector3)(to_Target * _stoppingDistance);
         Vector3Int goalCell = _tileManager.Map.WorldToCell(off_Target);
@@ -62,7 +64,7 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        // TODO: Repathing logic here, for now disregard
+        // FEATURE: Repathing logic here, for now disregard
         // not needed for the current game logic.
 
         // Pathing logic
@@ -100,5 +102,9 @@ public class Enemy : MonoBehaviour
             Gizmos.DrawSphere(point, 0.1f);
             previous = point;
         }
+
+        // Draw stopping zone
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawSphere(_target.position, _stoppingDistance);
     }
 }

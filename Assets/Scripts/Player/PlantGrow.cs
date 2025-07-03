@@ -36,11 +36,6 @@ public class PlantGrow : MonoBehaviour
         _playerData = new PlayerData(_playerStatConfig);
     }
 
-    public void OnTest()
-    {
-        _playerData.AddExp(10);
-    }
-
     void Update()
     {
         int currLevel = (int)_playerData.Get(PlayerStats.Level);
@@ -78,7 +73,6 @@ public class PlantGrow : MonoBehaviour
 
     void OnMouseUpAsButton()
     {
-        AudioManager.Instance.PlaySound(_waterPlantSound);
         WaterPlant();
     }
 
@@ -91,6 +85,8 @@ public class PlantGrow : MonoBehaviour
 
             if (_currencyStorage.Spend(CurrencyType.Water, _currencyStorage.Get(CurrencyType.Water)))
             {
+                Debug.Log("Watering...");
+                AudioManager.Instance.PlaySound(_waterPlantSound);
                 _playerData.AddExp(waterAmount);
                 _uiManager.UpdateExpText(_playerData.Get(PlayerStats.EXP), _playerData.GetRequiredEXP(currLevel));
                 _uiManager.UpdateLevelText(currLevel);
