@@ -1,3 +1,5 @@
+using UnityEngine;
+
 [System.Serializable]
 public class Storage
 {
@@ -10,7 +12,7 @@ public class Storage
 
     public bool Spend(float amount)
     {
-        if (Value >= amount)
+        if (Value >= amount && amount != 0)
         {
             Value -= amount;
             return true;

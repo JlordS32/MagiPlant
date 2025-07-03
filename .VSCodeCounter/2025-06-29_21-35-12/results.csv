@@ -1,0 +1,32 @@
+"filename", "language", "C#", "comment", "blank", "total"
+"c:\Unity Projects\MagiPlant\Assets\Scripts\Algorithms\Astar.cs", "C#", 77, 8, 20, 105
+"c:\Unity Projects\MagiPlant\Assets\Scripts\Algorithms\PriorityQueue.cs", "C#", 31, 0, 4, 35
+"c:\Unity Projects\MagiPlant\Assets\Scripts\Core\Camera\CameraDrag.cs", "C#", 83, 0, 20, 103
+"c:\Unity Projects\MagiPlant\Assets\Scripts\Core\Camera\CameraZoom.cs", "C#", 44, 0, 10, 54
+"c:\Unity Projects\MagiPlant\Assets\Scripts\Core\HoverFollowSprite.cs", "C#", 38, 0, 6, 44
+"c:\Unity Projects\MagiPlant\Assets\Scripts\Core\SceneLoader.cs", "C#", 9, 0, 2, 11
+"c:\Unity Projects\MagiPlant\Assets\Scripts\Currency\CurrencyClicker.cs", "C#", 32, 5, 8, 45
+"c:\Unity Projects\MagiPlant\Assets\Scripts\Currency\CurrencyGenerator.cs", "C#", 40, 8, 10, 58
+"c:\Unity Projects\MagiPlant\Assets\Scripts\Currency\CurrencyStorage.cs", "C#", 31, 6, 10, 47
+"c:\Unity Projects\MagiPlant\Assets\Scripts\Currency\Storage.cs", "C#", 17, 0, 4, 21
+"c:\Unity Projects\MagiPlant\Assets\Scripts\Currency\UpgradeManager.cs", "C#", 20, 5, 8, 33
+"c:\Unity Projects\MagiPlant\Assets\Scripts\Enemies\Enemy.cs", "C#", 90, 8, 23, 121
+"c:\Unity Projects\MagiPlant\Assets\Scripts\Managers\AudioManager.cs", "C#", 47, 1, 8, 56
+"c:\Unity Projects\MagiPlant\Assets\Scripts\Managers\GameManager.cs", "C#", 28, 1, 5, 34
+"c:\Unity Projects\MagiPlant\Assets\Scripts\Managers\GameSceneManager.cs", "C#", 24, 0, 4, 28
+"c:\Unity Projects\MagiPlant\Assets\Scripts\Managers\ScoreManager.cs", "C#", 10, 0, 2, 12
+"c:\Unity Projects\MagiPlant\Assets\Scripts\Managers\TileManager.cs", "C#", 59, 10, 16, 85
+"c:\Unity Projects\MagiPlant\Assets\Scripts\Managers\TimeManager.cs", "C#", 26, 1, 8, 35
+"c:\Unity Projects\MagiPlant\Assets\Scripts\Managers\UIManager.cs", "C#", 72, 3, 17, 92
+"c:\Unity Projects\MagiPlant\Assets\Scripts\Map\GridGraphBuilder.cs", "C#", 0, 74, 21, 95
+"c:\Unity Projects\MagiPlant\Assets\Scripts\Map\GridTester.cs", "C#", 0, 22, 5, 27
+"c:\Unity Projects\MagiPlant\Assets\Scripts\Map\PathTile.cs", "C#", 0, 12, 3, 15
+"c:\Unity Projects\MagiPlant\Assets\Scripts\Objects\ObjectClicker.cs", "C#", 23, 0, 6, 29
+"c:\Unity Projects\MagiPlant\Assets\Scripts\Player\PlantGrow.cs", "C#", 76, 6, 19, 101
+"c:\Unity Projects\MagiPlant\Assets\Scripts\RuntimeData\PlayerData.cs", "C#", 68, 2, 15, 85
+"c:\Unity Projects\MagiPlant\Assets\Scripts\RuntimeData\UpgradeEntry.cs", "C#", 11, 0, 1, 12
+"c:\Unity Projects\MagiPlant\Assets\Scripts\ScriptableObjects\PlayerStatConfig.cs", "C#", 15, 0, 4, 19
+"c:\Unity Projects\MagiPlant\Assets\Scripts\UI\UpgradePanelUI.cs", "C#", 26, 1, 6, 33
+"c:\Unity Projects\MagiPlant\Assets\Scripts\UI\UpgradeUI.cs", "C#", 49, 0, 11, 60
+"c:\Unity Projects\MagiPlant\Assets\Scripts\Utilites\NumberFormatter.cs", "C#", 15, 0, 2, 17
+"Total", "-", 1061, 173, 278, 1512

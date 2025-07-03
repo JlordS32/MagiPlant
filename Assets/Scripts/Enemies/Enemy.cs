@@ -4,19 +4,17 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] Transform target;
-    [SerializeField] float speed = 2f;
+    [Header("Setup")]
+    [SerializeField] Transform _target;
     [SerializeField] bool _enableDebug;
+
+    [Header("Enemy Properties")]
+    [SerializeField] float _speed = 2f;
+    [SerializeField] int _stoppingDistance;
 
     // VARIABLES
     TileManager _tileManager;
     Queue<Vector3> _path = new();
-    float _repathCooldown = 0.25f;
-    float _repathTimer = 0;
-    float _repathThreshold = 1.5f;
-    int _pathStepCount = 0;
-    int _pathHalfwayIndex = 0;
-    int _stepsTaken = 0;
 
     void Awake()
     {
@@ -32,9 +30,11 @@ public class Enemy : MonoBehaviour
     {
         Queue<Vector3> newPath = new();
 
-        // Convert world to cell
+        // Convert start and goal pos to tilemap cells
         Vector3Int startCell = _tileManager.Map.WorldToCell(transform.position);
-        Vector3Int goalCell = _tileManager.Map.WorldToCell(target.position);
+        Vector2 to_Target = (transform.position - _target.position).normalized;
+        Vector3 off_Target = _target.position + (Vector3)(to_Target * _stoppingDistance);
+        Vector3Int goalCell = _tileManager.Map.WorldToCell(off_Target);
 
         // Normalize to grid indices
         Vector2Int start = new(startCell.x - _tileManager.Bounds.xMin, startCell.y - _tileManager.Bounds.yMin);
@@ -60,36 +60,22 @@ public class Enemy : MonoBehaviour
         }
 
         _path = newPath;
-        _pathStepCount = _path.Count;
-        _stepsTaken = 0;
-        _pathHalfwayIndex = Mathf.Max(2, Mathf.FloorToInt(_pathStepCount * 0.5f));
     }
 
     void Update()
     {
-        if (Vector3.Distance(transform.position, target.position) <= _repathThreshold)
-        {
-            return;
-        }
-
-        // Path recalculation logic
-        _repathTimer += Time.deltaTime;
-        if (_stepsTaken >= _pathHalfwayIndex && _repathTimer >= _repathCooldown)
-        {
-            _repathTimer = 0f;
-            RequestPath();
-        }
+        // FEATURE: Repathing logic here, for now disregard
+        // not needed for the current game logic.
 
         // Pathing logic
         if (_path.Count == 0) return;
 
-        Vector3 targetPos = _path.Peek();
-        transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+        Vector3 _targetPos = _path.Peek();
+        transform.position = Vector3.MoveTowards(transform.position, _targetPos, _speed * Time.deltaTime);
 
-        if (Vector3.Distance(transform.position, targetPos) < 0.05f)
+        if (Vector3.Distance(transform.position, _targetPos) < 0.05f)
         {
             _path.Dequeue();
-            _stepsTaken++;
         }
     }
 
@@ -116,5 +102,9 @@ public class Enemy : MonoBehaviour
             Gizmos.DrawSphere(point, 0.1f);
             previous = point;
         }
+
+        // Draw stopping zone
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawSphere(_target.position, _stoppingDistance);
     }
 }
