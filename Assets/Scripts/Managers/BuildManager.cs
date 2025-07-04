@@ -62,16 +62,14 @@ public class BuildManager : MonoBehaviour
 
     void TraverseTiles(int width, int height, Vector3 worldPos, System.Action<int, int> actionPerTile)
     {
-        Vector3Int originTile = _tileManager.Map.WorldToCell(worldPos);
-        int originX = originTile.x - _tileManager.Bounds.xMin;
-        int originY = originTile.y - _tileManager.Bounds.yMin;
+        Vector2Int originTile = _tileManager.WorldToGridIndex(worldPos) - Vector2Int.one;
 
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
             {
-                int gridX = originX + x;
-                int gridY = originY + y;
+                int gridX = originTile.x + x;
+                int gridY = originTile.y + y;
 
                 if (gridX < 0 || gridX >= _tileManager.Grid.GetLength(0) ||
                     gridY < 0 || gridY >= _tileManager.Grid.GetLength(1))
@@ -139,7 +137,7 @@ public class BuildManager : MonoBehaviour
         int tilesY = Mathf.CeilToInt(objectSize.y / cellSize.y);
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3Int tilePos = _tileManager.Map.WorldToCell(mousePos);
+        Vector3Int tilePos = _tileManager.WorldToTile(mousePos);
 
         // Center alignment
         tilePos -= new Vector3Int(
