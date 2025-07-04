@@ -24,6 +24,7 @@ public class PlantGrow : MonoBehaviour
     UIManager _uiManager;
     CurrencyStorage _currencyStorage;
     PlayerData _playerData;
+    TileManager _tileManager;
 
     // VARIABLES
     int _lastKnownLevel = -1;
@@ -32,8 +33,16 @@ public class PlantGrow : MonoBehaviour
     void Awake()
     {
         _uiManager = FindFirstObjectByType<UIManager>();
-        _currencyStorage = FindAnyObjectByType<CurrencyStorage>();
+        _currencyStorage = FindFirstObjectByType<CurrencyStorage>();
+        _tileManager = FindFirstObjectByType<TileManager>();
         _playerData = new PlayerData(_playerStatConfig);
+    }
+
+    void Start()
+    {
+        // Take a spot on the grid on initial load.
+        Vector2Int gridIndex = _tileManager.WorldToGridIndex(transform.position);
+        _tileManager.UpdateGrid(gridIndex.x, gridIndex.y, TileWeight.Blocked);
     }
 
     void Update()
