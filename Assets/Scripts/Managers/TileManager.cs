@@ -9,6 +9,14 @@ public struct Node
     public TileWeight Weight;
 }
 
+public struct TileRegion
+{
+    public Vector3Int TileOrigin;
+    public Vector3 WorldPosition;
+    public int Width;
+    public int Height;
+}
+
 public class TileManager : MonoBehaviour
 {
     // PROPERTIES
@@ -25,7 +33,7 @@ public class TileManager : MonoBehaviour
     public BoundsInt Bounds { get; private set; }
     public Tilemap Map => _map;
 
-    void Start()
+    void Awake()
     {
         BuildGrid();
     }
@@ -60,11 +68,10 @@ public class TileManager : MonoBehaviour
             }
 
             // Normalise position to grid index.
-            int x = pos.x - Bounds.xMin;
-            int y = pos.y - Bounds.yMin;
+            Vector2Int gridPos = TileToGrid(pos);
 
             // Assign weight to grid
-            Grid[x, y] = weight;
+            Grid[gridPos.x, gridPos.y] = weight;
         }
     }
 
@@ -72,7 +79,7 @@ public class TileManager : MonoBehaviour
     {
         int width = Grid.GetLength(0);
         int height = Grid.GetLength(1);
-        
+
         int[,] intGrid = new int[width, height];
 
         for (int x = 0; x < width; x++)
@@ -84,6 +91,27 @@ public class TileManager : MonoBehaviour
         }
 
         return intGrid;
+    }
+
+    // Gets tile cell (tilemap coordinate) from world position
+    public Vector3Int WorldToTile(Vector3 worldPosition)
+    {
+        return _map.WorldToCell(worldPosition);
+    }
+
+    // Gets grid index ([x, y] in Grid[,]) from tile cell
+    public Vector2Int TileToGrid(Vector3Int tilePos)
+    {
+        int x = tilePos.x - Bounds.xMin;
+        int y = tilePos.y - Bounds.yMin;
+        return new Vector2Int(x, y);
+    }
+
+    // Combines both function above.
+    public Vector2Int WorldToGridIndex(Vector3 worldPosition)
+    {
+        Vector3Int tilePos = _map.WorldToCell(worldPosition);
+        return TileToGrid(tilePos);
     }
 
     // For testing only
