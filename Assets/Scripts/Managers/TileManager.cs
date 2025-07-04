@@ -25,9 +25,15 @@ public class TileManager : MonoBehaviour
     public BoundsInt Bounds { get; private set; }
     public Tilemap Map => _map;
 
-    void Update()
+    void Start()
     {
         BuildGrid();
+    }
+
+    public void UpdateGrid(int x, int y, int value)
+    {
+        Grid[x, y] = value;
+        Debug.Log("Updating (" + x + " ," + y + "): " + value);
     }
 
     public void BuildGrid()
@@ -76,7 +82,11 @@ public class TileManager : MonoBehaviour
                 Vector3Int cellPos = new(x + Bounds.xMin, y + Bounds.yMin, 0);
                 Vector3 worldPos = _map.CellToWorld(cellPos) + _map.cellSize / 2f;
 
-                Gizmos.color = Grid[x, y] == 1 ? Color.green : Color.red;
+                Color red = Color.red;
+                red.a = 0.5f;
+                Color green = Color.green;
+                green.a = 0.5f;
+                Gizmos.color = Grid[x, y] == 1 ? green : red;
                 Gizmos.DrawCube(worldPos, Vector3.one * 0.8f);
             }
         }
