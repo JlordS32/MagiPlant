@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8924536875497609275}
   - component: {fileID: 1413518888454971962}
-  - component: {fileID: 5526414388075245668}
   - component: {fileID: 3768805164923776650}
   m_Layer: 0
   m_Name: Crops
@@ -29,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -80,21 +79,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.25, y: 1.28125}
   m_EdgeRadius: 0
---- !u!114 &5526414388075245668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6939893311968057760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e44d5901983b82b4b9cfb03841fbd4bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followSprite: {fileID: -255576434, guid: 1c87a5e3297abc0428373fc8dbe589cd, type: 3}
-  angleZ: 35
-  spriteDepth: 10
 --- !u!212 &3768805164923776650
 SpriteRenderer:
   m_ObjectHideFlags: 0
