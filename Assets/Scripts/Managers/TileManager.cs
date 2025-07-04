@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public struct Node
 {
     public TileBase Tile;
-    public int Weight; // 1 = walkable, 0 = not walkable
+    public TileWeight Weight;
 }
 
 public class TileManager : MonoBehaviour
@@ -21,7 +21,7 @@ public class TileManager : MonoBehaviour
     [SerializeField] bool _enableDebug;
 
     // VARIABLES
-    public int[,] Grid { get; private set; }
+    public TileWeight[,] Grid { get; private set; }
     public BoundsInt Bounds { get; private set; }
     public Tilemap Map => _map;
 
@@ -30,10 +30,9 @@ public class TileManager : MonoBehaviour
         BuildGrid();
     }
 
-    public void UpdateGrid(int x, int y, int value)
+    public void UpdateGrid(int x, int y, TileWeight value)
     {
         Grid[x, y] = value;
-        Debug.Log("Updating (" + x + " ," + y + "): " + value);
     }
 
     public void BuildGrid()
@@ -41,13 +40,13 @@ public class TileManager : MonoBehaviour
         // Base setup
         _map.CompressBounds(); // Important!
         Bounds = _map.cellBounds;
-        Grid = new int[Bounds.size.x, Bounds.size.y];
+        Grid = new TileWeight[Bounds.size.x, Bounds.size.y];
 
         // Get all tile position
         foreach (Vector3Int pos in Bounds.allPositionsWithin)
         {
             TileBase tile = _map.GetTile(pos);
-            int weight = -1; // Default value
+            TileWeight weight = TileWeight.Unknown; // Default value
 
             // Check if corresponding tile in our rule node tile.
             foreach (var node in _nodes)
@@ -69,11 +68,29 @@ public class TileManager : MonoBehaviour
         }
     }
 
+    public int[,] GetGridAsInt()
+    {
+        int width = Grid.GetLength(0);
+        int height = Grid.GetLength(1);
+        
+        int[,] intGrid = new int[width, height];
+
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                intGrid[x, y] = (int)Grid[x, y];
+            }
+        }
+
+        return intGrid;
+    }
+
     // For testing only
     void OnDrawGizmos()
     {
         if (Grid == null || !_enableDebug) return;
-        
+
         for (int x = 0; x < Grid.GetLength(0); x++)
         {
             for (int y = 0; y < Grid.GetLength(1); y++)
@@ -86,10 +103,9 @@ public class TileManager : MonoBehaviour
                 red.a = 0.5f;
                 Color green = Color.green;
                 green.a = 0.5f;
-                Gizmos.color = Grid[x, y] == 1 ? green : red;
+                Gizmos.color = Grid[x, y] == TileWeight.Walkable ? green : red;
                 Gizmos.DrawCube(worldPos, Vector3.one * 0.8f);
             }
         }
     }
-
 }
