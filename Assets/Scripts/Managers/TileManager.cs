@@ -114,6 +114,12 @@ public class TileManager : MonoBehaviour
         return TileToGrid(tilePos);
     }
 
+    public bool IsInBounds(int x, int y)
+    {
+        return x >= 0 && x < Grid.GetLength(0) &&
+               y >= 0 && y < Grid.GetLength(1);
+    }
+
     // For testing only
     void OnDrawGizmos()
     {
