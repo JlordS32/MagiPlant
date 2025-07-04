@@ -19,7 +19,7 @@ public class BuildManager : MonoBehaviour
     {
         if (_selectedPrefab == null) return;
 
-        // Preview follows mouse
+        // Prefab location; follow mouse
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int tilePos = _tileManager.Map.WorldToCell(mousePos);
         Vector3 worldPos = _tileManager.Map.GetCellCenterWorld(tilePos);
@@ -30,9 +30,11 @@ public class BuildManager : MonoBehaviour
         int tilesX = Mathf.CeilToInt(objectSize.x / cellSize.x);
         int tilesY = Mathf.CeilToInt(objectSize.y / cellSize.y);
 
+        // Centering logic, by default centre if odd x odd grid
         if (tilesX % 2 == 0 || tilesY % 2 == 0)
             worldPos -= new Vector3(0.5f, 0.5f, 0);
 
+        // Showing the preview prefab ghost
         if (_previewPrefab == null)
         {
             _previewPrefab = Instantiate(_selectedPrefab);
@@ -43,22 +45,69 @@ public class BuildManager : MonoBehaviour
             _previewPrefab.transform.position = worldPos;
         }
 
-        // Place on click
-        if (_input.WasReleasedThisFrame())
+        // WARNING: No bound here, might need in the future.
+        if (_input.WasReleasedThisFrame() && IsValidTile(tilesX, tilesY, worldPos))
         {
+            // Instantiate game object
             Instantiate(_selectedPrefab, worldPos, Quaternion.identity, _parentObject);
-            _selectedPrefab = null;
-            _input.Disable();
-            Destroy(_previewPrefab);
+            _selectedPrefab = null; // Disable so update is stopped
+            _input.Disable(); // Disable Input
+            SetPreviewMode(_previewPrefab, false); // Undo preview mode
+            Destroy(_previewPrefab); // Destroy preview object
+
+            // Update tile value
+            UpdateTile(tilesX, tilesY, worldPos);
         }
     }
 
+    void TraverseTiles(int width, int height, Vector3 worldPos, System.Action<int, int> actionPerTile)
+    {
+        Vector2Int originTile = _tileManager.WorldToGridIndex(worldPos) - Vector2Int.one;
+
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                int gridX = originTile.x + x;
+                int gridY = originTile.y + y;
+
+                if (gridX < 0 || gridX >= _tileManager.Grid.GetLength(0) ||
+                    gridY < 0 || gridY >= _tileManager.Grid.GetLength(1))
+                    continue;
+
+                actionPerTile?.Invoke(gridX, gridY);
+            }
+        }
+    }
+
+    bool IsValidTile(int width, int height, Vector3 worldPos)
+    {
+        bool allWalkable = true;
+
+        TraverseTiles(width, height, worldPos, (x, y) =>
+        {
+            if (_tileManager.Grid[x, y] != TileWeight.Walkable)
+                allWalkable = false;
+        });
+
+        return allWalkable;
+
+    }
+
+    void UpdateTile(int width, int height, Vector3 worldPos)
+    {
+        TraverseTiles(width, height, worldPos, (x, y) =>
+        {
+            _tileManager.UpdateGrid(x, y, TileWeight.Blocked);
+        });
+    }
+
+    // Function called on GUI
     public void SelectPrefab(GameObject prefab)
     {
         _selectedPrefab = prefab;
         _input.Enable();
     }
-
 
     void SetPreviewMode(GameObject gameObject, bool isPreview)
     {
@@ -69,6 +118,7 @@ public class BuildManager : MonoBehaviour
             spriteRenderer.color = spriteColor;
         }
 
+        // Disable colliders if any
         foreach (var collider in gameObject.GetComponents<Collider2D>())
         {
             collider.enabled = !isPreview;
@@ -87,7 +137,7 @@ public class BuildManager : MonoBehaviour
         int tilesY = Mathf.CeilToInt(objectSize.y / cellSize.y);
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3Int tilePos = _tileManager.Map.WorldToCell(mousePos);
+        Vector3Int tilePos = _tileManager.WorldToTile(mousePos);
 
         // Center alignment
         tilePos -= new Vector3Int(

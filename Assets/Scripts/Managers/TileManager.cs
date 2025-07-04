@@ -6,7 +6,15 @@ using System.Collections.Generic;
 public struct Node
 {
     public TileBase Tile;
-    public int Weight; // 1 = walkable, 0 = not walkable
+    public TileWeight Weight;
+}
+
+public struct TileRegion
+{
+    public Vector3Int TileOrigin;
+    public Vector3 WorldPosition;
+    public int Width;
+    public int Height;
 }
 
 public class TileManager : MonoBehaviour
@@ -21,13 +29,18 @@ public class TileManager : MonoBehaviour
     [SerializeField] bool _enableDebug;
 
     // VARIABLES
-    public int[,] Grid { get; private set; }
+    public TileWeight[,] Grid { get; private set; }
     public BoundsInt Bounds { get; private set; }
     public Tilemap Map => _map;
 
-    void Update()
+    void Awake()
     {
         BuildGrid();
+    }
+
+    public void UpdateGrid(int x, int y, TileWeight value)
+    {
+        Grid[x, y] = value;
     }
 
     public void BuildGrid()
@@ -35,13 +48,13 @@ public class TileManager : MonoBehaviour
         // Base setup
         _map.CompressBounds(); // Important!
         Bounds = _map.cellBounds;
-        Grid = new int[Bounds.size.x, Bounds.size.y];
+        Grid = new TileWeight[Bounds.size.x, Bounds.size.y];
 
         // Get all tile position
         foreach (Vector3Int pos in Bounds.allPositionsWithin)
         {
             TileBase tile = _map.GetTile(pos);
-            int weight = -1; // Default value
+            TileWeight weight = TileWeight.Unknown; // Default value
 
             // Check if corresponding tile in our rule node tile.
             foreach (var node in _nodes)
@@ -55,19 +68,57 @@ public class TileManager : MonoBehaviour
             }
 
             // Normalise position to grid index.
-            int x = pos.x - Bounds.xMin;
-            int y = pos.y - Bounds.yMin;
+            Vector2Int gridPos = TileToGrid(pos);
 
             // Assign weight to grid
-            Grid[x, y] = weight;
+            Grid[gridPos.x, gridPos.y] = weight;
         }
+    }
+
+    public int[,] GetGridAsInt()
+    {
+        int width = Grid.GetLength(0);
+        int height = Grid.GetLength(1);
+
+        int[,] intGrid = new int[width, height];
+
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                intGrid[x, y] = (int)Grid[x, y];
+            }
+        }
+
+        return intGrid;
+    }
+
+    // Gets tile cell (tilemap coordinate) from world position
+    public Vector3Int WorldToTile(Vector3 worldPosition)
+    {
+        return _map.WorldToCell(worldPosition);
+    }
+
+    // Gets grid index ([x, y] in Grid[,]) from tile cell
+    public Vector2Int TileToGrid(Vector3Int tilePos)
+    {
+        int x = tilePos.x - Bounds.xMin;
+        int y = tilePos.y - Bounds.yMin;
+        return new Vector2Int(x, y);
+    }
+
+    // Combines both function above.
+    public Vector2Int WorldToGridIndex(Vector3 worldPosition)
+    {
+        Vector3Int tilePos = _map.WorldToCell(worldPosition);
+        return TileToGrid(tilePos);
     }
 
     // For testing only
     void OnDrawGizmos()
     {
         if (Grid == null || !_enableDebug) return;
-        
+
         for (int x = 0; x < Grid.GetLength(0); x++)
         {
             for (int y = 0; y < Grid.GetLength(1); y++)
@@ -76,10 +127,13 @@ public class TileManager : MonoBehaviour
                 Vector3Int cellPos = new(x + Bounds.xMin, y + Bounds.yMin, 0);
                 Vector3 worldPos = _map.CellToWorld(cellPos) + _map.cellSize / 2f;
 
-                Gizmos.color = Grid[x, y] == 1 ? Color.green : Color.red;
+                Color red = Color.red;
+                red.a = 0.5f;
+                Color green = Color.green;
+                green.a = 0.5f;
+                Gizmos.color = Grid[x, y] == TileWeight.Walkable ? green : red;
                 Gizmos.DrawCube(worldPos, Vector3.one * 0.8f);
             }
         }
     }
-
 }

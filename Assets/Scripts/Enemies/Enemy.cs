@@ -40,7 +40,7 @@ public class Enemy : MonoBehaviour
         Vector2Int start = new(startCell.x - _tileManager.Bounds.xMin, startCell.y - _tileManager.Bounds.yMin);
         Vector2Int goal = new(goalCell.x - _tileManager.Bounds.xMin, goalCell.y - _tileManager.Bounds.yMin);
 
-        var path = AStar.FindPath(start, goal, _tileManager.Grid);
+        var path = AStar.FindPath(start, goal, _tileManager.GetGridAsInt());
         if (path == null) return;
 
         // Convert grid path to world positions
