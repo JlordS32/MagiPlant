@@ -27,6 +27,9 @@ public class EnemyMovement : MonoBehaviour
         StartCoroutine(DelayedPathRequest());
     }
 
+    // BUG: Enemy target cell is not aligned. 
+    // Suggested fix: Look at BuildManager.s, the alignment must be dynamic.
+    // Other suggestions: Fix tile size on the tree instance.
     void RequestPath()
     {
         Queue<Vector3> newPath = new();
@@ -39,9 +42,7 @@ public class EnemyMovement : MonoBehaviour
         Vector2Int target = new(targetCell.x - _tileManager.Bounds.xMin, targetCell.y - _tileManager.Bounds.yMin);
 
         // Find nearest walkable tile around the target
-        Vector2Int goal = target;
         List<Vector2Int> possibleDir = new();
-
         foreach (Vector2Int dir in AStar.directions)
         {
             Vector2Int check = target + dir;
@@ -51,6 +52,7 @@ public class EnemyMovement : MonoBehaviour
             }
         }
 
+        Vector2Int goal;
         if (possibleDir.Count == 0)
         {
             Debug.LogWarning($"{gameObject.name} couldn't find walkable goal near target.");
