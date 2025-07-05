@@ -23,11 +23,10 @@ public class PlantGrow : MonoBehaviour
     GameObject _currentSprite;
     UIManager _uiManager;
     CurrencyStorage _currencyStorage;
-    PlayerData _playerData;
+    Player _player;
     TileManager _tileManager;
 
     // VARIABLES
-    int _lastKnownLevel = -1;
     int _lastKnownIndex = -1;
 
     void Awake()
@@ -35,9 +34,12 @@ public class PlantGrow : MonoBehaviour
         _uiManager = FindFirstObjectByType<UIManager>();
         _currencyStorage = FindFirstObjectByType<CurrencyStorage>();
         _tileManager = FindFirstObjectByType<TileManager>();
-        _playerData = new PlayerData(_playerStatConfig);
+        _player = GetComponent<Player>();
     }
 
+    // TODO: Dynamic tile size resize should be implement
+    // Suggestions: Declare a Vector2 variable that'll contain the tile region it'll take.
+    // The tile must scale by n^2.
     void Start()
     {
         // Take a spot on the grid on initial load.
@@ -45,18 +47,25 @@ public class PlantGrow : MonoBehaviour
         _tileManager.UpdateGrid(gridIndex.x, gridIndex.y, TileWeight.Blocked);
     }
 
+    public void OnTest()
+    {
+        Debug.Log("hello");
+        _player.PlayerData.AddExp(10);
+        int currLevel = (int)_player.PlayerData.Get(PlayerStats.Level);
+        _uiManager.UpdateExpText(_player.PlayerData.Get(PlayerStats.EXP), _player.PlayerData.GetRequiredEXP(currLevel));
+    }
+
     void Update()
     {
-        int currLevel = (int)_playerData.Get(PlayerStats.Level);
-        if (_playerData.Get(PlayerStats.Level) != _lastKnownLevel)
+        int currLevel = (int)_player.PlayerData.Get(PlayerStats.Level);
+        if (_player.PlayerData.CheckLevelUp())
         {
             // Play audio on level up
             AudioManager.Instance.PlaySound(_levelUpSound);
-            _lastKnownLevel = currLevel;
 
             // UI Handling
             _uiManager.UpdateLevelText(currLevel);
-            _uiManager.UpdateExpText(_playerData.Get(PlayerStats.EXP), _playerData.GetRequiredEXP(currLevel));
+            _uiManager.UpdateExpText(_player.PlayerData.Get(PlayerStats.EXP), _player.PlayerData.GetRequiredEXP(currLevel));
 
             // Sprite Handling
             UpdateSprite();
@@ -65,7 +74,7 @@ public class PlantGrow : MonoBehaviour
 
     void UpdateSprite()
     {
-        int currLevel = (int)_playerData.Get(PlayerStats.Level);
+        int currLevel = (int)_player.PlayerData.Get(PlayerStats.Level);
         int index = Mathf.Clamp((currLevel - 1) / _levelGap, 0, _levelPrefabs.Count - 1);
         _lastKnownIndex = index;
 
@@ -87,17 +96,16 @@ public class PlantGrow : MonoBehaviour
 
     void WaterPlant()
     {
-        if (_playerData != null)
+        if (_player.PlayerData != null)
         {
-            int currLevel = (int)_playerData.Get(PlayerStats.Level);
+            int currLevel = (int)_player.PlayerData.Get(PlayerStats.Level);
             float waterAmount = _currencyStorage.Get(CurrencyType.Water);
 
             if (_currencyStorage.Spend(CurrencyType.Water, _currencyStorage.Get(CurrencyType.Water)))
             {
-                Debug.Log("Watering...");
                 AudioManager.Instance.PlaySound(_waterPlantSound);
-                _playerData.AddExp(waterAmount);
-                _uiManager.UpdateExpText(_playerData.Get(PlayerStats.EXP), _playerData.GetRequiredEXP(currLevel));
+                _player.PlayerData.AddExp(waterAmount);
+                _uiManager.UpdateExpText(_player.PlayerData.Get(PlayerStats.EXP), _player.PlayerData.GetRequiredEXP(currLevel));
                 _uiManager.UpdateLevelText(currLevel);
             }
         }
