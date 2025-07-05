@@ -2,6 +2,7 @@ using UnityEngine;
 
 // TODO: Enemy Attacks Player
 // TODO: Enemy Takes Damage
+// TODO: Bouncing animation when attacking.
 public class Enemy : MonoBehaviour, IAttack
 {
     // PROPERTIES
