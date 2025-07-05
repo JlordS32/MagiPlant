@@ -10,6 +10,14 @@ public class Spawner : MonoBehaviour
     // VARIABLES
     float _timer;
 
+    // REFERENCES
+    TileManager _tileManager;
+
+    void Awake()
+    {
+        _tileManager = FindFirstObjectByType<TileManager>();
+    }
+
     void Update()
     {
 
@@ -26,15 +34,31 @@ public class Spawner : MonoBehaviour
     {
         if (_enemyPrefab.Count == 0) return;
 
-        int random = Random.Range(0, _enemyPrefab.Count - 1);
-        Vector3 offset = new(
-            Random.Range(-_range.x / 2f, _range.x / 2f),
-            Random.Range(-_range.y / 2f, _range.y / 2f),
-            0f
-        );
+        int random = Random.Range(0, _enemyPrefab.Count);
+        Vector3Int baseCell = _tileManager.Map.WorldToCell(transform.position);
 
-        Instantiate(_enemyPrefab[random], transform.position + offset, Quaternion.identity, transform);
+        // Try random nearby cells
+        while (true)
+        {
+            Vector3Int offset = new(
+                Random.Range(-Mathf.FloorToInt(_range.x / 2), Mathf.CeilToInt(_range.x / 2)),
+                Random.Range(-Mathf.FloorToInt(_range.y / 2), Mathf.CeilToInt(_range.y / 2)),
+                0
+            );
+
+            Vector3Int cell = baseCell + offset;
+            Vector2Int grid = _tileManager.TileToGrid(cell);
+
+            if (_tileManager.IsInBounds(grid.x, grid.y) &&
+                _tileManager.Grid[grid.x, grid.y] > 0)
+            {
+                Vector3 world = _tileManager.Map.CellToWorld(cell) + _tileManager.Map.cellSize / 2f;
+                Instantiate(_enemyPrefab[random], world, Quaternion.identity, transform);
+                return;
+            }
+        }
     }
+
 
     void OnDrawGizmos()
     {

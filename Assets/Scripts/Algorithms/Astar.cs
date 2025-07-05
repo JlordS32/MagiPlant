@@ -3,7 +3,7 @@ using UnityEngine;
 
 public static class AStar
 {
-    static readonly Vector2Int[] directions = {
+    public static readonly Vector2Int[] directions = {
         new(0, 1),   // up
         new(1, 0),   // right
         new(0, -1),  // down
@@ -49,8 +49,22 @@ public static class AStar
             foreach (Vector2Int dir in directions)
             {
                 Vector2Int neighbor = current + dir;
-                if (!InBounds(neighbor, width, height) || grid[neighbor.x, neighbor.y] <= 0) // Not walkable
+
+                if (!InBounds(neighbor, width, height) || grid[neighbor.x, neighbor.y] <= 0)
                     continue;
+
+                // Prevent diagonal corner clipping
+                if (Mathf.Abs(dir.x) == 1 && Mathf.Abs(dir.y) == 1)
+                {
+                    Vector2Int adj1 = new(current.x + dir.x, current.y);
+                    Vector2Int adj2 = new(current.x, current.y + dir.y);
+
+                    if (!InBounds(adj1, width, height) || !InBounds(adj2, width, height))
+                        continue;
+
+                    if (grid[adj1.x, adj1.y] <= 0 || grid[adj2.x, adj2.y] <= 0)
+                        continue;
+                }
 
                 int tentativeG = gScore[current.x, current.y] + grid[neighbor.x, neighbor.y];
                 if (tentativeG < gScore[neighbor.x, neighbor.y])
@@ -86,18 +100,18 @@ public static class AStar
     }
 
     // Euclidean
-    static int Heuristic(Vector2Int a, Vector2Int b)
-    {
-        float dx = a.x - b.x;
-        float dy = a.y - b.y;
-        return Mathf.RoundToInt(Mathf.Sqrt(dx * dx + dy * dy));
-    }
-
-    // Manhattan
     // static int Heuristic(Vector2Int a, Vector2Int b)
     // {
-    //     return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
+    //     float dx = a.x - b.x;
+    //     float dy = a.y - b.y;
+    //     return Mathf.RoundToInt(Mathf.Sqrt(dx * dx + dy * dy));
     // }
+
+    // Manhattan
+    static int Heuristic(Vector2Int a, Vector2Int b)
+    {
+        return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
+    }
 
     static bool InBounds(Vector2Int pos, int width, int height) =>
         pos.x >= 0 && pos.x < width && pos.y >= 0 && pos.y < height;
