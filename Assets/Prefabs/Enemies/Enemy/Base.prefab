@@ -100,7 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0104591faf972294299e1e35b7ab347c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _target: {fileID: 0}
+  _target: {fileID: 4522586275312589533, guid: 4c426924ecb88264cb0547d535b7e854, type: 3}
+  _enableDebug: 0
+  _pathFindingDelay: 1
   _speed: 2
   _stoppingDistance: 1
-  _enableDebug: 1

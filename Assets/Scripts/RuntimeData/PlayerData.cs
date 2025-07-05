@@ -80,5 +80,4 @@ public class PlayerData
         _stats[PlayerStats.EXP] = currentExp;
         return leveledUp;
     }
-
 }

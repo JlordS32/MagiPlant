@@ -28,7 +28,6 @@ public class UIManager : MonoBehaviour
     // REFERENCES
     UpgradeManager _upgradeManager;
     CurrencyGenerator _currencyGenerator;
-    CurrencyClicker _currencyClicker;
     TimeManager _timeManager;
 
     // VARIABLES
@@ -42,7 +41,6 @@ public class UIManager : MonoBehaviour
 
         _upgradeManager = FindFirstObjectByType<UpgradeManager>();
         _currencyGenerator = FindFirstObjectByType<CurrencyGenerator>();
-        _currencyClicker = FindFirstObjectByType<CurrencyClicker>();
         _timeManager = FindFirstObjectByType<TimeManager>();
     }
 

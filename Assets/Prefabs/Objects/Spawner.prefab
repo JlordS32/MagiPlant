@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5074368878903346041
+--- !u!1 &3496072830407438873
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,57 +8,42 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3143939215918099690}
-  - component: {fileID: 65566449182042007}
+  - component: {fileID: 7130642441403130024}
+  - component: {fileID: 6405670809676805654}
   m_Layer: 0
-  m_Name: BuildManager
+  m_Name: Spawner
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3143939215918099690
+--- !u!4 &7130642441403130024
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5074368878903346041}
+  m_GameObject: {fileID: 3496072830407438873}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -363.7063, y: -204.21445, z: 0}
+  m_LocalPosition: {x: -9.34, y: 0.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &65566449182042007
+--- !u!114 &6405670809676805654
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5074368878903346041}
+  m_GameObject: {fileID: 3496072830407438873}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46d05f9325bbc6249974c0f13afe9524, type: 3}
+  m_Script: {fileID: 11500000, guid: 8dc1bd16d177dc047b18c07248e14539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _input:
-    m_Name: Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 7205da08-ce7d-4ff7-af95-fc294d8eb2c8
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 9abed922-c9c4-445a-8ff1-99c5b91bf268
-      m_Path: <Mouse>/leftButton
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Input
-      m_Flags: 0
-    m_Flags: 0
-  _parentObject: {fileID: 0}
+  _enemyPrefab: []
+  _range: {x: 1.21, y: 9.98}
+  _interval: 3

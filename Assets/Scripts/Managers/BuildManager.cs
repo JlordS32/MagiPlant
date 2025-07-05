@@ -30,9 +30,14 @@ public class BuildManager : MonoBehaviour
         int tilesX = Mathf.CeilToInt(objectSize.x / cellSize.x);
         int tilesY = Mathf.CeilToInt(objectSize.y / cellSize.y);
 
+        // Checkers
+        bool isValid = IsValidTile(tilesX, tilesY, worldPos);
+        bool isWithinBounds = WithinBounds(tilesX, tilesY, worldPos);
+
         // Centering logic, by default centre if odd x odd grid
         if (tilesX % 2 == 0 || tilesY % 2 == 0)
             worldPos -= new Vector3(0.5f, 0.5f, 0);
+
 
         // Showing the preview prefab ghost
         if (_previewPrefab == null)
@@ -40,13 +45,12 @@ public class BuildManager : MonoBehaviour
             _previewPrefab = Instantiate(_selectedPrefab);
             SetPreviewMode(_previewPrefab, true);
         }
-        else
-        {
-            _previewPrefab.transform.position = worldPos;
-        }
+        _previewPrefab.transform.position = worldPos;
+        SetPreviewMode(_previewPrefab, true, isValid, isWithinBounds);
+
 
         // WARNING: No bound here, might need in the future.
-        if (_input.WasReleasedThisFrame() && IsValidTile(tilesX, tilesY, worldPos))
+        if (_input.WasReleasedThisFrame() && isValid && isWithinBounds)
         {
             // Instantiate game object
             Instantiate(_selectedPrefab, worldPos, Quaternion.identity, _parentObject);
@@ -62,7 +66,10 @@ public class BuildManager : MonoBehaviour
 
     void TraverseTiles(int width, int height, Vector3 worldPos, System.Action<int, int> actionPerTile)
     {
-        Vector2Int originTile = _tileManager.WorldToGridIndex(worldPos) - Vector2Int.one;
+        // Offset tile to (0, 0) to the bottom left.
+        int offsetX = Mathf.FloorToInt(width / 2f);
+        int offsetY = Mathf.FloorToInt(height / 2f);
+        Vector2Int originTile = _tileManager.WorldToGridIndex(worldPos) - new Vector2Int(offsetX, offsetY);
 
         for (int x = 0; x < width; x++)
         {
@@ -71,8 +78,7 @@ public class BuildManager : MonoBehaviour
                 int gridX = originTile.x + x;
                 int gridY = originTile.y + y;
 
-                if (gridX < 0 || gridX >= _tileManager.Grid.GetLength(0) ||
-                    gridY < 0 || gridY >= _tileManager.Grid.GetLength(1))
+                if (!_tileManager.IsInBounds(gridX, gridY))
                     continue;
 
                 actionPerTile?.Invoke(gridX, gridY);
@@ -91,7 +97,27 @@ public class BuildManager : MonoBehaviour
         });
 
         return allWalkable;
+    }
 
+    bool WithinBounds(int width, int height, Vector3 worldPos)
+    {
+        int offsetX = Mathf.FloorToInt(width / 2f);
+        int offsetY = Mathf.FloorToInt(height / 2f);
+        Vector2Int originTile = _tileManager.WorldToGridIndex(worldPos) - new Vector2Int(offsetX, offsetY);
+
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                int gridX = originTile.x + x;
+                int gridY = originTile.y + y;
+
+                if (!_tileManager.IsInBounds(gridX, gridY))
+                    return false;
+            }
+        }
+
+        return true;
     }
 
     void UpdateTile(int width, int height, Vector3 worldPos)
@@ -109,53 +135,18 @@ public class BuildManager : MonoBehaviour
         _input.Enable();
     }
 
-    void SetPreviewMode(GameObject gameObject, bool isPreview)
+    void SetPreviewMode(GameObject gameObject, bool isPreview, bool isValid = true, bool isWithinBounds = true)
     {
+        Color color = isValid && isWithinBounds ? new Color(1f, 1f, 1f, 0.5f) : new Color(1f, 0f, 0f, 0.5f); // red if invalid
+
         foreach (var spriteRenderer in gameObject.GetComponentsInChildren<SpriteRenderer>())
         {
-            Color spriteColor = spriteRenderer.color;
-            spriteColor.a = isPreview ? 0.5f : 1f;
-            spriteRenderer.color = spriteColor;
+            spriteRenderer.color = color;
         }
 
-        // Disable colliders if any
         foreach (var collider in gameObject.GetComponents<Collider2D>())
         {
             collider.enabled = !isPreview;
-        }
-    }
-
-    // TODO: Extract this logic so it works on game mode.
-    void OnDrawGizmos()
-    {
-        if (_tileManager == null || _selectedPrefab == null) return;
-
-        Vector2 objectSize = _selectedPrefab.GetComponentInChildren<SpriteRenderer>().bounds.size;
-        Vector2 cellSize = _tileManager.Map.cellSize;
-
-        int tilesX = Mathf.CeilToInt(objectSize.x / cellSize.x);
-        int tilesY = Mathf.CeilToInt(objectSize.y / cellSize.y);
-
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3Int tilePos = _tileManager.WorldToTile(mousePos);
-
-        // Center alignment
-        tilePos -= new Vector3Int(
-            Mathf.FloorToInt(tilesX / 2f),
-            Mathf.FloorToInt(tilesY / 2f),
-            0
-        );
-
-        Gizmos.color = Color.green;
-
-        for (int y = 0; y < tilesY; y++)
-        {
-            for (int x = 0; x < tilesX; x++)
-            {
-                Vector3Int cell = tilePos + new Vector3Int(x, y, 0);
-                Vector3 cellCenter = _tileManager.Map.GetCellCenterWorld(cell);
-                Gizmos.DrawWireCube(cellCenter, (Vector3)cellSize);
-            }
         }
     }
 }
