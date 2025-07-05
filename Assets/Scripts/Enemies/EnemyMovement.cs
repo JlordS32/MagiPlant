@@ -7,6 +7,7 @@ public class EnemyMovement : MonoBehaviour
     [Header("Setup")]
     [SerializeField] Transform _target;
     [SerializeField] bool _enableDebug;
+    [SerializeField] float _pathFindingDelay = 1f;
 
     [Header("Enemy Properties")]
     [SerializeField] float _speed = 2f;
@@ -30,26 +31,51 @@ public class EnemyMovement : MonoBehaviour
     {
         Queue<Vector3> newPath = new();
 
-        // Convert start and goal pos to tilemap cells
+        // Convert world to grid
         Vector3Int startCell = _tileManager.Map.WorldToCell(transform.position);
-        Vector2 to_Target = (transform.position - _target.position).normalized;
-        Vector3 off_Target = _target.position + (Vector3)(to_Target * _stoppingDistance);
-        Vector3Int goalCell = _tileManager.Map.WorldToCell(off_Target);
+        Vector3Int targetCell = _tileManager.Map.WorldToCell(_target.position);
 
-        // Normalize to grid indices
         Vector2Int start = new(startCell.x - _tileManager.Bounds.xMin, startCell.y - _tileManager.Bounds.yMin);
-        Vector2Int goal = new(goalCell.x - _tileManager.Bounds.xMin, goalCell.y - _tileManager.Bounds.yMin);
+        Vector2Int target = new(targetCell.x - _tileManager.Bounds.xMin, targetCell.y - _tileManager.Bounds.yMin);
 
+        // Find nearest walkable tile around the target
+        Vector2Int goal = target;
+        List<Vector2Int> possibleDir = new();
+
+        foreach (Vector2Int dir in AStar.directions)
+        {
+            Vector2Int check = target + dir;
+            if (_tileManager.IsInBounds(check.x, check.y) && _tileManager.Grid[check.x, check.y] > 0)
+            {
+                possibleDir.Add(check);
+            }
+        }
+
+        if (possibleDir.Count == 0)
+        {
+            Debug.LogWarning($"{gameObject.name} couldn't find walkable goal near target.");
+            return;
+        }
+        else
+        {
+            goal = possibleDir[Random.Range(0, possibleDir.Count)];
+        }
+
+        // Run A*
         var path = AStar.FindPath(start, goal, _tileManager.GetGridAsInt());
-        if (path == null) return;
+        if (path == null)
+        {
+            Debug.LogWarning($"{gameObject.name} failed to find path. Start: {start}, Goal: {goal}");
+            return;
+        }
 
-        // Convert grid path to world positions
+        // Convert grid path to world
         foreach (var step in path)
         {
             Vector3Int cell = new(step.x + _tileManager.Bounds.xMin, step.y + _tileManager.Bounds.yMin, 0);
             Vector3 world = _tileManager.Map.CellToWorld(cell) + _tileManager.Map.cellSize / 2f;
 
-            // Add noise for randomness
+            // Optional: add slight offset
             world += new Vector3(
                 Random.Range(-0.5f, 0.5f),
                 Random.Range(-0.5f, 0.5f),
@@ -61,6 +87,7 @@ public class EnemyMovement : MonoBehaviour
 
         _path = newPath;
     }
+
 
     void Update()
     {
@@ -81,7 +108,7 @@ public class EnemyMovement : MonoBehaviour
 
     IEnumerator DelayedPathRequest()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(_pathFindingDelay);
         RequestPath();
     }
 
