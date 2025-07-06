@@ -5,13 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerData
 {
-    // CONSTANTS
-    const float DEFAULT_LEVEL = 1;
-    const float DEFAULT_EXP = 0;
-    const float DEFAULT_HP = 100;
-    const float DEFAULT_ATTACK = 10;
-    const float DEFAULT_DEFENSE = 5;
-
     // REFERENCES
     Dictionary<PlayerStats, float> _stats = new();
     PlayerStatConfig _config;
@@ -25,7 +18,6 @@ public class PlayerData
 
         Reset();
     }
-
 
     public void AddStats(PlayerStats stat, float amount)
     {
@@ -65,22 +57,22 @@ public class PlayerData
 
     public void Reset()
     {
-        _stats[PlayerStats.Level] = DEFAULT_LEVEL;
-        _stats[PlayerStats.EXP] = DEFAULT_EXP;
-        _stats[PlayerStats.HP] = DEFAULT_HP;
-        _stats[PlayerStats.MaxHP] = DEFAULT_HP;
-        _stats[PlayerStats.Attack] = DEFAULT_ATTACK;
-        _stats[PlayerStats.Defense] = DEFAULT_DEFENSE;
+        _stats[PlayerStats.Level] = 1;
+        _stats[PlayerStats.EXP] = 0;
+        _stats[PlayerStats.MaxHP] = _config.baseHP;
+        _stats[PlayerStats.HP] = _config.baseHP;
+        _stats[PlayerStats.Attack] = _config.baseAttack;
+        _stats[PlayerStats.Defense] = _config.baseDefense;
     }
 
     void Upgrade()
     {
         float level = _stats[PlayerStats.Level];
 
-        _stats[PlayerStats.MaxHP] = DEFAULT_HP + (20f * (level - 1));
+        _stats[PlayerStats.MaxHP] = _config.baseHP + (20f * (level - 1));
         _stats[PlayerStats.HP] = _stats[PlayerStats.MaxHP]; // restore full HP on upgrade
-        _stats[PlayerStats.Attack] = DEFAULT_ATTACK + (5f * (level - 1));
-        _stats[PlayerStats.Defense] = DEFAULT_DEFENSE + (2.5f * (level - 1));
+        _stats[PlayerStats.Attack] = _config.baseAttack + (5f * (level - 1));
+        _stats[PlayerStats.Defense] = _config.baseDefense + (2.5f * (level - 1));
     }
 
     public bool CheckLevelUp()
