@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour, IAttack
 
     // REFERENCES
     EnemyAnimation _enemyAnim;
+    Rigidbody2D _rb;
+    HealthUI _healthUI;
 
     // VARIABLES
     float _timer;
@@ -18,6 +20,7 @@ public class Enemy : MonoBehaviour, IAttack
     void Awake()
     {
         _enemyAnim = GetComponent<EnemyAnimation>();
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     void OnEnable() => EnemyManager.Register(this);
@@ -28,6 +31,13 @@ public class Enemy : MonoBehaviour, IAttack
     void Update()
     {
         _timer += Time.deltaTime;
+
+        if (_rb.linearVelocityX != 0)
+        {
+            Vector3 scale = transform.localScale;
+            scale.x = -Mathf.Sign(_rb.linearVelocityX) * Mathf.Abs(scale.x);
+            transform.localScale = scale;
+        }
 
         if (_targetInRange != null && _timer >= _coolDown)
         {
