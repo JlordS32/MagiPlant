@@ -54,15 +54,16 @@ public class BuildManager : MonoBehaviour
         // WARNING: No bound here, might need in the future.
         if (_input.WasReleasedThisFrame() && isValid && isWithinBounds)
         {
-            // Instantiate game object
-            Instantiate(_selectedPrefab, worldPos, Quaternion.identity, _parentObject);
+            // Update tile value
+            int id = _tileManager.SetOccupiedArea(worldPos, tilesX, tilesY, TileWeight.Blocked);
+
+            // Instantiate
+            GameObject obj = Instantiate(_selectedPrefab, worldPos, Quaternion.identity, _parentObject);
+            obj.GetComponent<PlacedObject>().TileId = id;
             _selectedPrefab = null; // Disable so update is stopped
             _input.Disable(); // Disable Input
             SetPreviewMode(_previewPrefab, false); // Undo preview mode
             Destroy(_previewPrefab); // Destroy preview object
-
-            // Update tile value
-            _tileManager.SetOccupiedArea(worldPos, tilesX, tilesY, TileWeight.Blocked);
         }
     }
 
