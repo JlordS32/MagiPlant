@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour, IAttack, IDamageable
         _enemyAnim = GetComponent<EnemyAnimation>();
         _rb = GetComponent<Rigidbody2D>();
         _enemyData = new EnemyData(_enemyStatConfig);
+        _healthUI = GetComponentInChildren<HealthUI>();
     }
 
     void OnEnable() => EnemyManager.Register(this);
@@ -30,6 +31,8 @@ public class Enemy : MonoBehaviour, IAttack, IDamageable
 
     void Update()
     {
+        if (_enemyData.IsDead) return;
+
         _timer += Time.deltaTime;
 
         // Flip sprite based on direction
@@ -70,5 +73,10 @@ public class Enemy : MonoBehaviour, IAttack, IDamageable
         _healthUI.Show();
         _enemyData.ApplyDamage(dmg);
         _healthUI.UpdateBar(_enemyData.Get(EnemyStats.HP), _enemyData.Get(EnemyStats.MaxHP));
+
+        if (_enemyData.IsDead)
+        {
+            Destroy(gameObject);
+        }
     }
 }
