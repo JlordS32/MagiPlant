@@ -40,7 +40,7 @@ public class BuildManager : MonoBehaviour
         if (tilesX % 2 == 0 || tilesY % 2 == 0)
             worldPos -= new Vector3(0.5f, 0.5f, 0);
 
-
+        // TEST
         // Showing the preview prefab ghost
         if (_previewPrefab == null)
         {
