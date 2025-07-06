@@ -15,7 +15,6 @@ public class Player : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage)
     {
-        Debug.Log("Player taking damage");
         _playerData.ApplyDamage(damage);
     }
 }

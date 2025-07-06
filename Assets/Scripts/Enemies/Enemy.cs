@@ -10,14 +10,14 @@ public class Enemy : MonoBehaviour, IAttack
     [SerializeField] float _damage = 5f;
 
     // REFERENCES
-    Animator _anim;
+    EnemyAnimation _enemyAnim;
 
     // VARIABLES
     float _timer;
 
     void Awake()
     {
-        _anim = GetComponentInChildren<Animator>();
+        _enemyAnim = GetComponent<EnemyAnimation>();
     }
 
     void OnEnable() => EnemyManager.Register(this);
@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour, IAttack
 
     public void Attack(IDamageable target)
     {
-        _anim.SetTrigger("attack");
+        _enemyAnim.AnimateJump(((MonoBehaviour)target).transform);
         target.TakeDamage(_damage);
     }
 }
