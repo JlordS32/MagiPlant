@@ -140,17 +140,69 @@ public class TileManager : MonoBehaviour
     {
         if (!IsInBounds(pos.x, pos.y)) return;
 
-        if (weight > 0)
-        {
-            OccupiedTiles.Add(pos);
-            Grid[pos.x, pos.y] = weight; // Mark as blocked
-        }
-        else
-        {
-            OccupiedTiles.Remove(pos);
-            Grid[pos.x, pos.y] = TileWeight.Walkable;
-        }
+        Grid[pos.x, pos.y] = weight;
 
-        OnGridUpdated?.Invoke(pos, Grid[pos.x, pos.y]);
+        if (weight != TileWeight.Walkable)
+            OccupiedTiles.Add(pos);
+        else
+            OccupiedTiles.Remove(pos);
+
+        OnGridUpdated?.Invoke(pos, weight);
+    }
+
+
+    public void SetOccupiedArea(Vector3 areaPos, int width, int height, TileWeight weight)
+    {
+        int offsetX = Mathf.FloorToInt(width / 2f);
+        int offsetY = Mathf.FloorToInt(height / 2f);
+        Vector2Int originTile = WorldToGridIndex(areaPos) - new Vector2Int(offsetX, offsetY);
+
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                Vector2Int pos = new(originTile.x + x, originTile.y + y);
+                SetOccupied(pos, weight);
+            }
+        }
+    }
+
+    public void TraverseArea(int width, int height, Vector3 worldPos, System.Action<int, int> actionPerTile)
+    {
+        Vector2Int origin = WorldToGridIndex(worldPos);
+        int offsetX = Mathf.FloorToInt(width / 2f);
+        int offsetY = Mathf.FloorToInt(height / 2f);
+        origin -= new Vector2Int(offsetX, offsetY);
+
+        for (int x = 0; x < width; x++)
+            for (int y = 0; y < height; y++)
+            {
+                int gx = origin.x + x;
+                int gy = origin.y + y;
+                if (IsInBounds(gx, gy))
+                    actionPerTile?.Invoke(gx, gy);
+            }
+    }
+
+    public bool IsAreaValid(int width, int height, Vector3 worldPos, TileWeight required = TileWeight.Walkable)
+    {
+        bool valid = true;
+        TraverseArea(width, height, worldPos, (x, y) =>
+        {
+            if (Grid[x, y] != required)
+                valid = false;
+        });
+        return valid;
+    }
+
+    public bool IsAreaWithinBounds(int width, int height, Vector3 worldPos)
+    {
+        bool within = true;
+        TraverseArea(width, height, worldPos, (x, y) =>
+        {
+            if (!IsInBounds(x, y))
+                within = false;
+        });
+        return within;
     }
 }
