@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Collections.Generic;
+using System;
 
 [System.Serializable]
 public struct Node
@@ -11,6 +12,9 @@ public struct Node
 
 public class TileManager : MonoBehaviour
 {
+    // STATIC
+    public static event System.Action<Vector2Int, TileWeight> OnGridUpdated;
+
     // PROPERTIES
     [SerializeField] Tilemap _map;
 
@@ -21,18 +25,19 @@ public class TileManager : MonoBehaviour
     [SerializeField] bool _enableDebug;
 
     // VARIABLES
+    public HashSet<Vector2Int> _occupiedTiles = new();
+    public Dictionary<int, HashSet<Vector2Int>> _occupiedTileIds = new();
+
+    // GETTERS && SETTERS
     public TileWeight[,] Grid { get; private set; }
     public BoundsInt Bounds { get; private set; }
     public Tilemap Map => _map;
+    public HashSet<Vector2Int> OccupiedTiles => _occupiedTiles;
+    public Dictionary<int, HashSet<Vector2Int>> OccupiedTilesIds => _occupiedTileIds;
 
     void Awake()
     {
         BuildGrid();
-    }
-
-    public void UpdateGrid(int x, int y, TileWeight value)
-    {
-        Grid[x, y] = value;
     }
 
     public void BuildGrid()
@@ -133,5 +138,90 @@ public class TileManager : MonoBehaviour
                 Gizmos.DrawCube(worldPos, Vector3.one * 0.8f);
             }
         }
+    }
+
+    public int SetOccupied(Vector2Int pos, TileWeight weight, int id = -1)
+    {
+        if (!IsInBounds(pos.x, pos.y)) return -1;
+
+        if (id == -1)
+            id = Guid.NewGuid().GetHashCode();
+
+        Grid[pos.x, pos.y] = weight;
+
+        if (weight != TileWeight.Walkable)
+        {
+            _occupiedTiles.Add(pos);
+            if (id >= 0)
+            {
+                if (!_occupiedTileIds.ContainsKey(id))
+                    _occupiedTileIds[id] = new HashSet<Vector2Int>();
+                _occupiedTileIds[id].Add(pos);
+            }
+        }
+        else
+        {
+            _occupiedTiles.Remove(pos);
+        }
+
+        OnGridUpdated?.Invoke(pos, weight);
+
+        return id;
+    }
+
+    public int SetOccupiedArea(Vector3 areaPos, int width, int height, TileWeight weight)
+    {
+        int id = Guid.NewGuid().GetHashCode();
+        int offsetX = Mathf.FloorToInt(width / 2f);
+        int offsetY = Mathf.FloorToInt(height / 2f);
+        Vector2Int originTile = WorldToGridIndex(areaPos) - new Vector2Int(offsetX, offsetY);
+
+        for (int x = 0; x < width; x++)
+            for (int y = 0; y < height; y++)
+            {
+                Vector2Int pos = new(originTile.x + x, originTile.y + y);
+                SetOccupied(pos, weight, id);
+            }
+
+        return id;
+    }
+
+    public void TraverseArea(int width, int height, Vector3 worldPos, System.Action<int, int> actionPerTile)
+    {
+        Vector2Int origin = WorldToGridIndex(worldPos);
+        int offsetX = Mathf.FloorToInt(width / 2f);
+        int offsetY = Mathf.FloorToInt(height / 2f);
+        origin -= new Vector2Int(offsetX, offsetY);
+
+        for (int x = 0; x < width; x++)
+            for (int y = 0; y < height; y++)
+            {
+                int gx = origin.x + x;
+                int gy = origin.y + y;
+                if (IsInBounds(gx, gy))
+                    actionPerTile?.Invoke(gx, gy);
+            }
+    }
+
+    public bool IsAreaValid(int width, int height, Vector3 worldPos, TileWeight required = TileWeight.Walkable)
+    {
+        bool valid = true;
+        TraverseArea(width, height, worldPos, (x, y) =>
+        {
+            if (Grid[x, y] != required)
+                valid = false;
+        });
+        return valid;
+    }
+
+    public bool IsAreaWithinBounds(int width, int height, Vector3 worldPos)
+    {
+        bool within = true;
+        TraverseArea(width, height, worldPos, (x, y) =>
+        {
+            if (!IsInBounds(x, y))
+                within = false;
+        });
+        return within;
     }
 }

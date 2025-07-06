@@ -1,6 +1,5 @@
 using UnityEngine;
 
-// TODO: Enemy Takes Damage
 public class Enemy : MonoBehaviour, IAttack, IDamageable
 {
     // PROPERTIES

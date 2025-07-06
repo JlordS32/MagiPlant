@@ -8,7 +8,6 @@ public class EnemyManager : MonoBehaviour
     public static void Register(Enemy enemy)
     {
         Enemies.Add(enemy);
-        Debug.Log(Enemies.Count);
     }
     public static void Unregister(Enemy enemy) => Enemies.Remove(enemy);
 }

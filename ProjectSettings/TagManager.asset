@@ -41,11 +41,26 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: background
+  - name: Background
     uniqueID: 2056563903
     locked: 0
-  - name: foreground
+  - name: Buildings
     uniqueID: 1146174077
+    locked: 0
+  - name: Enemies
+    uniqueID: 729790975
+    locked: 0
+  - name: Projectiles
+    uniqueID: 1522963655
+    locked: 0
+  - name: FX
+    uniqueID: 1197920077
+    locked: 0
+  - name: UIWorld
+    uniqueID: 2933407489
+    locked: 0
+  - name: Foreground
+    uniqueID: 1882343101
     locked: 0
   m_RenderingLayers:
   - Default

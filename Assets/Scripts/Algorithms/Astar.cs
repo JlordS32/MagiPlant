@@ -35,6 +35,7 @@ public static class AStar
         // Base setup
         gScore[start.x, start.y] = 0;
         fScore[start.x, start.y] = Heuristic(start, goal);
+        cameFrom[start.x, start.y] = start;
 
         var openSet = new PriorityQueue<Vector2Int>();
         openSet.Enqueue(start, fScore[start.x, start.y]);
@@ -87,11 +88,10 @@ public static class AStar
             current
         };
 
-        while (cameFrom[current.x, current.y] != Vector2Int.zero || current == Vector2Int.zero)
+        while (cameFrom[current.x, current.y] != current)
         {
             current = cameFrom[current.x, current.y];
             path.Add(current);
-            if (current == Vector2Int.zero) break;
         }
 
         path.Reverse();

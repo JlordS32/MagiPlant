@@ -3,9 +3,11 @@ using UnityEngine.InputSystem;
 
 public class BuildManager : MonoBehaviour
 {
+    // PROPERTIES
     [SerializeField] InputAction _input;
     [SerializeField] Transform _parentObject;
 
+    // REFERENCES
     TileManager _tileManager;
     GameObject _selectedPrefab;
     GameObject _previewPrefab;
@@ -31,8 +33,8 @@ public class BuildManager : MonoBehaviour
         int tilesY = Mathf.CeilToInt(objectSize.y / cellSize.y);
 
         // Checkers
-        bool isValid = IsValidTile(tilesX, tilesY, worldPos);
-        bool isWithinBounds = WithinBounds(tilesX, tilesY, worldPos);
+        bool isValid = _tileManager.IsAreaValid(tilesX, tilesY, worldPos);
+        bool isWithinBounds = _tileManager.IsAreaWithinBounds(tilesX, tilesY, worldPos);
 
         // Centering logic, by default centre if odd x odd grid
         if (tilesX % 2 == 0 || tilesY % 2 == 0)
@@ -52,80 +54,17 @@ public class BuildManager : MonoBehaviour
         // WARNING: No bound here, might need in the future.
         if (_input.WasReleasedThisFrame() && isValid && isWithinBounds)
         {
-            // Instantiate game object
-            Instantiate(_selectedPrefab, worldPos, Quaternion.identity, _parentObject);
+            // Update tile value
+            int id = _tileManager.SetOccupiedArea(worldPos, tilesX, tilesY, TileWeight.Blocked);
+
+            // Instantiate
+            GameObject obj = Instantiate(_selectedPrefab, worldPos, Quaternion.identity, _parentObject);
+            obj.GetComponent<PlacedObject>().TileId = id;
             _selectedPrefab = null; // Disable so update is stopped
             _input.Disable(); // Disable Input
             SetPreviewMode(_previewPrefab, false); // Undo preview mode
             Destroy(_previewPrefab); // Destroy preview object
-
-            // Update tile value
-            UpdateTile(tilesX, tilesY, worldPos);
         }
-    }
-
-    void TraverseTiles(int width, int height, Vector3 worldPos, System.Action<int, int> actionPerTile)
-    {
-        // Offset tile to (0, 0) to the bottom left.
-        int offsetX = Mathf.FloorToInt(width / 2f);
-        int offsetY = Mathf.FloorToInt(height / 2f);
-        Vector2Int originTile = _tileManager.WorldToGridIndex(worldPos) - new Vector2Int(offsetX, offsetY);
-
-        for (int x = 0; x < width; x++)
-        {
-            for (int y = 0; y < height; y++)
-            {
-                int gridX = originTile.x + x;
-                int gridY = originTile.y + y;
-
-                if (!_tileManager.IsInBounds(gridX, gridY))
-                    continue;
-
-                actionPerTile?.Invoke(gridX, gridY);
-            }
-        }
-    }
-
-    bool IsValidTile(int width, int height, Vector3 worldPos)
-    {
-        bool allWalkable = true;
-
-        TraverseTiles(width, height, worldPos, (x, y) =>
-        {
-            if (_tileManager.Grid[x, y] != TileWeight.Walkable)
-                allWalkable = false;
-        });
-
-        return allWalkable;
-    }
-
-    bool WithinBounds(int width, int height, Vector3 worldPos)
-    {
-        int offsetX = Mathf.FloorToInt(width / 2f);
-        int offsetY = Mathf.FloorToInt(height / 2f);
-        Vector2Int originTile = _tileManager.WorldToGridIndex(worldPos) - new Vector2Int(offsetX, offsetY);
-
-        for (int x = 0; x < width; x++)
-        {
-            for (int y = 0; y < height; y++)
-            {
-                int gridX = originTile.x + x;
-                int gridY = originTile.y + y;
-
-                if (!_tileManager.IsInBounds(gridX, gridY))
-                    return false;
-            }
-        }
-
-        return true;
-    }
-
-    void UpdateTile(int width, int height, Vector3 worldPos)
-    {
-        TraverseTiles(width, height, worldPos, (x, y) =>
-        {
-            _tileManager.UpdateGrid(x, y, TileWeight.Blocked);
-        });
     }
 
     // Function called on GUI
