@@ -3,9 +3,11 @@ using UnityEngine.InputSystem;
 
 public class BuildManager : MonoBehaviour
 {
+    // PROPERTIES
     [SerializeField] InputAction _input;
     [SerializeField] Transform _parentObject;
 
+    // REFERENCES
     TileManager _tileManager;
     GameObject _selectedPrefab;
     GameObject _previewPrefab;
@@ -124,7 +126,7 @@ public class BuildManager : MonoBehaviour
     {
         TraverseTiles(width, height, worldPos, (x, y) =>
         {
-            _tileManager.UpdateGrid(x, y, TileWeight.Blocked);
+            _tileManager.SetOccupied(new Vector2Int(x, y), TileWeight.Blocked);
         });
     }
 

@@ -11,6 +11,9 @@ public struct Node
 
 public class TileManager : MonoBehaviour
 {
+    // STATIC
+    public static event System.Action<Vector2Int, TileWeight> OnGridUpdated;
+
     // PROPERTIES
     [SerializeField] Tilemap _map;
 
@@ -21,6 +24,9 @@ public class TileManager : MonoBehaviour
     [SerializeField] bool _enableDebug;
 
     // VARIABLES
+    public HashSet<Vector2Int> OccupiedTiles = new();
+
+    // GETTERS && SETTERS
     public TileWeight[,] Grid { get; private set; }
     public BoundsInt Bounds { get; private set; }
     public Tilemap Map => _map;
@@ -28,11 +34,6 @@ public class TileManager : MonoBehaviour
     void Awake()
     {
         BuildGrid();
-    }
-
-    public void UpdateGrid(int x, int y, TileWeight value)
-    {
-        Grid[x, y] = value;
     }
 
     public void BuildGrid()
@@ -133,5 +134,23 @@ public class TileManager : MonoBehaviour
                 Gizmos.DrawCube(worldPos, Vector3.one * 0.8f);
             }
         }
+    }
+
+    public void SetOccupied(Vector2Int pos, TileWeight weight)
+    {
+        if (!IsInBounds(pos.x, pos.y)) return;
+
+        if (weight > 0)
+        {
+            OccupiedTiles.Add(pos);
+            Grid[pos.x, pos.y] = weight; // Mark as blocked
+        }
+        else
+        {
+            OccupiedTiles.Remove(pos);
+            Grid[pos.x, pos.y] = TileWeight.Walkable;
+        }
+
+        OnGridUpdated?.Invoke(pos, Grid[pos.x, pos.y]);
     }
 }
