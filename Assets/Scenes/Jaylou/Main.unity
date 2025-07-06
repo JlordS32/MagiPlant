@@ -613,21 +613,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5545265021587082298, guid: 4c426924ecb88264cb0547d535b7e854, type: 3}
-      propertyPath: m_Size.x
-      value: 4.937708
+    - target: {fileID: 4836215566054246128, guid: 4c426924ecb88264cb0547d535b7e854, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0.95
       objectReference: {fileID: 0}
-    - target: {fileID: 5545265021587082298, guid: 4c426924ecb88264cb0547d535b7e854, type: 3}
-      propertyPath: m_Size.y
-      value: 4.99232
+    - target: {fileID: 4836215566054246128, guid: 4c426924ecb88264cb0547d535b7e854, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0.05
       objectReference: {fileID: 0}
-    - target: {fileID: 5545265021587082298, guid: 4c426924ecb88264cb0547d535b7e854, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.09790921
+    - target: {fileID: 5633396587283300394, guid: 4c426924ecb88264cb0547d535b7e854, type: 3}
+      propertyPath: m_Color.b
+      value: 0.0141509175
       objectReference: {fileID: 0}
-    - target: {fileID: 5545265021587082298, guid: 4c426924ecb88264cb0547d535b7e854, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.080590725
+    - target: {fileID: 5633396587283300394, guid: 4c426924ecb88264cb0547d535b7e854, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5633396587283300394, guid: 4c426924ecb88264cb0547d535b7e854, type: 3}
+      propertyPath: m_Color.r
+      value: 0.34470034
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159705288866339382, guid: 4c426924ecb88264cb0547d535b7e854, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
