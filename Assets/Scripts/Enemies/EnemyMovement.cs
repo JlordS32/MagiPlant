@@ -14,12 +14,14 @@ public class EnemyMovement : MonoBehaviour
 
     // VARIABLES
     TileManager _tileManager;
+    Rigidbody2D _rb;
     Transform _target;
     Queue<Vector3> _path = new();
 
     void Awake()
     {
         _tileManager = FindFirstObjectByType<TileManager>();
+        _rb = GetComponent<Rigidbody2D>();
         _target = FindFirstObjectByType<Player>().GetComponent<Transform>();
     }
 
@@ -91,7 +93,6 @@ public class EnemyMovement : MonoBehaviour
         _path = newPath;
     }
 
-
     void Update()
     {
         // FEATURE: Repathing logic here, for now disregard
@@ -101,12 +102,16 @@ public class EnemyMovement : MonoBehaviour
         if (_path.Count == 0) return;
 
         Vector3 _targetPos = _path.Peek();
-        transform.position = Vector3.MoveTowards(transform.position, _targetPos, _speed * Time.deltaTime);
+        Vector2 direction = (_targetPos - transform.position).normalized;
+        _rb.linearVelocity = direction * _speed;
 
         if (Vector3.Distance(transform.position, _targetPos) < 0.05f)
         {
             _path.Dequeue();
         }
+
+        if (_path.Count == 0)
+            _rb.linearVelocity = Vector2.zero;
     }
 
     IEnumerator DelayedPathRequest()
