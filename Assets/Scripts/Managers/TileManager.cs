@@ -9,14 +9,6 @@ public struct Node
     public TileWeight Weight;
 }
 
-public struct TileRegion
-{
-    public Vector3Int TileOrigin;
-    public Vector3 WorldPosition;
-    public int Width;
-    public int Height;
-}
-
 public class TileManager : MonoBehaviour
 {
     // PROPERTIES
