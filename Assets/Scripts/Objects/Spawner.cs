@@ -3,9 +3,13 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    [Header("Enemy to spawn")]
     [SerializeField] List<GameObject> _enemyPrefab;
-    [SerializeField] Vector2 _range;
-    [SerializeField] float _interval;
+
+    [Header("Spawn Properties")]
+    [SerializeField] Vector2 _spawnRange;
+    [SerializeField] float _spawnInterval;
+    [SerializeField] int _maxSpawn = 10;
 
     // VARIABLES
     float _timer;
@@ -20,10 +24,9 @@ public class Spawner : MonoBehaviour
 
     void Update()
     {
-
         _timer += Time.deltaTime;
 
-        if (_timer >= _interval)
+        if (_timer >= _spawnInterval)
         {
             _timer = 0;
             SpawnEnemy();
@@ -32,7 +35,7 @@ public class Spawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        if (_enemyPrefab.Count == 0) return;
+        if (_enemyPrefab.Count == 0 || transform.childCount >= _maxSpawn) return;
 
         int random = Random.Range(0, _enemyPrefab.Count);
         Vector3Int baseCell = _tileManager.Map.WorldToCell(transform.position);
@@ -41,8 +44,8 @@ public class Spawner : MonoBehaviour
         while (true)
         {
             Vector3Int offset = new(
-                Random.Range(-Mathf.FloorToInt(_range.x / 2), Mathf.CeilToInt(_range.x / 2)),
-                Random.Range(-Mathf.FloorToInt(_range.y / 2), Mathf.CeilToInt(_range.y / 2)),
+                Random.Range(-Mathf.FloorToInt(_spawnRange.x / 2), Mathf.CeilToInt(_spawnRange.x / 2)),
+                Random.Range(-Mathf.FloorToInt(_spawnRange.y / 2), Mathf.CeilToInt(_spawnRange.y / 2)),
                 0
             );
 
@@ -63,6 +66,6 @@ public class Spawner : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position, _range);
+        Gizmos.DrawWireCube(transform.position, _spawnRange);
     }
 }

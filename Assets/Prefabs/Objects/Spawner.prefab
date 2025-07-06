@@ -44,6 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dc1bd16d177dc047b18c07248e14539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: []
-  _range: {x: 1.21, y: 9.98}
-  _interval: 3
+  _enemyPrefab:
+  - {fileID: 2339890260058669062, guid: 2289aa7d5ad65784f8d5897ea11be825, type: 3}
+  - {fileID: 2339890260058669062, guid: 628745bff07487646b26fab3e93e1718, type: 3}
+  - {fileID: 4427036724313737658, guid: b2bec4030159adf4bab3e49bbcc7dfec, type: 3}
+  - {fileID: 2339890260058669062, guid: 3200122fa37b50c4ba2afc0abb0aec17, type: 3}
+  _spawnRange: {x: 1, y: 10}
+  _spawnInterval: 1
+  _maxSpawn: 3
