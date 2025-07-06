@@ -49,7 +49,6 @@ public class PlantGrow : MonoBehaviour
 
     public void OnTest()
     {
-        Debug.Log("hello");
         _player.PlayerData.AddExp(10);
         int currLevel = (int)_player.PlayerData.Get(PlayerStats.Level);
         _uiManager.UpdateExpText(_player.PlayerData.Get(PlayerStats.EXP), _player.PlayerData.GetRequiredEXP(currLevel));

@@ -58,8 +58,6 @@ public class PlayerData
         float finalDamage = Mathf.Max(0, amount - defense);
         _stats[PlayerStats.HP] = Mathf.Max(0, _stats[PlayerStats.HP] - finalDamage);
 
-        Debug.Log(_stats[PlayerStats.HP] + " / " + _stats[PlayerStats.MaxHP]);
-
         return finalDamage;
     }
 

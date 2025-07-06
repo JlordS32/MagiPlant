@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     [Header("Setup")]
-    [SerializeField] Transform _target;
     [SerializeField] bool _enableDebug;
     [SerializeField] float _pathFindingDelay = 1f;
 
@@ -15,11 +14,13 @@ public class EnemyMovement : MonoBehaviour
 
     // VARIABLES
     TileManager _tileManager;
+    Transform _target;
     Queue<Vector3> _path = new();
 
     void Awake()
     {
         _tileManager = FindFirstObjectByType<TileManager>();
+        _target = FindFirstObjectByType<Player>().GetComponent<Transform>();
     }
 
     void Start()
@@ -116,24 +117,34 @@ public class EnemyMovement : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        if (_path == null || _path.Count == 0 || !_enableDebug)
-            return;
+        if (_tileManager == null || !_enableDebug) return;
 
-        Gizmos.color = Color.cyan;
-
-        Vector3[] points = _path.ToArray();
-        Vector3 previous = transform.position;
-
-        // Draw path taken
-        foreach (var point in points)
+        // Draw path lines
+        if (_path != null && _path.Count > 0)
         {
-            Gizmos.DrawLine(previous, point);
-            Gizmos.DrawSphere(point, 0.1f);
-            previous = point;
+            Gizmos.color = Color.cyan;
+
+            Vector3[] points = _path.ToArray();
+            Vector3 previous = transform.position;
+
+            foreach (var point in points)
+            {
+                Gizmos.DrawLine(previous, point);
+                previous = point;
+            }
         }
 
-        // Draw stopping zone
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawSphere(_target.position, _stoppingDistance);
+        // Draw shaded target tile
+        if (_target != null)
+        {
+            Vector3 targetPos = _target.position;
+            Vector3Int cell = _tileManager.Map.WorldToCell(targetPos);
+            Vector3 cellCenter = _tileManager.Map.GetCellCenterWorld(cell);
+            Vector3 cellSize = _tileManager.Map.cellSize;
+
+            Gizmos.color = new Color(1f, 0.5f, 0f, 0.4f);
+            Gizmos.DrawCube(cellCenter, cellSize);
+        }
     }
+
 }
