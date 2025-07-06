@@ -1,37 +1,38 @@
 using UnityEngine;
 
-// TODO: Enemy Attacks Player
 // TODO: Enemy Takes Damage
-// TODO: Bouncing animation when attacking.
-public class Enemy : MonoBehaviour, IAttack
+public class Enemy : MonoBehaviour, IAttack, IDamageable
 {
     // PROPERTIES
     [SerializeField] float _coolDown;
     [SerializeField] float _damage = 5f;
+    [SerializeField] EnemyStatConfig _enemyStatConfig;
 
     // REFERENCES
     EnemyAnimation _enemyAnim;
     Rigidbody2D _rb;
+    EnemyData _enemyData;
     HealthUI _healthUI;
 
     // VARIABLES
     float _timer;
+    IDamageable _targetInRange;
 
     void Awake()
     {
         _enemyAnim = GetComponent<EnemyAnimation>();
         _rb = GetComponent<Rigidbody2D>();
+        _enemyData = new EnemyData(_enemyStatConfig);
     }
 
     void OnEnable() => EnemyManager.Register(this);
     void OnDisable() => EnemyManager.Unregister(this);
 
-    IDamageable _targetInRange;
-
     void Update()
     {
         _timer += Time.deltaTime;
 
+        // Flip sprite based on direction
         if (_rb.linearVelocityX != 0)
         {
             Vector3 scale = transform.localScale;
@@ -62,5 +63,12 @@ public class Enemy : MonoBehaviour, IAttack
     {
         _enemyAnim.AnimateJump(((MonoBehaviour)target).transform);
         target.TakeDamage(_damage);
+    }
+
+    public void TakeDamage(float dmg)
+    {
+        _healthUI.Show();
+        _enemyData.ApplyDamage(dmg);
+        _healthUI.UpdateBar(_enemyData.Get(EnemyStats.HP), _enemyData.Get(EnemyStats.MaxHP));
     }
 }

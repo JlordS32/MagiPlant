@@ -427,6 +427,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _coolDown: 3
   _damage: 10
+  _enemyStatConfig: {fileID: 11400000, guid: e997cb7d3dda44949970f58b3c813d02, type: 2}
 --- !u!114 &2549425988169434127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -469,7 +470,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d8b9d502db10c14a922356946877441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _container: {fileID: 4546433988659230362}
   _bar: {fileID: 7569662217979598507}
 --- !u!1 &8698791436181654501
 GameObject:
