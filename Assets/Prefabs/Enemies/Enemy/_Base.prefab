@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6374521083165718241}
   - component: {fileID: 5973604808822204288}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 4940568187212640905}
   - component: {fileID: 7339717589552673930}
   - component: {fileID: 6614107070525277532}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 735488417855761920}
   - component: {fileID: 2535625776118223110}
   - component: {fileID: 2996671929669091042}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -273,7 +273,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4658067056801773606}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: HealthUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -317,9 +317,9 @@ GameObject:
   - component: {fileID: -2679848939067122144}
   - component: {fileID: 4023629309043402457}
   - component: {fileID: 7724549053641524003}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: _Base
-  m_TagString: Untagged
+  m_TagString: Enemies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -495,7 +495,7 @@ GameObject:
   - component: {fileID: 5670153976861043639}
   - component: {fileID: 3897178300506272832}
   - component: {fileID: 7569662217979598507}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1,26 +1,30 @@
+using System.Linq;
 using UnityEngine;
 
 public class TowerDefense : MonoBehaviour
 {
-    [SerializeField] Transform _target;
     [SerializeField] Vector3 _localForward = Vector3.down;
     [SerializeField] float _strength = 5f;
+    [SerializeField] float _range = 10f;
 
-    DefenseAttack _attack;
+    TowerDefenseAttack _attack;
 
     void Awake()
     {
-        _attack = GetComponent<DefenseAttack>();
+        _attack = GetComponent<TowerDefenseAttack>();
     }
 
     void Update()
     {
-        Vector3 dir = _target.position - transform.position;
+        var target = GetClosestEnemyInRange();
+        if (target == null) return;
+
+        Vector3 dir = target.transform.position - transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         float forwardAngle = Mathf.Atan2(_localForward.y, _localForward.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle - forwardAngle, Vector3.forward);
 
-        _attack.Attack(dir);
+        _attack.Shoot(dir);
     }
 
     void OnDrawGizmos()
@@ -28,5 +32,17 @@ public class TowerDefense : MonoBehaviour
         Gizmos.color = Color.red;
         Vector3 worldDirection = transform.TransformDirection(_localForward.normalized);
         Gizmos.DrawLine(transform.position, transform.position + worldDirection * 2f);
+
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, _range);
     }
+
+    Enemy GetClosestEnemyInRange()
+    {
+        return EnemyManager.Enemies
+            .Where(e => Vector3.Distance(e.transform.position, transform.position) <= _range)
+            .OrderBy(e => Vector3.Distance(e.transform.position, transform.position))
+            .FirstOrDefault();
+    }
+
 }
