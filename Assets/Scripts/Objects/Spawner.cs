@@ -62,7 +62,7 @@ public class Spawner : MonoBehaviour
             }
         }
 
-        Debug.LogWarning(gameObject.name + " failed to find a valid tile.");
+        Debug.LogWarning(gameObject.name + " failed to find a valid tile. Please make sure spawn point is within bounds!");
     }
 
 
