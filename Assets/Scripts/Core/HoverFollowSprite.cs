@@ -15,10 +15,9 @@ public class HoverFollowSprite : MonoBehaviour
             followingObject = new GameObject("FollowSprite");
             SpriteRenderer spriteRenderer = followingObject.AddComponent<SpriteRenderer>();
             spriteRenderer.sprite = followSprite;
-            spriteRenderer.sortingLayerName = "foreground";
+            spriteRenderer.sortingLayerName = "UIWorld";
             spriteRenderer.sortingOrder = 100;
-            followingObject.transform.position = transform.position + Vector3.forward * spriteDepth;
-            followingObject.transform.rotation = Quaternion.Euler(0, 0, angleZ); // angled the sprite
+            followingObject.transform.SetPositionAndRotation(transform.position + Vector3.forward * spriteDepth, Quaternion.Euler(0, 0, angleZ));
         }
     }
 
@@ -26,10 +25,9 @@ public class HoverFollowSprite : MonoBehaviour
     {
         if (followingObject != null)
         {
-            Vector3 mousePosition = Input.mousePosition;
-            mousePosition.z = spriteDepth; 
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            followingObject.transform.position = worldPosition;
+            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mouseWorldPos.z = spriteDepth;
+            followingObject.transform.position = mouseWorldPos;
         }
     }
 

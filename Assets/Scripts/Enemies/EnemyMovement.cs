@@ -40,7 +40,7 @@ public class EnemyMovement : MonoBehaviour
         TileManager.OnGridUpdated -= HandleGridChange;
     }
 
-    void HandleGridChange(Vector2Int changedPos, TileWeight newWeight)
+    void HandleGridChange(TileWeight[,] Grid)
     {
         RequestPath();
     }

@@ -213,10 +213,10 @@ MonoBehaviour:
   _projectilePrefab: {fileID: 1396304532041515281, guid: 9f160a74d8c6c0840b5cac50c7653e81, type: 3}
   _projectTileParent: {fileID: 1714611843553627181}
   _firePoint: {fileID: 4687481102045981104}
-  _coolDown: 1
+  _coolDown: 0.5
   _projectileStats:
-    damage: 5
-    speed: 5
+    damage: 10
+    speed: 25
     lifetime: 5
 --- !u!114 &4290263410957678896
 MonoBehaviour:
