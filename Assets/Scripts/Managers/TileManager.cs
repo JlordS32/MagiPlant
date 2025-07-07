@@ -13,7 +13,7 @@ public struct Node
 public class TileManager : MonoBehaviour
 {
     // STATIC
-    public static event System.Action<Vector2Int, TileWeight> OnGridUpdated;
+    public static event System.Action<TileWeight[,]> OnGridUpdated;
 
     // PROPERTIES
     [SerializeField] Tilemap _map;
@@ -70,6 +70,8 @@ public class TileManager : MonoBehaviour
             // Assign weight to grid
             Grid[gridPos.x, gridPos.y] = weight;
         }
+
+        OnGridUpdated?.Invoke(Grid);
     }
 
     public int[,] GetGridAsInt()
@@ -164,7 +166,7 @@ public class TileManager : MonoBehaviour
             _occupiedTiles.Remove(pos);
         }
 
-        OnGridUpdated?.Invoke(pos, weight);
+        OnGridUpdated?.Invoke(Grid);
 
         return id;
     }

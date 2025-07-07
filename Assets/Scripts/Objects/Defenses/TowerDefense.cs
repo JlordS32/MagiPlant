@@ -8,6 +8,7 @@ public class TowerDefense : MonoBehaviour
     [SerializeField] float _range = 10f;
 
     TowerDefenseAttack _attack;
+    bool _canShoot = true;
 
     void Awake()
     {

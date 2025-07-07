@@ -5,6 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class EnemyData
 {
+    public static event System.Action<Dictionary<EnemyStats, float>> OnEnemyDataUpdate;
+
     Dictionary<EnemyStats, float> _stats = new();
     EnemyStatConfig _config;
 
@@ -26,6 +28,8 @@ public class EnemyData
         float defense = _stats[EnemyStats.Defense];
         float finalDamage = Mathf.Max(0, amount - defense);
         _stats[EnemyStats.HP] = Mathf.Max(0, _stats[EnemyStats.HP] - finalDamage);
+
+        OnEnemyDataUpdate?.Invoke(_stats);
         return finalDamage;
     }
 
@@ -38,5 +42,7 @@ public class EnemyData
         _stats[EnemyStats.Attack] = _config.Attack;
         _stats[EnemyStats.Defense] = _config.Defense;
         _stats[EnemyStats.Speed] = _config.Speed;
+
+        OnEnemyDataUpdate?.Invoke(_stats);
     }
 }

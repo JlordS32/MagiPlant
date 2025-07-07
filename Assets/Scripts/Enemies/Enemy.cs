@@ -39,7 +39,9 @@ public class Enemy : MonoBehaviour, IDamageable
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && collision.TryGetComponent<IDamageable>(out var target))
+        {
             _targetInRange = target;
+        }
     }
 
     void OnTriggerExit2D(Collider2D collision)
