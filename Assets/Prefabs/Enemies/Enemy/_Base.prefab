@@ -316,6 +316,7 @@ GameObject:
   - component: {fileID: 2549425988169434127}
   - component: {fileID: -2679848939067122144}
   - component: {fileID: 4023629309043402457}
+  - component: {fileID: 7724549053641524003}
   m_Layer: 0
   m_Name: _Base
   m_TagString: Untagged
@@ -425,8 +426,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe8d52158d8a68c428c65a0cd93d71a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coolDown: 3
-  _damage: 10
   _enemyStatConfig: {fileID: 11400000, guid: e997cb7d3dda44949970f58b3c813d02, type: 2}
 --- !u!114 &2549425988169434127
 MonoBehaviour:
@@ -471,6 +470,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bar: {fileID: 7569662217979598507}
+--- !u!114 &7724549053641524003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7652509372606306457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de1dd89b47b21be419e39935536d9c5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _coolDown: 3
+  _damage: 5
 --- !u!1 &8698791436181654501
 GameObject:
   m_ObjectHideFlags: 0

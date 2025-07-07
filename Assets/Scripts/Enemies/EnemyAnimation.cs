@@ -6,6 +6,24 @@ public class EnemyAnimation : MonoBehaviour
     [SerializeField] float _jumpHeight = 0.5f;
     [SerializeField] float _jumpDuration = 0.2f;
 
+    Rigidbody2D _rb;
+
+    void Awake()
+    {
+        _rb = GetComponent<Rigidbody2D>();
+    }
+
+    void Update()
+    {
+        // Flip sprite based on direction
+        if (_rb.linearVelocityX != 0)
+        {
+            Vector3 scale = transform.localScale;
+            scale.x = -Mathf.Sign(_rb.linearVelocityX) * Mathf.Abs(scale.x);
+            transform.localScale = scale;
+        }
+    }
+
     public void AnimateJump(Transform target)
     {
         StopAllCoroutines();

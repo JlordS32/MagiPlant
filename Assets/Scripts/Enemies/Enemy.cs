@@ -1,26 +1,22 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IAttack, IDamageable
+public class Enemy : MonoBehaviour, IDamageable
 {
     // PROPERTIES
-    [SerializeField] float _coolDown;
-    [SerializeField] float _damage = 5f;
     [SerializeField] EnemyStatConfig _enemyStatConfig;
 
     // REFERENCES
-    EnemyAnimation _enemyAnim;
-    Rigidbody2D _rb;
     EnemyData _enemyData;
+    EnemyAttack _enemyAttack;
     HealthUI _healthUI;
 
     // VARIABLES
-    float _timer;
     IDamageable _targetInRange;
+    float _timer;
 
     void Awake()
     {
-        _enemyAnim = GetComponent<EnemyAnimation>();
-        _rb = GetComponent<Rigidbody2D>();
+        _enemyAttack = GetComponent<EnemyAttack>();
         _enemyData = new EnemyData(_enemyStatConfig);
         _healthUI = GetComponentInChildren<HealthUI>();
     }
@@ -31,21 +27,12 @@ public class Enemy : MonoBehaviour, IAttack, IDamageable
     void Update()
     {
         if (_enemyData.IsDead) return;
-
         _timer += Time.deltaTime;
 
-        // Flip sprite based on direction
-        if (_rb.linearVelocityX != 0)
+        if (_targetInRange != null && _timer >= _enemyAttack.Cooldown)
         {
-            Vector3 scale = transform.localScale;
-            scale.x = -Mathf.Sign(_rb.linearVelocityX) * Mathf.Abs(scale.x);
-            transform.localScale = scale;
-        }
-
-        if (_targetInRange != null && _timer >= _coolDown)
-        {
-            Attack(_targetInRange);
-            _timer = 0f;
+            _enemyAttack.Attack(_targetInRange);
+            _timer = 0;
         }
     }
 
@@ -59,12 +46,6 @@ public class Enemy : MonoBehaviour, IAttack, IDamageable
     {
         if (collision.CompareTag("Player"))
             _targetInRange = null;
-    }
-
-    public void Attack(IDamageable target)
-    {
-        _enemyAnim.AnimateJump(((MonoBehaviour)target).transform);
-        target.TakeDamage(_damage);
     }
 
     public void TakeDamage(float dmg)
