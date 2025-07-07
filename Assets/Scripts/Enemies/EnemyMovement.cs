@@ -45,9 +45,6 @@ public class EnemyMovement : MonoBehaviour
         RequestPath();
     }
 
-    // BUG: Enemy target cell is not aligned. 
-    // Suggested fix: Look at BuildManager.s, the alignment must be dynamic.
-    // Other suggestions: Fix tile size on the tree instance.
     void RequestPath()
     {
         Queue<Vector3> newPath = new();
