@@ -26,22 +26,21 @@ public class BuildManager : MonoBehaviour
         Vector3Int tilePos = _tileManager.Map.WorldToCell(mousePos);
         Vector3 worldPos = _tileManager.Map.GetCellCenterWorld(tilePos);
 
-        // Offset handling (same logic)
+        // Offset handling
         Vector2 objectSize = _selectedPrefab.GetComponentInChildren<SpriteRenderer>().bounds.size;
         Vector2 cellSize = _tileManager.Map.cellSize;
         int tilesX = Mathf.CeilToInt(objectSize.x / cellSize.x);
         int tilesY = Mathf.CeilToInt(objectSize.y / cellSize.y);
+        worldPos += new Vector3(Mathf.FloorToInt(tilesX / 2f), Mathf.FloorToInt(tilesY / 2f), 0);
 
         // Checkers
         bool isValid = _tileManager.IsAreaValid(tilesX, tilesY, worldPos);
         bool isWithinBounds = _tileManager.IsAreaWithinBounds(tilesX, tilesY, worldPos);
 
-        // Centering logic, by default centre if odd x odd grid
+        // Slightly offset by 0.5f if tilesize is evenxeven. This is because there's no center.
         if (tilesX % 2 == 0 || tilesY % 2 == 0)
             worldPos -= new Vector3(0.5f, 0.5f, 0);
 
-        // TEST
-        // Showing the preview prefab ghost
         if (_previewPrefab == null)
         {
             _previewPrefab = Instantiate(_selectedPrefab);
