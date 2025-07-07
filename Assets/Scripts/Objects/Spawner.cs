@@ -41,7 +41,8 @@ public class Spawner : MonoBehaviour
         Vector3Int baseCell = _tileManager.Map.WorldToCell(transform.position);
 
         // Try random nearby cells
-        while (true)
+        int attempt = 30;
+        while (attempt-- > 0)
         {
             Vector3Int offset = new(
                 Random.Range(-Mathf.FloorToInt(_spawnRange.x / 2), Mathf.CeilToInt(_spawnRange.x / 2)),
@@ -60,6 +61,8 @@ public class Spawner : MonoBehaviour
                 return;
             }
         }
+
+        Debug.LogWarning(gameObject.name + " failed to find a valid tile.");
     }
 
 
