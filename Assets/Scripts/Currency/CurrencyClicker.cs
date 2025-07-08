@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 
-public class CurrencyClicker : MonoBehaviour
+public class CurrencyClicker : MonoBehaviour, IUpgradableCurrency
 {
     // PROPERTIES
     [SerializeField] float _baseRateIncrease = 1.2f;
@@ -46,5 +46,13 @@ public class CurrencyClicker : MonoBehaviour
     public void Click(CurrencyType type)
     {
         _storage.Add(type, _clicks[type]);
+    }
+
+    public void ApplyUpgrade(UpgradeEntry upgrade, CurrencyType type)
+    {
+        if (upgrade.Type == UpgradeType.ClickRate)
+        {
+            UpgradeClickRate(type);
+        }
     }
 }

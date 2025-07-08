@@ -1,13 +1,16 @@
 using System.Linq;
 using UnityEngine;
 
+// WARNING: Dowee this is for you. Add TowerData similar implementation as EnemyData
+// WARNING: Add tower variantsd
+// TODO: Code me chatgpt from scratch.
 public class TowerDefense : MonoBehaviour
 {
     [SerializeField] Vector3 _localForward = Vector3.down;
     [SerializeField] float _range = 10f;
 
     TowerDefenseAttack _attack;
-    
+
     void Awake()
     {
         _attack = GetComponent<TowerDefenseAttack>();

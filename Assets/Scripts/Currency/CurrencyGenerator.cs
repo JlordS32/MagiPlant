@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 
-public class CurrencyGenerator : MonoBehaviour
+public class CurrencyGenerator : MonoBehaviour, IUpgradableCurrency
 {
     // PROPERTIES
     [SerializeField] float _interval = 1f;
@@ -48,17 +48,25 @@ public class CurrencyGenerator : MonoBehaviour
     // GETTERS & SETTERS
     public float GetRate(CurrencyType type) => _rates[type];
     public int GetRateLevel(CurrencyType type) => _rateLevel[type];
-    
+
     public void SetRate(CurrencyType type, float rate)
     {
         _rates[type] = rate;
-        GameEventsManager.RaiseClickRateUpdated(type, _rates[type], _rateLevel[type]);
+        GameEventsManager.RaiseGenerateRateUpdated(type, _rates[type], _rateLevel[type]);
     }
 
     public void UpgradeRate(CurrencyType type)
     {
         _rates[type] *= _baseRateIncrease;
         _rateLevel[type]++;
-        GameEventsManager.RaiseClickRateUpdated(type, _rates[type], _rateLevel[type]);
+        GameEventsManager.RaiseGenerateRateUpdated(type, _rates[type], _rateLevel[type]);
+    }
+
+    public void ApplyUpgrade(UpgradeEntry upgrade, CurrencyType type)
+    {
+        if (upgrade.Type == UpgradeType.GenerateRate)
+        {
+            UpgradeRate(type);
+        }
     }
 }
