@@ -1,5 +1,7 @@
 using UnityEngine;
 
+// FIXME: Link the upgradenetry scriptable object and instantiate from here
+// TODO: Add event listeners for any upgrade change.
 public class UpgradeManager : MonoBehaviour
 {
     // // REFERENCES
