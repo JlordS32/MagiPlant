@@ -18,6 +18,12 @@ public static class GameEventsManager
     // Currencies
     public static event Action<CurrencyType, float> OnCurrencyUpdate;
     public static event Action OnCurrencyReset;
+
+    // Click Rate 
+    public static event Action<CurrencyType, float, int> OnClickRateUpdated;
+
+    // Generate Rate 
+    public static event Action<CurrencyType, float, int> OnGenerateRateUpdated;
     #endregion
 
     #region TRIGGERS
@@ -50,5 +56,13 @@ public static class GameEventsManager
 
     public static void RaiseCurrencyReset()
         => OnCurrencyReset?.Invoke();
+
+    // Click Rate 
+    public static void RaiseClickRateUpdated(CurrencyType type, float rate, int level)
+        => OnClickRateUpdated?.Invoke(type, rate, level);
+        
+    // Generate Rate
+    public static void RaiseGenerateRateUpdated(CurrencyType type, float rate, int level)
+        => OnGenerateRateUpdated?.Invoke(type, rate, level);
     #endregion
 }

@@ -11,7 +11,7 @@ public class CurrencyClicker : MonoBehaviour
     CurrencyStorage _storage;
 
     // VARIABLES
-    Dictionary<CurrencyType, float> _clickRates = new();
+    Dictionary<CurrencyType, float> _clicks = new();
     Dictionary<CurrencyType, int> _clickLevel = new();
     readonly float _defaultRate = 0.125f;
 
@@ -22,23 +22,29 @@ public class CurrencyClicker : MonoBehaviour
 
         foreach (CurrencyType type in Enum.GetValues(typeof(CurrencyType)))
         {
-            _clickRates[type] = _defaultRate;
+            _clicks[type] = _defaultRate;
             _clickLevel[type] = 0;
         }
     }
 
     // GETTERS & SETTERS
-    public float GetClickRate(CurrencyType type) => _clickRates[type];
+    public float GetClickRate(CurrencyType type) => _clicks[type];
     public float GetClickLevel(CurrencyType type) => _clickLevel[type];
-    public void SetClickRate(CurrencyType type, float rate) => _clickRates[type] = rate;
+
+    public void SetClickRate(CurrencyType type, float rate)
+    {
+        _clicks[type] = rate;
+        GameEventsManager.RaiseClickRateUpdated(type, _clicks[type], _clickLevel[type]);
+    }
     public void UpgradeClickRate(CurrencyType type)
     {
-        _clickRates[type] *= _baseRateIncrease;
+        _clicks[type] *= _baseRateIncrease;
         _clickLevel[type]++;
+        GameEventsManager.RaiseClickRateUpdated(type, _clicks[type], _clickLevel[type]);
     }
 
     public void Click(CurrencyType type)
     {
-        _storage.Add(type, _clickRates[type]);
+        _storage.Add(type, _clicks[type]);
     }
 }

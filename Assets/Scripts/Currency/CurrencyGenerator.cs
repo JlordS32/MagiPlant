@@ -48,11 +48,17 @@ public class CurrencyGenerator : MonoBehaviour
     // GETTERS & SETTERS
     public float GetRate(CurrencyType type) => _rates[type];
     public int GetRateLevel(CurrencyType type) => _rateLevel[type];
-    public void SetRate(CurrencyType type, float rate) => _rates[type] = rate;
     
+    public void SetRate(CurrencyType type, float rate)
+    {
+        _rates[type] = rate;
+        GameEventsManager.RaiseClickRateUpdated(type, _rates[type], _rateLevel[type]);
+    }
+
     public void UpgradeRate(CurrencyType type)
     {
         _rates[type] *= _baseRateIncrease;
         _rateLevel[type]++;
+        GameEventsManager.RaiseClickRateUpdated(type, _rates[type], _rateLevel[type]);
     }
 }

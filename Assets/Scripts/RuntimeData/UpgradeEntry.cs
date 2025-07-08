@@ -1,7 +1,7 @@
 using System;
 using UnityEngine.Events;
 
-[System.Serializable]
+[Serializable]
 public class UpgradeEntry
 {
     public UpgradeType Type;
