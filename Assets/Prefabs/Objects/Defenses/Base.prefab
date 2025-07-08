@@ -130,7 +130,6 @@ GameObject:
   - component: {fileID: 1637288532407985584}
   - component: {fileID: 7866446824196291411}
   - component: {fileID: 637576398221792981}
-  - component: {fileID: 4290263410957678896}
   m_Layer: 0
   m_Name: Base
   m_TagString: Untagged
@@ -218,19 +217,6 @@ MonoBehaviour:
     damage: 10
     speed: 25
     lifetime: 5
---- !u!114 &4290263410957678896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2605614416832552758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13a488a4121d18441b817cc45a2c2196, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TileId: 0
 --- !u!1 &5629522099388186364
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,10 @@
 using UnityEngine;
 using System;
 
+// TODO: Refactor upgrade system, below won't scale well.
+// Note: I have refactored UpgradeEntry and added:
+//      - IUpgradable.cs
+//      - UpgradeType.cs
 public class UpgradeManager : MonoBehaviour
 {
     // PROPERTIES

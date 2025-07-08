@@ -4,7 +4,15 @@ using TMPro;
 using UnityEngine.Events;
 using System;
 
-
+// TODO: After refactoring upgrade system. Link it up to the upgrade UI component.
+///
+/// Suggestions below:
+/// 
+/// After finishing refactoring the upgrade logic. Look at UpgradePanelUI.cs and UpgradeUI.cs
+/// Our goal here is to add the upgrade callback to the upgradeUI button and make sure it builds
+/// on start of UpgradePanelUI
+/// 
+///
 public class UIManager : MonoBehaviour
 {
     // PROPERTIES
@@ -50,10 +58,11 @@ public class UIManager : MonoBehaviour
 
     void OnEnable()
     {
-        CurrencyStorage.OnCurrencyUpdate += CurrentRate;
+        GameEventsManager.OnCurrencyUpdate += CurrentRate;
     }
 
-    void CurrentRate(Dictionary<CurrencyType, Storage> storage) {
+    void CurrentRate(Dictionary<CurrencyType, Storage> storage)
+    {
         _water = storage[CurrencyType.Water].Value;
     }
 
@@ -68,7 +77,7 @@ public class UIManager : MonoBehaviour
 
     public void AddUpgrade(string name, UnityAction logic, Func<string> getRate, Func<string> getButtonLabel, Func<string> getLevel)
     {
-        
+
     }
 
     public void UpdateCurrencyText(CurrencyType type, float value)

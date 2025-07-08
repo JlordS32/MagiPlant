@@ -29,6 +29,9 @@ public class PlantGrow : MonoBehaviour
     // VARIABLES
     int _lastKnownIndex = -1;
 
+    void OnEnable() => GameEventsManager.OnLevelUpUpdate += OnLevelUp;
+    void OnDisable() => GameEventsManager.OnLevelUpUpdate -= OnLevelUp;
+
     void Awake()
     {
         _uiManager = FindFirstObjectByType<UIManager>();
@@ -54,21 +57,12 @@ public class PlantGrow : MonoBehaviour
         _uiManager.UpdateExpText(_player.PlayerData.Get(PlayerStats.EXP), _player.PlayerData.GetRequiredEXP(currLevel));
     }
 
-    void Update()
+    void OnLevelUp(int level)
     {
-        int currLevel = (int)_player.PlayerData.Get(PlayerStats.Level);
-        if (_player.PlayerData.CheckLevelUp())
-        {
-            // Play audio on level up
-            AudioManager.Instance.PlaySound(_levelUpSound);
-
-            // UI Handling
-            _uiManager.UpdateLevelText(currLevel);
-            _uiManager.UpdateExpText(_player.PlayerData.Get(PlayerStats.EXP), _player.PlayerData.GetRequiredEXP(currLevel));
-
-            // Sprite Handling
-            UpdateSprite();
-        }
+        AudioManager.Instance.PlaySound(_levelUpSound);
+        _uiManager.UpdateLevelText(level);
+        _uiManager.UpdateExpText(_player.PlayerData.Get(PlayerStats.EXP), _player.PlayerData.GetRequiredEXP(level));
+        UpdateSprite();
     }
 
     void UpdateSprite()

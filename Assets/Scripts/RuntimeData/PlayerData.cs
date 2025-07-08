@@ -2,11 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public class PlayerData
 {
-    public static event System.Action<Dictionary<PlayerStats, float>> OnPlayerStatUpdate;
-
     // REFERENCES
     Dictionary<PlayerStats, float> _stats = new();
     PlayerStatConfig _config;
@@ -28,7 +26,7 @@ public class PlayerData
         {
             _stats[stat] += amount;
         }
-        OnPlayerStatUpdate?.Invoke(_stats);
+        GameEventsManager.RaisePlayerStatUpdate(stat, _stats[stat]);
     }
 
     public void AddExp(float amount)
@@ -37,11 +35,12 @@ public class PlayerData
         {
             _stats[PlayerStats.EXP] += amount;
         }
-        OnPlayerStatUpdate?.Invoke(_stats);
+        CheckLevelUp();
+        GameEventsManager.RaisePlayerStatUpdate(PlayerStats.EXP, _stats[PlayerStats.EXP]);
     }
 
     public float Get(PlayerStats stat) => _stats[stat];
-    public void Set(PlayerStats stat, float value) { _stats[stat] = value; OnPlayerStatUpdate?.Invoke(_stats); }
+    public void Set(PlayerStats stat, float value) { _stats[stat] = value; GameEventsManager.RaisePlayerStatUpdate(stat, _stats[stat]); }
 
     public float GetRequiredEXP(float level)
     {
@@ -53,7 +52,7 @@ public class PlayerData
         float defense = _stats[PlayerStats.Defense];
         float finalDamage = Mathf.Max(0, amount - defense);
         _stats[PlayerStats.HP] = Mathf.Max(0, _stats[PlayerStats.HP] - finalDamage);
-        OnPlayerStatUpdate?.Invoke(_stats);
+        GameEventsManager.RaisePlayerStatUpdate(PlayerStats.HP, _stats[PlayerStats.HP]);
 
         return finalDamage;
     }
@@ -68,7 +67,7 @@ public class PlayerData
         _stats[PlayerStats.HP] = _config.baseHP;
         _stats[PlayerStats.Attack] = _config.baseAttack;
         _stats[PlayerStats.Defense] = _config.baseDefense;
-        OnPlayerStatUpdate?.Invoke(_stats);
+        GameEventsManager.RaisePlayerStatReset(_stats);
     }
 
     void Upgrade()
@@ -79,10 +78,10 @@ public class PlayerData
         _stats[PlayerStats.HP] = _stats[PlayerStats.MaxHP]; // restore full HP on upgrade
         _stats[PlayerStats.Attack] = _config.baseAttack + (5f * (level - 1));
         _stats[PlayerStats.Defense] = _config.baseDefense + (2.5f * (level - 1));
-        OnPlayerStatUpdate?.Invoke(_stats);
+        GameEventsManager.RaisePlayerStatUpgrade(_stats);
     }
 
-    public bool CheckLevelUp()
+    bool CheckLevelUp()
     {
         float currentExp = _stats[PlayerStats.EXP];
         float currentLevel = _stats[PlayerStats.Level];
@@ -96,6 +95,7 @@ public class PlayerData
             _stats[PlayerStats.Level]++;
             requiredExp = GetRequiredEXP(_stats[PlayerStats.Level]);
             leveledUp = true;
+            GameEventsManager.RaiseLevelUpUpdate((int)_stats[PlayerStats.Level]);
         }
 
         _stats[PlayerStats.EXP] = currentExp;
