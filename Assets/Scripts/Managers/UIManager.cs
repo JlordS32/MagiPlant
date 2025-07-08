@@ -48,6 +48,7 @@ public class UIManager : MonoBehaviour
         _currencyStorage = FindFirstObjectByType<CurrencyStorage>();
     }
 
+    // TODO: Make a scriptable object for each upgrade entry
     void Start()
     {
         UpgradeEntry entry = new()
@@ -56,9 +57,10 @@ public class UIManager : MonoBehaviour
             Type = UpgradeType.GenerateRate,
             TargetCurrency = CurrencyType.Water,
             Value = 0.5f,
-            BaseCost = 10f,
+            BaseCost = 2f,
             CostMultiplier = 1.5f,
-            MaxLevel = 10
+            MaxLevel = 10,
+            Level = 1
         };
 
         entry.UpgradeLogic = () =>
@@ -69,7 +71,6 @@ public class UIManager : MonoBehaviour
                 _currencyGenerator.ApplyUpgrade(entry, CurrencyType.Water);
             }
         };
-
 
         _upgradePanel.Build(new List<UpgradeEntry> { entry });
         _upgradeConfigs.Add(entry);

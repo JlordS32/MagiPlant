@@ -35,7 +35,7 @@ public class UpgradePanelUI : MonoBehaviour
         if (_uiMap.TryGetValue((type, currency), out var ui))
         {
             ui.Refresh(
-                $"Rate: {rate:F2}",
+                $"Rate: {rate:F2}/s",
                 $"Lvl: {level}/{maxLevel}",
                 $"Cost: {cost} suns"
             );
