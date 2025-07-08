@@ -1,0 +1,54 @@
+using System;
+using System.Collections.Generic;
+
+public static class GameEventsManager
+{
+    #region EVENTS
+    // Player
+    public static event Action<PlayerStats, float> OnPlayerStatUpdate;
+    public static event Action<Dictionary<PlayerStats, float>> OnPlayerStatUpgrade;
+    public static event Action<int> OnLevelUpUpdate;
+    public static event Action<float, float> OnExpGainUpdate;
+    public static event Action OnPlayerStatReset;
+
+    // Enemies
+    public static event Action<EnemyStats, float> OnEnemyDataUpdate;
+    public static event Action OnEnemyStatReset;
+
+    // Currencies
+    public static event Action<CurrencyType, float> OnCurrencyUpdate;
+    public static event Action OnCurrencyReset;
+    #endregion
+
+    #region TRIGGERS
+    // Player
+    public static void RaisePlayerStatUpdate(PlayerStats stat, float value)
+        => OnPlayerStatUpdate?.Invoke(stat, value);
+
+    public static void RaisePlayerStatUpgrade(Dictionary<PlayerStats, float> upgrades)
+        => OnPlayerStatUpgrade?.Invoke(upgrades);
+
+    public static void RaiseLevelUpUpdate(int level)
+        => OnLevelUpUpdate?.Invoke(level);
+
+    public static void RaiseExpGainUpdate(float exp, float cap)
+        => OnExpGainUpdate?.Invoke(exp, cap);
+
+    public static void RaisePlayerStatReset()
+        => OnPlayerStatReset?.Invoke();
+
+    // Enemies
+    public static void RaiseEnemyStatUpdate(EnemyStats type, float value)
+        => OnEnemyDataUpdate?.Invoke(type, value);
+
+    public static void RaiseEnemyStatReset()
+        => OnEnemyStatReset?.Invoke();
+
+    // Currency
+    public static void RaiseCurrencyUpdate(CurrencyType type, float value)
+        => OnCurrencyUpdate?.Invoke(type, value);
+
+    public static void RaiseCurrencyReset()
+        => OnCurrencyReset?.Invoke();
+    #endregion
+}

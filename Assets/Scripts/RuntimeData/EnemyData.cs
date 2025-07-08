@@ -2,11 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public class EnemyData
 {
-    public static event System.Action<Dictionary<EnemyStats, float>> OnEnemyDataUpdate;
-
     Dictionary<EnemyStats, float> _stats = new();
     EnemyStatConfig _config;
 
@@ -29,7 +27,7 @@ public class EnemyData
         float finalDamage = Mathf.Max(0, amount - defense);
         _stats[EnemyStats.HP] = Mathf.Max(0, _stats[EnemyStats.HP] - finalDamage);
 
-        OnEnemyDataUpdate?.Invoke(_stats);
+        GameEventsManager.RaiseEnemyStatUpdate(EnemyStats.HP, _stats[EnemyStats.HP]);
         return finalDamage;
     }
 
@@ -43,6 +41,6 @@ public class EnemyData
         _stats[EnemyStats.Defense] = _config.Defense;
         _stats[EnemyStats.Speed] = _config.Speed;
 
-        OnEnemyDataUpdate?.Invoke(_stats);
+        GameEventsManager.RaiseEnemyStatReset();
     }
 }

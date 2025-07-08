@@ -4,18 +4,12 @@ using UnityEngine;
 
 public class CurrencyStorage : MonoBehaviour
 {
-    public static event System.Action<Dictionary<CurrencyType, Storage>> OnCurrencyUpdate;
-
     // VARIABLES
     Dictionary<CurrencyType, Storage> _storage = new();
-
-    // REFERENCES
-    UIManager _uiManager;
 
     // UNITY FUNCTIONS
     void Awake()
     {
-        _uiManager = FindFirstObjectByType<UIManager>();
         foreach (CurrencyType type in Enum.GetValues(typeof(CurrencyType)))
             _storage[type] = new Storage();
     }
@@ -24,18 +18,13 @@ public class CurrencyStorage : MonoBehaviour
     public void Add(CurrencyType type, float amount)
     {
         _storage[type].Add(amount);
-
-        // UI Update
-        _uiManager.UpdateCurrencyText(type, _storage[type].Value);
-
-        OnCurrencyUpdate?.Invoke(_storage);
+        GameEventsManager.RaiseCurrencyUpdate(type, _storage[type].Value);
     }
 
     public bool Spend(CurrencyType type, float amount)
     {
         bool spent = _storage[type].Spend(amount);
-        _uiManager.UpdateCurrencyText(type, _storage[type].Value);
-        OnCurrencyUpdate?.Invoke(_storage);
+        GameEventsManager.RaiseCurrencyUpdate(type, _storage[type].Value);
 
         return spent;
     }
@@ -48,6 +37,6 @@ public class CurrencyStorage : MonoBehaviour
         foreach (CurrencyType type in Enum.GetValues(typeof(CurrencyType)))
             _storage[type] = new Storage();
         
-        OnCurrencyUpdate?.Invoke(_storage);
+        GameEventsManager.RaiseCurrencyReset();
     }
 }

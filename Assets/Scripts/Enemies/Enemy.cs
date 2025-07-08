@@ -52,7 +52,6 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void TakeDamage(float dmg)
     {
-        Debug.Log(gameObject.name + " has been hit.");
         _healthUI.Show();
         _enemyData.ApplyDamage(dmg);
         _healthUI.UpdateBar(_enemyData.Get(EnemyStats.HP), _enemyData.Get(EnemyStats.MaxHP));

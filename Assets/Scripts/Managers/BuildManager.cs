@@ -58,7 +58,7 @@ public class BuildManager : MonoBehaviour
 
             // Instantiate
             GameObject obj = Instantiate(_selectedPrefab, worldPos, Quaternion.identity, _parentObject);
-            obj.GetComponent<PlacedObject>().TileId = id;
+            obj.AddComponent<PlacedObject>().TileId = id;
             _selectedPrefab = null; // Disable so update is stopped
             _input.Disable(); // Disable Input
             SetPreviewMode(_previewPrefab, false); // Undo preview mode

@@ -21,7 +21,6 @@ public class PlantGrow : MonoBehaviour
 
     // REFERENCES
     GameObject _currentSprite;
-    UIManager _uiManager;
     CurrencyStorage _currencyStorage;
     Player _player;
     TileManager _tileManager;
@@ -29,9 +28,11 @@ public class PlantGrow : MonoBehaviour
     // VARIABLES
     int _lastKnownIndex = -1;
 
+    void OnEnable() => GameEventsManager.OnLevelUpUpdate += OnLevelUp;
+    void OnDisable() => GameEventsManager.OnLevelUpUpdate -= OnLevelUp;
+
     void Awake()
     {
-        _uiManager = FindFirstObjectByType<UIManager>();
         _currencyStorage = FindFirstObjectByType<CurrencyStorage>();
         _tileManager = FindFirstObjectByType<TileManager>();
         _player = GetComponent<Player>();
@@ -51,24 +52,12 @@ public class PlantGrow : MonoBehaviour
     {
         _player.PlayerData.AddExp(10);
         int currLevel = (int)_player.PlayerData.Get(PlayerStats.Level);
-        _uiManager.UpdateExpText(_player.PlayerData.Get(PlayerStats.EXP), _player.PlayerData.GetRequiredEXP(currLevel));
     }
 
-    void Update()
+    void OnLevelUp(int level)
     {
-        int currLevel = (int)_player.PlayerData.Get(PlayerStats.Level);
-        if (_player.PlayerData.CheckLevelUp())
-        {
-            // Play audio on level up
-            AudioManager.Instance.PlaySound(_levelUpSound);
-
-            // UI Handling
-            _uiManager.UpdateLevelText(currLevel);
-            _uiManager.UpdateExpText(_player.PlayerData.Get(PlayerStats.EXP), _player.PlayerData.GetRequiredEXP(currLevel));
-
-            // Sprite Handling
-            UpdateSprite();
-        }
+        AudioManager.Instance.PlaySound(_levelUpSound);
+        UpdateSprite();
     }
 
     void UpdateSprite()
@@ -104,8 +93,6 @@ public class PlantGrow : MonoBehaviour
             {
                 AudioManager.Instance.PlaySound(_waterPlantSound);
                 _player.PlayerData.AddExp(waterAmount);
-                _uiManager.UpdateExpText(_player.PlayerData.Get(PlayerStats.EXP), _player.PlayerData.GetRequiredEXP(currLevel));
-                _uiManager.UpdateLevelText(currLevel);
             }
         }
     }
