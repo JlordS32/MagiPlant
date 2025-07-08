@@ -21,7 +21,6 @@ public class PlantGrow : MonoBehaviour
 
     // REFERENCES
     GameObject _currentSprite;
-    UIManager _uiManager;
     CurrencyStorage _currencyStorage;
     Player _player;
     TileManager _tileManager;
@@ -34,7 +33,6 @@ public class PlantGrow : MonoBehaviour
 
     void Awake()
     {
-        _uiManager = FindFirstObjectByType<UIManager>();
         _currencyStorage = FindFirstObjectByType<CurrencyStorage>();
         _tileManager = FindFirstObjectByType<TileManager>();
         _player = GetComponent<Player>();
@@ -54,14 +52,11 @@ public class PlantGrow : MonoBehaviour
     {
         _player.PlayerData.AddExp(10);
         int currLevel = (int)_player.PlayerData.Get(PlayerStats.Level);
-        _uiManager.UpdateExpText(_player.PlayerData.Get(PlayerStats.EXP), _player.PlayerData.GetRequiredEXP(currLevel));
     }
 
     void OnLevelUp(int level)
     {
         AudioManager.Instance.PlaySound(_levelUpSound);
-        _uiManager.UpdateLevelText(level);
-        _uiManager.UpdateExpText(_player.PlayerData.Get(PlayerStats.EXP), _player.PlayerData.GetRequiredEXP(level));
         UpdateSprite();
     }
 
@@ -98,8 +93,6 @@ public class PlantGrow : MonoBehaviour
             {
                 AudioManager.Instance.PlaySound(_waterPlantSound);
                 _player.PlayerData.AddExp(waterAmount);
-                _uiManager.UpdateExpText(_player.PlayerData.Get(PlayerStats.EXP), _player.PlayerData.GetRequiredEXP(currLevel));
-                _uiManager.UpdateLevelText(currLevel);
             }
         }
     }

@@ -36,7 +36,7 @@ public class PlayerData
             _stats[PlayerStats.EXP] += amount;
         }
         CheckLevelUp();
-        GameEventsManager.RaisePlayerStatUpdate(PlayerStats.EXP, _stats[PlayerStats.EXP]);
+        GameEventsManager.RaiseExpGainUpdate(_stats[PlayerStats.EXP], GetRequiredEXP(_stats[PlayerStats.Level]));
     }
 
     public float Get(PlayerStats stat) => _stats[stat];
@@ -67,7 +67,7 @@ public class PlayerData
         _stats[PlayerStats.HP] = _config.baseHP;
         _stats[PlayerStats.Attack] = _config.baseAttack;
         _stats[PlayerStats.Defense] = _config.baseDefense;
-        GameEventsManager.RaisePlayerStatReset(_stats);
+        GameEventsManager.RaisePlayerStatReset();
     }
 
     void Upgrade()

@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.Events;
-using System;
 
 // TODO: After refactoring upgrade system. Link it up to the upgrade UI component.
 ///
@@ -34,65 +32,58 @@ public class UIManager : MonoBehaviour
     [SerializeField] List<UpgradeEntry> _upgradeConfigs;
 
     // REFERENCES
-    UpgradeManager _upgradeManager;
-    CurrencyGenerator _currencyGenerator;
-    CurrencyStorage _currencyStorage;
     TimeManager _timeManager;
 
     // VARIABLES
     Dictionary<CurrencyType, TextMeshProUGUI> _currencyTexts = new();
-    List<UpgradeEntry> _entries = new();
+    Dictionary<PlayerStats, TextMeshProUGUI> _playerStatTexts = new();
 
-    float _water;
-
+    // IMPORTANT: ASSIGN UI COMPONENTS HERE USING VIA HASHMAP
     void Awake()
     {
+        // Currency
         _currencyTexts[CurrencyType.Water] = _waterTextUI;
         _currencyTexts[CurrencyType.Sunlight] = _sunlightTextUI;
 
-        _upgradeManager = FindFirstObjectByType<UpgradeManager>();
-        _currencyGenerator = FindFirstObjectByType<CurrencyGenerator>();
+        // Player
+        _playerStatTexts[PlayerStats.Level] = _levelTextUI;
+        _playerStatTexts[PlayerStats.EXP] = _expTextUI;
+
+        // References
         _timeManager = FindFirstObjectByType<TimeManager>();
-        _currencyStorage = FindFirstObjectByType<CurrencyStorage>();
     }
 
     void OnEnable()
     {
-        GameEventsManager.OnCurrencyUpdate += CurrentRate;
+        GameEventsManager.OnCurrencyUpdate += UpdateCurrencyUI;
+        GameEventsManager.OnLevelUpUpdate += UpdateLevelUI;
+        GameEventsManager.OnExpGainUpdate += UpdateExpText;
     }
 
-    void CurrentRate(Dictionary<CurrencyType, Storage> storage)
+    void OnDisable()
     {
-        _water = storage[CurrencyType.Water].Value;
+        GameEventsManager.OnCurrencyUpdate -= UpdateCurrencyUI;
+        GameEventsManager.OnLevelUpUpdate -= UpdateLevelUI;
+        GameEventsManager.OnExpGainUpdate -= UpdateExpText;
     }
 
-    void Start()
+    void UpdateCurrencyUI(CurrencyType type, float value)
     {
+        _currencyTexts[type].text = $"{type}: {NumberFormatter.Format(value)}";
+    }
+
+    public void UpdateLevelUI(int value)
+    {
+        _levelTextUI.text = $"Level: {NumberFormatter.Format(value)}";
+    }
+
+    public void UpdateExpText(float currentExp, float requiredExp)
+    {
+        _expTextUI.text = $"EXP: {NumberFormatter.Format(currentExp)} / {NumberFormatter.Format(requiredExp)}";
     }
 
     void Update()
     {
         _timeTextUI.text = _timeManager.GetTimeString();
-    }
-
-    public void AddUpgrade(string name, UnityAction logic, Func<string> getRate, Func<string> getButtonLabel, Func<string> getLevel)
-    {
-
-    }
-
-    public void UpdateCurrencyText(CurrencyType type, float value)
-    {
-        if (_currencyTexts.TryGetValue(type, out var uiText))
-            uiText.text = $"{type}: {NumberFormatter.Format(value)}";
-    }
-
-    public void UpdateLevelText(int value)
-    {
-        _levelTextUI.text = $"Level: {NumberFormatter.Format(value)}";
-    }
-
-    public void UpdateExpText(float value, float cap)
-    {
-        _expTextUI.text = $"EXP: {NumberFormatter.Format(value)} / {NumberFormatter.Format(cap)}";
     }
 }
