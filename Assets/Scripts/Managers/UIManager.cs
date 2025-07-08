@@ -2,15 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-// TODO: After refactoring upgrade system. Link it up to the upgrade UI component.
-///
-/// Suggestions below:
-/// 
-/// After finishing refactoring the upgrade logic. Look at UpgradePanelUI.cs and UpgradeUI.cs
-/// Our goal here is to add the upgrade callback to the upgradeUI button and make sure it builds
-/// on start of UpgradePanelUI
-/// 
-///
 public class UIManager : MonoBehaviour
 {
     // PROPERTIES
@@ -33,6 +24,8 @@ public class UIManager : MonoBehaviour
 
     // REFERENCES
     TimeManager _timeManager;
+    CurrencyStorage _currencyStorage;
+    CurrencyGenerator _currencyGenerator;
 
     // VARIABLES
     Dictionary<CurrencyType, TextMeshProUGUI> _currencyTexts = new();
@@ -51,13 +44,49 @@ public class UIManager : MonoBehaviour
 
         // References
         _timeManager = FindFirstObjectByType<TimeManager>();
+        _currencyGenerator = FindFirstObjectByType<CurrencyGenerator>();
+        _currencyStorage = FindFirstObjectByType<CurrencyStorage>();
     }
 
+    void Start()
+    {
+        UpgradeEntry entry = new()
+        {
+            Name = "Water Generator",
+            Type = UpgradeType.GenerateRate,
+            TargetCurrency = CurrencyType.Water,
+            Value = 0.5f,
+            BaseCost = 10f,
+            CostMultiplier = 1.5f,
+            MaxLevel = 10
+        };
+
+        entry.UpgradeLogic = () =>
+        {
+            if (_currencyStorage.Spend(CurrencyType.Sunlight, entry.GetCost()))
+            {
+                entry.Upgrade();
+                _currencyGenerator.ApplyUpgrade(entry, CurrencyType.Water);
+            }
+        };
+
+
+        _upgradePanel.Build(new List<UpgradeEntry> { entry });
+        _upgradeConfigs.Add(entry);
+    }
+
+    void Update()
+    {
+        _timeTextUI.text = _timeManager.GetTimeString();
+    }
+
+    #region SUBSCRIPTIONS
     void OnEnable()
     {
         GameEventsManager.OnCurrencyUpdate += UpdateCurrencyUI;
         GameEventsManager.OnLevelUpUpdate += UpdateLevelUI;
         GameEventsManager.OnExpGainUpdate += UpdateExpText;
+        GameEventsManager.OnGenerateRateUpdated += HandleGenerateRateUpdate;
     }
 
     void OnDisable()
@@ -65,25 +94,33 @@ public class UIManager : MonoBehaviour
         GameEventsManager.OnCurrencyUpdate -= UpdateCurrencyUI;
         GameEventsManager.OnLevelUpUpdate -= UpdateLevelUI;
         GameEventsManager.OnExpGainUpdate -= UpdateExpText;
-    }
+        GameEventsManager.OnGenerateRateUpdated -= HandleGenerateRateUpdate;
 
+    }
+    #endregion
+
+    #region EVENT SUBSCRIBERS
     void UpdateCurrencyUI(CurrencyType type, float value)
     {
         _currencyTexts[type].text = $"{type}: {NumberFormatter.Format(value)}";
     }
 
-    public void UpdateLevelUI(int value)
+    void UpdateLevelUI(int value)
     {
         _levelTextUI.text = $"Level: {NumberFormatter.Format(value)}";
     }
 
-    public void UpdateExpText(float currentExp, float requiredExp)
+    void UpdateExpText(float currentExp, float requiredExp)
     {
         _expTextUI.text = $"EXP: {NumberFormatter.Format(currentExp)} / {NumberFormatter.Format(requiredExp)}";
     }
 
-    void Update()
+    void HandleGenerateRateUpdate(CurrencyType type, float rate, int level)
     {
-        _timeTextUI.text = _timeManager.GetTimeString();
+        var entry = _upgradeConfigs.Find(e =>
+        e.Type == UpgradeType.GenerateRate && e.TargetCurrency == type);
+
+        _upgradePanel.RefreshUI(entry.Type, type, rate, level, entry.GetCost(), entry.MaxLevel);
     }
+    #endregion
 }

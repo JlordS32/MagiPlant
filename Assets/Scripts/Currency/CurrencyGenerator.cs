@@ -6,14 +6,12 @@ public class CurrencyGenerator : MonoBehaviour, IUpgradableCurrency
 {
     // PROPERTIES
     [SerializeField] float _interval = 1f;
-    [SerializeField] float _baseRateIncrease = 1.5f;
 
     // REFERENCES
     CurrencyStorage _storage;
 
     // PRIVATE VARIABLES
     Dictionary<CurrencyType, float> _rates = new();
-    Dictionary<CurrencyType, int> _rateLevel = new();
     float _timer = 0f;
     readonly float _defaultRate = 0.5f;
 
@@ -25,7 +23,6 @@ public class CurrencyGenerator : MonoBehaviour, IUpgradableCurrency
         foreach (CurrencyType type in Enum.GetValues(typeof(CurrencyType)))
         {
             _rates[type] = _defaultRate;
-            _rateLevel[type] = 0;
         }
     }
 
@@ -47,26 +44,14 @@ public class CurrencyGenerator : MonoBehaviour, IUpgradableCurrency
 
     // GETTERS & SETTERS
     public float GetRate(CurrencyType type) => _rates[type];
-    public int GetRateLevel(CurrencyType type) => _rateLevel[type];
-
-    public void SetRate(CurrencyType type, float rate)
-    {
-        _rates[type] = rate;
-        GameEventsManager.RaiseGenerateRateUpdated(type, _rates[type], _rateLevel[type]);
-    }
-
-    public void UpgradeRate(CurrencyType type)
-    {
-        _rates[type] *= _baseRateIncrease;
-        _rateLevel[type]++;
-        GameEventsManager.RaiseGenerateRateUpdated(type, _rates[type], _rateLevel[type]);
-    }
 
     public void ApplyUpgrade(UpgradeEntry upgrade, CurrencyType type)
     {
         if (upgrade.Type == UpgradeType.GenerateRate)
         {
-            UpgradeRate(type);
+            _rates[type] = upgrade.GetUpgradeValue();
+            GameEventsManager.RaiseGenerateRateUpdated(type, _rates[type], upgrade.Level);
         }
     }
+
 }
