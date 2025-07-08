@@ -56,6 +56,14 @@ public class EnemyMovement : MonoBehaviour
         Vector2Int start = new(startCell.x - _tileManager.Bounds.xMin, startCell.y - _tileManager.Bounds.yMin);
         Vector2Int target = new(targetCell.x - _tileManager.Bounds.xMin, targetCell.y - _tileManager.Bounds.yMin);
 
+        if (!_tileManager.IsInBounds(start.x, start.y) || !_tileManager.IsInBounds(target.x, target.y))
+        {
+            Debug.LogWarning("Out of bounds!!!");
+            _path.Clear();
+            _rb.linearVelocity = Vector2.zero;
+            return;
+        }
+
         // Find nearest walkable tile around the target
         List<Vector2Int> possibleDir = new();
         foreach (Vector2Int dir in AStar.directions)

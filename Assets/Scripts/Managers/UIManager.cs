@@ -28,11 +28,14 @@ public class UIManager : MonoBehaviour
     // REFERENCES
     UpgradeManager _upgradeManager;
     CurrencyGenerator _currencyGenerator;
+    CurrencyStorage _currencyStorage;
     TimeManager _timeManager;
 
     // VARIABLES
     Dictionary<CurrencyType, TextMeshProUGUI> _currencyTexts = new();
     List<UpgradeEntry> _entries = new();
+
+    float _water;
 
     void Awake()
     {
@@ -42,17 +45,20 @@ public class UIManager : MonoBehaviour
         _upgradeManager = FindFirstObjectByType<UpgradeManager>();
         _currencyGenerator = FindFirstObjectByType<CurrencyGenerator>();
         _timeManager = FindFirstObjectByType<TimeManager>();
+        _currencyStorage = FindFirstObjectByType<CurrencyStorage>();
+    }
+
+    void OnEnable()
+    {
+        CurrencyStorage.OnCurrencyUpdate += CurrentRate;
+    }
+
+    void CurrentRate(Dictionary<CurrencyType, Storage> storage) {
+        _water = storage[CurrencyType.Water].Value;
     }
 
     void Start()
     {
-        AddUpgrade("Water Generation",
-            () => _upgradeManager.Upgrade(_currencyGenerator.GetRateLevel(CurrencyType.Water), () => _currencyGenerator.UpgradeRate(CurrencyType.Water)),
-            () => $"{NumberFormatter.Format(_currencyGenerator.GetRate(CurrencyType.Water))}/s",
-            () => $"Cost: {NumberFormatter.Format(_upgradeManager.GetCost(_currencyGenerator.GetRateLevel(CurrencyType.Water)))} suns",
-            () => $"Level: {_currencyGenerator.GetRateLevel(CurrencyType.Water)}");
-
-        _upgradePanel.Build(_entries);
     }
 
     void Update()
@@ -62,14 +68,7 @@ public class UIManager : MonoBehaviour
 
     public void AddUpgrade(string name, UnityAction logic, Func<string> getRate, Func<string> getButtonLabel, Func<string> getLevel)
     {
-        _entries.Add(new UpgradeEntry
-        {
-            Name = name,
-            UpgradeLogic = logic,
-            GetRate = getRate,
-            GetButtonLabel = getButtonLabel,
-            GetLevel = getLevel
-        });
+        
     }
 
     public void UpdateCurrencyText(CurrencyType type, float value)
