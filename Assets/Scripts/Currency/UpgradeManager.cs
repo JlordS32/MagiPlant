@@ -1,36 +1,23 @@
 using UnityEngine;
-using System;
 
-// TODO: Refactor upgrade system, below won't scale well.
-// Note: I have refactored UpgradeEntry and added:
-//      - IUpgradable.cs
-//      - UpgradeType.cs
 public class UpgradeManager : MonoBehaviour
 {
-    // PROPERTIES
-    [SerializeField] float _baseCost = 2f;
-    [SerializeField] float _costMultiplier = 1.5f;
+    // // REFERENCES
+    // CurrencyStorage _storage;
 
-    // REFERENCES
-    CurrencyStorage _storage;
+    // void Awake() => _storage = GetComponent<CurrencyStorage>();
 
-    // UNITY FUNCTIONS
-    void Awake() => _storage = GetComponent<CurrencyStorage>();
+    // public void TryUpgrade(UpgradeEntry entry, IUpgradableCurrency target, CurrencyType type)
+    // {
+    //     if (entry.Level >= entry.MaxLevel)
+    //         return;
 
-    // CUSTOM FUNCTIONS HERE
-    // ---------------------
-    public float GetCost(int level) => Mathf.Round(_baseCost * Mathf.Pow(_costMultiplier, level));
+    //     float cost = entry.GetCost();
 
-    public bool Upgrade(int level, Action upgradeAction)
-    {
-        float cost = GetCost(level);
-
-        if (_storage.Spend(CurrencyType.Sunlight, cost))
-        {
-            upgradeAction?.Invoke();
-            return true;
-        }
-
-        return false;
-    }
+    //     if (_storage.Spend(CurrencyType.Sunlight, cost))
+    //     {
+    //         entry.Upgrade();                         // Increase level
+    //         target.ApplyUpgrade(entry, type);        // Apply effect
+    //     }
+    // }
 }
