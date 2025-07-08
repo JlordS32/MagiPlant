@@ -1,4 +1,4 @@
-public interface IUpgradable
+public interface IUpgradableCurrency
 {
-    void ApplyUpgrade(UpgradeEntry upgrade);
+    void ApplyUpgrade(UpgradeEntry upgrade, CurrencyType type);
 }

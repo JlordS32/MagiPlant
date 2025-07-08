@@ -3,7 +3,8 @@ using UnityEngine.Tilemaps;
 using System.Collections.Generic;
 using System;
 
-[System.Serializable]
+// WARNING: Understand the fucking code before touching, it's sensitive. Read before making any modifications!!!
+[Serializable]
 public struct Node
 {
     public TileBase Tile;
@@ -13,7 +14,7 @@ public struct Node
 public class TileManager : MonoBehaviour
 {
     // STATIC
-    public static event System.Action<TileWeight[,]> OnGridUpdated;
+    public static event Action<TileWeight[,]> OnGridUpdated;
 
     // PROPERTIES
     [SerializeField] Tilemap _map;

@@ -1,8 +1,11 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlantGrow : MonoBehaviour
 {
+    public static event Action OnPlantGrowing;
+
     // PROPERTIES
     [Header("Base")]
     [SerializeField] List<GameObject> _levelPrefabs;
@@ -51,12 +54,13 @@ public class PlantGrow : MonoBehaviour
     public void OnTest()
     {
         _player.PlayerData.AddExp(10);
-        int currLevel = (int)_player.PlayerData.Get(PlayerStats.Level);
+        // int currLevel = (int)_player.PlayerData.Get(PlayerStats.Level);
     }
 
     void OnLevelUp(int level)
     {
         AudioManager.Instance.PlaySound(_levelUpSound);
+        OnPlantGrowing?.Invoke();
         UpdateSprite();
     }
 
@@ -73,7 +77,6 @@ public class PlantGrow : MonoBehaviour
 
         if (_currentSprite != null)
             Destroy(_currentSprite);
-
         _currentSprite = Instantiate(_levelPrefabs[index], _spriteParent);
     }
 

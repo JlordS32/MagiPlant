@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+// WARNING: Read before making any modifications.
 public class BuildManager : MonoBehaviour
 {
     // PROPERTIES

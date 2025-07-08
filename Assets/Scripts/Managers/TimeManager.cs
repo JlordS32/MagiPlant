@@ -1,5 +1,9 @@
 using UnityEngine;
 
+// TODO: Adjust global volume based on time value
+// Set night mode at 12:00
+
+// WARNING: Ardo, code firewall from scratch.
 public class TimeManager : MonoBehaviour
 {
     [SerializeField] float _timeRate = 1f;
@@ -12,7 +16,7 @@ public class TimeManager : MonoBehaviour
 
     public float Seconds => _seconds;
     public int GetCurrentDay => _day;
-    
+
     void Update()
     {
         _seconds += Time.deltaTime * _timeRate;

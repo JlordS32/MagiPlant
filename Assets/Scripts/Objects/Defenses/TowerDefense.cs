@@ -1,14 +1,16 @@
 using System.Linq;
 using UnityEngine;
 
+// WARNING: Dowee this is for you. Add TowerData similar implementation as EnemyData
+// WARNING: Add tower variantsd
+// TODO: Code me chatgpt from scratch.
 public class TowerDefense : MonoBehaviour
 {
     [SerializeField] Vector3 _localForward = Vector3.down;
-    [SerializeField] float _strength = 5f;
     [SerializeField] float _range = 10f;
 
     TowerDefenseAttack _attack;
-    
+
     void Awake()
     {
         _attack = GetComponent<TowerDefenseAttack>();
@@ -20,6 +22,8 @@ public class TowerDefense : MonoBehaviour
         if (target == null) return;
 
         Vector3 dir = target.transform.position - transform.position;
+
+        // Comment if want to prevent rotate
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         float forwardAngle = Mathf.Atan2(_localForward.y, _localForward.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle - forwardAngle, Vector3.forward);

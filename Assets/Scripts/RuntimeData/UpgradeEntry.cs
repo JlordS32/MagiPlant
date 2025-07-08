@@ -1,12 +1,13 @@
 using System;
-using UnityEngine.Events;
+using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public class UpgradeEntry
 {
     public UpgradeType Type;
     public float Value;
-    public int Cost;
+    public float BaseCost;
+    public float CostMultiplier;
     public int Level;
     public int MaxLevel;
 
@@ -16,4 +17,5 @@ public class UpgradeEntry
     }
 
     public float GetUpgradeValue() => Value * Level;
+    public float GetCost() => Mathf.Round(BaseCost * Mathf.Pow(CostMultiplier, Level));
 }
