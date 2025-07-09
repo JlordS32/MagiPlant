@@ -4,9 +4,6 @@ using System.Collections.Generic;
 
 public class CurrencyClicker : MonoBehaviour, IUpgradableCurrency
 {
-    // PROPERTIES
-    [SerializeField] float _baseRateIncrease = 1.2f;
-
     // REFERENCES
     CurrencyStorage _storage;
 
