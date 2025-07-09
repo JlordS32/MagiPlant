@@ -96,7 +96,6 @@ public class UIManager : MonoBehaviour
         GameEventsManager.OnLevelUpUpdate -= UpdateLevelUI;
         GameEventsManager.OnExpGainUpdate -= UpdateExpText;
         GameEventsManager.OnGenerateRateUpdated -= HandleGenerateRateUpdate;
-
     }
     #endregion
 

@@ -134,7 +134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &45430444
 Transform:
   m_ObjectHideFlags: 0
@@ -169,7 +169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6405670809676805654, guid: a3c14f938a849c04cbd7282e486e0be9, type: 3}
       propertyPath: _maxSpawn
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6405670809676805654, guid: a3c14f938a849c04cbd7282e486e0be9, type: 3}
       propertyPath: _spawnRange.x
@@ -185,12 +185,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6405670809676805654, guid: a3c14f938a849c04cbd7282e486e0be9, type: 3}
       propertyPath: _enemyPrefab.Array.size
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6405670809676805654, guid: a3c14f938a849c04cbd7282e486e0be9, type: 3}
       propertyPath: '_enemyPrefab.Array.data[0]'
       value: 
-      objectReference: {fileID: 2339890260058669062, guid: 2289aa7d5ad65784f8d5897ea11be825, type: 3}
+      objectReference: {fileID: 6637492890161319068, guid: cd98c8c3a091064449c7589f5ce3f997, type: 3}
     - target: {fileID: 6405670809676805654, guid: a3c14f938a849c04cbd7282e486e0be9, type: 3}
       propertyPath: '_enemyPrefab.Array.data[1]'
       value: 
@@ -1263,7 +1263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e076fffca9c74642bd82de39a46083e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defensePrefab: {fileID: 2339890260058669062, guid: 628745bff07487646b26fab3e93e1718, type: 3}
+  _defensePrefab: {fileID: 2605614416832552758, guid: 0622e3606a4e9ae44a259029e62bf83b, type: 3}
 --- !u!114 &1020202758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6131,7 +6131,7 @@ PrefabInstance:
       objectReference: {fileID: 1883028710}
     - target: {fileID: 3987951813869150805, guid: d2de566fbe3cbfa4595fc4a91067a856, type: 3}
       propertyPath: _enableDebug
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3987951813869150805, guid: d2de566fbe3cbfa4595fc4a91067a856, type: 3}
       propertyPath: _nodes.Array.size

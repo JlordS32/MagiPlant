@@ -1,5 +1,13 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
+[Serializable]
+public struct PreviewColor
+{
+    public Color Placeable;
+    public Color NotPlaceable;
+}
 
 // WARNING: Read before making any modifications.
 public class BuildManager : MonoBehaviour
@@ -7,6 +15,7 @@ public class BuildManager : MonoBehaviour
     // PROPERTIES
     [SerializeField] InputAction _input;
     [SerializeField] Transform _parentObject;
+    [SerializeField] PreviewColor _previewColor;
 
     // REFERENCES
     TileManager _tileManager;
@@ -38,18 +47,22 @@ public class BuildManager : MonoBehaviour
         bool isValid = _tileManager.IsAreaValid(tilesX, tilesY, worldPos);
         bool isWithinBounds = _tileManager.IsAreaWithinBounds(tilesX, tilesY, worldPos);
 
-        // Slightly offset by 0.5f if tilesize is evenxeven. This is because there's no center.
+        // Slightly offset by 0.5f if tilesize is evenxeven to center.
         if (tilesX % 2 == 0 || tilesY % 2 == 0)
             worldPos -= new Vector3(0.5f, 0.5f, 0);
 
         if (_previewPrefab == null)
         {
-            _previewPrefab = Instantiate(_selectedPrefab);
-            SetPreviewMode(_previewPrefab, true);
+            _previewPrefab = Instantiate(_selectedPrefab, transform);
         }
-        _previewPrefab.transform.position = worldPos;
-        SetPreviewMode(_previewPrefab, true, isValid, isWithinBounds);
-
+        else
+        {
+            if (isValid && isWithinBounds)
+                SetPreviewMode(_previewPrefab, _previewColor.Placeable);
+            else
+                SetPreviewMode(_previewPrefab, _previewColor.NotPlaceable);
+            _previewPrefab.transform.position = worldPos;
+        }
 
         // WARNING: No bound here, might need in the future.
         if (_input.WasReleasedThisFrame() && isValid && isWithinBounds)
@@ -60,10 +73,9 @@ public class BuildManager : MonoBehaviour
             // Instantiate
             GameObject obj = Instantiate(_selectedPrefab, worldPos, Quaternion.identity, _parentObject);
             obj.AddComponent<PlacedObject>().TileId = id;
-            _selectedPrefab = null; // Disable so update is stopped
-            _input.Disable(); // Disable Input
-            SetPreviewMode(_previewPrefab, false); // Undo preview mode
-            Destroy(_previewPrefab); // Destroy preview object
+            _selectedPrefab = null;
+            _input.Disable();
+            Destroy(_previewPrefab);
         }
     }
 
@@ -74,18 +86,17 @@ public class BuildManager : MonoBehaviour
         _input.Enable();
     }
 
-    void SetPreviewMode(GameObject gameObject, bool isPreview, bool isValid = true, bool isWithinBounds = true)
+    void SetPreviewMode(GameObject gameObject, Color color)
     {
-        Color color = isValid && isWithinBounds ? new Color(1f, 1f, 1f, 0.5f) : new Color(1f, 0f, 0f, 0.5f); // red if invalid
-
         foreach (var spriteRenderer in gameObject.GetComponentsInChildren<SpriteRenderer>())
         {
             spriteRenderer.color = color;
+            spriteRenderer.sortingLayerName = "UIWorld";
         }
 
         foreach (var collider in gameObject.GetComponents<Collider2D>())
         {
-            collider.enabled = !isPreview;
+            collider.enabled = false;
         }
     }
 }

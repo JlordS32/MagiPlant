@@ -2,8 +2,7 @@ using System.Linq;
 using UnityEngine;
 
 // WARNING: Dowee this is for you. Add TowerData similar implementation as EnemyData
-// WARNING: Add tower variantsd
-// TODO: Code me chatgpt from scratch.
+// WARNING: Add tower variants
 public class TowerDefense : MonoBehaviour
 {
     [SerializeField] Vector3 _localForward = Vector3.down;

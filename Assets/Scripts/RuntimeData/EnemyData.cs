@@ -8,6 +8,7 @@ public class EnemyData
     Dictionary<EnemyStats, float> _stats = new();
     EnemyStatConfig _config;
 
+    // Constructor
     public EnemyData(EnemyStatConfig config)
     {
         _config = config;
@@ -19,7 +20,12 @@ public class EnemyData
     }
 
     public float Get(EnemyStats stat) => _stats[stat];
-    public void Set(EnemyStats stat, float value) => _stats[stat] = value;
+    public void Set(EnemyStats stat, float value)
+    {
+        _stats[stat] = value;
+        
+        GameEventsManager.RaiseEnemyStatReset();
+    }
 
     public float ApplyDamage(float amount)
     {

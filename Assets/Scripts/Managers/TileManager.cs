@@ -175,6 +175,8 @@ public class TileManager : MonoBehaviour
     public int SetOccupiedArea(Vector3 areaPos, int width, int height, TileWeight weight)
     {
         int id = Guid.NewGuid().GetHashCode();
+
+        // Get offset and position area to the bottom left.
         int offsetX = Mathf.FloorToInt(width / 2f);
         int offsetY = Mathf.FloorToInt(height / 2f);
         Vector2Int originTile = WorldToGridIndex(areaPos) - new Vector2Int(offsetX, offsetY);
@@ -189,7 +191,7 @@ public class TileManager : MonoBehaviour
         return id;
     }
 
-    public void TraverseArea(int width, int height, Vector3 worldPos, System.Action<int, int> actionPerTile)
+    public void TraverseArea(int width, int height, Vector3 worldPos, Action<int, int> actionPerTile)
     {
         Vector2Int origin = WorldToGridIndex(worldPos);
         int offsetX = Mathf.FloorToInt(width / 2f);
