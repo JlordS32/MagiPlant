@@ -37,21 +37,6 @@ public class EnemyMovement : MonoBehaviour
         StartCoroutine(DelayedPathRequest());
     }
 
-    void OnEnable()
-    {
-        TileManager.OnGridUpdated += HandleGridChange;
-    }
-
-    void OnDisable()
-    {
-        TileManager.OnGridUpdated -= HandleGridChange;
-    }
-
-    void HandleGridChange(TileWeight[,] Grid)
-    {
-        RequestPath();
-    }
-
     void RequestPath()
     {
         Queue<Vector3> newPath = new();
