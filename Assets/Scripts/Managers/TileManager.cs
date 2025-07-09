@@ -117,7 +117,7 @@ public class TileManager : MonoBehaviour
     public bool IsInBounds(int x, int y)
     {
         return x >= 0 && x < Grid.GetLength(0) &&
-               y >= 0 && y < Grid.GetLength(1);
+                        y >= 0 && y < Grid.GetLength(1);
     }
 
     // For testing only
@@ -196,7 +196,7 @@ public class TileManager : MonoBehaviour
         return id;
     }
 
-    public void TraverseArea(int width, int height, Vector3 worldPos, Action<int, int> actionPerTile)
+    public bool IsAreaValid(int width, int height, Vector3 worldPos, TileWeight required = TileWeight.Walkable)
     {
         Vector2Int origin = WorldToGridIndex(worldPos);
         int offsetX = Mathf.FloorToInt(width / 2f);
@@ -204,34 +204,43 @@ public class TileManager : MonoBehaviour
         origin -= new Vector2Int(offsetX, offsetY);
 
         for (int x = 0; x < width; x++)
+        {
             for (int y = 0; y < height; y++)
             {
                 int gx = origin.x + x;
                 int gy = origin.y + y;
-                if (IsInBounds(gx, gy))
-                    actionPerTile?.Invoke(gx, gy);
-            }
-    }
 
-    public bool IsAreaValid(int width, int height, Vector3 worldPos, TileWeight required = TileWeight.Walkable)
-    {
-        bool valid = true;
-        TraverseArea(width, height, worldPos, (x, y) =>
-        {
-            if (Grid[x, y] != required)
-                valid = false;
-        });
-        return valid;
+                if (!IsInBounds(gx, gy) || Grid[gx, gy] != required)
+                    return false;
+            }
+        }
+
+        return true;
     }
 
     public bool IsAreaWithinBounds(int width, int height, Vector3 worldPos)
     {
-        bool within = true;
-        TraverseArea(width, height, worldPos, (x, y) =>
+        Vector2Int origin = WorldToGridIndex(worldPos);
+        int offsetX = Mathf.FloorToInt(width / 2f);
+        int offsetY = Mathf.FloorToInt(height / 2f);
+        origin -= new Vector2Int(offsetX, offsetY);
+
+        for (int x = 0; x < width; x++)
         {
-            if (!IsInBounds(x, y))
-                within = false;
-        });
-        return within;
+            for (int y = 0; y < height; y++)
+            {
+                int gx = origin.x + x;
+                int gy = origin.y + y;
+
+                if (!IsInBounds(gx, gy))
+                {
+                    Debug.LogWarning($"Out of bounds tile: {gx}, {gy}");
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
+
 }

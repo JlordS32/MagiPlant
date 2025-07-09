@@ -43,13 +43,14 @@ public class BuildManager : MonoBehaviour
         int tilesY = Mathf.CeilToInt(objectSize.y / cellSize.y);
         worldPos += new Vector3(Mathf.FloorToInt(tilesX / 2f), Mathf.FloorToInt(tilesY / 2f), 0);
 
-        // Checkers
-        bool isValid = _tileManager.IsAreaValid(tilesX, tilesY, worldPos);
-        bool isWithinBounds = _tileManager.IsAreaWithinBounds(tilesX, tilesY, worldPos);
-
         // Slightly offset by 0.5f if tilesize is evenxeven to center.
         if (tilesX % 2 == 0 || tilesY % 2 == 0)
             worldPos -= new Vector3(0.5f, 0.5f, 0);
+
+        // Checkers
+        bool isValid = _tileManager.IsAreaValid(tilesX, tilesY, worldPos, TileWeight.Placeable);
+        bool isWithinBounds = _tileManager.IsAreaWithinBounds(tilesX, tilesY, worldPos);
+        Debug.Log(isWithinBounds);
 
         if (_previewPrefab == null)
         {
@@ -64,7 +65,6 @@ public class BuildManager : MonoBehaviour
             _previewPrefab.transform.position = worldPos;
         }
 
-        // WARNING: No bound here, might need in the future.
         if (_input.WasReleasedThisFrame() && isValid && isWithinBounds)
         {
             // Update tile value
