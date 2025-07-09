@@ -62,3 +62,6 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   _parentObject: {fileID: 0}
+  _previewColor:
+    Placeable: {r: 1, g: 1, b: 1, a: 1}
+    NotPlaceable: {r: 1, g: 0.028783672, b: 0, a: 0.5058824}
