@@ -133,11 +133,16 @@ public class TileManager : MonoBehaviour
                 Vector3Int cellPos = new(x + Bounds.xMin, y + Bounds.yMin, 0);
                 Vector3 worldPos = _map.CellToWorld(cellPos) + _map.cellSize / 2f;
 
-                Color red = Color.red;
-                red.a = 0.5f;
-                Color green = Color.green;
-                green.a = 0.5f;
-                Gizmos.color = Grid[x, y] == TileWeight.Walkable ? green : red;
+                TileWeight weight = Grid[x, y];
+                Color color = weight switch
+                {
+                    TileWeight.Walkable => new Color(0f, 1f, 0f, 0.5f),
+                    TileWeight.Placeable => new Color(0f, 0f, 1f, 0.5f),
+                    TileWeight.Blocked => new Color(1f, 0f, 0f, 0.5f),
+                    _ => new Color(0f, 0f, 0f, 0.5f)
+                };
+
+                Gizmos.color = color;
                 Gizmos.DrawCube(worldPos, Vector3.one * 0.8f);
             }
         }
@@ -175,6 +180,8 @@ public class TileManager : MonoBehaviour
     public int SetOccupiedArea(Vector3 areaPos, int width, int height, TileWeight weight)
     {
         int id = Guid.NewGuid().GetHashCode();
+
+        // Get offset and position area to the bottom left.
         int offsetX = Mathf.FloorToInt(width / 2f);
         int offsetY = Mathf.FloorToInt(height / 2f);
         Vector2Int originTile = WorldToGridIndex(areaPos) - new Vector2Int(offsetX, offsetY);
@@ -189,7 +196,7 @@ public class TileManager : MonoBehaviour
         return id;
     }
 
-    public void TraverseArea(int width, int height, Vector3 worldPos, System.Action<int, int> actionPerTile)
+    public void TraverseArea(int width, int height, Vector3 worldPos, Action<int, int> actionPerTile)
     {
         Vector2Int origin = WorldToGridIndex(worldPos);
         int offsetX = Mathf.FloorToInt(width / 2f);

@@ -12,6 +12,13 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float _speed = 2f;
     [SerializeField] int _stoppingDistance;
 
+    [Range(0, 1)]
+    [SerializeField] float wobbleX = 0.5f;
+
+    [Range(0, 1)]
+    [SerializeField] float wobbleY = 0.5f;
+
+
     // VARIABLES
     TileManager _tileManager;
     Rigidbody2D _rb;
@@ -64,30 +71,8 @@ public class EnemyMovement : MonoBehaviour
             return;
         }
 
-        // Find nearest walkable tile around the target
-        List<Vector2Int> possibleDir = new();
-        foreach (Vector2Int dir in AStar.directions)
-        {
-            Vector2Int check = target + dir;
-            if (_tileManager.IsInBounds(check.x, check.y) && _tileManager.Grid[check.x, check.y] > 0)
-            {
-                possibleDir.Add(check);
-            }
-        }
-
-        Vector2Int goal;
-        if (possibleDir.Count == 0)
-        {
-            Debug.LogWarning($"{gameObject.name} couldn't find walkable goal near target.");
-            return;
-        }
-        else
-        {
-            goal = possibleDir[Random.Range(0, possibleDir.Count)];
-        }
-
         // Run A*
-        var path = AStar.FindPath(start, goal, _tileManager.GetGridAsInt());
+        var path = AStar.FindPath(start, target, _tileManager.GetGridAsInt());
         if (path == null || path.Count == 0)
         {
             _rb.linearVelocity = Vector2.zero;
@@ -103,8 +88,8 @@ public class EnemyMovement : MonoBehaviour
 
             // Optional: add slight offset
             world += new Vector3(
-                Random.Range(-0.5f, 0.5f),
-                Random.Range(-0.5f, 0.5f),
+                Random.Range(-wobbleX, wobbleX),
+                Random.Range(-wobbleY, wobbleY),
                 0f
             );
 

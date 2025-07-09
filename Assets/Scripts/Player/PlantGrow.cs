@@ -48,7 +48,7 @@ public class PlantGrow : MonoBehaviour
     {
         // Take a spot on the grid on initial load.
         Vector2Int gridIndex = _tileManager.WorldToGridIndex(transform.position);
-        _tileManager.SetOccupied(gridIndex, TileWeight.Blocked);
+        _tileManager.SetOccupied(gridIndex, TileWeight.Walkable);
     }
 
     public void OnTest()

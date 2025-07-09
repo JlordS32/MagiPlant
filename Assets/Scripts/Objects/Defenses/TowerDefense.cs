@@ -2,12 +2,14 @@ using System.Linq;
 using UnityEngine;
 
 // WARNING: Dowee this is for you. Add TowerData similar implementation as EnemyData
-// WARNING: Add tower variantsd
-// TODO: Code me chatgpt from scratch.
+// WARNING: Add tower variants
 public class TowerDefense : MonoBehaviour
 {
     [SerializeField] Vector3 _localForward = Vector3.down;
     [SerializeField] float _range = 10f;
+
+    [Header("Debug Mode")]
+    [SerializeField] bool _enableDebug;
 
     TowerDefenseAttack _attack;
 
@@ -33,6 +35,8 @@ public class TowerDefense : MonoBehaviour
 
     void OnDrawGizmos()
     {
+        if (!_enableDebug) return;
+
         Gizmos.color = Color.red;
         Vector3 worldDirection = transform.TransformDirection(_localForward.normalized);
         Gizmos.DrawLine(transform.position, transform.position + worldDirection * 2f);

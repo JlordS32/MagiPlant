@@ -7,7 +7,6 @@ public class Spawner : MonoBehaviour
     [SerializeField] List<GameObject> _enemyPrefab;
 
     [Header("Spawn Properties")]
-    [SerializeField] Vector2 _spawnRange;
     [SerializeField] float _spawnInterval;
     [SerializeField] int _maxSpawn = 10;
 
@@ -20,6 +19,11 @@ public class Spawner : MonoBehaviour
     void Awake()
     {
         _tileManager = FindFirstObjectByType<TileManager>();
+        
+        // Snap spawner to tile.
+        Vector3Int cell = _tileManager.Map.WorldToCell(transform.position);
+        Vector3 center = _tileManager.Map.GetCellCenterWorld(cell);
+        transform.position = center;
     }
 
     void Update()
@@ -44,13 +48,7 @@ public class Spawner : MonoBehaviour
         int attempt = 30;
         while (attempt-- > 0)
         {
-            Vector3Int offset = new(
-                Random.Range(-Mathf.FloorToInt(_spawnRange.x / 2), Mathf.CeilToInt(_spawnRange.x / 2)),
-                Random.Range(-Mathf.FloorToInt(_spawnRange.y / 2), Mathf.CeilToInt(_spawnRange.y / 2)),
-                0
-            );
-
-            Vector3Int cell = baseCell + offset;
+            Vector3Int cell = baseCell;
             Vector2Int grid = _tileManager.TileToGrid(cell);
 
             if (_tileManager.IsInBounds(grid.x, grid.y) &&
@@ -63,12 +61,5 @@ public class Spawner : MonoBehaviour
         }
 
         Debug.LogWarning(gameObject.name + " failed to find a valid tile. Please make sure spawn point is within bounds!");
-    }
-
-
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position, _spawnRange);
     }
 }
