@@ -26,7 +26,6 @@ public class PlantGrow : MonoBehaviour
     GameObject _currentSprite;
     CurrencyStorage _currencyStorage;
     Player _player;
-    TileManager _tileManager;
 
     // VARIABLES
     int _lastKnownIndex = -1;
@@ -37,18 +36,7 @@ public class PlantGrow : MonoBehaviour
     void Awake()
     {
         _currencyStorage = FindFirstObjectByType<CurrencyStorage>();
-        _tileManager = FindFirstObjectByType<TileManager>();
         _player = GetComponent<Player>();
-    }
-
-    // TODO: Dynamic tile size resize should be implement
-    // Suggestions: Declare a Vector2 variable that'll contain the tile region it'll take.
-    // The tile must scale by n^2.
-    void Start()
-    {
-        // Take a spot on the grid on initial load.
-        Vector2Int gridIndex = _tileManager.WorldToGridIndex(transform.position);
-        _tileManager.SetOccupied(gridIndex, TileWeight.Walkable);
     }
 
     public void OnTest()

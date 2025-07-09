@@ -44,7 +44,9 @@ public class PlayerData
 
     public float GetRequiredEXP(float level)
     {
-        return _config.baseExp * Mathf.Pow(_config.expLevelUpRate, level - 1);
+        float baseExp = _config.baseStats.Find(stat => stat.Type == PlayerStats.EXP)?.Value ?? 10f;
+
+        return baseExp * Mathf.Pow(_config.expLevelUpRate, level - 1);
     }
 
     public float ApplyDamage(float amount)
@@ -61,12 +63,11 @@ public class PlayerData
 
     public void Reset()
     {
-        _stats[PlayerStats.Level] = 1;
-        _stats[PlayerStats.EXP] = 0;
-        _stats[PlayerStats.MaxHP] = _config.baseHP;
-        _stats[PlayerStats.HP] = _config.baseHP;
-        _stats[PlayerStats.Attack] = _config.baseAttack;
-        _stats[PlayerStats.Defense] = _config.baseDefense;
+        foreach (var stats in _config.baseStats)
+        {
+            _stats[stats.Type] = stats.Value;
+        }
+
         GameEventsManager.RaisePlayerStatReset();
     }
 
@@ -74,10 +75,17 @@ public class PlayerData
     {
         float level = _stats[PlayerStats.Level];
 
-        _stats[PlayerStats.MaxHP] = _config.baseHP + (20f * (level - 1));
-        _stats[PlayerStats.HP] = _stats[PlayerStats.MaxHP]; // restore full HP on upgrade
-        _stats[PlayerStats.Attack] = _config.baseAttack + (5f * (level - 1));
-        _stats[PlayerStats.Defense] = _config.baseDefense + (2.5f * (level - 1));
+        foreach (var gain in _config.perLevelGains)
+        {
+            float baseValue = _stats.ContainsKey(gain.Type) ? _stats[gain.Type] : 0f;
+            float increase = gain.Increase * (level - 1);
+            _stats[gain.Type] = baseValue + increase;
+        }
+
+        // Set MaxHP and restore full HP
+        if (_stats.ContainsKey(PlayerStats.MaxHP))
+            _stats[PlayerStats.HP] = _stats[PlayerStats.MaxHP];
+
         GameEventsManager.RaisePlayerStatUpgrade(_stats);
     }
 
@@ -90,9 +98,10 @@ public class PlayerData
         bool leveledUp = false;
         while (currentExp >= requiredExp)
         {
-            Upgrade();
-            currentExp -= requiredExp;
             _stats[PlayerStats.Level]++;
+            Upgrade();
+                
+            currentExp -= requiredExp;
             requiredExp = GetRequiredEXP(_stats[PlayerStats.Level]);
             leveledUp = true;
             GameEventsManager.RaiseLevelUpUpdate((int)_stats[PlayerStats.Level]);
