@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+// TODO: Make a dynamic UI for buildings just like the upgrade.
 public class UIManager : MonoBehaviour
 {
     // PROPERTIES
