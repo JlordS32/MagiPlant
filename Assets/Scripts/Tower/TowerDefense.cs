@@ -5,17 +5,22 @@ using UnityEngine;
 // WARNING: Add tower variants
 public class TowerDefense : MonoBehaviour
 {
+    [SerializeField] TowerStatConfig _towerStatConfig;
     [SerializeField] Vector3 _localForward = Vector3.down;
     [SerializeField] float _range = 10f;
+
+    // REFERENCES
+    TowerData _towerData;
+    TowerDefenseAttack _towerAttack;
 
     [Header("Debug Mode")]
     [SerializeField] bool _enableDebug;
 
-    TowerDefenseAttack _attack;
 
     void Awake()
     {
-        _attack = GetComponent<TowerDefenseAttack>();
+        _towerAttack = GetComponent<TowerDefenseAttack>();
+        _towerData = new TowerData(_towerStatConfig);
     }
 
     void Update()
@@ -30,7 +35,14 @@ public class TowerDefense : MonoBehaviour
         float forwardAngle = Mathf.Atan2(_localForward.y, _localForward.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle - forwardAngle, Vector3.forward);
 
-        _attack.Shoot(dir);
+        ProjectileStats projStats = new ProjectileStats
+        {
+            damage = _towerData.Get(TowerStats.Attack),
+            speed = _towerData.Get(TowerStats.Speed),
+            lifetime = 5f
+        };
+
+        _towerAttack.Shoot(dir, projStats);
     }
 
     void OnDrawGizmos()

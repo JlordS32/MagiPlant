@@ -134,7 +134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &45430444
 Transform:
   m_ObjectHideFlags: 0
@@ -7840,15 +7840,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1651772268007894836, guid: b08494c4ff7106c43a20467b83b0cff0, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1651772268007894836, guid: b08494c4ff7106c43a20467b83b0cff0, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1651772268007894836, guid: b08494c4ff7106c43a20467b83b0cff0, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -8.9632
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1860897453920415714, guid: b08494c4ff7106c43a20467b83b0cff0, type: 3}
       propertyPath: m_Pivot.x
@@ -7932,11 +7932,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2491222386214946274, guid: b08494c4ff7106c43a20467b83b0cff0, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2491222386214946274, guid: b08494c4ff7106c43a20467b83b0cff0, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4004285826446946910, guid: b08494c4ff7106c43a20467b83b0cff0, type: 3}
       propertyPath: m_IsActive
@@ -7988,7 +7988,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7248048412177987276, guid: b08494c4ff7106c43a20467b83b0cff0, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8122958150301576744, guid: b08494c4ff7106c43a20467b83b0cff0, type: 3}
       propertyPath: m_IsActive
