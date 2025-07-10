@@ -214,10 +214,6 @@ MonoBehaviour:
   _projectTileParent: {fileID: 1714611843553627181}
   _firePoint: {fileID: 4687481102045981104}
   _coolDown: 0.5
-  _projectileStats:
-    damage: 10
-    speed: 25
-    lifetime: 5
 --- !u!1 &5629522099388186364
 GameObject:
   m_ObjectHideFlags: 0

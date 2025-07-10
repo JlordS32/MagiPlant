@@ -44,7 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fb39f5a0f93e4d4782860ac0068d1a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _upgradePanel: {fileID: 0}
+  _timeTextUI: {fileID: 0}
+  _sidePanel: {fileID: 0}
+  _towerDefenses: {fileID: 11400000, guid: 68ce767f03a96d140bdb7f1f845a189a, type: 2}
   _waterTextUI: {fileID: 0}
   _sunlightTextUI: {fileID: 0}
   _levelTextUI: {fileID: 0}

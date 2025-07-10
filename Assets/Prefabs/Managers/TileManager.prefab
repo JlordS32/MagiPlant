@@ -27,8 +27,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -46,8 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _map: {fileID: 0}
   _nodes:
-  - Tile: {fileID: 11400000, guid: c503410087efce844a218eb3620f841f, type: 2}
+  - Tile: {fileID: 11400000, guid: 4ca1f270ce9a8a64faa6bfdcd2b93c6e, type: 2}
     Weight: 1
   - Tile: {fileID: 11400000, guid: 43fc09d1d494ade4399b08f3ec16f59a, type: 2}
-    Weight: 1
+    Weight: 2
   _enableDebug: 0
