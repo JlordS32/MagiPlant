@@ -10,15 +10,18 @@ public struct ProjectileStats
 
 public class TowerDefenseAttack : MonoBehaviour
 {
-    [SerializeField] GameObject _projectilePrefab;
-    [SerializeField] Transform _projectTileParent;
     [SerializeField] Transform _firePoint;
+    [SerializeField] Transform _projectileParent;
     [SerializeField] float _coolDown = 1f;
+    [SerializeField] ScriptableObject _attackStrategyObject;
 
-    // [Header("Project Properties")]
-    // [SerializeField] ProjectileStats _projectileStats;
-
+    IAttackStrategy _attackStrategy;
     float _timer;
+
+    void Awake()
+    {
+        _attackStrategy = _attackStrategyObject as IAttackStrategy;
+    }
 
     void Update()
     {
@@ -27,11 +30,10 @@ public class TowerDefenseAttack : MonoBehaviour
 
     public void Shoot(Vector3 direction, ProjectileStats stats)
     {
-        if (_timer >= _coolDown)
+        if (_timer >= _coolDown && _attackStrategy != null)
         {
-            GameObject proj = Instantiate(_projectilePrefab, _firePoint.position, Quaternion.identity, _projectTileParent);
-            proj.GetComponent<Projectile>().Init(direction.normalized, stats.damage, stats.speed, stats.lifetime);
-            _timer = 0;
+            _attackStrategy.Attack(direction, stats, _firePoint, _projectileParent);
+            _timer = 0f;
         }
     }
 }

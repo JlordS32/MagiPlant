@@ -210,10 +210,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e6d1ef5d3eda0e4bb89404e6fcdcf06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectilePrefab: {fileID: 1396304532041515281, guid: 9f160a74d8c6c0840b5cac50c7653e81, type: 3}
-  _projectTileParent: {fileID: 1714611843553627181}
   _firePoint: {fileID: 4687481102045981104}
+  _projectileParent: {fileID: 0}
   _coolDown: 0.5
+  _attackStrategyObject: {fileID: 11400000, guid: 248e6bcdf41b81849b9ba3b64d7b29bb, type: 2}
 --- !u!1 &5629522099388186364
 GameObject:
   m_ObjectHideFlags: 0
