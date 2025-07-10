@@ -194,6 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01be259b9803904c93f108aff41d0fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _towerStatConfig: {fileID: 11400000, guid: df99aef6c8db14040bfbdd1865467dd2, type: 2}
   _localForward: {x: 0, y: -1, z: 0}
   _range: 10
   _enableDebug: 0
