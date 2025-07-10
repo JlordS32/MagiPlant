@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a4f6af789bea2440b74518e1a722a43, type: 3}
-  m_Name: DoubleShotStat
+  m_Script: {fileID: 11500000, guid: 92fd3c9f76b4b384d9aecf0702d5bbcf, type: 3}
+  m_Name: Single Shot
   m_EditorClassIdentifier: 
-  Attack: 10
-  Speed: 25
-  Range: 10
+  _projectilePrefab: {fileID: 1396304532041515281, guid: 9f160a74d8c6c0840b5cac50c7653e81, type: 3}

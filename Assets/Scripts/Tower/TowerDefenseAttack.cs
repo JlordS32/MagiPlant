@@ -11,7 +11,6 @@ public struct ProjectileStats
 public class TowerDefenseAttack : MonoBehaviour
 {
     [SerializeField] Transform _firePoint;
-    [SerializeField] Transform _projectileParent;
     [SerializeField] float _coolDown = 1f;
     [SerializeField] ScriptableObject _attackStrategyObject;
 
@@ -32,7 +31,7 @@ public class TowerDefenseAttack : MonoBehaviour
     {
         if (_timer >= _coolDown && _attackStrategy != null)
         {
-            _attackStrategy.Attack(direction, stats, _firePoint, _projectileParent);
+            _attackStrategy.Attack(direction, stats, _firePoint, transform);
             _timer = 0f;
         }
     }

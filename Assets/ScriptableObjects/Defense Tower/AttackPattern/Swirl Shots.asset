@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92fd3c9f76b4b384d9aecf0702d5bbcf, type: 3}
-  m_Name: New Single Projectile Attack
+  m_Script: {fileID: 11500000, guid: 7897d2310ef7d2740b2a54be1e3514b2, type: 3}
+  m_Name: Swirl Shots
   m_EditorClassIdentifier: 
   _projectilePrefab: {fileID: 1396304532041515281, guid: 9f160a74d8c6c0840b5cac50c7653e81, type: 3}
+  _projectileCount: 23
+  _swirlOffsetAngle: 10
