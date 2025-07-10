@@ -10,7 +10,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI _timeTextUI;
 
     [Header("Sidebar UI")]
-    [SerializeField] UpgradePanelUI _upgradePanel;
+    [SerializeField] SidePanelUI _sidePanel;
+    [SerializeField] TowerConfig _towerDefenses;
 
     [Header("Currency UI")]
     [SerializeField] TextMeshProUGUI _waterTextUI;
@@ -20,21 +21,20 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI _levelTextUI;
     [SerializeField] TextMeshProUGUI _expTextUI;
 
-    [Header("Upgrades Config")]
-    [SerializeField] List<UpgradeEntry> _upgradeConfigs;
-
     // REFERENCES
     TimeManager _timeManager;
-    CurrencyStorage _currencyStorage;
-    CurrencyGenerator _currencyGenerator;
+    BuildManager _buildManager;
 
     // VARIABLES
     Dictionary<CurrencyType, TextMeshProUGUI> _currencyTexts = new();
     Dictionary<PlayerStats, TextMeshProUGUI> _playerStatTexts = new();
+    List<DefenseEntry> _defenseEntries;
 
     // IMPORTANT: ASSIGN UI COMPONENTS HERE USING VIA HASHMAP
     void Awake()
     {
+        _defenseEntries = new List<DefenseEntry>();
+
         // Currency
         _currencyTexts[CurrencyType.Water] = _waterTextUI;
         _currencyTexts[CurrencyType.Sunlight] = _sunlightTextUI;
@@ -45,36 +45,24 @@ public class UIManager : MonoBehaviour
 
         // References
         _timeManager = FindFirstObjectByType<TimeManager>();
-        _currencyGenerator = FindFirstObjectByType<CurrencyGenerator>();
-        _currencyStorage = FindFirstObjectByType<CurrencyStorage>();
+        _buildManager = FindFirstObjectByType<BuildManager>();
     }
 
     // TODO: Make a scriptable object for each upgrade entry
     void Start()
     {
-        UpgradeEntry entry = new()
+        foreach (var defenses in _towerDefenses.DefenseEntry)
         {
-            Name = "Water Generator",
-            Type = UpgradeType.GenerateRate,
-            TargetCurrency = CurrencyType.Water,
-            Value = 0.5f,
-            BaseCost = 2f,
-            CostMultiplier = 1.5f,
-            MaxLevel = 10,
-            Level = 1
-        };
-
-        entry.UpgradeLogic = () =>
-        {
-            if (_currencyStorage.Spend(CurrencyType.Sunlight, entry.GetCost()))
+            // Manually assign the function to build for each entry.
+            defenses.UpgradeLogic = () =>
             {
-                entry.Upgrade();
-                _currencyGenerator.ApplyUpgrade(entry, CurrencyType.Water);
-            }
-        };
+                _buildManager.SelectPrefab(defenses.DefensePrefab);
+            };
 
-        _upgradePanel.Build(new List<UpgradeEntry> { entry });
-        _upgradeConfigs.Add(entry);
+            _defenseEntries.Add(defenses);
+        }
+
+        _sidePanel.Build(_defenseEntries);
     }
 
     void Update()
@@ -88,7 +76,6 @@ public class UIManager : MonoBehaviour
         GameEventsManager.OnCurrencyUpdate += UpdateCurrencyUI;
         GameEventsManager.OnLevelUpUpdate += UpdateLevelUI;
         GameEventsManager.OnExpGainUpdate += UpdateExpText;
-        GameEventsManager.OnGenerateRateUpdated += HandleGenerateRateUpdate;
     }
 
     void OnDisable()
@@ -96,7 +83,6 @@ public class UIManager : MonoBehaviour
         GameEventsManager.OnCurrencyUpdate -= UpdateCurrencyUI;
         GameEventsManager.OnLevelUpUpdate -= UpdateLevelUI;
         GameEventsManager.OnExpGainUpdate -= UpdateExpText;
-        GameEventsManager.OnGenerateRateUpdated -= HandleGenerateRateUpdate;
     }
     #endregion
 
@@ -114,14 +100,6 @@ public class UIManager : MonoBehaviour
     void UpdateExpText(float currentExp, float requiredExp)
     {
         _expTextUI.text = $"EXP: {NumberFormatter.Format(currentExp)} / {NumberFormatter.Format(requiredExp)}";
-    }
-
-    void HandleGenerateRateUpdate(CurrencyType type, float rate, int level)
-    {
-        var entry = _upgradeConfigs.Find(e =>
-        e.Type == UpgradeType.GenerateRate && e.TargetCurrency == type);
-
-        _upgradePanel.RefreshUI(entry.Type, type, rate, level, entry.GetCost(), entry.MaxLevel);
     }
     #endregion
 }
