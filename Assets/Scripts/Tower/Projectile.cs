@@ -3,6 +3,8 @@ using UnityEngine;
 public class Projectile : MonoBehaviour, IAttack
 {
     [SerializeField] LayerMask _targetLayers;
+    [SerializeField] ScriptableObject _projectilePatternObject;
+    IProjectilePattern _projectilePattern;
 
     float _damage;
     Vector3 _direction;
@@ -16,6 +18,11 @@ public class Projectile : MonoBehaviour, IAttack
         Destroy(gameObject, lifetime);
     }
 
+    void Awake()
+    {
+        _projectilePattern = _projectilePatternObject as IProjectilePattern;
+    }
+
     void Update()
     {
         transform.position += Time.deltaTime * _speed * _direction;
@@ -26,7 +33,8 @@ public class Projectile : MonoBehaviour, IAttack
         if (collision.TryGetComponent<IDamageable>(out var target) && collision.CompareTag("Enemies"))
         {
             Attack(target);
-            Destroy(gameObject);
+            // projectile pattern when it hit the enemy
+            _projectilePattern?.ProjectileOnCollision(gameObject);
         }
     }
 
@@ -34,4 +42,7 @@ public class Projectile : MonoBehaviour, IAttack
     {
         target.TakeDamage(_damage);
     }
+    
+    public float GetDamage() => _damage;
+    public float GetSpeed() => _speed;
 }

@@ -31,9 +31,9 @@ public class TowerDefense : MonoBehaviour
         Vector3 dir = target.transform.position - transform.position;
 
         // Comment if want to prevent rotate
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        float forwardAngle = Mathf.Atan2(_localForward.y, _localForward.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle - forwardAngle, Vector3.forward);
+        // float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        // float forwardAngle = Mathf.Atan2(_localForward.y, _localForward.x) * Mathf.Rad2Deg;
+        // transform.rotation = Quaternion.AngleAxis(angle - forwardAngle, Vector3.forward);
 
         ProjectileStats projStats = new ProjectileStats
         {

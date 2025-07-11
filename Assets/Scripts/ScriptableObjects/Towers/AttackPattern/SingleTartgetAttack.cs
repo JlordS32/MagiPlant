@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "TowerDefense/AttackStrategies/SingleProjectile")]
-public class SingleProjectileAttack : ScriptableObject, IAttackStrategy
+public class SingleTargetAttack : ScriptableObject, IAttackStrategy
 {
     [SerializeField] GameObject _projectilePrefab;
 
