@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4edd8693ae816f409967c1e1696ca6e, type: 3}
-  m_Name: SlimeStats
+  m_Script: {fileID: 11500000, guid: 92fd3c9f76b4b384d9aecf0702d5bbcf, type: 3}
+  m_Name: Single Shot with Splash
   m_EditorClassIdentifier: 
-  HP: 10
-  Attack: 1
-  Defense: 1
-  Speed: 10
+  _projectilePrefab: {fileID: 7208422884195314323, guid: 6d6aa710c409a6241a3245958e4e2ba3, type: 3}

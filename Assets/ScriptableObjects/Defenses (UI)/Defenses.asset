@@ -22,6 +22,10 @@ MonoBehaviour:
     Name: Canon
     Cost: 10
   - DefensePrefab: {fileID: 4696009240900588352, guid: 06259394ec32a5c41a8331e3e7d48833, type: 3}
-    Thumbnail: {fileID: 4977976925158220541, guid: 85b10beb11cde0040826127200e41a44, type: 3}
+    Thumbnail: {fileID: -2728679950148867946, guid: 85b10beb11cde0040826127200e41a44, type: 3}
+    Name: Canon
+    Cost: 10
+  - DefensePrefab: {fileID: 1806753459748243633, guid: cbc02fe1a6d885649862761b9378bca5, type: 3}
+    Thumbnail: {fileID: 4257291877648442768, guid: 8e449af4e9b325543bc108ad4cbfed88, type: 3}
     Name: Canon
     Cost: 10
