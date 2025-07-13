@@ -49,6 +49,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 637576398221792981, guid: 0622e3606a4e9ae44a259029e62bf83b, type: 3}
+      propertyPath: _projectilePrefab
+      value: 
+      objectReference: {fileID: 5658636364950858399, guid: a496df2e65be55b4ebcfb55227a5ae63, type: 3}
+    - target: {fileID: 637576398221792981, guid: 0622e3606a4e9ae44a259029e62bf83b, type: 3}
       propertyPath: _attackStrategyObject
       value: 
       objectReference: {fileID: 11400000, guid: 8a6f9fc5e76f0a64daba05f9d9810015, type: 2}
@@ -68,8 +72,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: SplashBurstTower
       objectReference: {fileID: 0}
+    - target: {fileID: 7866446824196291411, guid: 0622e3606a4e9ae44a259029e62bf83b, type: 3}
+      propertyPath: _towerStatConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: df99aef6c8db14040bfbdd1865467dd2, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2605614416832552758, guid: 0622e3606a4e9ae44a259029e62bf83b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7951418239342591597}
   m_SourcePrefab: {fileID: 100100000, guid: 0622e3606a4e9ae44a259029e62bf83b, type: 3}
+--- !u!1 &1806753459748243633 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2605614416832552758, guid: 0622e3606a4e9ae44a259029e62bf83b, type: 3}
+  m_PrefabInstance: {fileID: 4412366770626647943}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7951418239342591597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806753459748243633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ef7508c57495624b987df5ad02ae995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _projectileCount: 27
+  _swirlOffsetAngle: 50

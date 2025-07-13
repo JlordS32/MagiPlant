@@ -24,6 +24,7 @@ public class UIManager : MonoBehaviour
     // REFERENCES
     TimeManager _timeManager;
     BuildManager _buildManager;
+    CurrencyStorage _currencyStorage;
 
     // VARIABLES
     Dictionary<CurrencyType, TextMeshProUGUI> _currencyTexts = new();
@@ -46,9 +47,9 @@ public class UIManager : MonoBehaviour
         // References
         _timeManager = FindFirstObjectByType<TimeManager>();
         _buildManager = FindFirstObjectByType<BuildManager>();
+        _currencyStorage = FindFirstObjectByType<CurrencyStorage>();
     }
 
-    // TODO: Make a scriptable object for each upgrade entry
     void Start()
     {
         foreach (var defenses in _towerDefenses.DefenseEntry)
@@ -56,7 +57,13 @@ public class UIManager : MonoBehaviour
             // Manually assign the function to build for each entry.
             defenses.UpgradeLogic = () =>
             {
-                _buildManager.SelectPrefab(defenses.DefensePrefab);
+                if (_currencyStorage.Spend(CurrencyType.Sunlight, defenses.Cost))
+                {
+                    _buildManager.SelectPrefab(defenses.DefensePrefab);
+                } else
+                {
+                    Debug.LogWarning($"Not enough sunlight to build {defenses.DefensePrefab.name}");
+                }
             };
 
             _defenseEntries.Add(defenses);

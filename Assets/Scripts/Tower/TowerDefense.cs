@@ -1,8 +1,6 @@
 using System.Linq;
 using UnityEngine;
 
-// WARNING: Dowee this is for you. Add TowerData similar implementation as EnemyData
-// WARNING: Add tower variants
 public class TowerDefense : MonoBehaviour
 {
     [SerializeField] TowerStatConfig _towerStatConfig;

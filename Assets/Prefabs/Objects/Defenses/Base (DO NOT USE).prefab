@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 7866446824196291411}
   - component: {fileID: 637576398221792981}
   m_Layer: 0
-  m_Name: Base
+  m_Name: Base (DO NOT USE)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -194,10 +194,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01be259b9803904c93f108aff41d0fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _towerStatConfig: {fileID: 11400000, guid: 8424d37890cca18419b029ddc4fa2f01, type: 2}
+  _towerStatConfig: {fileID: 11400000, guid: df99aef6c8db14040bfbdd1865467dd2, type: 2}
   _localForward: {x: 0, y: -1, z: 0}
-  _range: 10
-  _enableDebug: 0
+  _range: 5
+  _enableDebug: 1
 --- !u!114 &637576398221792981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,9 +210,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e6d1ef5d3eda0e4bb89404e6fcdcf06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _projectilePrefab: {fileID: 1396304532041515281, guid: 80845a9426f130f43bd058849b796e91, type: 3}
   _firePoint: {fileID: 4687481102045981104}
   _coolDown: 0.5
-  _attackStrategyObject: {fileID: 11400000, guid: 248e6bcdf41b81849b9ba3b64d7b29bb, type: 2}
 --- !u!1 &5629522099388186364
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &7278541609835433078
+--- !u!1001 &6318282114049227863
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -49,31 +49,35 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 637576398221792981, guid: 0622e3606a4e9ae44a259029e62bf83b, type: 3}
-      propertyPath: _attackStrategyObject
+      propertyPath: _projectile
       value: 
-      objectReference: {fileID: 11400000, guid: 6fa06bde76674b742b51ae29014f7031, type: 2}
-    - target: {fileID: 997825376636920692, guid: 0622e3606a4e9ae44a259029e62bf83b, type: 3}
-      propertyPath: m_Color.b
-      value: 0.34420612
-      objectReference: {fileID: 0}
-    - target: {fileID: 997825376636920692, guid: 0622e3606a4e9ae44a259029e62bf83b, type: 3}
-      propertyPath: m_Color.g
-      value: 0.34420612
-      objectReference: {fileID: 0}
-    - target: {fileID: 997825376636920692, guid: 0622e3606a4e9ae44a259029e62bf83b, type: 3}
-      propertyPath: m_Color.r
-      value: 0.8018868
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 662873230654246620, guid: 80845a9426f130f43bd058849b796e91, type: 3}
     - target: {fileID: 2605614416832552758, guid: 0622e3606a4e9ae44a259029e62bf83b, type: 3}
       propertyPath: m_Name
-      value: DoubleShootTower
+      value: SingleShot
       objectReference: {fileID: 0}
-    - target: {fileID: 7866446824196291411, guid: 0622e3606a4e9ae44a259029e62bf83b, type: 3}
-      propertyPath: _towerStatConfig
-      value: 
-      objectReference: {fileID: 11400000, guid: 2bd257b43b6e1c64b8041afb666ef486, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2605614416832552758, guid: 0622e3606a4e9ae44a259029e62bf83b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -4613426126617083680}
   m_SourcePrefab: {fileID: 100100000, guid: 0622e3606a4e9ae44a259029e62bf83b, type: 3}
+--- !u!1 &8324354819731710817 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2605614416832552758, guid: 0622e3606a4e9ae44a259029e62bf83b, type: 3}
+  m_PrefabInstance: {fileID: 6318282114049227863}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-4613426126617083680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8324354819731710817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2545cf3b59aa9ca42b8db61d9303c92a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
