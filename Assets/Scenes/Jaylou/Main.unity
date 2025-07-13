@@ -173,7 +173,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6405670809676805654, guid: a3c14f938a849c04cbd7282e486e0be9, type: 3}
       propertyPath: _maxSpawn
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6405670809676805654, guid: a3c14f938a849c04cbd7282e486e0be9, type: 3}
       propertyPath: _spawnRange.x
@@ -185,7 +185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6405670809676805654, guid: a3c14f938a849c04cbd7282e486e0be9, type: 3}
       propertyPath: _spawnInterval
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6405670809676805654, guid: a3c14f938a849c04cbd7282e486e0be9, type: 3}
       propertyPath: _enemyPrefab.Array.size
@@ -7057,7 +7057,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6405670809676805654, guid: a3c14f938a849c04cbd7282e486e0be9, type: 3}
       propertyPath: _maxSpawn
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6405670809676805654, guid: a3c14f938a849c04cbd7282e486e0be9, type: 3}
       propertyPath: _spawnRange.x
@@ -7069,7 +7069,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6405670809676805654, guid: a3c14f938a849c04cbd7282e486e0be9, type: 3}
       propertyPath: _spawnInterval
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6405670809676805654, guid: a3c14f938a849c04cbd7282e486e0be9, type: 3}
       propertyPath: _enemyPrefab.Array.size
@@ -7516,7 +7516,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6405670809676805654, guid: a3c14f938a849c04cbd7282e486e0be9, type: 3}
       propertyPath: _maxSpawn
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6405670809676805654, guid: a3c14f938a849c04cbd7282e486e0be9, type: 3}
       propertyPath: _spawnRange.x
@@ -7528,7 +7528,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6405670809676805654, guid: a3c14f938a849c04cbd7282e486e0be9, type: 3}
       propertyPath: _spawnInterval
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6405670809676805654, guid: a3c14f938a849c04cbd7282e486e0be9, type: 3}
       propertyPath: _enemyPrefab.Array.size
@@ -8188,7 +8188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6405670809676805654, guid: a3c14f938a849c04cbd7282e486e0be9, type: 3}
       propertyPath: _maxSpawn
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6405670809676805654, guid: a3c14f938a849c04cbd7282e486e0be9, type: 3}
       propertyPath: _spawnRange.x
@@ -8200,7 +8200,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6405670809676805654, guid: a3c14f938a849c04cbd7282e486e0be9, type: 3}
       propertyPath: _spawnInterval
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6405670809676805654, guid: a3c14f938a849c04cbd7282e486e0be9, type: 3}
       propertyPath: _enemyPrefab.Array.size
@@ -10362,7 +10362,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6405670809676805654, guid: a3c14f938a849c04cbd7282e486e0be9, type: 3}
       propertyPath: _maxSpawn
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6405670809676805654, guid: a3c14f938a849c04cbd7282e486e0be9, type: 3}
       propertyPath: _spawnRange.x
@@ -10374,7 +10374,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6405670809676805654, guid: a3c14f938a849c04cbd7282e486e0be9, type: 3}
       propertyPath: _spawnInterval
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6405670809676805654, guid: a3c14f938a849c04cbd7282e486e0be9, type: 3}
       propertyPath: _enemyPrefab.Array.size
