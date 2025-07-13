@@ -318,7 +318,7 @@ GameObject:
   - component: {fileID: 4023629309043402457}
   - component: {fileID: 7724549053641524003}
   m_Layer: 6
-  m_Name: _Base
+  m_Name: _Base (DO NOT USE)
   m_TagString: Enemies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -334,7 +334,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4876086531770704276}
@@ -427,6 +427,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyStatConfig: {fileID: 11400000, guid: e997cb7d3dda44949970f58b3c813d02, type: 2}
+  _enemyTier: 0
+  _enemyTags: 
 --- !u!114 &2549425988169434127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,6 +445,8 @@ MonoBehaviour:
   _pathFindingDelay: 1
   _speed: 2
   _stoppingDistance: 1
+  wobbleX: 0.5
+  wobbleY: 0.5
 --- !u!114 &-2679848939067122144
 MonoBehaviour:
   m_ObjectHideFlags: 0

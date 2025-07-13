@@ -64,6 +64,30 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3205983734671086994, guid: e19e9ea02464d8b4d95f5e11ce5cf187, type: 3}
+      propertyPath: _enemyTags
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3205983734671086994, guid: e19e9ea02464d8b4d95f5e11ce5cf187, type: 3}
+      propertyPath: _enemyStatConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 51e068a0d594a124795d5085f6450acd, type: 2}
+    - target: {fileID: 3205983734671086994, guid: e19e9ea02464d8b4d95f5e11ce5cf187, type: 3}
+      propertyPath: _enemyTags.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3205983734671086994, guid: e19e9ea02464d8b4d95f5e11ce5cf187, type: 3}
+      propertyPath: '_enemyTags.Array.data[0]'
+      value: 126
+      objectReference: {fileID: 0}
+    - target: {fileID: 3205983734671086994, guid: e19e9ea02464d8b4d95f5e11ce5cf187, type: 3}
+      propertyPath: '_enemyTags.Array.data[1]'
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3205983734671086994, guid: e19e9ea02464d8b4d95f5e11ce5cf187, type: 3}
+      propertyPath: '_enemyTags.Array.data[2]'
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5973604808822204288, guid: e19e9ea02464d8b4d95f5e11ce5cf187, type: 3}
       propertyPath: m_Sprite
       value: 
