@@ -2,6 +2,6 @@ using UnityEngine;
 
 public interface IAttackStrategy
 {
-    void Attack(Vector3 direction, ProjectileStats stats, Transform firePoint, Transform parent);
+    void Attack(GameObject projectilePrefab, Vector3 direction, ProjectileStats stats, Transform firePoint, Transform parent);
 }
 

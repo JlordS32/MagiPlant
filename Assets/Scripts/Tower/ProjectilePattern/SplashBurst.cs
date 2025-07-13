@@ -1,7 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "TowerDefense/ProjectilePattern/SplashBurstProjectile")]
-public class SplashBurstProjectile : ScriptableObject, IProjectilePattern
+public class SplashBurst : MonoBehaviour, IProjectilePattern
 {
     [SerializeField] private GameObject _projectilePrefab;
     [SerializeField] private int _projectileCount = 5;
@@ -19,7 +18,7 @@ public class SplashBurstProjectile : ScriptableObject, IProjectilePattern
 
         for (int i = 0; i < _projectileCount; i++)
         {
-            float angle = (360f / _projectileCount) * i;
+            float angle = 360f / _projectileCount * i;
             Vector3 direction = Quaternion.Euler(0, 0, angle) * Vector3.right;
 
             GameObject newProj = Object.Instantiate(_projectilePrefab, origin, Quaternion.identity, parentTransform);
