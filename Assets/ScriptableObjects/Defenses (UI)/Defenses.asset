@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: Defenses
   m_EditorClassIdentifier: 
   DefenseEntry:
-  - DefensePrefab: {fileID: 8324354819731710817, guid: 751c4affecd636a4fad2f459cd76099a, type: 3}
+  - DefenseEntryName: Single Shot Tower
+    DefensePrefab: {fileID: 8324354819731710817, guid: 751c4affecd636a4fad2f459cd76099a, type: 3}
     Thumbnail: {fileID: -10524483601426386, guid: 85b10beb11cde0040826127200e41a44, type: 3}
-    Name: Single Shot Tower
     Cost: 5
-  - DefensePrefab: {fileID: 4696009240900588352, guid: 74b4244f46e04324d83c61677cb515df, type: 3}
+  - DefenseEntryName: Double Shot Tower
+    DefensePrefab: {fileID: 4696009240900588352, guid: 74b4244f46e04324d83c61677cb515df, type: 3}
     Thumbnail: {fileID: 5758861361426822821, guid: 85b10beb11cde0040826127200e41a44, type: 3}
-    Name: Double Shot Tower
     Cost: 5
-  - DefensePrefab: {fileID: 5237720640322185304, guid: 2c563923e8622e0468ec76d40910f496, type: 3}
+  - DefenseEntryName: Dev Tower
+    DefensePrefab: {fileID: 5237720640322185304, guid: 2c563923e8622e0468ec76d40910f496, type: 3}
     Thumbnail: {fileID: -1319315252296537693, guid: 85b10beb11cde0040826127200e41a44, type: 3}
-    Name: Dev Tower
     Cost: 5
-  - DefensePrefab: {fileID: 1806753459748243633, guid: cbc02fe1a6d885649862761b9378bca5, type: 3}
+  - DefenseEntryName: Splash Burst Tower
+    DefensePrefab: {fileID: 1806753459748243633, guid: cbc02fe1a6d885649862761b9378bca5, type: 3}
     Thumbnail: {fileID: 8297040362687464060, guid: 85b10beb11cde0040826127200e41a44, type: 3}
-    Name: Splash Burst Tower
     Cost: 5

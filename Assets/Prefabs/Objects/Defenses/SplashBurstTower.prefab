@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SplashBurstTower
       objectReference: {fileID: 0}
+    - target: {fileID: 4687481102045981104, guid: 0622e3606a4e9ae44a259029e62bf83b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7866446824196291411, guid: 0622e3606a4e9ae44a259029e62bf83b, type: 3}
       propertyPath: _towerStatConfig
       value: 
@@ -101,5 +105,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ef7508c57495624b987df5ad02ae995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectileCount: 27
+  _projectileCount: 3
   _swirlOffsetAngle: 50

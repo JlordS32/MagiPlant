@@ -16,7 +16,7 @@ public class SidePanelUI : MonoBehaviour
             GameObject go = Instantiate(_towerDefenseUI, transform);
             var ui = go.GetComponent<TowerUI>();
 
-            ui.Setup(entry.Name, entry.Thumbnail, () => entry.UpgradeLogic.Invoke());
+            ui.Setup(entry.DefenseEntryName, entry.Thumbnail, () => entry.UpgradeLogic.Invoke());
         }
     }
 

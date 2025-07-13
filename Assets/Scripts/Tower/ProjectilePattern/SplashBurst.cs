@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class SplashBurst : MonoBehaviour, IProjectilePattern
 {
-    [SerializeField] private GameObject _projectilePrefab;
-    [SerializeField] private int _projectileCount = 5;
-    [SerializeField] private float _spreadAngle = 360f;
-    [SerializeField] private float _damageMultiplier = 0.5f;
-    [SerializeField] private float _speedMultiplier = 1f;
-    [SerializeField] private float _lifetime = 3f;
+    [SerializeField] GameObject _splashPrefab;
+    [SerializeField] int _projectileCount = 5;
+    [SerializeField] float _spreadAngle = 360f;
+    [SerializeField] float _damageMultiplier = 0.5f;
+    [SerializeField] float _speedMultiplier = 1f;
+    [SerializeField] float _lifetime = 3f;
 
     public void ProjectileOnCollision(GameObject gameObject)
     {
@@ -21,7 +21,7 @@ public class SplashBurst : MonoBehaviour, IProjectilePattern
             float angle = 360f / _projectileCount * i;
             Vector3 direction = Quaternion.Euler(0, 0, angle) * Vector3.right;
 
-            GameObject newProj = Object.Instantiate(_projectilePrefab, origin, Quaternion.identity, parentTransform);
+            GameObject newProj = Instantiate(_splashPrefab, origin, Quaternion.identity, parentTransform);
             if (newProj.TryGetComponent<Projectile>(out var proj))
             {
                 proj.Init(
@@ -33,6 +33,6 @@ public class SplashBurst : MonoBehaviour, IProjectilePattern
             }
         }
 
-        Object.Destroy(gameObject);
+        Destroy(gameObject);
     }
 }

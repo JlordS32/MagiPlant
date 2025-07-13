@@ -52,9 +52,17 @@ PrefabInstance:
       propertyPath: _projectile
       value: 
       objectReference: {fileID: 662873230654246620, guid: 80845a9426f130f43bd058849b796e91, type: 3}
+    - target: {fileID: 637576398221792981, guid: 0622e3606a4e9ae44a259029e62bf83b, type: 3}
+      propertyPath: _projectilePrefab
+      value: 
+      objectReference: {fileID: 6366308683045045928, guid: e5d533f5ae9b8b8479107332d9a4d2d3, type: 3}
     - target: {fileID: 2605614416832552758, guid: 0622e3606a4e9ae44a259029e62bf83b, type: 3}
       propertyPath: m_Name
       value: SingleShot
+      objectReference: {fileID: 0}
+    - target: {fileID: 4687481102045981104, guid: 0622e3606a4e9ae44a259029e62bf83b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
