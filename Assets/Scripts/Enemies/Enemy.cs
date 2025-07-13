@@ -4,6 +4,9 @@ public class Enemy : MonoBehaviour, IDamageable
 {
     // PROPERTIES
     [SerializeField] EnemyStatConfig _enemyStatConfig;
+    [SerializeField] EnemyTier _enemyTier;
+    [SerializeField] EnemyType _enemyType;
+    [SerializeField] EnemyTrait _enemyTags;
 
     // REFERENCES
     EnemyData _enemyData;
@@ -13,6 +16,8 @@ public class Enemy : MonoBehaviour, IDamageable
     // VARIABLES
     IDamageable _targetInRange;
     float _timer;
+
+    public EnemyData Data => _enemyData;
 
     void Awake()
     {

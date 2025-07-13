@@ -9,6 +9,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 369938939205034885, guid: e19e9ea02464d8b4d95f5e11ce5cf187, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 369938939205034885, guid: e19e9ea02464d8b4d95f5e11ce5cf187, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 369938939205034885, guid: e19e9ea02464d8b4d95f5e11ce5cf187, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 369938939205034885, guid: e19e9ea02464d8b4d95f5e11ce5cf187, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -64,10 +76,38 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3205983734671086994, guid: e19e9ea02464d8b4d95f5e11ce5cf187, type: 3}
+      propertyPath: _enemyStatConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 5342318fd5766bb4a8ad02dd206d1490, type: 2}
+    - target: {fileID: 3205983734671086994, guid: e19e9ea02464d8b4d95f5e11ce5cf187, type: 3}
+      propertyPath: _enemyTags.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3205983734671086994, guid: e19e9ea02464d8b4d95f5e11ce5cf187, type: 3}
+      propertyPath: '_enemyTags.Array.data[0]'
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3205983734671086994, guid: e19e9ea02464d8b4d95f5e11ce5cf187, type: 3}
+      propertyPath: '_enemyTags.Array.data[1]'
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5973604808822204288, guid: e19e9ea02464d8b4d95f5e11ce5cf187, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -1988031052278033391, guid: 6cd7ebe389618b74faf150cd54386a58, type: 3}
+    - target: {fileID: 5973604808822204288, guid: e19e9ea02464d8b4d95f5e11ce5cf187, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5973604808822204288, guid: e19e9ea02464d8b4d95f5e11ce5cf187, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5973604808822204288, guid: e19e9ea02464d8b4d95f5e11ce5cf187, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7652509372606306457, guid: e19e9ea02464d8b4d95f5e11ce5cf187, type: 3}
       propertyPath: m_Name
       value: Skeleton

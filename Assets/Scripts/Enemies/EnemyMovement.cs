@@ -9,7 +9,6 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float _pathFindingDelay = 1f;
 
     [Header("Enemy Properties")]
-    [SerializeField] float _speed = 2f;
     [SerializeField] int _stoppingDistance;
 
     [Range(0, 1)]
@@ -21,15 +20,22 @@ public class EnemyMovement : MonoBehaviour
 
     // VARIABLES
     TileManager _tileManager;
+    Enemy _enemy;
     Rigidbody2D _rb;
     Transform _target;
     Queue<Vector3> _path = new();
+    
+    float _speed;
+    float _maxSpeed = 20f;
+    float _minSpeed = 0.1f;
 
     void Awake()
     {
         _tileManager = FindFirstObjectByType<TileManager>();
         _rb = GetComponent<Rigidbody2D>();
         _target = FindFirstObjectByType<Player>().GetComponent<Transform>();
+        _enemy = GetComponent<Enemy>();
+        _speed = Mathf.Clamp(_enemy.Data.Get(EnemyStats.Speed), _minSpeed, _maxSpeed);
     }
 
     void Start()
@@ -84,7 +90,7 @@ public class EnemyMovement : MonoBehaviour
         _path = newPath;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         // FEATURE: Repathing logic here, for now disregard
         // not needed for the current game logic.
@@ -94,9 +100,9 @@ public class EnemyMovement : MonoBehaviour
 
         Vector3 _targetPos = _path.Peek();
         Vector2 direction = (_targetPos - transform.position).normalized;
-        _rb.linearVelocity = direction * _speed;
+        _rb.linearVelocity = _speed * direction;
 
-        while (_path.Count > 0 && Vector3.Distance(transform.position, _path.Peek()) < 0.05f)
+        while (_path.Count > 0 && Vector3.Distance(transform.position, _path.Peek()) < 0.5f)
         {
             _path.Dequeue();
         }
