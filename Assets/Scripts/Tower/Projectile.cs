@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour, IAttack
 {
-    [SerializeField] LayerMask _targetLayers;
     IProjectilePattern _projectilePattern;
 
     float _damage;
