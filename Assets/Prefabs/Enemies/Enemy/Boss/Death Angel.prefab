@@ -61,6 +61,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3205983734671086994, guid: e19e9ea02464d8b4d95f5e11ce5cf187, type: 3}
+      propertyPath: _enemyTags
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 3205983734671086994, guid: e19e9ea02464d8b4d95f5e11ce5cf187, type: 3}
+      propertyPath: _enemyTier
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3205983734671086994, guid: e19e9ea02464d8b4d95f5e11ce5cf187, type: 3}
       propertyPath: _enemyStatConfig
       value: 
       objectReference: {fileID: 11400000, guid: b717af3246f84b041ae21488fa588b0c, type: 2}

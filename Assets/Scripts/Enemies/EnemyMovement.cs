@@ -35,7 +35,7 @@ public class EnemyMovement : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _target = FindFirstObjectByType<Player>().GetComponent<Transform>();
         _enemy = GetComponent<Enemy>();
-        _speed = Mathf.Clamp(_enemy.Data.Get(EnemyStats.Speed), _minSpeed, _maxSpeed);
+        _speed = Mathf.Clamp(_enemy.Data.Get(EnemyStats.Speed) / 10, _minSpeed, _maxSpeed);
     }
 
     void Start()
