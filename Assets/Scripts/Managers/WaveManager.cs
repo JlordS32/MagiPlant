@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class WaveManager : MonoBehaviour
+public class WaveManager : MonoBehaviour, IPhaseListener
 {
     [SerializeField] Spawner[] _spawners;
     [SerializeField] float _interGroupDelay = 1f;
@@ -13,13 +13,12 @@ public class WaveManager : MonoBehaviour
 
     void OnEnable()
     {
-        TimeManager.OnNightToggle += HandleNightToggle;
-        _nightLoop = null; // Reset the night loop when enabled
+        PhaseService.Register(this);
     }
 
     void OnDisable()
     {
-        TimeManager.OnNightToggle -= HandleNightToggle;
+        PhaseService.Unregister(this);
     }
 
     void Awake()
@@ -27,12 +26,12 @@ public class WaveManager : MonoBehaviour
         _builder = GetComponent<WaveBuilder>();
     }
 
-    void HandleNightToggle(bool isNight)
+    public void OnPhaseChanged(GamePhase phase)
     {
-        Debug.Log($"Night toggle: {isNight}");
-        if (isNight && _nightLoop == null)
+        Debug.Log($"Phase changed: {phase}");
+        if (phase == GamePhase.Night && _nightLoop == null)
             _nightLoop = StartCoroutine(RunWaves());
-        else if (!isNight && _nightLoop != null)
+        else if (phase == GamePhase.Day && _nightLoop != null)
         {
             StopCoroutine(_nightLoop);
             _nightLoop = null;
@@ -56,7 +55,7 @@ public class WaveManager : MonoBehaviour
             Debug.LogWarning("No spawners available to spawn enemies.");
             yield break;
         }
-        
+
         Debug.Log(w.Groups.Length + " groups in wave " + _waveIndex);
 
         Spawner s;

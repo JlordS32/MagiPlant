@@ -3,17 +3,18 @@ using System.Collections.Generic;
 public static class PhaseService
 {
     private static List<IPhaseListener> _listeners = new();
+    public static IReadOnlyList<IPhaseListener> Listeners => _listeners;
     public static GamePhase Current { get; private set; } = GamePhase.Day;
 
     public static void Register(IPhaseListener listener)
     {
-        if (!_listeners.Contains(listener)) return;
+        if (_listeners.Contains(listener)) return;
         _listeners.Add(listener);
     }
 
     public static void Unregister(IPhaseListener listener)
     {
-        if (_listeners.Contains(listener)) return;
+        if (!_listeners.Contains(listener)) return;
         _listeners.Remove(listener);
     }
 
