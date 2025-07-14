@@ -4,11 +4,10 @@ using System;
 
 public class TimeManager : MonoBehaviour
 {
-    public static event Action<bool> OnNightToggle;
-
-    [Header("Clock")]
-    [SerializeField, Range(0f, 24f)] float _startHour = 7f;     // 0–24
-    [SerializeField] float _timeRate = 1f;      // speed multiplier (1 = real-time)
+    // PROPERTIES
+    [Header("Time Settings")]
+    [SerializeField, Range(0f, 24f)] float _startHour = 7f;
+    [SerializeField] float _timeRate = 1f;
 
     [Header("Day-night break-points")]
 
@@ -27,12 +26,15 @@ public class TimeManager : MonoBehaviour
     [Header("Lighting")]
     [SerializeField] Light2D _globalLight;
 
-    // ───────────────────────────────────────
-    const float DAY_DURATION = 360f;            // 6 real-time minutes
-    float _seconds;                             // seconds elapsed in current day
+    // TOTAL DAY DURATION (in seconds)
+    const float DAY_DURATION = 360f;
+
+    // VARIABLES
+    float _seconds;
     int _day;
     bool _wasNight = false;
 
+    // GETTERS & SETTERS
     public float Seconds => _seconds / DAY_DURATION;
     public int CurrentDay => _day;
 
@@ -43,20 +45,20 @@ public class TimeManager : MonoBehaviour
 
     void Update()
     {
-        // advance clock
+        // Advance clock
         _seconds += Time.deltaTime * _timeRate;
         if (_seconds >= DAY_DURATION) { _day++; _seconds = 0f; }
 
         float h = _seconds / DAY_DURATION * 24f;
 
-        // night detection
+        // Night detection
         bool isNight = h >= _duskEnd || h < _dawnStart;
         if (isNight != _wasNight)
-            OnNightToggle?.Invoke(isNight);
+            HandleNightToggle(isNight);
 
         _wasNight = isNight;
 
-        // light intensity
+        // Light intensity
         float intensity = h < _dawnStart ? 0f :
                           h < _dawnEnd ? Mathf.InverseLerp(_dawnStart, _dawnEnd, h) :
                           h < _duskStart ? 1f :
@@ -64,6 +66,11 @@ public class TimeManager : MonoBehaviour
                                                 0f;
 
         _globalLight.intensity = Mathf.Max(0.1f, intensity);
+    }
+
+    void HandleNightToggle(bool isNight)
+    {
+        PhaseService.Set(isNight ? GamePhase.Night : GamePhase.Day);
     }
 
     public string GetTimeString()
