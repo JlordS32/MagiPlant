@@ -8,13 +8,13 @@ public class WaveBuilder : MonoBehaviour
 
     [Header("Tuning curves")]
     [SerializeField]
-    AnimationCurve budgetCurve =      // points per wave
+    AnimationCurve budgetCurve =
         AnimationCurve.Linear(0, 10, 50, 250);
     [SerializeField]
-    AnimationCurve gapCurve =         // gap shrink over time
+    AnimationCurve gapCurve =
         AnimationCurve.Linear(0, 1.2f, 50, 0.3f);
 
-    [SerializeField] int maxPerGroup = 8;              // cap burst size
+    [SerializeField] int maxPerGroup = 8;
 
     public Wave Build(int waveIndex)
     {
@@ -36,14 +36,14 @@ public class WaveBuilder : MonoBehaviour
 
             groups.Add(new EnemyGroup
             {
-                prefab = enemy.EnemyPrefab,
-                gap = gap,
-                count = count
+                Prefab = enemy.EnemyPrefab,
+                Gap = gap,
+                Count = count
             });
 
             budget -= enemy.Cost * count;
         }
 
-        return new Wave { groups = groups.ToArray() };
+        return new Wave { Groups = groups.ToArray() };
     }
 }

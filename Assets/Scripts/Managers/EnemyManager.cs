@@ -4,6 +4,7 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     public static List<Enemy> Enemies { get; private set; } = new();
+    public static int ActiveCount => Enemies.Count;
 
     public static void Register(Enemy enemy)
     {

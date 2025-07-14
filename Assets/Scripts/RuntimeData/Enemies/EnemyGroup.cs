@@ -4,13 +4,13 @@ using System;
 [Serializable]
 public class EnemyGroup
 {
-    public GameObject prefab;
-    public float gap = 1f;
-    public int count = 5;
+    public GameObject Prefab;
+    public float Gap = 1f;
+    public int Count = 5;
 }
 
 [Serializable]
 public class Wave
 {
-    public EnemyGroup[] groups;
+    public EnemyGroup[] Groups;
 }
