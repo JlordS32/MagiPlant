@@ -16,7 +16,7 @@ public class Multiplier
     public float Increase;
 }
 
-[CreateAssetMenu(menuName = "Game/Player Stat Config")]
+[CreateAssetMenu(menuName = "SO/Player/Player Stat Config")]
 public class PlayerStatConfig : ScriptableObject
 {
     [Header("Base Stats")]

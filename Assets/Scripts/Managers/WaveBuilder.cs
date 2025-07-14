@@ -4,48 +4,51 @@ using UnityEngine;
 public class WaveBuilder : MonoBehaviour
 {
     [Header("Enemy Pool")]
-    [SerializeField] GameObject[] catalog;
+    [SerializeField] EnemyCatalog _gruntCatalog;
 
     [Header("Tuning curves")]
     [SerializeField]
-    AnimationCurve budgetCurve =      // points per wave
+    AnimationCurve budgetCurve =
         AnimationCurve.Linear(0, 10, 50, 250);
     [SerializeField]
-    AnimationCurve gapCurve =         // gap shrink over time
+    AnimationCurve gapCurve =
         AnimationCurve.Linear(0, 1.2f, 50, 0.3f);
 
-    [SerializeField] int maxPerGroup = 8;              // cap burst size
+    [SerializeField] int maxPerGroup = 8;
 
-    /// Build() is pure: give it a wave index, get back a Wave struct.
     public Wave Build(int waveIndex)
     {
         int budget = Mathf.RoundToInt(budgetCurve.Evaluate(waveIndex));
         float gap = gapCurve.Evaluate(waveIndex);
 
-        List<Group> groups = new();
+        List<EnemyGroup> groups = new();
 
         while (budget > 0)
         {
-            // pick random prefab and assign a “cost” (1 here, swap for tier-based if needed)
-            var prefab = catalog[Random.Range(0, catalog.Length)];
-            int cost = 1;
+            // Randomly select enemy
+            EnemyEntry enemy = _gruntCatalog.entries[Random.Range(0, _gruntCatalog.entries.Length)];
+            if (enemy.Cost <= 0)
+            {
+                Debug.LogWarning($"{enemy.EnemyPrefab.name} has cost 0. Skipping. Please check the catalog.");
+                continue;
+            }
 
             int count = Mathf.Min(
                 Random.Range(3, maxPerGroup + 1),
-                budget / cost);
+                budget / enemy.Cost);
 
-            if (count == 0) break;    // cannot afford anything else
+            if (count == 0) break;
 
-            groups.Add(new Group
+            groups.Add(new EnemyGroup
             {
-                prefab = prefab,
-                gap = gap,
-                count = count
+                Prefab = enemy.EnemyPrefab,
+                Gap = gap,
+                Count = count
             });
 
-            budget -= cost * count;
+            budget -= enemy.Cost * count;
         }
 
-        return new Wave { groups = groups.ToArray() };
+        return new Wave { Groups = groups.ToArray() };
     }
 }

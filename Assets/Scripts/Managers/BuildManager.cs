@@ -50,7 +50,6 @@ public class BuildManager : MonoBehaviour
         // Checkers
         bool isValid = _tileManager.IsAreaValid(tilesX, tilesY, worldPos, TileWeight.Placeable);
         bool isWithinBounds = _tileManager.IsAreaWithinBounds(tilesX, tilesY, worldPos);
-        Debug.Log(isWithinBounds);
 
         if (_previewPrefab == null)
         {

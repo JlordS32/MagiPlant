@@ -4,10 +4,10 @@ using System;
 
 public class TimeManager : MonoBehaviour
 {
-    public static event Action OnNightStarted;
+    public static event Action<bool> OnNightToggle;
 
     [Header("Clock")]
-    [SerializeField] float _startHour = 7f;      // 0–24
+    [SerializeField] float _startHour = 7f;     // 0–24
     [SerializeField] float _timeRate = 1f;      // speed multiplier (1 = real-time)
 
     [Header("Day-night break-points")]
@@ -31,7 +31,7 @@ public class TimeManager : MonoBehaviour
     const float DAY_DURATION = 360f;            // 6 real-time minutes
     float _seconds;                             // seconds elapsed in current day
     int _day;
-    bool _isNight;
+    bool _wasNight = false;
 
     public float Seconds => _seconds / DAY_DURATION;
     public int CurrentDay => _day;
@@ -50,9 +50,11 @@ public class TimeManager : MonoBehaviour
         float h = _seconds / DAY_DURATION * 24f;
 
         // night detection
-        bool nightNow = h >= _duskEnd || h < _dawnStart;
-        if (nightNow && !_isNight) OnNightStarted?.Invoke();
-        _isNight = nightNow;
+        bool isNight = h >= _duskEnd || h < _dawnStart;
+        if (isNight != _wasNight)
+            OnNightToggle?.Invoke(isNight);
+
+        _wasNight = isNight;
 
         // light intensity
         float intensity = h < _dawnStart ? 0f :
@@ -61,7 +63,7 @@ public class TimeManager : MonoBehaviour
                           h < _duskEnd ? Mathf.InverseLerp(_duskEnd, _duskStart, h) :
                                                 0f;
 
-        _globalLight.intensity = intensity;
+        _globalLight.intensity = Mathf.Max(0.1f, intensity);
     }
 
     public string GetTimeString()
@@ -69,6 +71,10 @@ public class TimeManager : MonoBehaviour
         int totalMinutes = Mathf.FloorToInt(_seconds / DAY_DURATION * 24f * 60f);
         int hours = totalMinutes / 60;
         int minutes = totalMinutes % 60;
+
+        // round down to the nearest 10-minute mark
+        minutes = minutes / 10 * 10;
+
         return $"{hours:D2}:{minutes:D2}";
     }
 }
