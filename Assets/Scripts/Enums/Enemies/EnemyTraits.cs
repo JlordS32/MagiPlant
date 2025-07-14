@@ -9,7 +9,7 @@ public enum EnemyTrait
     Tank = 1 << 4,
     LowHealth = 1 << 5,
     HighHealth = 1 << 6,
-    HighAttack = 1 << 7,
-    LowAttack = 1 << 8,
+    HighDamage = 1 << 7,
+    LowDamage = 1 << 8,
     GlassCannon = 1 << 9
 }

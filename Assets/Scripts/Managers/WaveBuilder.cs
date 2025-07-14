@@ -4,7 +4,7 @@ using UnityEngine;
 public class WaveBuilder : MonoBehaviour
 {
     [Header("Enemy Pool")]
-    [SerializeField] GameObject[] catalog;
+    [SerializeField] EnemyCatalog _gruntCatalog;
 
     [Header("Tuning curves")]
     [SerializeField]
@@ -16,34 +16,32 @@ public class WaveBuilder : MonoBehaviour
 
     [SerializeField] int maxPerGroup = 8;              // cap burst size
 
-    /// Build() is pure: give it a wave index, get back a Wave struct.
     public Wave Build(int waveIndex)
     {
         int budget = Mathf.RoundToInt(budgetCurve.Evaluate(waveIndex));
         float gap = gapCurve.Evaluate(waveIndex);
 
-        List<Group> groups = new();
+        List<EnemyGroup> groups = new();
 
         while (budget > 0)
         {
-            // pick random prefab and assign a “cost” (1 here, swap for tier-based if needed)
-            var prefab = catalog[Random.Range(0, catalog.Length)];
-            int cost = 1;
+            // Randomly select enemy
+            EnemyEntry enemy = _gruntCatalog.entries[Random.Range(0, _gruntCatalog.entries.Length)];
 
             int count = Mathf.Min(
                 Random.Range(3, maxPerGroup + 1),
-                budget / cost);
+                budget / enemy.Cost);
 
-            if (count == 0) break;    // cannot afford anything else
+            if (count == 0) break;
 
-            groups.Add(new Group
+            groups.Add(new EnemyGroup
             {
-                prefab = prefab,
+                prefab = enemy.EnemyPrefab,
                 gap = gap,
                 count = count
             });
 
-            budget -= cost * count;
+            budget -= enemy.Cost * count;
         }
 
         return new Wave { groups = groups.ToArray() };

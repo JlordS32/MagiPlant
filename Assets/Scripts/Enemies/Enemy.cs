@@ -4,9 +4,6 @@ public class Enemy : MonoBehaviour, IDamageable
 {
     // PROPERTIES
     [SerializeField] EnemyStatConfig _enemyStatConfig;
-    [SerializeField] EnemyTier _enemyTier;
-    [SerializeField] EnemyType _enemyType;
-    [SerializeField] EnemyTrait _enemyTags;
 
     // REFERENCES
     EnemyData _enemyData;

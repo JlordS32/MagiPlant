@@ -7,7 +7,7 @@ public class TimeManager : MonoBehaviour
     public static event Action OnNightStarted;
 
     [Header("Clock")]
-    [SerializeField] float _startHour = 7f;      // 0–24
+    [SerializeField] float _startHour = 7f;     // 0–24
     [SerializeField] float _timeRate = 1f;      // speed multiplier (1 = real-time)
 
     [Header("Day-night break-points")]
@@ -69,6 +69,10 @@ public class TimeManager : MonoBehaviour
         int totalMinutes = Mathf.FloorToInt(_seconds / DAY_DURATION * 24f * 60f);
         int hours = totalMinutes / 60;
         int minutes = totalMinutes % 60;
+
+        // round down to the nearest 10-minute mark
+        minutes = minutes / 10 * 10;
+
         return $"{hours:D2}:{minutes:D2}";
     }
 }

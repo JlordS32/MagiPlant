@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public class Group
+public class EnemyGroup
 {
     public GameObject prefab;
     public float gap = 1f;
@@ -12,5 +12,5 @@ public class Group
 [Serializable]
 public class Wave
 {
-    public Group[] groups;
+    public EnemyGroup[] groups;
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Game/Enemy Stat Config")]
+[CreateAssetMenu(menuName = "SO/Enemies/Enemy Stat Config")]
 public class EnemyStatConfig : ScriptableObject
 {
     public float HP = 50;
