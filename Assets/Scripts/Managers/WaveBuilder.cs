@@ -27,6 +27,11 @@ public class WaveBuilder : MonoBehaviour
         {
             // Randomly select enemy
             EnemyEntry enemy = _gruntCatalog.entries[Random.Range(0, _gruntCatalog.entries.Length)];
+            if (enemy.Cost <= 0)
+            {
+                Debug.LogWarning($"{enemy.EnemyPrefab.name} has cost 0. Skipping. Please check the catalog.");
+                continue;
+            }
 
             int count = Mathf.Min(
                 Random.Range(3, maxPerGroup + 1),

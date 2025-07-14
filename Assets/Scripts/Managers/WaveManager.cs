@@ -51,6 +51,12 @@ public class WaveManager : MonoBehaviour
 
     IEnumerator SpawnWave(Wave w)
     {
+        if (_spawners.Length == 0)
+        {
+            Debug.LogWarning("No spawners available to spawn enemies.");
+            yield break;
+        }
+        
         Debug.Log(w.Groups.Length + " groups in wave " + _waveIndex);
         Spawner s = _spawners[Random.Range(0, _spawners.Length)];
         foreach (var g in w.Groups)

@@ -150,6 +150,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &191453059 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6460865626197527264, guid: e01e929eefa3b63449948e4f92c6d2fd, type: 3}
+  m_PrefabInstance: {fileID: 1659563636889849442}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &429616862 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5811505475697808092, guid: 7b0769de80a06f544ae07342ad1bf267, type: 3}
+  m_PrefabInstance: {fileID: 2892986685057466180}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dc1bd16d177dc047b18c07248e14539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &521818583 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5301979643201694195, guid: e27eb697c4c91174eb39ce48623dd6f3, type: 3}
@@ -170,6 +192,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &593702771 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2464889084269578901, guid: 7b0769de80a06f544ae07342ad1bf267, type: 3}
+  m_PrefabInstance: {fileID: 2892986685057466180}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dc1bd16d177dc047b18c07248e14539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &648698183
@@ -351,6 +384,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &983585171 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1294517889740556472, guid: 7b0769de80a06f544ae07342ad1bf267, type: 3}
+  m_PrefabInstance: {fileID: 2892986685057466180}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dc1bd16d177dc047b18c07248e14539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1093763008
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,6 +426,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1199013643 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4732377784423232241, guid: 7b0769de80a06f544ae07342ad1bf267, type: 3}
+  m_PrefabInstance: {fileID: 2892986685057466180}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dc1bd16d177dc047b18c07248e14539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1310361839 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5484551319295064892, guid: e27eb697c4c91174eb39ce48623dd6f3, type: 3}
@@ -521,6 +576,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2129685345 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7511802050493338224, guid: 7b0769de80a06f544ae07342ad1bf267, type: 3}
+  m_PrefabInstance: {fileID: 2892986685057466180}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dc1bd16d177dc047b18c07248e14539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1659563636889849442
@@ -3871,6 +3937,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 27796852542038536, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: _spawners.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 27796852542038536, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: '_spawners.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1199013643}
+    - target: {fileID: 27796852542038536, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: '_spawners.Array.data[1]'
+      value: 
+      objectReference: {fileID: 983585171}
+    - target: {fileID: 27796852542038536, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: '_spawners.Array.data[2]'
+      value: 
+      objectReference: {fileID: 429616862}
+    - target: {fileID: 27796852542038536, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: '_spawners.Array.data[3]'
+      value: 
+      objectReference: {fileID: 593702771}
+    - target: {fileID: 27796852542038536, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: '_spawners.Array.data[4]'
+      value: 
+      objectReference: {fileID: 2129685345}
     - target: {fileID: 753065909191988287, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 365.62494
@@ -3923,6 +4013,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Managers
       objectReference: {fileID: 0}
+    - target: {fileID: 3361721804276012624, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: _gruntCatalog
+      value: 
+      objectReference: {fileID: 11400000, guid: c9281c7affd98474db6574d32b4704e4, type: 2}
     - target: {fileID: 5158407759947665930, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
       propertyPath: _expTextUI
       value: 
@@ -3947,6 +4041,10 @@ PrefabInstance:
       propertyPath: _sunlightTextUI
       value: 
       objectReference: {fileID: 521818583}
+    - target: {fileID: 5827472107088646269, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: _globalLight
+      value: 
+      objectReference: {fileID: 191453059}
     - target: {fileID: 8596837769623275961, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
       propertyPath: _pausePanel
       value: 
