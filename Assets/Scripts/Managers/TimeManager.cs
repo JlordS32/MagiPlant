@@ -7,22 +7,22 @@ public class TimeManager : MonoBehaviour
     public static event Action<bool> OnNightToggle;
 
     [Header("Clock")]
-    [SerializeField] float _startHour = 7f;     // 0–24
+    [SerializeField, Range(0f, 24f)] float _startHour = 7f;     // 0–24
     [SerializeField] float _timeRate = 1f;      // speed multiplier (1 = real-time)
 
     [Header("Day-night break-points")]
 
     [Tooltip("Hour when night begins fading into day (e.g., 6 = 6 AM)")]
-    [SerializeField] float _dawnStart = 6f;
+    [SerializeField, Range(0f, 24f)] float _dawnStart = 6f;
 
     [Tooltip("Hour when full daylight is reached (e.g., 7 = 7 AM)")]
-    [SerializeField] float _dawnEnd = 7f;
+    [SerializeField, Range(0f, 24f)] float _dawnEnd = 7f;
 
     [Tooltip("Hour when day begins fading into night (e.g., 17 = 5 PM)")]
-    [SerializeField] float _duskStart = 17f;
+    [SerializeField, Range(0f, 24f)] float _duskStart = 17f;
 
     [Tooltip("Hour when full night is reached (e.g., 18 = 6 PM)")]
-    [SerializeField] float _duskEnd = 18f;
+    [SerializeField, Range(0f, 24f)] float _duskEnd = 18f;
 
     [Header("Lighting")]
     [SerializeField] Light2D _globalLight;

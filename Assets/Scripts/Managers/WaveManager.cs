@@ -58,9 +58,11 @@ public class WaveManager : MonoBehaviour
         }
         
         Debug.Log(w.Groups.Length + " groups in wave " + _waveIndex);
-        Spawner s = _spawners[Random.Range(0, _spawners.Length)];
+
+        Spawner s;
         foreach (var g in w.Groups)
         {
+            s = _spawners[Random.Range(0, _spawners.Length)];
             for (int i = 0; i < g.Count; i++)
             {
                 if (!s.TrySpawn(g.Prefab))
@@ -68,6 +70,8 @@ public class WaveManager : MonoBehaviour
                 else
                     yield return Wait(g.Gap);
             }
+
+            Debug.Log($"Spawned {g.Count} of {g.Prefab.name} with gap {g.Gap}");
             yield return Wait(_interGroupDelay);
         }
     }
