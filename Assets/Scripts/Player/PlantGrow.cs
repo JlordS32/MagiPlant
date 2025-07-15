@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlantGrow : MonoBehaviour
+public class PlantGrow : MonoBehaviour, IPhaseListener
 {
     public static event Action OnPlantGrowing;
 
@@ -29,9 +29,25 @@ public class PlantGrow : MonoBehaviour
 
     // VARIABLES
     int _lastKnownIndex = -1;
+    bool _canWater = true;
 
-    void OnEnable() => GameEventsManager.OnLevelUpUpdate += OnLevelUp;
-    void OnDisable() => GameEventsManager.OnLevelUpUpdate -= OnLevelUp;
+    void OnEnable()
+    {
+        GameEventsManager.OnLevelUpUpdate += OnLevelUp;
+        PhaseService.Register(this);
+        OnPhaseChanged(PhaseService.Current);
+    }
+
+    void OnDisable()
+    {
+        GameEventsManager.OnLevelUpUpdate -= OnLevelUp;
+        PhaseService.Unregister(this);
+    }
+
+    public void OnPhaseChanged(GamePhase phase)
+    {
+        _canWater = phase == GamePhase.Day;
+    }
 
     void Awake()
     {
@@ -42,6 +58,7 @@ public class PlantGrow : MonoBehaviour
     public void OnTest()
     {
         _player.PlayerData.AddExp(10);
+        _currencyStorage.Add(CurrencyType.Water, 10);
         // int currLevel = (int)_player.PlayerData.Get(PlayerStats.Level);
     }
 
@@ -70,6 +87,12 @@ public class PlantGrow : MonoBehaviour
 
     void OnMouseUpAsButton()
     {
+        if (!_canWater)
+        {
+            Debug.LogWarning("Cannot water plants at night.");
+            return;
+        }
+
         WaterPlant();
     }
 

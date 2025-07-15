@@ -10,7 +10,7 @@ public struct PreviewColor
 }
 
 // WARNING: Read before making any modifications.
-public class BuildManager : MonoBehaviour
+public class BuildManager : MonoBehaviour, IPhaseListener
 {
     // PROPERTIES
     [SerializeField] InputAction _input;
@@ -22,14 +22,45 @@ public class BuildManager : MonoBehaviour
     GameObject _selectedPrefab;
     GameObject _previewPrefab;
 
+    // VARIABLES
+    bool _canBuild = true;
+    public bool CanBuild => _canBuild && _selectedPrefab != null;
+
     void Awake()
     {
         _tileManager = FindFirstObjectByType<TileManager>();
     }
 
+    #region PHASE LISTENER
+    void OnEnable()
+    {
+        PhaseService.Register(this);
+        OnPhaseChanged(PhaseService.Current);
+    }
+
+    void OnDisable()
+    {
+        PhaseService.Unregister(this);
+    }
+
+    public void OnPhaseChanged(GamePhase phase)
+    {
+        _canBuild = phase == GamePhase.Day;
+
+        if (!_canBuild)
+        {
+            _input.Disable();
+            _selectedPrefab = null;
+            if (_previewPrefab) Destroy(_previewPrefab);
+        }
+
+        Debug.LogWarning($"BuildManager phase changed: {phase}, enabled: {enabled}");
+    }
+    #endregion
+
     void Update()
     {
-        if (_selectedPrefab == null) return;
+        if (!CanBuild) return;
 
         // Prefab location; follow mouse
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);

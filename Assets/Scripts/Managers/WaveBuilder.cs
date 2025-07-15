@@ -9,10 +9,10 @@ public class WaveBuilder : MonoBehaviour
     [Header("Tuning curves")]
     [SerializeField]
     AnimationCurve budgetCurve =
-        AnimationCurve.Linear(0, 10, 50, 250);
+        AnimationCurve.Linear(0, 10, 10, 250);
     [SerializeField]
     AnimationCurve gapCurve =
-        AnimationCurve.Linear(0, 1.2f, 50, 0.3f);
+        AnimationCurve.Linear(0, 1.2f, 10, 0.3f);
 
     [SerializeField] int maxPerGroup = 8;
 
@@ -20,6 +20,9 @@ public class WaveBuilder : MonoBehaviour
     {
         int budget = Mathf.RoundToInt(budgetCurve.Evaluate(waveIndex));
         float gap = gapCurve.Evaluate(waveIndex);
+
+        Debug.Log("Current Budget: " + budget);
+        Debug.Log("Current gap: " + gap);
 
         List<EnemyGroup> groups = new();
 

@@ -5,10 +5,14 @@ using UnityEngine;
 [Serializable]
 public class PlayerData
 {
+    // VARIABLES
+    float _minDamage = 1f;
+
     // REFERENCES
     Dictionary<PlayerStats, float> _stats = new();
     PlayerStatConfig _config;
 
+    public IReadOnlyDictionary<PlayerStats, float> Snapshot => _stats;
     public PlayerData(PlayerStatConfig config)
     {
         _config = config;
@@ -52,7 +56,7 @@ public class PlayerData
     public float ApplyDamage(float amount)
     {
         float defense = _stats[PlayerStats.Defense];
-        float finalDamage = Mathf.Max(0, amount - defense);
+        float finalDamage = Mathf.Max(_minDamage, amount - defense);
         _stats[PlayerStats.HP] = Mathf.Max(0, _stats[PlayerStats.HP] - finalDamage);
         GameEventsManager.RaisePlayerStatUpdate(PlayerStats.HP, _stats[PlayerStats.HP]);
 
