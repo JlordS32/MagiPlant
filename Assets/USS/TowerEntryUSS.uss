@@ -1,0 +1,29 @@
+.tower-entry {
+    flex-direction: row;
+    align-items: center;
+    padding: 6px;
+    margin-bottom: 6px;
+    background-color: #2b2b2b;
+    border-bottom-width: 1px;
+    border-bottom-color: #444;
+    border-bottom-style: solid;
+}
+
+.thumbnail {
+    width: 48px;
+    height: 48px;
+    margin-right: 10px;
+}
+
+.defense-name {
+    flex-grow: 1;
+    color: white;
+    font-size: 14px;
+    unity-text-align: middle-left;
+}
+
+.build-button {
+    width: 60px;
+    height: 30px;
+    align-self: center;
+}
