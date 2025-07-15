@@ -27,9 +27,8 @@ public static class PhaseService
 
     static void NotifyPhaseChanged(GamePhase phase)
     {
-        foreach (var listener in _listeners)
-        {
-            listener.OnPhaseChanged(phase);
-        }
+        var snapshot = _listeners.ToArray();
+        foreach (var l in snapshot)
+            l.OnPhaseChanged(phase);
     }
 }

@@ -41,6 +41,10 @@ public class TimeManager : MonoBehaviour
     void Awake()
     {
         _seconds = Mathf.Repeat(_startHour, 24f) / 24f * DAY_DURATION;
+
+        bool initialNight = IsNight(_seconds);
+        PhaseService.Set(initialNight ? GamePhase.Night : GamePhase.Day);
+        _wasNight = initialNight;
     }
 
     void Update()
@@ -66,6 +70,12 @@ public class TimeManager : MonoBehaviour
                                                 0f;
 
         _globalLight.intensity = Mathf.Max(0.1f, intensity);
+    }
+
+    bool IsNight(float seconds)
+    {
+        float h = seconds / DAY_DURATION * 24f;
+        return h >= _duskEnd || h < _dawnStart;
     }
 
     void HandleNightToggle(bool isNight)

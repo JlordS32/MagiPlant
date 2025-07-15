@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 
-public class CurrencyGenerator : MonoBehaviour, IUpgradableCurrency
+public class CurrencyGenerator : MonoBehaviour, IUpgradableCurrency, IPhaseListener
 {
     // PROPERTIES
     [SerializeField] float _interval = 1f;
@@ -12,8 +12,32 @@ public class CurrencyGenerator : MonoBehaviour, IUpgradableCurrency
 
     // PRIVATE VARIABLES
     Dictionary<CurrencyType, float> _rates = new();
+    bool _canGenerate = true;
     float _timer = 0f;
     readonly float _defaultRate = 0.5f;
+
+    #region PHASE LISTENER
+    void OnEnable()
+    {
+        PhaseService.Register(this);
+        OnPhaseChanged(PhaseService.Current);
+    }
+    void OnDisable()
+    {
+        PhaseService.Unregister(this);
+    }
+
+    public void OnPhaseChanged(GamePhase phase)
+    {
+        _canGenerate = phase == GamePhase.Day;
+
+        if (_canGenerate)
+            _timer = 0f;
+
+        Debug.LogWarning($"CurrencyGenerator phase changed: {phase}, enabled: {_canGenerate}");
+    }
+
+    #endregion
 
     void Awake()
     {
@@ -29,8 +53,10 @@ public class CurrencyGenerator : MonoBehaviour, IUpgradableCurrency
     // UNITY FUNCTIONS
     void Update()
     {
+        if (!_canGenerate || _storage == null) return;
+        
         _timer += Time.deltaTime;
-
+        
         if (_timer >= _interval)
         {
             // Add value based on 

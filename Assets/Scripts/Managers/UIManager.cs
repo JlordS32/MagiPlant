@@ -56,10 +56,17 @@ public class UIManager : MonoBehaviour
             // Manually assign the function to build for each entry.
             defenses.UpgradeLogic = () =>
             {
+                if (!_buildManager.CanBuild)
+                {
+                    Debug.LogWarning("Currently in night mode, cannot build.");
+                    return;
+                }
+
                 if (_currencyStorage.Spend(CurrencyType.Sunlight, defenses.Cost))
                 {
                     _buildManager.SelectPrefab(defenses.DefensePrefab);
-                } else
+                }
+                else
                 {
                     Debug.LogWarning($"Not enough sunlight to build {defenses.DefensePrefab.name}");
                 }
