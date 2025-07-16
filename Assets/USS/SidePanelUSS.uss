@@ -25,7 +25,7 @@
 }
 
 #CollapseButton:hover {
-    background-color: rgb(255, 0, 0);
+    background-color: rgba(201, 194, 194, 1);
     scale: 1 1;
 }
 
