@@ -125,7 +125,7 @@ public class UIManager : MonoBehaviour
     private Label sunLabel;
     private Label waterLabel;
 
-
+    [Header("Private Fields")]
     private VisualElement root;
     private VisualElement panel;
     private Button collapseButton;
@@ -138,25 +138,31 @@ public class UIManager : MonoBehaviour
 
     void Awake()
     {
+        // Find game object references
         _currencyStorage = FindFirstObjectByType<CurrencyStorage>();
         _buildManager = FindFirstObjectByType<BuildManager>();
     }
 
     void Start()
     {
+        // Cache UI elements from the UIDocument
         root = uiDocument.rootVisualElement;
         panel = root.Q<VisualElement>("Panel");
         collapseButton = root.Q<Button>("CollapseButton");
         towerList = root.Q<ListView>("TowerList");
+
+        // Currency labels (make sure they're in root, not in panel)
         sunLabel = root.Q<Label>("SunLabel");
         waterLabel = root.Q<Label>("WaterLabel");
 
-
+        // Set up collapse button
         collapseButton.RegisterCallback<ClickEvent>(OnCollapseClicked);
         SetupCollapseButtonPosition(isCollapsed: true);
 
+        // Hide panel on start
         panel.style.display = DisplayStyle.None;
 
+        // Set up the tower UI
         PopulateDefenseEntries();
         SetupListView();
     }
@@ -242,20 +248,40 @@ public class UIManager : MonoBehaviour
             var nameLabel = element.Q<Label>("DefenseName");
             var thumbnail = element.Q<Image>("Thumbnail");
             var buildButton = element.Q<Button>("BuildButton");
+            var damageLabel = element.Q<Label>("DMG");
+            var rangeLabel = element.Q<Label>("RNG");
+            var speedLabel = element.Q<Label>("SPD");
 
-            nameLabel.text = data.DefenseEntryName;
+            // Transform triangleTransform = data.DefensePrefab.transform.Find("Sprites/Triangle");
 
+            var towerStats = data.DefensePrefab.GetComponent<TowerDefense>();
+            TowerStatConfig towerData = towerStats.GetTowerStats();
+            
+            // Tower Entry
             if (data.Thumbnail != null)
-                thumbnail.sprite = data.Thumbnail;
-            else
-                thumbnail.image = null;
+            {
+                // For when have actual tower sprites
+                // SpriteRenderer spriteRenderer = triangleTransform.GetComponent<SpriteRenderer>();
+                // thumbnail.sprite = spriteRenderer.sprite;
 
-            buildButton.text = "Build";
-            buildButton.clickable.clicked += data.UpgradeLogic;
+                thumbnail.sprite = data.Thumbnail;
+            }
+            else
+            {
+                thumbnail.image = null;
+            }
+            nameLabel.text = data.DefenseEntryName;
+            damageLabel.text = "DMG: " + towerData.Attack.ToString();
+            rangeLabel.text = "RNG: " + towerData.Range.ToString();
+            speedLabel.text = "SPD: " + towerData.Speed.ToString();
+
+
+            buildButton.text = "Cost " + data.Cost.ToString();
+            buildButton.clickable.clicked +=  data.UpgradeLogic;
         };
 
         towerList.itemsSource = _defenseEntries;
         towerList.selectionType = SelectionType.None;
-        towerList.fixedItemHeight = 100; // or whatever matches your tower entry height
+        towerList.fixedItemHeight = 100; 
     }
 }
