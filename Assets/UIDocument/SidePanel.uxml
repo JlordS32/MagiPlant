@@ -1,5 +1,17 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/USS/SidePanelUSS.uss?fileID=7433441132597879392&amp;guid=cf13a309869984e46a758687838b7066&amp;type=3#SIdePanelUSS" />
-    <ui:VisualElement name="Panel" enabled="true" style="flex-grow: 0; display: flex; background-color: rgb(244, 180, 103); background-size: 100% 100%; background-position-x: center 0; width: 20%; height: 100%; align-content: flex-start; justify-content: flex-start; align-items: flex-start; flex-direction: column; margin-top: 0; align-self: auto; visibility: visible; border-right-width: 2px; border-right-color: rgb(0, 0, 0); padding-top: 67px; margin-left: 0; margin-right: 0; padding-right: 20px; padding-left: 20px;" />
-    <ui:Button text="&lt;" name="CollapseButton" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; width: 60px; height: 60px; top: 4%; position: absolute; left: 18.5%; background-color: rgb(229, 229, 229); font-size: 40px; -unity-font-style: bold; -unity-text-align: middle-center; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&amp;guid=e3265ab4bf004d28a9537516768c1c75&amp;type=3#LiberationSans&quot;); border-left-width: 2px; border-right-width: 2px; border-top-width: 2px; border-bottom-width: 2px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); color: rgb(0, 0, 0); display: flex;" />
+    <Style src="project://database/Assets/USS/SidePanelUSS.uss?fileID=7433441132597879392&amp;guid=cf13a309869984e46a758687838b7066&amp;type=3" />
+    <ui:VisualElement name="Panel" class="side-panel" style="border-right-width: 2px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
+        <ui:ListView name="TowerList" class="tower-list" />
+    </ui:VisualElement>
+    <ui:Button text="&lt;" name="CollapseButton" class="collapse-button" style="border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px;" />
+    <ui:VisualElement name="Currency" style="flex-grow: 1; position: absolute; top: 4%; right: 4%; align-items: stretch; white-space: normal; flex-direction: row;">
+        <ui:VisualElement name="SunCurency" style="flex-grow: 1; margin-right: 58px; align-items: center; justify-content: center; width: 150px;">
+            <ui:VisualElement name="Icon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/ardo_sprite_assets/Zombie%2001.png?fileID=-492648906605594914&amp;guid=da459e62906a05b4fa722355da70a6e3&amp;type=3#Zombie 01_6&quot;); position: relative; width: 80px; height: 80px; top: auto; right: auto;" />
+            <ui:Label text="Sunlight: 0&#10;" name="SunLabel" style="-unity-font-style: bold; -unity-text-align: upper-center; font-size: 24px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="WaterCurrency" style="flex-grow: 1; width: 150px; justify-content: center; align-items: center;">
+            <ui:VisualElement name="Icon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/ardo_sprite_assets/Zombie%2001.png?fileID=1128907280&amp;guid=da459e62906a05b4fa722355da70a6e3&amp;type=3#Zombie 01_38&quot;); position: relative; width: 80px; height: 80px; top: auto; right: auto;" />
+            <ui:Label text="Water: 0" name="WaterLabel" style="-unity-font-style: bold; -unity-text-align: upper-center; font-size: 24px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
 </ui:UXML>
