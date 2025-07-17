@@ -4,6 +4,8 @@ using System;
 
 public class TimeManager : MonoBehaviour
 {
+    public static TimeManager Instance { get; private set; }
+
     // PROPERTIES
     [Header("Time Settings")]
     [SerializeField, Range(0f, 24f)] float _startHour = 7f;
@@ -40,6 +42,14 @@ public class TimeManager : MonoBehaviour
 
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogWarning("Multiple instances of TimeManager detected. Destroying the new instance.");
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         _seconds = Mathf.Repeat(_startHour, 24f) / 24f * DAY_DURATION;
 
         bool initialNight = IsNight(_seconds);

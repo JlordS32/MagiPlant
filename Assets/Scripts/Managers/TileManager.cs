@@ -13,6 +13,8 @@ public struct Node
 
 public class TileManager : MonoBehaviour
 {
+    public static TileManager Instance { get; private set; }
+
     // STATIC
     public static event Action<TileWeight[,]> OnGridUpdated;
 
@@ -39,6 +41,14 @@ public class TileManager : MonoBehaviour
     void Awake()
     {
         BuildGrid();
+
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogWarning("Multiple TileManager instances found, destroying the new one.");
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
     }
 
     public void BuildGrid()

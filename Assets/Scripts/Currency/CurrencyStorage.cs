@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CurrencyStorage : MonoBehaviour
 {
+    public static CurrencyStorage Instance { get; private set; }
+
     // VARIABLES
     Dictionary<CurrencyType, Storage> _storage = new();
     readonly float _initialValue = 10f;
@@ -11,6 +13,14 @@ public class CurrencyStorage : MonoBehaviour
     // UNITY FUNCTIONS
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogWarning("Multiple instances of CurrencyStorage detected. Destroying the new instance.");
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         foreach (CurrencyType type in Enum.GetValues(typeof(CurrencyType)))
         {
             _storage[type] = new Storage(_initialValue);

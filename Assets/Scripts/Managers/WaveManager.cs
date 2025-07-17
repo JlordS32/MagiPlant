@@ -3,6 +3,8 @@ using System.Collections;
 
 public class WaveManager : MonoBehaviour, IPhaseListener
 {
+    public static WaveManager Instance { get; private set; }
+
     [SerializeField] Spawner[] _spawners;
     [SerializeField] float _interGroupDelay = 1f;
 
@@ -24,6 +26,14 @@ public class WaveManager : MonoBehaviour, IPhaseListener
 
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogWarning("Multiple instances of WaveManager detected. Destroying the new instance.");
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         _builder = GetComponent<WaveBuilder>();
     }
 
@@ -45,7 +55,7 @@ public class WaveManager : MonoBehaviour, IPhaseListener
         {
             Wave wave = _builder.Build(_waveIndex++);
             yield return StartCoroutine(SpawnWave(wave));
-            yield return new WaitUntil(() => EnemyManager.ActiveCount == 0);
+            yield return new WaitUntil(() => EnemyManager.Instance.ActiveCount == 0);
         }
     }
 

@@ -8,18 +8,10 @@ public class SidePanelController : MonoBehaviour
     [SerializeField] VisualTreeAsset _towerUITemplate;
     [SerializeField] TowerConfig _towerConfig;
 
-    BuildManager _buildManager;
-    CurrencyStorage _currencyStorage;
     VisualElement _panel;
     Button _collapseButton;
     ListView _towerList;
     List<DefenseEntry> _entries = new();
-
-    void Awake()
-    {
-        _buildManager = FindFirstObjectByType<BuildManager>();
-        _currencyStorage = FindFirstObjectByType<CurrencyStorage>();
-    }
 
     void Start()
     {
@@ -56,8 +48,8 @@ public class SidePanelController : MonoBehaviour
         {
             d.UpgradeLogic = () =>
             {
-                if (_currencyStorage.Spend(CurrencyType.Sunlight, d.Cost))
-                    _buildManager.SelectPrefab(d.DefensePrefab);
+                if (CurrencyStorage.Instance.Spend(CurrencyType.Sunlight, d.Cost))
+                    BuildManager.Instance.SelectPrefab(d.DefensePrefab);
                 else
                     Debug.LogWarning($"Not enough sunlight for {d.DefensePrefab.name}");
             };

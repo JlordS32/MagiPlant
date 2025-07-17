@@ -36,7 +36,7 @@ public class TowerDetection : MonoBehaviour
 
     public Enemy GetClosestEnemyInRange()
     {
-        return EnemyManager.Enemies
+        return EnemyManager.Instance.Enemies
             .Where(e => Vector3.Distance(e.transform.position, transform.position) <= _range)
             .OrderBy(e => Vector3.Distance(e.transform.position, transform.position))
             .FirstOrDefault();
