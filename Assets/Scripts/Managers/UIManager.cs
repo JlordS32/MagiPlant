@@ -122,19 +122,19 @@ public class UIManager : MonoBehaviour
     [SerializeField] TowerConfig _towerDefenses;
 
     [Header("Currency UI")]
-    private Label sunLabel;
-    private Label waterLabel;
+    Label sunLabel;
+    Label waterLabel;
 
-    [Header("Private Fields")]
-    private VisualElement root;
-    private VisualElement panel;
-    private Button collapseButton;
-    private ListView towerList;
+    [Header("Fields")]
+    VisualElement root;
+    VisualElement panel;
+    Button collapseButton;
+    ListView towerList;
 
-    private List<DefenseEntry> _defenseEntries = new();
+    List<DefenseEntry> _defenseEntries = new();
 
-    private CurrencyStorage _currencyStorage;
-    private BuildManager _buildManager;
+    CurrencyStorage _currencyStorage;
+    BuildManager _buildManager;
 
     void Awake()
     {
@@ -213,13 +213,13 @@ public class UIManager : MonoBehaviour
         Debug.Log(isNowOpen ? "Open" : "Close");
     }
 
-    private void SetupCollapseButtonPosition(bool isCollapsed)
+    void SetupCollapseButtonPosition(bool isCollapsed)
     {
         collapseButton.style.top = new StyleLength(new Length(4, LengthUnit.Percent));
         collapseButton.style.left = new StyleLength(new Length(isCollapsed ? 2 : 18.5f, LengthUnit.Percent));
     }
 
-    private void PopulateDefenseEntries()
+    void PopulateDefenseEntries()
     {
         foreach (var defense in _towerDefenses.DefenseEntry)
         {
@@ -239,7 +239,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void SetupListView()
+    void SetupListView()
     {
         towerList.makeItem = () => towerEntryTemplate.Instantiate();
         towerList.bindItem = (element, index) =>
@@ -255,7 +255,7 @@ public class UIManager : MonoBehaviour
             // Transform triangleTransform = data.DefensePrefab.transform.Find("Sprites/Triangle");
 
             var towerStats = data.DefensePrefab.GetComponent<TowerDefense>();
-            TowerStatConfig towerData = towerStats.GetTowerStats();
+            TowerData towerData = towerStats.Data;
             
             // Tower Entry
             if (data.Thumbnail != null)
@@ -271,10 +271,9 @@ public class UIManager : MonoBehaviour
                 thumbnail.image = null;
             }
             nameLabel.text = data.DefenseEntryName;
-            // damageLabel.text = "DMG: " + towerData.Attack.ToString();
-            // rangeLabel.text = "RNG: " + towerData.Range.ToString();
-            // speedLabel.text = "SPD: " + towerData.Speed.ToString();
-
+            damageLabel.text = "DMG: " + towerData.Get(TowerStats.Attack);
+            rangeLabel.text = "RNG: " + towerData.Get(TowerStats.Range);
+            speedLabel.text = "SPD: " + towerData.Get(TowerStats.Speed);
 
             buildButton.text = "Cost " + data.Cost.ToString();
             buildButton.clickable.clicked +=  data.UpgradeLogic;
