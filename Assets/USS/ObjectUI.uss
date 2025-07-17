@@ -8,7 +8,12 @@
     -unity-background-image-tint-color: rgb(255, 255, 255);
     background-color: rgba(255, 255, 255, 0);
     -unity-font-definition: url("project://database/Assets/Fonts/Toriko.ttf?fileID=12800000&guid=88a4ce45f95f2a444a0bcd7e3eeb3fb7&type=3#Toriko");
-    font-size: 40px;
+    font-size: 45px;
     color: rgb(255, 255, 255);
     text-shadow: 2px 2px 0 rgb(0, 0, 0);
+}
+
+.objectName {
+    font-size: 42px;
+    color: rgb(255, 255, 255);
 }

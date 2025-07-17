@@ -39,7 +39,7 @@ public class SidePanelController : MonoBehaviour
     void SetupCollapseButtonPosition(bool isCollapsed)
     {
         _collapseButton.style.top = new StyleLength(new Length(2, LengthUnit.Percent));
-        _collapseButton.style.left = new StyleLength(new Length(isCollapsed ? 2 : 24, LengthUnit.Percent));
+        _collapseButton.style.left = new StyleLength(new Length(isCollapsed ? 2 : 25, LengthUnit.Percent));
     }
 
     void SetupEntries()
