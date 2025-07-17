@@ -1,12 +1,26 @@
 .side-panel {
-    width: 20%;
+    width: 30%;
     height: 100%;
-    background-color: rgb(244, 180, 103);
+    background-color: rgba(244, 180, 103, 0);
     display: flex;
     flex-direction: column;
     padding: 67px 20px 0 20px;
     border-right: 2px solid black;
     box-sizing: border-box;
+    background-image: url("project://database/Assets/Sprites/UI/02_Paper_Theme/Spritesheets/Spritesheet_UI_Paper.png?fileID=4805194462694061560&guid=85092d4b12e8fca49a0d7fd4fe5a6623&type=3#Spritesheet_UI_Paper_0");
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    -unity-background-scale-mode: stretch-to-fill;
+    background-position-x: left -20px;
+    background-size: 100% 100%;
+    background-position-y: top 30px;
+    overflow: visible;
 }
 
 .collapse-button {
@@ -17,22 +31,39 @@
     height: 60px;
     font-size: 40px;
     font-weight: bold;
-    background-color: rgb(229, 229, 229);
+    background-color: rgba(0, 0, 0, 0);
     border: 2px solid black;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-image: url("project://database/Assets/Sprites/UI/03_Wood_Theme/Spritesheet/Spritesheet_UI_Wood.png?fileID=-8652590860285339154&guid=ae151afc96ee65144a17f8e909e1d581&type=3#Spritesheet_UI_Wood_16");
 }
 
 #CollapseButton:hover {
-    background-color: rgba(201, 194, 194, 1);
+    background-color: rgb(201, 194, 194);
     scale: 1 1;
 }
 
 .tower-list {
-    flex-grow: 1;
-    width: 100%;
-    padding-top: 10px;
     box-sizing: border-box;
     overflow-y: auto;
+    padding-top: 170px;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+.title {
+    background-image: url("project://database/Assets/Sprites/UI/02_Paper_Theme/Spritesheets/Spritesheet_UI_Paper.png?fileID=-6345142834379741429&guid=85092d4b12e8fca49a0d7fd4fe5a6623&type=3#Spritesheet_UI_Paper_4");
+    background-size: 100% 20%;
+    position: relative;
+    top: -2%;
+    height: 100%;
+    -unity-background-scale-mode: scale-to-fit;
+    background-position-y: top 0;
+    background-position-x: left 0;
+    width: 93%;
+    font-size: 80px;
+    -unity-font-definition: url("project://database/Assets/Fonts/Toriko.ttf?fileID=12800000&guid=88a4ce45f95f2a444a0bcd7e3eeb3fb7&type=3#Toriko");
+    color: rgb(255, 255, 255);
+    -unity-text-align: upper-center;
 }

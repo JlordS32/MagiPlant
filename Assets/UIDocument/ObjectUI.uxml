@@ -1,9 +1,12 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/USS/ObjectUI.uss?fileID=7433441132597879392&amp;guid=289ac92dbe827fe4ebce1849ffaa67bf&amp;type=3#ObjectUI" />
     <ui:VisualElement name="Container" style="flex-grow: 1; flex-direction: row; width: auto; height: auto;">
-        <ui:VisualElement name="Panel" style="flex-grow: 1; height: 15%; width: auto; flex-direction: row; flex-shrink: 1; flex-basis: auto; justify-content: center; align-content: flex-start; align-self: flex-end; margin-top: 0; margin-right: 0; margin-bottom: 50px; margin-left: 0;">
-            <ui:Button text="Info" name="Info" class="objectBtn" style="border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;" />
-            <ui:Button text="Upgrade" name="Upgrade" class="objectBtn" style="border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;" />
+        <ui:VisualElement name="Panel" style="flex-grow: 1; height: 25%; width: auto; flex-direction: column; flex-shrink: 1; flex-basis: auto; justify-content: center; align-content: flex-start; align-self: flex-end; margin-top: 0; margin-right: 0; margin-bottom: 50px; margin-left: 0;">
+            <ui:Label text="Label" name="ObjectName" class="objectName" style="font-size: 100px; -unity-text-align: upper-center; -unity-font-definition: url(&quot;project://database/Assets/Fonts/Toriko.ttf?fileID=12800000&amp;guid=88a4ce45f95f2a444a0bcd7e3eeb3fb7&amp;type=3#Toriko&quot;); margin-bottom: 30px;" />
+            <ui:VisualElement name="Buttons" style="flex-grow: 1; flex-direction: row; align-content: center; justify-content: center;">
+                <ui:Button text="Info" name="Info" class="objectBtn" style="border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;" />
+                <ui:Button text="Upgrade" name="Upgrade" class="objectBtn" style="border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
