@@ -26,6 +26,7 @@ public class TowerData
     public void Set(TowerStats stat, float value)
     {
         _stats[stat] = value;
+        GameEventsManager.RaiseTowerStatUpdate(stat, value);
     }
 
     public void Reset()
@@ -34,5 +35,6 @@ public class TowerData
         {
             _stats[stat] = _config.GetValue(stat);
         }
+        GameEventsManager.RaiseTowerStatReset();
     }
 }

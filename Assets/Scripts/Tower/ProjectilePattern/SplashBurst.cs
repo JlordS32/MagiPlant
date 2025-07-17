@@ -26,9 +26,12 @@ public class SplashBurst : MonoBehaviour, IProjectilePattern
             {
                 proj.Init(
                     direction,
-                    parentProjectile.GetDamage() * _damageMultiplier,
-                    parentProjectile.GetSpeed() * _speedMultiplier,
-                    _lifetime
+                    new ProjectileStats
+                    {
+                        damage = parentProjectile.GetDamage() * _damageMultiplier,
+                        speed = parentProjectile.GetSpeed() * _speedMultiplier,
+                        lifetime = _lifetime
+                    }
                 );
             }
         }

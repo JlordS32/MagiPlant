@@ -15,6 +15,10 @@ public static class GameEventsManager
     public static event Action<EnemyStats, float> OnEnemyDataUpdate;
     public static event Action OnEnemyStatReset;
 
+    // Tower Defenses
+    public static event Action<TowerStats, float> OnTowerStatUpdate;
+    public static event Action OnTowerStatReset;
+
     // Currencies
     public static event Action<CurrencyType, float> OnCurrencyUpdate;
     public static event Action OnCurrencyReset;
@@ -49,6 +53,12 @@ public static class GameEventsManager
 
     public static void RaiseEnemyStatReset()
         => OnEnemyStatReset?.Invoke();
+
+    // Tower Defenses
+    public static void RaiseTowerStatUpdate(TowerStats type, float value)
+        => OnTowerStatUpdate?.Invoke(type, value);
+    public static void RaiseTowerStatReset()
+        => OnTowerStatReset?.Invoke();
 
     // Currency
     public static void RaiseCurrencyUpdate(CurrencyType type, float value)

@@ -13,5 +13,4 @@ public class TowerStatConfig : ScriptableObject
         _statLookup ??= Stats.ToDictionary(entry => entry.Stat, entry => entry.Value);
         return _statLookup.TryGetValue(stat, out var value) ? value : 0f;
     }
-
 }
