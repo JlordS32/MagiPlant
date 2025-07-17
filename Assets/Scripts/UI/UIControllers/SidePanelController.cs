@@ -30,15 +30,24 @@ public class SidePanelController : MonoBehaviour
 
         _collapseButton.RegisterCallback<ClickEvent>(TogglePanel);
         _panel.style.display = DisplayStyle.None;
+        bool isVisible = _panel.style.display == DisplayStyle.None;
 
         SetupEntries();
         SetupListView();
+        SetupCollapseButtonPosition(isVisible);
     }
 
     void TogglePanel(ClickEvent evt)
     {
         bool isVisible = _panel.style.display == DisplayStyle.None;
         _panel.style.display = isVisible ? DisplayStyle.Flex : DisplayStyle.None;
+        SetupCollapseButtonPosition(!isVisible);
+    }
+
+    void SetupCollapseButtonPosition(bool isCollapsed)
+    {
+        _collapseButton.style.top = new StyleLength(new Length(2, LengthUnit.Percent));
+        _collapseButton.style.left = new StyleLength(new Length(isCollapsed ? 2 : 24, LengthUnit.Percent));
     }
 
     void SetupEntries()
