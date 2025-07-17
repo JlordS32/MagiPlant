@@ -271,9 +271,9 @@ public class UIManager : MonoBehaviour
                 thumbnail.image = null;
             }
             nameLabel.text = data.DefenseEntryName;
-            damageLabel.text = "DMG: " + towerData.Attack.ToString();
-            rangeLabel.text = "RNG: " + towerData.Range.ToString();
-            speedLabel.text = "SPD: " + towerData.Speed.ToString();
+            // damageLabel.text = "DMG: " + towerData.Attack.ToString();
+            // rangeLabel.text = "RNG: " + towerData.Range.ToString();
+            // speedLabel.text = "SPD: " + towerData.Speed.ToString();
 
 
             buildButton.text = "Cost " + data.Cost.ToString();

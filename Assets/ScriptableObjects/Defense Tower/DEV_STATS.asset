@@ -10,8 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a4f6af789bea2440b74518e1a722a43, type: 3}
-  m_Name: TowerStatConfig
+  m_Name: DEV_STATS
   m_EditorClassIdentifier: 
-  Attack: 10
-  Speed: 25
-  Range: 10
+  Stats:
+  - Name: Attack
+    Stat: 0
+    Value: 100
+  - Name: Speed
+    Stat: 1
+    Value: 250
+  - Name: Range
+    Stat: 2
+    Value: 100
+  - Name: Projectile Lifetime
+    Stat: 3
+    Value: 5
+  - Name: Projectile Speed
+    Stat: 4
+    Value: 200

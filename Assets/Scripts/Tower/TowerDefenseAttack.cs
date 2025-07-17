@@ -1,21 +1,13 @@
 using UnityEngine;
-using System;
-
-[Serializable]
-public struct ProjectileStats
-{
-    public float damage;
-    public float speed;
-    public float lifetime;
-}
 
 public class TowerDefenseAttack : MonoBehaviour
 {
     [SerializeField] GameObject _projectilePrefab;
     [SerializeField] Transform _firePoint;
-    [SerializeField] float _coolDown = 1f;
 
     IAttackStrategy _attackStrategy;
+    TowerDefense _tower;
+    TowerData _towerData;
     float _timer;
 
 // Ensure the projectile prefab has a Projectile component
@@ -34,6 +26,8 @@ public class TowerDefenseAttack : MonoBehaviour
     void Awake()
     {
         _attackStrategy = GetComponent<IAttackStrategy>();
+        _tower = GetComponent<TowerDefense>();
+        _towerData = _tower.Data;
 
         // Fallback to a default attack strategy if none is set
         if (_attackStrategy == null)
@@ -47,11 +41,18 @@ public class TowerDefenseAttack : MonoBehaviour
         _timer += Time.deltaTime;
     }
 
-    public void Shoot(Vector3 direction, ProjectileStats stats)
+    public void Shoot(Vector3 direction)
     {
-        if (_timer >= _coolDown && _attackStrategy != null)
+        ProjectileStats projStats = new()
         {
-            _attackStrategy.Attack(_projectilePrefab, direction, stats, _firePoint, transform);
+            damage = _towerData.Get(TowerStats.Attack),
+            speed = _towerData.Get(TowerStats.ProjectileSpeed),
+            lifetime = _towerData.Get(TowerStats.ProjectileLifetime)
+        };
+
+        if (_timer >= _towerData.Get(TowerStats.Speed) && _attackStrategy != null)
+        {
+            _attackStrategy.Attack(_projectilePrefab, direction, projStats, _firePoint, transform);
             _timer = 0f;
         }
     }

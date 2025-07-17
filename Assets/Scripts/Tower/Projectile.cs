@@ -4,9 +4,9 @@ public class Projectile : MonoBehaviour, IAttack
 {
     IProjectilePattern _projectilePattern;
 
-    float _damage;
     Vector3 _direction;
-    float _speed;
+    ProjectileStats _stats;
+    
 
     void Awake()
     {
@@ -19,17 +19,16 @@ public class Projectile : MonoBehaviour, IAttack
         }
     }
 
-    public void Init(Vector3 direction, float damage = 5f, float speed = 10f, float lifetime = 5f)
+    public void Init(Vector3 direction, ProjectileStats stats)
     {
         _direction = direction.normalized;
-        _damage = damage;
-        _speed = speed;
-        Destroy(gameObject, lifetime);
+        _stats = stats;
+        Destroy(gameObject, _stats.lifetime);
     }
 
     void Update()
     {
-        transform.position += Time.deltaTime * _speed * _direction;
+        transform.position += Time.deltaTime * _stats.speed * _direction;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -45,9 +44,9 @@ public class Projectile : MonoBehaviour, IAttack
 
     public void Attack(IDamageable target)
     {
-        target.TakeDamage(_damage);
+        target.TakeDamage(_stats.damage);
     }
 
-    public float GetDamage() => _damage;
-    public float GetSpeed() => _speed;
+    public float GetDamage() => _stats.damage;
+    public float GetSpeed() => _stats.speed;
 }

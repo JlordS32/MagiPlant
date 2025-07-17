@@ -4141,6 +4141,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9197481963319205126, guid: 614462fbf8767564a83af6bb23495d2b, type: 3}
     - target: {fileID: 5827472107088646269, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: _startHour
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5827472107088646269, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
       propertyPath: _globalLight
       value: 
       objectReference: {fileID: 191453059}

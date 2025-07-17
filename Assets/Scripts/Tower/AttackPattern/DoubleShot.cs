@@ -15,10 +15,10 @@ public class DoubleShot : MonoBehaviour, IAttackStrategy
 
         // Instantiate left projectile
         GameObject leftProj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity, parent);
-        leftProj.GetComponent<Projectile>().Init(leftDir, stats.damage, stats.speed, stats.lifetime);
+        leftProj.GetComponent<Projectile>().Init(leftDir, stats);
 
         // Instantiate right projectile
         GameObject rightProj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity, parent);
-        rightProj.GetComponent<Projectile>().Init(rightDir, stats.damage, stats.speed, stats.lifetime);
+        rightProj.GetComponent<Projectile>().Init(rightDir, stats);
     }
 }

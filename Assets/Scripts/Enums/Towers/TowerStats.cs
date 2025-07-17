@@ -2,5 +2,7 @@ public enum TowerStats
 {
     Attack,
     Speed,
-    Range
+    Range,
+    ProjectileLifetime,
+    ProjectileSpeed,
 }
