@@ -1,13 +1,10 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 [Serializable]
-
 public class TowerData
 {
     Dictionary<TowerStats, float> _stats = new();
-
     TowerStatConfig _config;
 
     // Constructor
@@ -26,14 +23,16 @@ public class TowerData
 
     public float Get(TowerStats stat) => _stats[stat];
 
-    public void Set(TowerStats stat, float value) {
+    public void Set(TowerStats stat, float value)
+    {
         _stats[stat] = value;
     }
 
     public void Reset()
     {
-        _stats[TowerStats.Attack] = _config.Attack;
-        _stats[TowerStats.Speed] = _config.Speed;
-        _stats[TowerStats.Range] = _config.Range;
+        foreach (TowerStats stat in Enum.GetValues(typeof(TowerStats)))
+        {
+            _stats[stat] = _config.GetValue(stat);
+        }
     }
 }

@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7866446824196291411, guid: 0622e3606a4e9ae44a259029e62bf83b, type: 3}
+      propertyPath: _towerStatConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: aca7f0ad6e563a0408128d2de7d1b31a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

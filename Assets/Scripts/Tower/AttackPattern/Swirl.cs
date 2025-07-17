@@ -18,7 +18,7 @@ public class Swirl : MonoBehaviour, IAttackStrategy
             Vector3 dir = AngleToDirection(angle);
 
             GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity, parent);
-            proj.GetComponent<Projectile>().Init(dir, stats.damage, stats.speed, stats.lifetime);
+            proj.GetComponent<Projectile>().Init(dir, stats);
         }
 
         _currentSwirlAngle += _swirlOffsetAngle;

@@ -60,6 +60,7 @@ public class PlantGrow : MonoBehaviour, IPhaseListener
     {
         _player.PlayerData.AddExp(10);
         _currencyStorage.Add(CurrencyType.Water, 10);
+        _currencyStorage.Add(CurrencyType.Sunlight, 10);
         // int currLevel = (int)_player.PlayerData.Get(PlayerStats.Level);
     }
 

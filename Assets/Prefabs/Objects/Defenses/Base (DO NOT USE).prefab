@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01be259b9803904c93f108aff41d0fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _towerStatConfig: {fileID: 11400000, guid: df99aef6c8db14040bfbdd1865467dd2, type: 2}
+  _towerStatConfig: {fileID: 11400000, guid: aca7f0ad6e563a0408128d2de7d1b31a, type: 2}
   _localForward: {x: 0, y: -1, z: 0}
   _range: 5
   _enableDebug: 1
@@ -212,7 +212,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _projectilePrefab: {fileID: 1396304532041515281, guid: 80845a9426f130f43bd058849b796e91, type: 3}
   _firePoint: {fileID: 4687481102045981104}
-  _coolDown: 0.5
 --- !u!1 &5629522099388186364
 GameObject:
   m_ObjectHideFlags: 0

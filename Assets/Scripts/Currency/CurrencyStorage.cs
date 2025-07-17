@@ -6,12 +6,18 @@ public class CurrencyStorage : MonoBehaviour
 {
     // VARIABLES
     Dictionary<CurrencyType, Storage> _storage = new();
+    readonly float _initialValue = 10f;
 
     // UNITY FUNCTIONS
     void Awake()
     {
         foreach (CurrencyType type in Enum.GetValues(typeof(CurrencyType)))
-            _storage[type] = new Storage();
+        {
+            _storage[type] = new()
+            {
+                Value = _initialValue
+            };
+        }
     }
 
     // GETTERS & SETTER
@@ -36,7 +42,7 @@ public class CurrencyStorage : MonoBehaviour
     {
         foreach (CurrencyType type in Enum.GetValues(typeof(CurrencyType)))
             _storage[type] = new Storage();
-        
+
         GameEventsManager.RaiseCurrencyReset();
     }
 }
