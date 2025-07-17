@@ -1,0 +1,17 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/USS/SidePanelUSS.uss?fileID=7433441132597879392&amp;guid=cf13a309869984e46a758687838b7066&amp;type=3#SidePanelUSS" />
+    <ui:VisualElement name="Panel" class="side-panel" style="border-right-width: 2px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
+        <ui:ListView name="TowerList" class="tower-list" style="background-color: rgb(244, 180, 103);" />
+    </ui:VisualElement>
+    <ui:Button text="&lt;" name="CollapseButton" class="collapse-button" style="border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px;" />
+    <ui:VisualElement name="Currency" style="flex-grow: 1; position: absolute; top: 4%; right: 4%; align-items: stretch; white-space: normal; flex-direction: row;">
+        <ui:VisualElement name="SunCurency" style="flex-grow: 1; margin-right: 58px; align-items: center; justify-content: center; width: 150px;">
+            <ui:VisualElement name="Icon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/ardo_sprite_assets/Zombie%2001.png?fileID=-492648906605594914&amp;guid=da459e62906a05b4fa722355da70a6e3&amp;type=3#Zombie 01_6&quot;); position: relative; width: 80px; height: 80px; top: auto; right: auto;" />
+            <ui:Label text="Sunlight: 0&#10;" name="SunLabel" style="-unity-font-style: bold; -unity-text-align: upper-center; font-size: 24px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="WaterCurrency" style="flex-grow: 1; width: 150px; justify-content: center; align-items: center;">
+            <ui:VisualElement name="Icon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/ardo_sprite_assets/Zombie%2001.png?fileID=1128907280&amp;guid=da459e62906a05b4fa722355da70a6e3&amp;type=3#Zombie 01_38&quot;); position: relative; width: 80px; height: 80px; top: auto; right: auto;" />
+            <ui:Label text="Water: 0" name="WaterLabel" style="-unity-font-style: bold; -unity-text-align: upper-center; font-size: 24px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
