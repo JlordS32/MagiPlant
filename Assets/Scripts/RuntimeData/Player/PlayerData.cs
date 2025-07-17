@@ -44,7 +44,6 @@ public class PlayerData
     }
 
     public float Get(PlayerStats stat) => _stats[stat];
-    public float GetRequiredEXP() => GetRequiredEXP(_stats[PlayerStats.Level]);
     public void Set(PlayerStats stat, float value) { _stats[stat] = value; GameEventsManager.RaisePlayerStatUpdate(stat, _stats[stat]); }
 
     public float GetRequiredEXP(float level)

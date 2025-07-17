@@ -13,9 +13,7 @@ public class WaveManager : MonoBehaviour, IPhaseListener
 
     void OnEnable()
     {
-
         PhaseService.Register(this);
-        OnPhaseChanged(PhaseService.Current);
     }
 
     void OnDisable()
@@ -30,11 +28,9 @@ public class WaveManager : MonoBehaviour, IPhaseListener
 
     public void OnPhaseChanged(GamePhase phase)
     {
+        Debug.Log($"Phase changed: {phase}");
         if (phase == GamePhase.Night && _nightLoop == null)
-        {
-            Debug.Log($"From Wave Manager, Phase changed: {phase}");
             _nightLoop = StartCoroutine(RunWaves());
-        }
         else if (phase == GamePhase.Day && _nightLoop != null)
         {
             StopCoroutine(_nightLoop);

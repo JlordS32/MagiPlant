@@ -23,7 +23,7 @@ MonoBehaviour:
     Value: 1
   - Type: 4
     Value: 10
-  expLevelUpRate: 1.2
+  expLevelUpRate: 2.5
   maxLevel: 100
   perLevelGains:
   - Type: 4
