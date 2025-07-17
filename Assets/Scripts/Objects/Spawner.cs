@@ -9,16 +9,11 @@ public class Spawner : MonoBehaviour
     // VARIABLES
     float _timer;
 
-    // REFERENCES
-    TileManager _tileManager;
-
     void Awake()
-    {
-        _tileManager = FindFirstObjectByType<TileManager>();
-        
+    {   
         // Snap spawner to tile.
-        Vector3Int cell = _tileManager.Map.WorldToCell(transform.position);
-        Vector3 center = _tileManager.Map.GetCellCenterWorld(cell);
+        Vector3Int cell = TileManager.Instance.Map.WorldToCell(transform.position);
+        Vector3 center = TileManager.Instance.Map.GetCellCenterWorld(cell);
         transform.position = center;
     }
 

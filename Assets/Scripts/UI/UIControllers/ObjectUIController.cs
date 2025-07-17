@@ -3,22 +3,26 @@ using UnityEngine.UIElements;
 
 public class ObjectUIController : MonoBehaviour
 {
-    UIDocument _uiDocument;
+    public static ObjectUIController Instance { get; private set; }
+
+    [SerializeField] UIDocument _uiDocument;
     VisualElement _panel;
 
     void Awake()
     {
-        _uiDocument = GetComponent<UIDocument>();
-        if (_uiDocument == null)
+        if (Instance != null && Instance != this)
         {
-            Debug.LogError("UIDocument component is missing on the ObjectUIController GameObject.");
+            Debug.LogWarning("Multiple instances of ObjectUIController detected. Destroying the new instance.");
+            Destroy(gameObject);
             return;
         }
+        Instance = this;
 
         _panel = _uiDocument.rootVisualElement.Q<VisualElement>("Panel");
         if (_panel == null)
         {
             Debug.LogError("Panel element not found in the UIDocument.");
+            return;
         }
 
         _panel.style.display = DisplayStyle.None;

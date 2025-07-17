@@ -3,9 +3,22 @@ using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
+
     // PROPERTIES
     [SerializeField] InputAction _pauseButton;
     [SerializeField] GameObject _pausePanel;
+
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogWarning("Multiple instances of GameManager detected. Destroying the new instance.");
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
 
     void OnEnable()
     {

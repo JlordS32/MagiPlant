@@ -23,8 +23,8 @@ public class Enemy : MonoBehaviour, IDamageable
         _healthUI = GetComponentInChildren<HealthUI>();
     }
 
-    void OnEnable() => EnemyManager.Register(this);
-    void OnDisable() => EnemyManager.Unregister(this);
+    void OnEnable() => EnemyManager.Instance.Register(this);
+    void OnDisable() => EnemyManager.Instance.Unregister(this);
 
     void Update()
     {

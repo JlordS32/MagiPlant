@@ -19,7 +19,6 @@ public class EnemyMovement : MonoBehaviour
 
 
     // VARIABLES
-    TileManager _tileManager;
     Enemy _enemy;
     Rigidbody2D _rb;
     Transform _target;
@@ -31,7 +30,6 @@ public class EnemyMovement : MonoBehaviour
 
     void Awake()
     {
-        _tileManager = FindFirstObjectByType<TileManager>();
         _rb = GetComponent<Rigidbody2D>();
         _target = FindFirstObjectByType<Player>().GetComponent<Transform>();
         _enemy = GetComponent<Enemy>();
@@ -48,13 +46,13 @@ public class EnemyMovement : MonoBehaviour
         Queue<Vector3> newPath = new();
 
         // Convert world to grid
-        Vector3Int startCell = _tileManager.Map.WorldToCell(transform.position);
-        Vector3Int targetCell = _tileManager.Map.WorldToCell(_target.position);
+        Vector3Int startCell = TileManager.Instance.Map.WorldToCell(transform.position);
+        Vector3Int targetCell = TileManager.Instance.Map.WorldToCell(_target.position);
 
-        Vector2Int start = new(startCell.x - _tileManager.Bounds.xMin, startCell.y - _tileManager.Bounds.yMin);
-        Vector2Int target = new(targetCell.x - _tileManager.Bounds.xMin, targetCell.y - _tileManager.Bounds.yMin);
+        Vector2Int start = new(startCell.x - TileManager.Instance.Bounds.xMin, startCell.y - TileManager.Instance.Bounds.yMin);
+        Vector2Int target = new(targetCell.x - TileManager.Instance.Bounds.xMin, targetCell.y - TileManager.Instance.Bounds.yMin);
 
-        if (!_tileManager.IsInBounds(start.x, start.y) || !_tileManager.IsInBounds(target.x, target.y))
+        if (!TileManager.Instance.IsInBounds(start.x, start.y) || !TileManager.Instance.IsInBounds(target.x, target.y))
         {
             Debug.LogWarning("Out of bounds!!!");
             _path.Clear();
@@ -63,7 +61,7 @@ public class EnemyMovement : MonoBehaviour
         }
 
         // Run A*
-        var path = AStar.FindPath(start, target, _tileManager.GetGridAsInt());
+        var path = AStar.FindPath(start, target, TileManager.Instance.GetGridAsInt());
         if (path == null || path.Count == 0)
         {
             _rb.linearVelocity = Vector2.zero;
@@ -74,8 +72,8 @@ public class EnemyMovement : MonoBehaviour
         // Convert grid path to world
         foreach (var step in path)
         {
-            Vector3Int cell = new(step.x + _tileManager.Bounds.xMin, step.y + _tileManager.Bounds.yMin, 0);
-            Vector3 world = _tileManager.Map.CellToWorld(cell) + _tileManager.Map.cellSize / 2f;
+            Vector3Int cell = new(step.x + TileManager.Instance.Bounds.xMin, step.y + TileManager.Instance.Bounds.yMin, 0);
+            Vector3 world = TileManager.Instance.Map.CellToWorld(cell) + TileManager.Instance.Map.cellSize / 2f;
 
             // Optional: add slight offset
             world += new Vector3(
@@ -119,7 +117,7 @@ public class EnemyMovement : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        if (_tileManager == null || !_enableDebug) return;
+        if (TileManager.Instance == null || !_enableDebug) return;
 
         // Draw path lines
         if (_path != null && _path.Count > 0)
@@ -140,9 +138,9 @@ public class EnemyMovement : MonoBehaviour
         if (_target != null)
         {
             Vector3 targetPos = _target.position;
-            Vector3Int cell = _tileManager.Map.WorldToCell(targetPos);
-            Vector3 cellCenter = _tileManager.Map.GetCellCenterWorld(cell);
-            Vector3 cellSize = _tileManager.Map.cellSize;
+            Vector3Int cell = TileManager.Instance.Map.WorldToCell(targetPos);
+            Vector3 cellCenter = TileManager.Instance.Map.GetCellCenterWorld(cell);
+            Vector3 cellSize = TileManager.Instance.Map.cellSize;
 
             Gizmos.color = new Color(1f, 0.5f, 0f, 0.4f);
             Gizmos.DrawCube(cellCenter, cellSize);

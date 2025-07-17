@@ -12,13 +12,14 @@ public struct PreviewColor
 // WARNING: Read before making any modifications.
 public class BuildManager : MonoBehaviour, IPhaseListener
 {
+    public static BuildManager Instance { get; private set; }
+
     // PROPERTIES
     [SerializeField] InputAction _input;
     [SerializeField] Transform _parentObject;
     [SerializeField] PreviewColor _previewColor;
 
     // REFERENCES
-    TileManager _tileManager;
     GameObject _selectedPrefab;
     GameObject _previewPrefab;
 
@@ -28,7 +29,13 @@ public class BuildManager : MonoBehaviour, IPhaseListener
 
     void Awake()
     {
-        _tileManager = FindFirstObjectByType<TileManager>();
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogWarning("Multiple BuildManager instances found, destroying the new one.");
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
     }
 
     #region PHASE LISTENER
@@ -64,12 +71,12 @@ public class BuildManager : MonoBehaviour, IPhaseListener
 
         // Prefab location; follow mouse
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3Int tilePos = _tileManager.Map.WorldToCell(mousePos);
-        Vector3 worldPos = _tileManager.Map.GetCellCenterWorld(tilePos);
+        Vector3Int tilePos = TileManager.Instance.Map.WorldToCell(mousePos);
+        Vector3 worldPos = TileManager.Instance.Map.GetCellCenterWorld(tilePos);
 
         // Offset handling
         Vector2 objectSize = _selectedPrefab.GetComponentInChildren<SpriteRenderer>().bounds.size;
-        Vector2 cellSize = _tileManager.Map.cellSize;
+        Vector2 cellSize = TileManager.Instance.Map.cellSize;
         int tilesX = Mathf.CeilToInt(objectSize.x / cellSize.x);
         int tilesY = Mathf.CeilToInt(objectSize.y / cellSize.y);
         worldPos += new Vector3(Mathf.FloorToInt(tilesX / 2f), Mathf.FloorToInt(tilesY / 2f), 0);
@@ -79,8 +86,8 @@ public class BuildManager : MonoBehaviour, IPhaseListener
             worldPos -= new Vector3(0.5f, 0.5f, 0);
 
         // Checkers
-        bool isValid = _tileManager.IsAreaValid(tilesX, tilesY, worldPos, TileWeight.Placeable);
-        bool isWithinBounds = _tileManager.IsAreaWithinBounds(tilesX, tilesY, worldPos);
+        bool isValid = TileManager.Instance.IsAreaValid(tilesX, tilesY, worldPos, TileWeight.Placeable);
+        bool isWithinBounds = TileManager.Instance.IsAreaWithinBounds(tilesX, tilesY, worldPos);
 
         if (_previewPrefab == null)
         {
@@ -98,7 +105,7 @@ public class BuildManager : MonoBehaviour, IPhaseListener
         if (_input.WasReleasedThisFrame() && isValid && isWithinBounds)
         {
             // Update tile value
-            int id = _tileManager.SetOccupiedArea(worldPos, tilesX, tilesY, TileWeight.Blocked);
+            int id = TileManager.Instance.SetOccupiedArea(worldPos, tilesX, tilesY, TileWeight.Blocked);
 
             // Instantiate
             GameObject obj = Instantiate(_selectedPrefab, worldPos, Quaternion.identity, _parentObject);

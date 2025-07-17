@@ -483,6 +483,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 618547456199796932, guid: 911602d9b8cd8fa4c90c11bef11b9d76, type: 3}
       insertIndex: 1
       addedObject: {fileID: 6671580515534212149}
+    - targetCorrespondingSourceObject: {fileID: 618547456199796932, guid: 911602d9b8cd8fa4c90c11bef11b9d76, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1260260125272292496}
   m_SourcePrefab: {fileID: 100100000, guid: 911602d9b8cd8fa4c90c11bef11b9d76, type: 3}
 --- !u!4 &862807137038559218 stripped
 Transform:
@@ -506,6 +509,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fb39f5a0f93e4d4782860ac0068d1a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1260260125272292496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5093604696060835051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2045810197e161b49a966d5bedb5f4ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _uiDocument: {fileID: 0}
 --- !u!1001 &6163875769365620699
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -514,6 +530,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 753065909191988287}
     m_Modifications:
+    - target: {fileID: 1710643243580164124, guid: 459771c042450584c81a691cd4cb5628, type: 3}
+      propertyPath: _pausePanel
+      value: 
+      objectReference: {fileID: 2676982608662437632, guid: def630fa0d01a894ca28379accec638c, type: 3}
+    - target: {fileID: 1710643243580164124, guid: 459771c042450584c81a691cd4cb5628, type: 3}
+      propertyPath: _pauseButton.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1710643243580164124, guid: 459771c042450584c81a691cd4cb5628, type: 3}
+      propertyPath: _pauseButton.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 6498496c-3a09-4fa8-a1b6-cf834fe4d4ac
+      objectReference: {fileID: 0}
+    - target: {fileID: 1710643243580164124, guid: 459771c042450584c81a691cd4cb5628, type: 3}
+      propertyPath: _pauseButton.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Keyboard>/escape
+      objectReference: {fileID: 0}
+    - target: {fileID: 1710643243580164124, guid: 459771c042450584c81a691cd4cb5628, type: 3}
+      propertyPath: _pauseButton.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Pause Button
+      objectReference: {fileID: 0}
     - target: {fileID: 7647734421547944892, guid: 459771c042450584c81a691cd4cb5628, type: 3}
       propertyPath: m_LocalPosition.x
       value: -365.2405

@@ -24,7 +24,6 @@ public class PlantGrow : MonoBehaviour, IPhaseListener
 
     // REFERENCES
     GameObject _currentSprite;
-    CurrencyStorage _currencyStorage;
     Player _player;
 
     // VARIABLES
@@ -52,15 +51,14 @@ public class PlantGrow : MonoBehaviour, IPhaseListener
     void Awake()
     {
         _currentSprite = GetComponentInChildren<SpriteRenderer>().gameObject; // WARNING: Only works if there's one child sprite renderer. We'll have to rework this approach if we want multiple sprites.
-        _currencyStorage = FindFirstObjectByType<CurrencyStorage>();
         _player = GetComponent<Player>();
     }
 
     public void OnTest()
     {
         _player.PlayerData.AddExp(10);
-        _currencyStorage.Add(CurrencyType.Water, 10);
-        _currencyStorage.Add(CurrencyType.Sunlight, 10);
+        CurrencyStorage.Instance.Add(CurrencyType.Water, 10);
+        CurrencyStorage.Instance.Add(CurrencyType.Sunlight, 10);
         // int currLevel = (int)_player.PlayerData.Get(PlayerStats.Level);
     }
 
@@ -103,9 +101,9 @@ public class PlantGrow : MonoBehaviour, IPhaseListener
         if (_player.PlayerData != null)
         {
             int currLevel = (int)_player.PlayerData.Get(PlayerStats.Level);
-            float waterAmount = _currencyStorage.Get(CurrencyType.Water);
+            float waterAmount = CurrencyStorage.Instance.Get(CurrencyType.Water);
 
-            if (_currencyStorage.Spend(CurrencyType.Water, _currencyStorage.Get(CurrencyType.Water)))
+            if (CurrencyStorage.Instance.Spend(CurrencyType.Water, CurrencyStorage.Instance.Get(CurrencyType.Water)))
             {
                 AudioManager.Instance.PlaySound(_waterPlantSound);
                 _player.PlayerData.AddExp(waterAmount);
