@@ -13,10 +13,7 @@ public class CurrencyStorage : MonoBehaviour
     {
         foreach (CurrencyType type in Enum.GetValues(typeof(CurrencyType)))
         {
-            _storage[type] = new()
-            {
-                Value = _initialValue
-            };
+            _storage[type] = new Storage(_initialValue);
         }
     }
 
