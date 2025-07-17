@@ -1,0 +1,1846 @@
+fileFormatVersion: 2
+guid: ae151afc96ee65144a17f8e909e1d581
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3896263265821084168
+    second: Spritesheet_UI_Wood_0
+  - first:
+      213: -123439486474851064
+    second: Spritesheet_UI_Wood_1
+  - first:
+      213: 8843454695316021936
+    second: Spritesheet_UI_Wood_2
+  - first:
+      213: 1430258300578433439
+    second: Spritesheet_UI_Wood_3
+  - first:
+      213: 3586010867540135542
+    second: Spritesheet_UI_Wood_4
+  - first:
+      213: -8361170720548378843
+    second: Spritesheet_UI_Wood_5
+  - first:
+      213: -6671972754995389165
+    second: Spritesheet_UI_Wood_6
+  - first:
+      213: 5847450421444024522
+    second: Spritesheet_UI_Wood_7
+  - first:
+      213: 6503586777164758490
+    second: Spritesheet_UI_Wood_8
+  - first:
+      213: -1395007472483083330
+    second: Spritesheet_UI_Wood_9
+  - first:
+      213: -8117605523725350161
+    second: Spritesheet_UI_Wood_10
+  - first:
+      213: 8019291369550843740
+    second: Spritesheet_UI_Wood_11
+  - first:
+      213: 9054458335884451469
+    second: Spritesheet_UI_Wood_12
+  - first:
+      213: 4827271125695511715
+    second: Spritesheet_UI_Wood_13
+  - first:
+      213: 1289113633453589835
+    second: Spritesheet_UI_Wood_14
+  - first:
+      213: 6616063471220611635
+    second: Spritesheet_UI_Wood_15
+  - first:
+      213: -8652590860285339154
+    second: Spritesheet_UI_Wood_16
+  - first:
+      213: 7183829704924129458
+    second: Spritesheet_UI_Wood_17
+  - first:
+      213: 1802429735223359250
+    second: Spritesheet_UI_Wood_18
+  - first:
+      213: -5423412967542338450
+    second: Spritesheet_UI_Wood_19
+  - first:
+      213: 2418803148850713321
+    second: Spritesheet_UI_Wood_20
+  - first:
+      213: 6158101669649323667
+    second: Spritesheet_UI_Wood_21
+  - first:
+      213: -3397689895052234439
+    second: Spritesheet_UI_Wood_22
+  - first:
+      213: 7499278138182729692
+    second: Spritesheet_UI_Wood_23
+  - first:
+      213: 5844979856689313593
+    second: Spritesheet_UI_Wood_24
+  - first:
+      213: 179883802416257407
+    second: Spritesheet_UI_Wood_25
+  - first:
+      213: 6244503973024849947
+    second: Spritesheet_UI_Wood_26
+  - first:
+      213: -5488166114235502444
+    second: Spritesheet_UI_Wood_27
+  - first:
+      213: -2257721122255298557
+    second: Spritesheet_UI_Wood_28
+  - first:
+      213: -1664859109760868848
+    second: Spritesheet_UI_Wood_29
+  - first:
+      213: 6518792725272528791
+    second: Spritesheet_UI_Wood_30
+  - first:
+      213: -3864005316765672965
+    second: Spritesheet_UI_Wood_31
+  - first:
+      213: -1652355378323387224
+    second: Spritesheet_UI_Wood_32
+  - first:
+      213: -6064980128703731149
+    second: Spritesheet_UI_Wood_33
+  - first:
+      213: 8761191158894519461
+    second: Spritesheet_UI_Wood_34
+  - first:
+      213: 181505340528572640
+    second: Spritesheet_UI_Wood_35
+  - first:
+      213: -4534445077163669255
+    second: Spritesheet_UI_Wood_36
+  - first:
+      213: -874391056702222825
+    second: Spritesheet_UI_Wood_37
+  - first:
+      213: 1567882093140957622
+    second: Spritesheet_UI_Wood_38
+  - first:
+      213: 1383837609290083332
+    second: Spritesheet_UI_Wood_39
+  - first:
+      213: 8641125397660537045
+    second: Spritesheet_UI_Wood_40
+  - first:
+      213: -5807008971442518459
+    second: Spritesheet_UI_Wood_41
+  - first:
+      213: -8438553001887487489
+    second: Spritesheet_UI_Wood_42
+  - first:
+      213: 2652230182270022077
+    second: Spritesheet_UI_Wood_43
+  - first:
+      213: 652791063021680457
+    second: Spritesheet_UI_Wood_44
+  - first:
+      213: 8640711075419768484
+    second: Spritesheet_UI_Wood_45
+  - first:
+      213: 1209709699289980728
+    second: Spritesheet_UI_Wood_46
+  - first:
+      213: -3548610788651905282
+    second: Spritesheet_UI_Wood_47
+  - first:
+      213: -5856974832548873230
+    second: Spritesheet_UI_Wood_48
+  - first:
+      213: 853911890178317856
+    second: Spritesheet_UI_Wood_49
+  - first:
+      213: -2156978975253359775
+    second: Spritesheet_UI_Wood_50
+  - first:
+      213: -5111144631586659669
+    second: Spritesheet_UI_Wood_51
+  - first:
+      213: 2475023996422951652
+    second: Spritesheet_UI_Wood_52
+  - first:
+      213: 7720989564187404285
+    second: Spritesheet_UI_Wood_53
+  - first:
+      213: 339977029661616236
+    second: Spritesheet_UI_Wood_54
+  - first:
+      213: 4955768323414390360
+    second: Spritesheet_UI_Wood_55
+  - first:
+      213: 4787506223196276455
+    second: Spritesheet_UI_Wood_56
+  - first:
+      213: -5573289001460419422
+    second: Spritesheet_UI_Wood_57
+  - first:
+      213: 8975905768816486957
+    second: Spritesheet_UI_Wood_58
+  - first:
+      213: 7040127981004622051
+    second: Spritesheet_UI_Wood_59
+  - first:
+      213: -3703904350990006329
+    second: Spritesheet_UI_Wood_60
+  - first:
+      213: -908326414545834684
+    second: Spritesheet_UI_Wood_61
+  - first:
+      213: -2846280093629034139
+    second: Spritesheet_UI_Wood_62
+  - first:
+      213: -7247062630420049174
+    second: Spritesheet_UI_Wood_63
+  - first:
+      213: -7300757730703132044
+    second: Spritesheet_UI_Wood_64
+  - first:
+      213: -8672223857435756189
+    second: Spritesheet_UI_Wood_65
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_0
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 223
+        width: 98
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f5b459f331bde9c0800000000000000
+      internalID: -3896263265821084168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_1
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 223
+        width: 34
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80de869e074794ef0800000000000000
+      internalID: -123439486474851064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_2
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 223
+        width: 98
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b26295d0334aba70800000000000000
+      internalID: 8843454695316021936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_3
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 223
+        width: 34
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f990807b85c49d310800000000000000
+      internalID: 1430258300578433439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_4
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 292
+        width: 98
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67e8b6072e114c130800000000000000
+      internalID: 3586010867540135542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_5
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 294
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 527215f678727fb80800000000000000
+      internalID: -8361170720548378843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_6
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 297
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31d5a6301246863a0800000000000000
+      internalID: -6671972754995389165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_7
+      rect:
+        serializedVersion: 2
+        x: 619
+        y: 299
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac811eb5d21562150800000000000000
+      internalID: 5847450421444024522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_8
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 287
+        width: 98
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: add35d267b1614a50800000000000000
+      internalID: 6503586777164758490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_9
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 259
+        width: 98
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebb51a74810f3ace0800000000000000
+      internalID: -1395007472483083330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_10
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 262
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fea0a9bf8c8785f80800000000000000
+      internalID: -8117605523725350161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_11
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 266
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5f0f68330f3a4f60800000000000000
+      internalID: 8019291369550843740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_12
+      rect:
+        serializedVersion: 2
+        x: 619
+        y: 268
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8e97f742e5e7ad70800000000000000
+      internalID: 9054458335884451469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 223
+        width: 96
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3acb4994389edf240800000000000000
+      internalID: 4827271125695511715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_14
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 228
+        width: 19
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b454d15050ad3e110800000000000000
+      internalID: 1289113633453589835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_15
+      rect:
+        serializedVersion: 2
+        x: 584
+        y: 230
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33ada857caaf0db50800000000000000
+      internalID: 6616063471220611635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_16
+      rect:
+        serializedVersion: 2
+        x: 618
+        y: 233
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee996e9b472dbe780800000000000000
+      internalID: -8652590860285339154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_17
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 223
+        width: 98
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b8e6e81e0712b360800000000000000
+      internalID: 7183829704924129458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_18
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 159
+        width: 98
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 217f6946b44830910800000000000000
+      internalID: 1802429735223359250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_19
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 159
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6c4467f3aa2cb4b0800000000000000
+      internalID: -5423412967542338450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_20
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 159
+        width: 98
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e2d7d406a0519120800000000000000
+      internalID: 2418803148850713321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_21
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 159
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 396103e67d8f57550800000000000000
+      internalID: 6158101669649323667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_22
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 165
+        width: 34
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9313a7cca0bf8d0d0800000000000000
+      internalID: -3397689895052234439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_23
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 167
+        width: 32
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdffb3adbb9c21860800000000000000
+      internalID: 7499278138182729692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_24
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 173
+        width: 34
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 937b74d263a8d1150800000000000000
+      internalID: 5844979856689313593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_25
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 170
+        width: 32
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f791edf7d531f7200800000000000000
+      internalID: 179883802416257407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_26
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 170
+        width: 32
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1069a6574fe8a650800000000000000
+      internalID: 6244503973024849947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_27
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 169
+        width: 32
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49038a42ffd16d3b0800000000000000
+      internalID: -5488166114235502444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_28
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 159
+        width: 66
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 300a31ae996faa0e0800000000000000
+      internalID: -2257721122255298557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_29
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 133
+        width: 34
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01e51a1e57b35e8e0800000000000000
+      internalID: -1664859109760868848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_30
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 135
+        width: 32
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79705421277677a50800000000000000
+      internalID: 6518792725272528791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_31
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 141
+        width: 34
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf916f303ab406ac0800000000000000
+      internalID: -3864005316765672965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_32
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 139
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ac0458b987a119e0800000000000000
+      internalID: -1652355378323387224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_33
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 139
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33aafc2e4bcd4dba0800000000000000
+      internalID: -6064980128703731149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_34
+      rect:
+        serializedVersion: 2
+        x: 618
+        y: 137
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a46333b0f0069970800000000000000
+      internalID: 8761191158894519461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_35
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 31
+        width: 98
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e8ba034526d48200800000000000000
+      internalID: 181505340528572640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_36
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f804221a3a6211c0800000000000000
+      internalID: -4534445077163669255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_37
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 31
+        width: 98
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71e4c7677f98dd3f0800000000000000
+      internalID: -874391056702222825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_38
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 97
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b9dc5be47c32c510800000000000000
+      internalID: 1567882093140957622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_39
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 101
+        width: 31
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40caf8849f0643310800000000000000
+      internalID: 1383837609290083332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_40
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 103
+        width: 31
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d0992b34c17be770800000000000000
+      internalID: 8641125397660537045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_41
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 109
+        width: 34
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54689a97b1c596fa0800000000000000
+      internalID: -5807008971442518459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_42
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 104
+        width: 32
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff9a03011cc34ea80800000000000000
+      internalID: -8438553001887487489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_43
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 107
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db136c47c4d9ec420800000000000000
+      internalID: 2652230182270022077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_44
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 111
+        width: 34
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 947f4ff530e2f0900800000000000000
+      internalID: 652791063021680457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_45
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 95
+        width: 66
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a6cd2151f8f9e770800000000000000
+      internalID: 8640711075419768484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_46
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83f168bef80c9c010800000000000000
+      internalID: 1209709699289980728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_47
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 65
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efec8400a4dc0cec0800000000000000
+      internalID: -3548610788651905282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_48
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 67
+        width: 34
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fb758fdb68d7bea0800000000000000
+      internalID: -5856974832548873230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_49
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 76
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02e9f830754b9db00800000000000000
+      internalID: 853911890178317856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_50
+      rect:
+        serializedVersion: 2
+        x: 620
+        y: 76
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1639908dc0fd012e0800000000000000
+      internalID: -2156978975253359775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_51
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba2e1ae99019119b0800000000000000
+      internalID: -5111144631586659669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_52
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 33
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e29b55263d095220800000000000000
+      internalID: 2475023996422951652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_53
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 50
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df763efd917762b60800000000000000
+      internalID: 7720989564187404285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_54
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 50
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c68e5c4ae47d7b400800000000000000
+      internalID: 339977029661616236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_55
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 52
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8567f3a880d66c440800000000000000
+      internalID: 4955768323414390360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_56
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 52
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e606917b83a07240800000000000000
+      internalID: 4787506223196276455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_57
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a43c558e23b7a2b0800000000000000
+      internalID: -5573289001460419422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_58
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2aafa78db2d09c70800000000000000
+      internalID: 8975905768816486957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_59
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e88119391f83b160800000000000000
+      internalID: 7040127981004622051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_60
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 31
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c7873ded96199cc0800000000000000
+      internalID: -3703904350990006329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_61
+      rect:
+        serializedVersion: 2
+        x: 735
+        y: 31
+        width: 34
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44d24e040f9f463f0800000000000000
+      internalID: -908326414545834684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_62
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 31
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 561d9f7c55bff78d0800000000000000
+      internalID: -2846280093629034139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_63
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 31
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae21ec82fe24d6b90800000000000000
+      internalID: -7247062630420049174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_64
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 31
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47ab046668f7eaa90800000000000000
+      internalID: -7300757730703132044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spritesheet_UI_Wood_65
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 31
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 369bfdc595216a780800000000000000
+      internalID: -8672223857435756189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Spritesheet_UI_Wood_0: -3896263265821084168
+      Spritesheet_UI_Wood_1: -123439486474851064
+      Spritesheet_UI_Wood_10: -8117605523725350161
+      Spritesheet_UI_Wood_11: 8019291369550843740
+      Spritesheet_UI_Wood_12: 9054458335884451469
+      Spritesheet_UI_Wood_13: 4827271125695511715
+      Spritesheet_UI_Wood_14: 1289113633453589835
+      Spritesheet_UI_Wood_15: 6616063471220611635
+      Spritesheet_UI_Wood_16: -8652590860285339154
+      Spritesheet_UI_Wood_17: 7183829704924129458
+      Spritesheet_UI_Wood_18: 1802429735223359250
+      Spritesheet_UI_Wood_19: -5423412967542338450
+      Spritesheet_UI_Wood_2: 8843454695316021936
+      Spritesheet_UI_Wood_20: 2418803148850713321
+      Spritesheet_UI_Wood_21: 6158101669649323667
+      Spritesheet_UI_Wood_22: -3397689895052234439
+      Spritesheet_UI_Wood_23: 7499278138182729692
+      Spritesheet_UI_Wood_24: 5844979856689313593
+      Spritesheet_UI_Wood_25: 179883802416257407
+      Spritesheet_UI_Wood_26: 6244503973024849947
+      Spritesheet_UI_Wood_27: -5488166114235502444
+      Spritesheet_UI_Wood_28: -2257721122255298557
+      Spritesheet_UI_Wood_29: -1664859109760868848
+      Spritesheet_UI_Wood_3: 1430258300578433439
+      Spritesheet_UI_Wood_30: 6518792725272528791
+      Spritesheet_UI_Wood_31: -3864005316765672965
+      Spritesheet_UI_Wood_32: -1652355378323387224
+      Spritesheet_UI_Wood_33: -6064980128703731149
+      Spritesheet_UI_Wood_34: 8761191158894519461
+      Spritesheet_UI_Wood_35: 181505340528572640
+      Spritesheet_UI_Wood_36: -4534445077163669255
+      Spritesheet_UI_Wood_37: -874391056702222825
+      Spritesheet_UI_Wood_38: 1567882093140957622
+      Spritesheet_UI_Wood_39: 1383837609290083332
+      Spritesheet_UI_Wood_4: 3586010867540135542
+      Spritesheet_UI_Wood_40: 8641125397660537045
+      Spritesheet_UI_Wood_41: -5807008971442518459
+      Spritesheet_UI_Wood_42: -8438553001887487489
+      Spritesheet_UI_Wood_43: 2652230182270022077
+      Spritesheet_UI_Wood_44: 652791063021680457
+      Spritesheet_UI_Wood_45: 8640711075419768484
+      Spritesheet_UI_Wood_46: 1209709699289980728
+      Spritesheet_UI_Wood_47: -3548610788651905282
+      Spritesheet_UI_Wood_48: -5856974832548873230
+      Spritesheet_UI_Wood_49: 853911890178317856
+      Spritesheet_UI_Wood_5: -8361170720548378843
+      Spritesheet_UI_Wood_50: -2156978975253359775
+      Spritesheet_UI_Wood_51: -5111144631586659669
+      Spritesheet_UI_Wood_52: 2475023996422951652
+      Spritesheet_UI_Wood_53: 7720989564187404285
+      Spritesheet_UI_Wood_54: 339977029661616236
+      Spritesheet_UI_Wood_55: 4955768323414390360
+      Spritesheet_UI_Wood_56: 4787506223196276455
+      Spritesheet_UI_Wood_57: -5573289001460419422
+      Spritesheet_UI_Wood_58: 8975905768816486957
+      Spritesheet_UI_Wood_59: 7040127981004622051
+      Spritesheet_UI_Wood_6: -6671972754995389165
+      Spritesheet_UI_Wood_60: -3703904350990006329
+      Spritesheet_UI_Wood_61: -908326414545834684
+      Spritesheet_UI_Wood_62: -2846280093629034139
+      Spritesheet_UI_Wood_63: -7247062630420049174
+      Spritesheet_UI_Wood_64: -7300757730703132044
+      Spritesheet_UI_Wood_65: -8672223857435756189
+      Spritesheet_UI_Wood_7: 5847450421444024522
+      Spritesheet_UI_Wood_8: 6503586777164758490
+      Spritesheet_UI_Wood_9: -1395007472483083330
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

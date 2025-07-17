@@ -14,6 +14,7 @@ public class TowerDefense : MonoBehaviour
 
     // GETTERS
     public TowerData Data => _towerData;
+    public TowerStatConfig StatConfig => _towerStatConfig;
 
     void Awake()
     {

@@ -19,12 +19,13 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (_pauseButton.WasPressedThisFrame()) // !_isDead
+        if (_pauseButton.WasPressedThisFrame())
         {
             TogglePause();
         }
     }
 
+    // TODO: Switch pause to using UI Toolkit Document
     public void TogglePause()
     {
         AudioManager.Instance.PauseMusic();

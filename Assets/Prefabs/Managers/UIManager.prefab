@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5034133077521071069}
-  - component: {fileID: 699117181156822565}
+  - component: {fileID: 8082989182878093447}
+  - component: {fileID: 7510286357049526526}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &699117181156822565
+--- !u!114 &8082989182878093447
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,13 +42,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 618547456199796932}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fb39f5a0f93e4d4782860ac0068d1a9, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a4d2899f90a87542a2f5732c0d2740c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeTextUI: {fileID: 0}
-  _sidePanel: {fileID: 0}
-  _towerDefenses: {fileID: 11400000, guid: 68ce767f03a96d140bdb7f1f845a189a, type: 2}
-  _waterTextUI: {fileID: 0}
-  _sunlightTextUI: {fileID: 0}
-  _levelTextUI: {fileID: 0}
-  _expTextUI: {fileID: 0}
+  _hudDocument: {fileID: 0}
+--- !u!114 &7510286357049526526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618547456199796932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da7cae2c9d623f047b7222d3c32829e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sidePanelDocument: {fileID: 0}
+  _towerTemplate: {fileID: 0}
+  _towerConfig: {fileID: 0}
