@@ -4107,7 +4107,7 @@ PrefabInstance:
     - target: {fileID: 3361721804276012624, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
       propertyPath: _gruntCatalog
       value: 
-      objectReference: {fileID: 11400000, guid: c9281c7affd98474db6574d32b4704e4, type: 2}
+      objectReference: {fileID: 11400000, guid: 82a16bf044692ba4ab6c857d4e634a46, type: 2}
     - target: {fileID: 5158407759947665930, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
       propertyPath: _expTextUI
       value: 
@@ -4140,6 +4140,14 @@ PrefabInstance:
       propertyPath: towerEntryTemplate
       value: 
       objectReference: {fileID: 9197481963319205126, guid: 614462fbf8767564a83af6bb23495d2b, type: 3}
+    - target: {fileID: 5827472107088646269, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: _timeRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5827472107088646269, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: _startHour
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 5827472107088646269, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
       propertyPath: _globalLight
       value: 
