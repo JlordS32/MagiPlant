@@ -63,7 +63,4 @@ public class TowerDefense : MonoBehaviour
             .FirstOrDefault();
     }
 
-    public TowerStatConfig GetTowerStats() {
-    return _towerStatConfig;
-    }
 }
