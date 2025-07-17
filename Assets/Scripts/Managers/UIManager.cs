@@ -111,7 +111,6 @@ using UnityEngine.UIElements;
 //     #endregion
 // }
 
-
 public class UIManager : MonoBehaviour
 {
     [Header("UI Toolkit")]
@@ -121,167 +120,89 @@ public class UIManager : MonoBehaviour
     [Header("Tower Data")]
     [SerializeField] TowerConfig _towerDefenses;
 
-    [Header("Currency UI")]
-    private Label sunLabel;
-    private Label waterLabel;
-
-    [Header("Private Fields")]
     private VisualElement root;
     private VisualElement panel;
     private Button collapseButton;
-    private ListView towerList;
 
     private List<DefenseEntry> _defenseEntries = new();
+
 
     private CurrencyStorage _currencyStorage;
     private BuildManager _buildManager;
 
     void Awake()
     {
-        // Find game object references
         _currencyStorage = FindFirstObjectByType<CurrencyStorage>();
         _buildManager = FindFirstObjectByType<BuildManager>();
     }
 
     void Start()
     {
-        // Cache UI elements from the UIDocument
         root = uiDocument.rootVisualElement;
         panel = root.Q<VisualElement>("Panel");
         collapseButton = root.Q<Button>("CollapseButton");
-        towerList = root.Q<ListView>("TowerList");
 
-        // Currency labels (make sure they're in root, not in panel)
-        sunLabel = root.Q<Label>("SunLabel");
-        waterLabel = root.Q<Label>("WaterLabel");
-
-        // Set up collapse button
-        collapseButton.RegisterCallback<ClickEvent>(OnCollapseClicked);
-        SetupCollapseButtonPosition(isCollapsed: true);
-
-        // Hide panel on start
         panel.style.display = DisplayStyle.None;
+        collapseButton.style.top = new StyleLength(new Length(4, LengthUnit.Percent));
+        collapseButton.style.left = new StyleLength(new Length(2, LengthUnit.Percent));
 
-        // Set up the tower UI
-        PopulateDefenseEntries();
-        SetupListView();
+        collapseButton.RegisterCallback<ClickEvent>(OnCollapseClicked);
+
+        BuildSidebar();
     }
-
-
-    #region SUBSCRIPTIONS
-    void OnEnable()
-    {
-        GameEventsManager.OnCurrencyUpdate += UpdateCurrencyUI;
-        // GameEventsManager.OnLevelUpUpdate += UpdateLevelUI;
-        // GameEventsManager.OnExpGainUpdate += UpdateExpText;
-    }
-
-    void OnDisable()
-    {
-        GameEventsManager.OnCurrencyUpdate -= UpdateCurrencyUI;
-        // GameEventsManager.OnLevelUpUpdate -= UpdateLevelUI;
-        // GameEventsManager.OnExpGainUpdate -= UpdateExpText;
-    }
-    #endregion
-
-    #region EVENT SUBSCRIBERS
-    void UpdateCurrencyUI(CurrencyType type, float value)
-    {
-        string formatted = $"{type}: {NumberFormatter.Format(value)}";
-
-        switch (type)
-        {
-            case CurrencyType.Water:
-                waterLabel.text = formatted;
-                break;
-            case CurrencyType.Sunlight:
-                sunLabel.text = formatted;
-                break;
-            default:
-                Debug.LogWarning($"Unhandled currency type: {type}");
-                break;
-        }
-    }
-    #endregion
 
     void OnCollapseClicked(ClickEvent evt)
     {
-        bool isNowOpen = panel.style.display == DisplayStyle.None;
-        panel.style.display = isNowOpen ? DisplayStyle.Flex : DisplayStyle.None;
-        SetupCollapseButtonPosition(!isNowOpen);
-
-        Debug.Log(isNowOpen ? "Open" : "Close");
-    }
-
-    private void SetupCollapseButtonPosition(bool isCollapsed)
-    {
-        collapseButton.style.top = new StyleLength(new Length(4, LengthUnit.Percent));
-        collapseButton.style.left = new StyleLength(new Length(isCollapsed ? 2 : 18.5f, LengthUnit.Percent));
-    }
-
-    private void PopulateDefenseEntries()
-    {
-        foreach (var defense in _towerDefenses.DefenseEntry)
+        panel.style.display = panel.style.display == DisplayStyle.None ? DisplayStyle.Flex : DisplayStyle.None;
+        if (panel.style.display == DisplayStyle.Flex)
         {
-            defense.UpgradeLogic = () =>
-            {
-                if (_currencyStorage.Spend(CurrencyType.Sunlight, defense.Cost))
-                {
-                    _buildManager.SelectPrefab(defense.DefensePrefab);
-                }
-                else
-                {
-                    Debug.LogWarning($"Not enough sunlight to build {defense.DefensePrefab.name}");
-                }
-            };
+            collapseButton.style.top = new StyleLength(new Length(4, LengthUnit.Percent));
+            collapseButton.style.left = new StyleLength(new Length(18.5f, LengthUnit.Percent));
+            Debug.Log("Open");
+        }
+        else
+        {
+            collapseButton.style.top = new StyleLength(new Length(4, LengthUnit.Percent));
+            collapseButton.style.left = new StyleLength(new Length(2, LengthUnit.Percent));
+            Debug.Log("Close");
 
-            _defenseEntries.Add(defense);
         }
     }
 
-    private void SetupListView()
+    private void BuildSidebar()
     {
-        towerList.makeItem = () => towerEntryTemplate.Instantiate();
-        towerList.bindItem = (element, index) =>
+        foreach (var entry in _towerDefenses.DefenseEntry)
         {
-            var data = _defenseEntries[index];
-            var nameLabel = element.Q<Label>("DefenseName");
-            var thumbnail = element.Q<Image>("Thumbnail");
-            var buildButton = element.Q<Button>("BuildButton");
-            var damageLabel = element.Q<Label>("DMG");
-            var rangeLabel = element.Q<Label>("RNG");
-            var speedLabel = element.Q<Label>("SPD");
+            var entryElement = towerEntryTemplate.Instantiate();
 
-            // Transform triangleTransform = data.DefensePrefab.transform.Find("Sprites/Triangle");
+            var nameLabel = entryElement.Q<Label>("DefenseName");
+            var thumbnail = entryElement.Q<Image>("Thumbnail");
+            var buildButton = entryElement.Q<Button>("BuildButton");
 
-            var towerStats = data.DefensePrefab.GetComponent<TowerDefense>();
-            TowerStatConfig towerData = towerStats.GetTowerStats();
-            
-            // Tower Entry
-            if (data.Thumbnail != null)
+            nameLabel.text = entry.DefenseEntryName;
+            if (entry.Thumbnail != null)
             {
-                // For when have actual tower sprites
-                // SpriteRenderer spriteRenderer = triangleTransform.GetComponent<SpriteRenderer>();
-                // thumbnail.sprite = spriteRenderer.sprite;
-
-                thumbnail.sprite = data.Thumbnail;
+                thumbnail.sprite = entry.Thumbnail;
             }
             else
             {
                 thumbnail.image = null;
             }
-            nameLabel.text = data.DefenseEntryName;
-            damageLabel.text = "DMG: " + towerData.Attack.ToString();
-            rangeLabel.text = "RNG: " + towerData.Range.ToString();
-            speedLabel.text = "SPD: " + towerData.Speed.ToString();
 
+            buildButton.clickable.clicked += () =>
+            {
+                if (_currencyStorage.Spend(CurrencyType.Sunlight, entry.Cost))
+                {
+                    _buildManager.SelectPrefab(entry.DefensePrefab);
+                }
+                else
+                {
+                    Debug.LogWarning($"Not enough sunlight to build {entry.DefensePrefab.name}");
+                }
+            };
 
-            buildButton.text = "Cost " + data.Cost.ToString();
-            buildButton.clickable.clicked +=  data.UpgradeLogic;
-        };
-
-        towerList.itemsSource = _defenseEntries;
-        towerList.selectionType = SelectionType.None;
-        towerList.fixedItemHeight = 100; 
+            panel.Add(entryElement);
+            _defenseEntries.Add(entry);
+        }
     }
 }
