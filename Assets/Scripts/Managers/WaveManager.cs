@@ -14,6 +14,7 @@ public class WaveManager : MonoBehaviour, IPhaseListener
     void OnEnable()
     {
         PhaseService.Register(this);
+        OnPhaseChanged(PhaseService.Current);
     }
 
     void OnDisable()

@@ -51,6 +51,7 @@ public class PlantGrow : MonoBehaviour, IPhaseListener
 
     void Awake()
     {
+        _currentSprite = GetComponentInChildren<SpriteRenderer>().gameObject; // WARNING: Only works if there's one child sprite renderer. We'll have to rework this approach if we want multiple sprites.
         _currencyStorage = FindFirstObjectByType<CurrencyStorage>();
         _player = GetComponent<Player>();
     }
