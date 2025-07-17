@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/USS/SidePanelUSS.uss?fileID=7433441132597879392&amp;guid=cf13a309869984e46a758687838b7066&amp;type=3#SidePanelUSS" />
     <ui:VisualElement name="Panel" class="side-panel">
         <ui:VisualElement name="Title" class="title" style="position: absolute; flex-direction: column; justify-content: center; height: 173px; width: 525px;">
-            <ui:Label text="Buildings" style="height: 79px; width: 502px;" />
+            <ui:Label text="Build" tabindex="-1" style="height: 79px; width: 502px; justify-content: flex-start; align-items: center;" />
         </ui:VisualElement>
         <ui:ListView name="TowerList" class="tower-list" style="height: 1080px; width: 561px;" />
     </ui:VisualElement>
