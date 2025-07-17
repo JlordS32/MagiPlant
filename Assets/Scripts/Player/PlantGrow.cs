@@ -51,13 +51,15 @@ public class PlantGrow : MonoBehaviour, IPhaseListener
 
     void Awake()
     {
+        _currentSprite = GetComponentInChildren<SpriteRenderer>().gameObject; // WARNING: This only assumes that there's only one sprite renderer. We'll have to rework this later if player sprite contains multiple sprites.
         _currencyStorage = FindFirstObjectByType<CurrencyStorage>();
         _player = GetComponent<Player>();
     }
 
     public void OnTest()
     {
-        _player.PlayerData.AddExp(10);
+        _player.PlayerData.AddExp(1000000);
+        Debug.Log("Level: " + _player.PlayerData.Get(PlayerStats.Level) + " : " +_player.PlayerData.Get(PlayerStats.EXP) + " / " + _player.PlayerData.GetRequiredEXP());
         _currencyStorage.Add(CurrencyType.Water, 10);
         // int currLevel = (int)_player.PlayerData.Get(PlayerStats.Level);
     }

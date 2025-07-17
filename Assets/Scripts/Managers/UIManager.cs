@@ -132,8 +132,8 @@ public class UIManager : MonoBehaviour
 
     void Awake()
     {
-        _currencyStorage = FindObjectOfType<CurrencyStorage>();
-        _buildManager = FindObjectOfType<BuildManager>();
+        _currencyStorage = FindFirstObjectByType<CurrencyStorage>();
+        _buildManager = FindFirstObjectByType<BuildManager>();
     }
 
     void Start()
