@@ -1,1 +1,16 @@
-VisualElement {}
+VisualElement {
+}
+
+.text {
+    -unity-font-definition: url("project://database/Assets/Fonts/Toriko.ttf?fileID=12800000&guid=88a4ce45f95f2a444a0bcd7e3eeb3fb7&type=3#Toriko");
+    color: rgb(255, 255, 255);
+    font-size: 50px;
+    margin-top: 15px;
+}
+
+.heading {
+    -unity-font-definition: url("project://database/Assets/Fonts/Toriko.ttf?fileID=12800000&guid=88a4ce45f95f2a444a0bcd7e3eeb3fb7&type=3#Toriko");
+    color: rgb(255, 255, 255);
+    font-size: 80px;
+    margin-top: 15px;
+}
