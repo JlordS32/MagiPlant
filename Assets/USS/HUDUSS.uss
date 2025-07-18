@@ -2,15 +2,16 @@ VisualElement {
 }
 
 .text {
-    -unity-font-definition: url("project://database/Assets/Fonts/Toriko.ttf?fileID=12800000&guid=88a4ce45f95f2a444a0bcd7e3eeb3fb7&type=3#Toriko");
+    -unity-font-definition: url("project://database/Assets/Fonts/Minecraftia-Regular.ttf?fileID=12800000&guid=dd91240ca23e7bc48a7441cd07ef9aa1&type=3#Minecraftia-Regular");
     color: rgb(255, 255, 255);
-    font-size: 50px;
+    font-size: 30px;
     margin-top: 15px;
 }
 
 .heading {
-    -unity-font-definition: url("project://database/Assets/Fonts/Toriko.ttf?fileID=12800000&guid=88a4ce45f95f2a444a0bcd7e3eeb3fb7&type=3#Toriko");
+    -unity-font-definition: url("project://database/Assets/Fonts/Minecraftia-Regular.ttf?fileID=12800000&guid=dd91240ca23e7bc48a7441cd07ef9aa1&type=3#Minecraftia-Regular");
     color: rgb(255, 255, 255);
-    font-size: 80px;
+    font-size: 50px;
     margin-top: 15px;
+    translate: -50% 0;
 }

@@ -5,13 +5,13 @@
             <ui:Image name="Thumbnail" class="thumbnail" />
         </ui:VisualElement>
         <ui:VisualElement class="text-container">
-            <ui:Label name="DefenseName" text="Cannon Tower" class="defense-name" style="height: auto;" />
+            <ui:Label name="DefenseName" text="Cannon Tower" class="defense-name" style="height: auto; font-size: 25px; -unity-font-definition: url(&quot;project://database/Assets/Fonts/Minecraftia-Regular.ttf?fileID=12800000&amp;guid=dd91240ca23e7bc48a7441cd07ef9aa1&amp;type=3#Minecraftia-Regular&quot;);" />
             <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
                 <ui:Label text="Label" name="DMG" style="color: rgb(255, 255, 255);" />
                 <ui:Label text="Label" name="RNG" style="color: rgb(255, 255, 255);" />
                 <ui:Label text="Label" name="SPD" style="color: rgb(255, 255, 255);" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:Button name="BuildButton" text="Build" class="build-button" />
+        <ui:Button name="BuildButton" text="Build" class="build-button" style="-unity-font-definition: url(&quot;project://database/Assets/Fonts/Minecraftia-Regular.ttf?fileID=12800000&amp;guid=dd91240ca23e7bc48a7441cd07ef9aa1&amp;type=3#Minecraftia-Regular&quot;);" />
     </ui:VisualElement>
 </ui:UXML>
