@@ -3,15 +3,15 @@ VisualElement {
 
 .text {
     -unity-font-definition: url("project://database/Assets/Fonts/Minecraftia-Regular.ttf?fileID=12800000&guid=dd91240ca23e7bc48a7441cd07ef9aa1&type=3#Minecraftia-Regular");
-    color: rgb(255, 255, 255);
+    color: rgb(229, 83, 83);
     font-size: 30px;
     margin-top: 15px;
 }
 
-.heading {
+.time {
     -unity-font-definition: url("project://database/Assets/Fonts/Minecraftia-Regular.ttf?fileID=12800000&guid=dd91240ca23e7bc48a7441cd07ef9aa1&type=3#Minecraftia-Regular");
-    color: rgb(255, 255, 255);
-    font-size: 50px;
+    color: rgb(229, 83, 83);
+    font-size: 40px;
     margin-top: 15px;
     translate: -50% 0;
 }

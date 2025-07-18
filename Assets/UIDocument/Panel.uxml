@@ -4,12 +4,12 @@
         <ui:VisualElement name="Title" class="title" style="position: absolute; flex-direction: column; justify-content: center; height: 173px; width: 525px;">
             <ui:Label text="Build" tabindex="-1" style="align-self: center; margin-bottom: 50px;" />
         </ui:VisualElement>
-        <ui:VisualElement name="VisualElement" style="flex-grow: 0; width: 557px; height: 200px; justify-content: center; align-items: flex-end; flex-direction: row; color: rgb(255, 255, 255); -unity-font-style: bold; font-size: 25px; padding-left: 50px; padding-right: 50px;">
-            <ui:Button text="Upgrade" name="UpgradeTab" class="tab-on" style="margin-left: 0; margin-right: 0; width: 160px;" />
-            <ui:Button text="Tower" name="TowerTab" class="tab-on" style="margin-right: 0; margin-left: 0; width: 160px; background-color: rgb(188, 188, 188);" />
+        <ui:VisualElement name="Tabs" style="flex-grow: 0; width: 557px; height: 200px; justify-content: center; align-items: flex-end; flex-direction: row; padding-left: 50px; padding-right: 50px;">
+            <ui:Button text="Upgrade" name="UpgradeTab" class="tab active" style="border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;" />
+            <ui:Button text="Tower" name="TowerTab" class="tab" style="border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;" />
         </ui:VisualElement>
-        <ui:ListView name="TowerList" enabled="true" class="tower-list" style="position: absolute; width: 561px; height: 1080px; padding-top: 220px;" />
-        <ui:ListView name="UpgradeList" class="tower-list" style="height: 1080px; width: 561px; position: absolute; padding-top: 220px;" />
+        <ui:ListView name="UpgradeList" class="tower-list active" />
+        <ui:ListView name="TowerList" enabled="true" class="tower-list" />
     </ui:VisualElement>
     <ui:Button name="CollapseButton" class="collapse-button" style="top: 6px; left: 490px; right: auto; background-image: url(&quot;project://database/Assets/Sprites/UI/03_Wood_Theme/Spritesheet/Spritesheet_UI_Wood.png?fileID=7040127981004622051&amp;guid=ae151afc96ee65144a17f8e909e1d581&amp;type=3#Spritesheet_UI_Wood_59&quot;); height: 110px; width: 111px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;">
         <ui:VisualElement name="Arrow" style="flex-grow: 1; width: 100%; height: 100%; background-image: url(&quot;project://database/Assets/Sprites/UI/03_Wood_Theme/Spritesheet/Spritesheet_UI_Wood.png?fileID=-8652590860285339154&amp;guid=ae151afc96ee65144a17f8e909e1d581&amp;type=3#Spritesheet_UI_Wood_16&quot;); background-size: 80% 80%; background-position-y: top 0;" />
