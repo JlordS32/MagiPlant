@@ -1,18 +1,24 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/USS/HUDUSS.uss?fileID=7433441132597879392&amp;guid=9a01dae04dfc4b44fa0a66de52e8e1cf&amp;type=3#HUDUSS" />
-    <ui:VisualElement name="HUD" style="flex-grow: 1;">
+    <ui:VisualElement name="HUD" style="flex-grow: 1; flex-direction: column; flex-wrap: nowrap; justify-content: flex-start;">
         <ui:VisualElement name="Time" style="flex-grow: 1; position: absolute; top: 2%; left: 50%;">
-            <ui:Label text="00:00" emoji-fallback-support="true" name="TimeLabel" class="heading" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+            <ui:Label text="00:00" emoji-fallback-support="true" name="TimeLabel" class="heading" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; color: rgb(207, 87, 87);" />
         </ui:VisualElement>
         <ui:VisualElement name="Currency" style="flex-grow: 1; position: absolute; top: 2%; right: 1%; align-items: stretch; white-space: normal; flex-direction: row;">
             <ui:VisualElement name="SunCurency" style="flex-grow: 1; margin-right: 58px; align-items: center; justify-content: center; width: 150px;">
                 <ui:VisualElement name="Icon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/ardo_sprite_assets/Zombie%2001.png?fileID=-492648906605594914&amp;guid=da459e62906a05b4fa722355da70a6e3&amp;type=3#Zombie 01_6&quot;); position: relative; width: 80px; height: 80px; top: auto; right: auto;" />
-                <ui:Label text="0" name="SunLabel" selectable="true" class="text" />
+                <ui:Label text="0" name="SunLabel" selectable="true" class="text" style="color: rgb(207, 87, 87);" />
             </ui:VisualElement>
             <ui:VisualElement name="WaterCurrency" style="flex-grow: 1; width: 150px; justify-content: center; align-items: center;">
                 <ui:VisualElement name="Icon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/ardo_sprite_assets/Zombie%2001.png?fileID=1128907280&amp;guid=da459e62906a05b4fa722355da70a6e3&amp;type=3#Zombie 01_38&quot;); position: relative; width: 80px; height: 80px; top: auto; right: auto;" />
-                <ui:Label text="0" name="WaterLabel" double-click-selects-word="false" class="text" />
+                <ui:Label text="0" name="WaterLabel" double-click-selects-word="false" class="text" style="color: rgb(207, 87, 87);" />
             </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="Exp" style="flex-grow: 1; bottom: auto; top: 92%; left: 4%;">
+            <ui:Label text="EXP: 0/10" name="ExpLabel" style="-unity-font-definition: url(&quot;project://database/Assets/Fonts/Toriko.ttf?fileID=12800000&amp;guid=88a4ce45f95f2a444a0bcd7e3eeb3fb7&amp;type=3#Toriko&quot;); font-size: 80px; -unity-text-align: middle-left; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; color: rgb(207, 87, 87); -unity-text-outline-width: 0; -unity-text-outline-color: rgb(0, 0, 0);" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Level" style="flex-grow: 1; bottom: auto; top: 92%; right: 4%; position: absolute;">
+            <ui:Label text="Level: 1" name="LevelLabel" style="font-size: 80px; color: rgb(207, 87, 87); -unity-font-definition: url(&quot;project://database/Assets/Fonts/Toriko.ttf?fileID=12800000&amp;guid=88a4ce45f95f2a444a0bcd7e3eeb3fb7&amp;type=3#Toriko&quot;); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

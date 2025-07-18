@@ -1,8 +1,8 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/USS/SidePanelUSS.uss?fileID=7433441132597879392&amp;guid=cf13a309869984e46a758687838b7066&amp;type=3#SidePanelUSS" />
     <ui:VisualElement name="Panel" class="side-panel">
-        <ui:VisualElement name="Title" class="title" style="position: absolute; flex-direction: column; justify-content: center; height: 173px; width: 525px;">
-            <ui:Label text="Build" tabindex="-1" style="height: 79px; width: 502px; justify-content: flex-start; align-items: center;" />
+        <ui:VisualElement name="Title" class="title" style="position: absolute; flex-direction: column-reverse; justify-content: center; height: 173px; width: 525px; align-items: center; font-size: 80px;">
+            <ui:Label text="Build" tabindex="-1" enable-rich-text="true" emoji-fallback-support="true" selectable="true" double-click-selects-word="true" triple-click-selects-line="true" display-tooltip-when-elided="true" style="height: auto; width: auto; justify-content: flex-start; align-items: center; -unity-font-style: normal; font-size: 80px; -unity-text-align: middle-center; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; position: relative; flex-shrink: 1; -unity-font-definition: url(&quot;project://database/Assets/Fonts/Toriko.ttf?fileID=12800000&amp;guid=88a4ce45f95f2a444a0bcd7e3eeb3fb7&amp;type=3#Toriko&quot;); color: rgb(207, 87, 87);" />
         </ui:VisualElement>
         <ui:ListView name="TowerList" class="tower-list" style="height: 1080px; width: 561px;" />
     </ui:VisualElement>
