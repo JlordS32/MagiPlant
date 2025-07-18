@@ -17,3 +17,16 @@
     font-size: 42px;
     color: rgb(255, 255, 255);
 }
+
+.panel {
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out-back;
+}
+
+.panel.hidden {
+    translate: 0% 150%;
+}
+
+.panel.active {
+    translate: 0% 0%;
+}

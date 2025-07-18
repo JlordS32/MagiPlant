@@ -7,6 +7,7 @@ public class ObjectUIController : MonoBehaviour
 
     [SerializeField] UIDocument _uiDocument;
     VisualElement _panel;
+    Label _objectNameLabel;
 
     void Awake()
     {
@@ -25,17 +26,66 @@ public class ObjectUIController : MonoBehaviour
             return;
         }
 
-        _panel.style.display = DisplayStyle.None;
+        _panel.AddToClassList("hidden");
+        _panel.RemoveFromClassList("active");
     }
 
-    public void Show()
+    void Start()
     {
-        _panel.style.display = DisplayStyle.Flex;
+        var root = _uiDocument.rootVisualElement;
+        _objectNameLabel = root.Q<Label>("ObjectName");
+    }
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (!ClickedOnPlacedObject())
+            {
+                Hide();
+            }
+        }
+    }
+
+    public void Show(BuildingEntry entry)
+    {
+        if (_objectNameLabel != null)
+            _objectNameLabel.text = entry.BuildEntryName;
+
+        if (_panel != null && _panel.ClassListContains("hidden"))
+        {
+            _panel.RemoveFromClassList("hidden");
+            _panel.AddToClassList("active");
+        }
     }
 
     public void Hide()
     {
-        _panel.style.display = DisplayStyle.None;
+        _panel.RemoveFromClassList("active");
+        _panel.AddToClassList("hidden");
+    }
+
+    bool ClickedOnPlacedObject()
+    {
+        Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Collider2D hit = Physics2D.OverlapPoint(worldPoint);
+
+        if (hit != null)
+        {
+            if (hit.TryGetComponent<PlacedObject>(out var placedObject))
+            {
+                Debug.Log("clicking placed object");
+                Show(placedObject.Entry);
+                return true;
+            }
+
+            // Clicked something else (like a tile) → treat as invalid
+            Debug.Log("hit something that's not a PlacedObject");
+            return false;
+        }
+
+        // Nothing hit at all
+        return false;
     }
 
 }

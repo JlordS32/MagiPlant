@@ -111,7 +111,7 @@ public class BuildManager : MonoBehaviour, IPhaseListener
 
             // Instantiate
             GameObject obj = Instantiate(_selectedPrefab, worldPos, Quaternion.identity, _parentObject);
-            obj.AddComponent<PlacedObject>().TileId = id;
+            obj.AddComponent<PlacedObject>().Init(_entry, id);
             _selectedPrefab = null;
             _input.Disable();
             Destroy(_previewPrefab);
