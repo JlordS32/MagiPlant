@@ -20,8 +20,8 @@ public class SidePanelController : MonoBehaviour
     Button _collapseButton;
     ListView _towerList;
     ListView _upgradeList;
-    Button _towerButton;
-    Button _upgradeButton;
+    Button _towerTab;
+    Button _upgradeTab;
 
     bool _isVisible = false;
 
@@ -46,16 +46,18 @@ public class SidePanelController : MonoBehaviour
     {
         var root = _sidePanelDocument.rootVisualElement;
 
+        // Initialize UI elements
         _panel = root.Q<VisualElement>("Panel");
         _collapseButton = root.Q<Button>("CollapseButton");
         _towerList = root.Q<ListView>("TowerList");
         _upgradeList = root.Q<ListView>("UpgradeList");
-        _towerButton = root.Q<Button>("TowerTab");
-        _upgradeButton = root.Q<Button>("UpgradeTab");
+        _towerTab = root.Q<Button>("TowerTab");
+        _upgradeTab = root.Q<Button>("UpgradeTab");
 
+        // Register callbacks to the buttons
         _collapseButton.RegisterCallback<ClickEvent>(CollapseButtonClicked);
-        _towerButton.RegisterCallback<ClickEvent>(OnTowerButtonClicked);
-        _upgradeButton.RegisterCallback<ClickEvent>(OnUpgradeButtonClicked);
+        _towerTab.RegisterCallback<ClickEvent>(OnTowerButtonClicked);
+        _upgradeTab.RegisterCallback<ClickEvent>(OnUpgradeButtonClicked);
 
         _panel.AddToClassList("hidden");
 
@@ -68,12 +70,6 @@ public class SidePanelController : MonoBehaviour
         // Setup UI lists
         _towerController.Setup();
         _upgradeController.Setup();
-
-        _upgradeList.RemoveFromClassList("hidden");
-        _towerList.AddToClassList("hidden");
-
-        _upgradeButton.AddToClassList("tab-on");
-        _towerButton.RemoveFromClassList("tab-on");
         SetupCollapseButtonPosition(true); // Initially collapsed
     }
 
@@ -85,18 +81,18 @@ public class SidePanelController : MonoBehaviour
 
     void OnTowerButtonClicked(ClickEvent evt)
     {
-        _upgradeList.AddToClassList("hidden");
-        _towerList.RemoveFromClassList("hidden");
-        _upgradeButton.AddToClassList("tab-on");
-        _towerButton.RemoveFromClassList("tab-on");
+        _towerTab.AddToClassList("active");
+        _upgradeTab.RemoveFromClassList("active");
+        _towerList.AddToClassList("active");
+        _upgradeList.RemoveFromClassList("active");
     }
 
     void OnUpgradeButtonClicked(ClickEvent evt)
     {
-        _towerList.AddToClassList("hidden");
-        _upgradeList.RemoveFromClassList("hidden");
-        _towerButton.AddToClassList("tab-on");
-        _upgradeButton.RemoveFromClassList("tab-on");
+        _towerTab.RemoveFromClassList("active");
+        _upgradeTab.AddToClassList("active");
+        _upgradeList.AddToClassList("active");
+        _towerList.RemoveFromClassList("active");
     }
 
     void BuildModeChanged(BuildingEntry entry, bool isBuilding)
@@ -106,17 +102,8 @@ public class SidePanelController : MonoBehaviour
 
     public void TogglePanel(bool isVisible)
     {
-        if (isVisible)
-        {
-            _panel.RemoveFromClassList("hidden");
-            _panel.AddToClassList("visible");
-        }
-        else
-        {
-            _panel.RemoveFromClassList("visible");
-            _panel.AddToClassList("hidden");
-        }
-
+        _panel.EnableInClassList("visible", isVisible);
+        _panel.EnableInClassList("hidden", !isVisible);
         SetupCollapseButtonPosition(!isVisible);
     }
 

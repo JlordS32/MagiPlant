@@ -36,14 +36,6 @@
     background-image: url("project://database/Assets/Sprites/UI/03_Wood_Theme/Spritesheet/Spritesheet_UI_Wood.png?fileID=-8652590860285339154&guid=ae151afc96ee65144a17f8e909e1d581&type=3#Spritesheet_UI_Wood_16");
 }
 
-.tower-list {
-    box-sizing: border-box;
-    overflow-y: auto;
-    padding-top: 170px;
-    padding-right: 30px;
-    padding-left: 30px;
-}
-
 .title {
     background-image: url("project://database/Assets/Sprites/UI/02_Paper_Theme/Spritesheets/Spritesheet_UI_Paper.png?fileID=-6345142834379741429&guid=85092d4b12e8fca49a0d7fd4fe5a6623&type=3#Spritesheet_UI_Paper_4");
     background-size: 100% 20%;
@@ -54,7 +46,7 @@
     background-position-y: top 0;
     background-position-x: left 0;
     width: 100%;
-    font-size: 50px;
+    font-size: 40px;
     -unity-font-definition: url("project://database/Assets/Fonts/Minecraftia-Regular.ttf?fileID=12800000&guid=dd91240ca23e7bc48a7441cd07ef9aa1&type=3#Minecraftia-Regular");
     color: rgb(255, 255, 255);
     -unity-text-align: upper-center;
@@ -73,10 +65,33 @@
     translate: 0% 0;
 }
 
-.hidden {
-    display: none;
+.tab.active {
+    background-color: rgba(0, 0, 0, 0);
+    -unity-background-image-tint-color: rgb(229, 83, 83);
 }
 
-.tab-on {
-    background-color: rgb(229, 83, 83);
+.tab {
+    width: 180px;
+    -unity-font-definition: url("project://database/Assets/Fonts/Minecraftia-Regular.ttf?fileID=12800000&guid=dd91240ca23e7bc48a7441cd07ef9aa1&type=3#Minecraftia-Regular");
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    background-image: url("project://database/Assets/Sprites/UI/02_Paper_Theme/Spritesheets/Spritesheet_UI_Paper.png?fileID=-6020079837213887083&guid=85092d4b12e8fca49a0d7fd4fe5a6623&type=3#Spritesheet_UI_Paper_20");
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.tower-list {
+    box-sizing: border-box;
+    overflow-y: auto;
+    padding-top: 220px;
+    padding-right: 30px;
+    padding-left: 30px;
+    opacity: 1;
+    position: absolute;
+    width: 560px;
+    height: 1080%;
+    visibility: hidden;
+}
+
+.tower-list.active {
+    visibility: visible;
 }
