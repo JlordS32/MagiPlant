@@ -7,20 +7,30 @@
     background-image: url("project://database/Assets/Sprites/UI/03_Wood_Theme/Spritesheet/Spritesheet_UI_Wood.png?fileID=7040127981004622051&guid=ae151afc96ee65144a17f8e909e1d581&type=3#Spritesheet_UI_Wood_59");
     -unity-background-image-tint-color: rgb(255, 255, 255);
     background-color: rgba(255, 255, 255, 0);
-    -unity-font-definition: url("project://database/Assets/Fonts/Toriko.ttf?fileID=12800000&guid=88a4ce45f95f2a444a0bcd7e3eeb3fb7&type=3#Toriko");
-    font-size: 45px;
+    -unity-font-definition: url("project://database/Assets/Fonts/Minecraftia-Regular.ttf?fileID=12800000&guid=dd91240ca23e7bc48a7441cd07ef9aa1&type=3#Minecraftia-Regular");
+    font-size: 20px;
     color: rgb(255, 255, 255);
     text-shadow: 2px 2px 0 rgb(0, 0, 0);
 }
 
 .objectName {
-    font-size: 42px;
+    font-size: 40px;
     color: rgb(255, 255, 255);
+    -unity-text-align: upper-center;
+    -unity-font-definition: url("project://database/Assets/Fonts/Minecraftia-Regular.ttf?fileID=12800000&guid=dd91240ca23e7bc48a7441cd07ef9aa1&type=3#Minecraftia-Regular");
+    margin-bottom: 35px;
+    padding-bottom: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-left: 0;
 }
 
 .panel {
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out-back;
+    position: absolute;
+    bottom: 5%;
+    width: 100%;
 }
 
 .panel.hidden {
@@ -29,4 +39,9 @@
 
 .panel.active {
     translate: 0% 0%;
+}
+
+.objectBtn:active {
+    transition-duration: 0.3s;
+    scale: 0.9 0.9;
 }

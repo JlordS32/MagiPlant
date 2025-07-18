@@ -54,16 +54,10 @@
     background-position-y: top 0;
     background-position-x: left 0;
     width: 100%;
-    font-size: 80px;
-    -unity-font-definition: url("project://database/Assets/Fonts/Toriko.ttf?fileID=12800000&guid=88a4ce45f95f2a444a0bcd7e3eeb3fb7&type=3#Toriko");
+    font-size: 50px;
+    -unity-font-definition: url("project://database/Assets/Fonts/Minecraftia-Regular.ttf?fileID=12800000&guid=dd91240ca23e7bc48a7441cd07ef9aa1&type=3#Minecraftia-Regular");
     color: rgb(255, 255, 255);
     -unity-text-align: upper-center;
-}
-
-.collapse-button:hover {
-    transition-duration: 0.3s;
-    scale: 1.1 1.1;
-    -unity-text-outline-color: rgb(248, 32, 32);
 }
 
 .collapse-button:active {

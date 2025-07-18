@@ -32,6 +32,7 @@
     display: flex;
     align-items: center;
     padding-left: 2px;
+    -unity-font-definition: url("project://database/Assets/Fonts/Minecraft.ttf?fileID=12800000&guid=508eeda9893d97b458fe57cdc28b5a44&type=3#Minecraft");
 }
 
 .defense-name {

@@ -40,6 +40,10 @@ public class ObjectUIController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            Vector2 mousePos = Input.mousePosition;
+            if (IsPointerOverUI(mousePos))
+                return;
+
             if (!ClickedOnPlacedObject())
             {
                 Hide();
@@ -65,6 +69,20 @@ public class ObjectUIController : MonoBehaviour
         _panel.AddToClassList("hidden");
     }
 
+    bool IsPointerOverUI(Vector2 screenPosition)
+    {
+        var panel = _uiDocument.rootVisualElement?.panel;
+        if (panel == null) return false;
+
+        // Flip Y because UI Toolkit uses bottom-left origin
+        screenPosition.y = Screen.height - screenPosition.y;
+        var picked = panel.Pick(screenPosition);
+
+        // If any element besides the root is picked, it's a UI element
+        return picked != null && picked != _uiDocument.rootVisualElement;
+    }
+
+
     bool ClickedOnPlacedObject()
     {
         Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -72,15 +90,14 @@ public class ObjectUIController : MonoBehaviour
 
         if (hit != null)
         {
+            // Check if the hit object is a PlacedObject
             if (hit.TryGetComponent<PlacedObject>(out var placedObject))
             {
-                Debug.Log("clicking placed object");
                 Show(placedObject.Entry);
                 return true;
             }
 
-            // Clicked something else (like a tile) → treat as invalid
-            Debug.Log("hit something that's not a PlacedObject");
+            // If it's not a PlacedObject, we hide the UI
             return false;
         }
 
