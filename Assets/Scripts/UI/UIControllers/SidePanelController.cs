@@ -8,7 +8,7 @@ public class SidePanelController : MonoBehaviour
 
     [SerializeField] UIDocument _sidePanelDocument;
     [SerializeField] VisualTreeAsset _towerUITemplate;
-    [SerializeField] TowerConfig _towerConfig;
+    [SerializeField] BuildingConfigEntry _buildingConfigEntry;
 
     VisualElement _panel;
     Button _collapseButton;
@@ -87,9 +87,9 @@ public class SidePanelController : MonoBehaviour
 
     void SetupEntries()
     {
-        foreach (var d in _towerConfig.DefenseEntry)
+        foreach (var d in _buildingConfigEntry.BuildingEntries)
         {
-            d.UpgradeLogic = () =>
+            d.BuildingLogic = () =>
             {
                 if (CurrencyStorage.Instance.Spend(CurrencyType.Sunlight, d.Cost))
                 {
@@ -118,7 +118,7 @@ public class SidePanelController : MonoBehaviour
             element.Q<Label>("RNG").text = "RNG: " + config.GetValue(TowerStats.Range);
             element.Q<Label>("SPD").text = "SPD: " + config.GetValue(TowerStats.Speed);
             element.Q<Button>("BuildButton").text = $"Cost {data.Cost}";
-            element.Q<Button>("BuildButton").clickable.clicked += data.UpgradeLogic;
+            element.Q<Button>("BuildButton").clickable.clicked += data.BuildingLogic;
         };
         _towerList.itemsSource = _entries;
         _towerList.selectionType = SelectionType.None;

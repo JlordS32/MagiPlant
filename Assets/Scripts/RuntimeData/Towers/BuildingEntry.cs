@@ -6,12 +6,11 @@ public class BuildingEntry
 {
     public string BuildEntryName;
     public BuildCategory Category;
-
     public GameObject Prefab;
     public Sprite Thumbnail;
     public float Cost;
 
-    [NonSerialized] public Action UpgradeLogic;
+    [NonSerialized] public Action BuildingLogic;
 
 #if UNITY_EDITOR
     void OnValidate()
