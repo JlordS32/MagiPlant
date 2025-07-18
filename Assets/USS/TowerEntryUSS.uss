@@ -7,7 +7,7 @@
     margin-bottom: 6px;
     background-color: rgb(43, 43, 43);
     box-sizing: border-box;
-    -unity-background-image-tint-color: rgb(255, 255, 255);
+    /* -unity-background-image-tint-color: rgb(255, 255, 255); */
 }
 
 .sprite-background {
@@ -45,4 +45,8 @@
     width: 70px;
     height: 70px;
     align-self: center;
+}
+
+.tab-on {
+    background-color: rgb(229, 83, 83);
 }

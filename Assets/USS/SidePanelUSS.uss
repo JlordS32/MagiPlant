@@ -72,3 +72,11 @@
 .side-panel.active {
     translate: 0% 0;
 }
+
+.hidden {
+    display: none;
+}
+
+.tab-on {
+    background-color: rgb(229, 83, 83);
+}
