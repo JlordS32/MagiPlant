@@ -12,6 +12,7 @@ public class SidePanelController : MonoBehaviour
     Button _collapseButton;
     ListView _towerList;
     List<DefenseEntry> _entries = new();
+    bool _isVisible = false;
 
     void Start()
     {
@@ -21,19 +22,35 @@ public class SidePanelController : MonoBehaviour
         _towerList = root.Q<ListView>("TowerList");
 
         _collapseButton.RegisterCallback<ClickEvent>(TogglePanel);
-        _panel.style.display = DisplayStyle.None;
-        bool isVisible = _panel.style.display == DisplayStyle.None;
+
+        _panel.AddToClassList("hidden");
+        _isVisible = false;
 
         SetupEntries();
         SetupListView();
-        SetupCollapseButtonPosition(isVisible);
+        SetupCollapseButtonPosition(true); // Initially collapsed
+
     }
 
     void TogglePanel(ClickEvent evt)
     {
-        bool isVisible = _panel.style.display == DisplayStyle.None;
-        _panel.style.display = isVisible ? DisplayStyle.Flex : DisplayStyle.None;
-        SetupCollapseButtonPosition(!isVisible);
+        _isVisible = !_isVisible;
+
+        if (_isVisible)
+        {
+            _panel.RemoveFromClassList("hidden");
+            _panel.AddToClassList("visible");
+            Debug.Log("Added 'visible' class, removed 'hidden'");
+        }
+        else
+        {
+            _panel.RemoveFromClassList("visible");
+            _panel.AddToClassList("hidden");
+            Debug.Log("Added 'hidden' class, removed 'visible'");
+
+        }
+
+        SetupCollapseButtonPosition(!_isVisible);
     }
 
     void SetupCollapseButtonPosition(bool isCollapsed)

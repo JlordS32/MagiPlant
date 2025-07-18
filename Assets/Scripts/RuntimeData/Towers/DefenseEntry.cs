@@ -16,7 +16,7 @@ public class DefenseEntry
     {
         if (DefensePrefab &&
             DefensePrefab.GetComponent<TowerDefense>() == null)
-        {
+        { 
             Debug.LogWarning($"{DefensePrefab.name} isn’t a defence prefab", DefensePrefab);
             DefensePrefab = null;      // optional: auto-clear
         }
