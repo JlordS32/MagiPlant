@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "SO/Tower/Tower Defense List")]
-public class TowerConfig : ScriptableObject
+public class BuildingConfigEntry : ScriptableObject
 {
-    public DefenseEntry[] DefenseEntry;
+    public BuildingEntry[] BuildingEntries;
 }

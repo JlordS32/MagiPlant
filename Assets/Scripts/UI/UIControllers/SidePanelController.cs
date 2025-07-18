@@ -4,15 +4,32 @@ using UnityEngine.UIElements;
 
 public class SidePanelController : MonoBehaviour
 {
+    public static SidePanelController Instance { get; private set; }
+
     [SerializeField] UIDocument _sidePanelDocument;
     [SerializeField] VisualTreeAsset _towerUITemplate;
-    [SerializeField] TowerConfig _towerConfig;
+    [SerializeField] BuildingConfigEntry _buildingConfigEntry;
 
     VisualElement _panel;
     Button _collapseButton;
     ListView _towerList;
-    List<DefenseEntry> _entries = new();
+    List<BuildingEntry> _entries = new();
     bool _isVisible = false;
+
+
+    void OnEnable() => GameEventsManager.OnBuildMode += BuildModeChanged;
+    void OnDisable() => GameEventsManager.OnBuildMode -= BuildModeChanged;
+
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogWarning("Multiple instances of SidePanelController detected. Destroying the new instance.");
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
 
     void Start()
     {
@@ -21,7 +38,7 @@ public class SidePanelController : MonoBehaviour
         _collapseButton = root.Q<Button>("CollapseButton");
         _towerList = root.Q<ListView>("TowerList");
 
-        _collapseButton.RegisterCallback<ClickEvent>(TogglePanel);
+        _collapseButton.RegisterCallback<ClickEvent>(CollapseButtonClicked);
 
         _panel.AddToClassList("hidden");
         _isVisible = false;
@@ -32,11 +49,20 @@ public class SidePanelController : MonoBehaviour
 
     }
 
-    void TogglePanel(ClickEvent evt)
+    void CollapseButtonClicked(ClickEvent evt)
     {
         _isVisible = !_isVisible;
+        TogglePanel(_isVisible);
+    }
 
-        if (_isVisible)
+    void BuildModeChanged(BuildingEntry entry, bool isBuilding)
+    {
+        TogglePanel(!isBuilding);
+    }
+
+    public void TogglePanel(bool isVisible)
+    {
+        if (isVisible)
         {
             _panel.RemoveFromClassList("hidden");
             _panel.AddToClassList("visible");
@@ -50,7 +76,7 @@ public class SidePanelController : MonoBehaviour
 
         }
 
-        SetupCollapseButtonPosition(!_isVisible);
+        SetupCollapseButtonPosition(!isVisible);
     }
 
     void SetupCollapseButtonPosition(bool isCollapsed)
@@ -61,35 +87,38 @@ public class SidePanelController : MonoBehaviour
 
     void SetupEntries()
     {
-        foreach (var d in _towerConfig.DefenseEntry)
+        foreach (var d in _buildingConfigEntry.BuildingEntries)
         {
-            d.UpgradeLogic = () =>
+            d.BuildingLogic = () =>
             {
                 if (CurrencyStorage.Instance.Spend(CurrencyType.Sunlight, d.Cost))
-                    BuildManager.Instance.SelectPrefab(d.DefensePrefab);
+                {
+                    BuildManager.Instance.SelectPrefab(d);
+                }
                 else
-                    Debug.LogWarning($"Not enough sunlight for {d.DefensePrefab.name}");
+                    Debug.LogWarning($"Not enough sunlight for {d.Prefab.name}");
             };
             _entries.Add(d);
         }
     }
 
+    // TODO: Dowee, using strings is very prone error. we'll have to use Unity Localization for this.
     void SetupListView()
     {
         _towerList.makeItem = () => _towerUITemplate.Instantiate();
         _towerList.bindItem = (element, index) =>
         {
             var data = _entries[index];
-            var config = data.DefensePrefab.GetComponent<TowerDefense>().StatConfig;
+            var config = data.Prefab.GetComponent<TowerDefense>().StatConfig;
             if (config == null) return;
 
-            element.Q<Label>("DefenseName").text = data.DefenseEntryName;
+            element.Q<Label>("DefenseName").text = data.BuildEntryName;
             element.Q<Image>("Thumbnail").sprite = data.Thumbnail;
             element.Q<Label>("DMG").text = "DMG: " + config.GetValue(TowerStats.Attack);
             element.Q<Label>("RNG").text = "RNG: " + config.GetValue(TowerStats.Range);
             element.Q<Label>("SPD").text = "SPD: " + config.GetValue(TowerStats.Speed);
             element.Q<Button>("BuildButton").text = $"Cost {data.Cost}";
-            element.Q<Button>("BuildButton").clickable.clicked += data.UpgradeLogic;
+            element.Q<Button>("BuildButton").clickable.clicked += data.BuildingLogic;
         };
         _towerList.itemsSource = _entries;
         _towerList.selectionType = SelectionType.None;

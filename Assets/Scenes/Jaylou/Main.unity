@@ -3815,6 +3815,10 @@ PrefabInstance:
       propertyPath: _sidePanelDocument
       value: 
       objectReference: {fileID: 494637967}
+    - target: {fileID: 2746208957588788433, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: _buildingConfigEntry
+      value: 
+      objectReference: {fileID: 11400000, guid: 68ce767f03a96d140bdb7f1f845a189a, type: 2}
     - target: {fileID: 4470121764532456616, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
       propertyPath: _hudDocument
       value: 

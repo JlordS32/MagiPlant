@@ -22,6 +22,7 @@ public class BuildManager : MonoBehaviour, IPhaseListener
     // REFERENCES
     GameObject _selectedPrefab;
     GameObject _previewPrefab;
+    BuildingEntry _entry;
 
     // VARIABLES
     bool _canBuild = true;
@@ -75,19 +76,18 @@ public class BuildManager : MonoBehaviour, IPhaseListener
         Vector3 worldPos = TileManager.Instance.Map.GetCellCenterWorld(tilePos);
 
         // Offset handling
-        Vector2 objectSize = _selectedPrefab.GetComponentInChildren<SpriteRenderer>().bounds.size;
-        Vector2 cellSize = TileManager.Instance.Map.cellSize;
-        int tilesX = Mathf.CeilToInt(objectSize.x / cellSize.x);
-        int tilesY = Mathf.CeilToInt(objectSize.y / cellSize.y);
-        worldPos += new Vector3(Mathf.FloorToInt(tilesX / 2f), Mathf.FloorToInt(tilesY / 2f), 0);
+        var buildable = _selectedPrefab.GetComponent<IBuildable>();
+        Vector2Int footprint = buildable.GetFootprint();
+
+        worldPos += new Vector3(Mathf.FloorToInt(footprint.x / 2f), Mathf.FloorToInt(footprint.y / 2f), 0);
 
         // Slightly offset by 0.5f if tilesize is evenxeven to center.
-        if (tilesX % 2 == 0 || tilesY % 2 == 0)
+        if (footprint.x % 2 == 0 || footprint.y % 2 == 0)
             worldPos -= new Vector3(0.5f, 0.5f, 0);
 
         // Checkers
-        bool isValid = TileManager.Instance.IsAreaValid(tilesX, tilesY, worldPos, TileWeight.Placeable);
-        bool isWithinBounds = TileManager.Instance.IsAreaWithinBounds(tilesX, tilesY, worldPos);
+        bool isValid = TileManager.Instance.IsAreaValid(footprint.x, footprint.y, worldPos, TileWeight.Placeable);
+        bool isWithinBounds = TileManager.Instance.IsAreaWithinBounds(footprint.x, footprint.y, worldPos);
 
         if (_previewPrefab == null)
         {
@@ -104,8 +104,10 @@ public class BuildManager : MonoBehaviour, IPhaseListener
 
         if (_input.WasReleasedThisFrame() && isValid && isWithinBounds)
         {
+            GameEventsManager.RaiseBuildMode(_entry, false);
+
             // Update tile value
-            int id = TileManager.Instance.SetOccupiedArea(worldPos, tilesX, tilesY, TileWeight.Blocked);
+            int id = TileManager.Instance.SetOccupiedArea(worldPos, footprint.x, footprint.y, TileWeight.Blocked);
 
             // Instantiate
             GameObject obj = Instantiate(_selectedPrefab, worldPos, Quaternion.identity, _parentObject);
@@ -117,9 +119,11 @@ public class BuildManager : MonoBehaviour, IPhaseListener
     }
 
     // Function called on GUI
-    public void SelectPrefab(GameObject prefab)
+    public void SelectPrefab(BuildingEntry entry)
     {
-        _selectedPrefab = prefab;
+        GameEventsManager.RaiseBuildMode(_entry, true);
+        _entry = entry;
+        _selectedPrefab = entry.Prefab;
         _input.Enable();
     }
 
