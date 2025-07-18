@@ -28,6 +28,9 @@ public static class GameEventsManager
 
     // Generate Rate 
     public static event Action<CurrencyType, float, int> OnGenerateRateUpdated;
+
+    // Build Manager
+    public static event Action<BuildingEntry, bool> OnBuildMode;
     #endregion
 
     #region TRIGGERS
@@ -70,9 +73,13 @@ public static class GameEventsManager
     // Click Rate 
     public static void RaiseClickRateUpdated(CurrencyType type, float rate, int level)
         => OnClickRateUpdated?.Invoke(type, rate, level);
-        
+
     // Generate Rate
     public static void RaiseGenerateRateUpdated(CurrencyType type, float rate, int level)
         => OnGenerateRateUpdated?.Invoke(type, rate, level);
+
+    // Build Manager
+    public static void RaiseBuildMode(BuildingEntry entry, bool isBuilding)
+        => OnBuildMode?.Invoke(entry, isBuilding);
     #endregion
 }

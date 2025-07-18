@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TowerDefense : MonoBehaviour
+public class TowerDefense : MonoBehaviour, IBuildable
 {
     [SerializeField] TowerStatConfig _towerStatConfig;
 
@@ -36,5 +36,14 @@ public class TowerDefense : MonoBehaviour
         // transform.rotation = Quaternion.AngleAxis(angle - forwardAngle, Vector3.forward);
 
         _towerAttack.Shoot(dir);
+    }
+
+    public Vector2Int GetFootprint()
+    {
+        var bounds = GetComponentInChildren<SpriteRenderer>().bounds.size;
+        var cellSize = TileManager.Instance.Map.cellSize;
+        return new Vector2Int(
+            Mathf.CeilToInt(bounds.x / cellSize.x),
+            Mathf.CeilToInt(bounds.y / cellSize.y));
     }
 }

@@ -2,10 +2,12 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class DefenseEntry
+public class BuildingEntry
 {
-    public string DefenseEntryName;
-    public GameObject DefensePrefab;
+    public string BuildEntryName;
+    public BuildCategory Category;
+
+    public GameObject Prefab;
     public Sprite Thumbnail;
     public float Cost;
 
@@ -14,11 +16,10 @@ public class DefenseEntry
 #if UNITY_EDITOR
     void OnValidate()
     {
-        if (DefensePrefab &&
-            DefensePrefab.GetComponent<TowerDefense>() == null)
-        { 
-            Debug.LogWarning($"{DefensePrefab.name} isn’t a defence prefab", DefensePrefab);
-            DefensePrefab = null;      // optional: auto-clear
+        if (Prefab && Prefab.GetComponent<IBuildable>() == null)
+        {
+            Debug.LogWarning($"{Prefab.name} isn’t a defence prefab", Prefab);
+            Prefab = null;      // optional: auto-clear
         }
     }
 #endif

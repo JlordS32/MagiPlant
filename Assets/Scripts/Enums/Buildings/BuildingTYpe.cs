@@ -1,0 +1,1 @@
+public enum BuildCategory { Tower, Farm, Wall, Trap }
