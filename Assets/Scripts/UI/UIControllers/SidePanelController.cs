@@ -6,16 +6,27 @@ public class SidePanelController : MonoBehaviour
 {
     public static SidePanelController Instance { get; private set; }
 
+    [Header("UI Assets")]
     [SerializeField] UIDocument _sidePanelDocument;
     [SerializeField] VisualTreeAsset _towerUITemplate;
-    [SerializeField] BuildingConfigEntry _buildingConfigEntry;
+    [SerializeField] VisualTreeAsset _upgradeUITemplate;
 
+    [Header("Config Data")]
+    [SerializeField] BuildingConfigEntry _buildingConfigEntry;
+    [SerializeField] List<UpgradeEntry> _upgradeEntries = new();
+
+    // UI Elements
     VisualElement _panel;
     Button _collapseButton;
     ListView _towerList;
-    List<BuildingEntry> _entries = new();
+    ListView _upgradeList;
+    Button _towerButton;
+    Button _upgradeButton;
+
     bool _isVisible = false;
 
+    TowerListController _towerController;
+    UpgradeListController _upgradeController;
 
     void OnEnable() => GameEventsManager.OnBuildMode += BuildModeChanged;
     void OnDisable() => GameEventsManager.OnBuildMode -= BuildModeChanged;
@@ -34,25 +45,58 @@ public class SidePanelController : MonoBehaviour
     void Start()
     {
         var root = _sidePanelDocument.rootVisualElement;
+
         _panel = root.Q<VisualElement>("Panel");
         _collapseButton = root.Q<Button>("CollapseButton");
         _towerList = root.Q<ListView>("TowerList");
+        _upgradeList = root.Q<ListView>("UpgradeList");
+        _towerButton = root.Q<Button>("TowerTab");
+        _upgradeButton = root.Q<Button>("UpgradeTab");
 
         _collapseButton.RegisterCallback<ClickEvent>(CollapseButtonClicked);
+        _towerButton.RegisterCallback<ClickEvent>(OnTowerButtonClicked);
+        _upgradeButton.RegisterCallback<ClickEvent>(OnUpgradeButtonClicked);
 
         _panel.AddToClassList("hidden");
+
         _isVisible = false;
 
-        SetupEntries();
-        SetupListView();
-        SetupCollapseButtonPosition(true); // Initially collapsed
+        // Initialize sub-controllers with dependencies
+        _towerController = new TowerListController(_towerList, _towerUITemplate, _buildingConfigEntry);
+        _upgradeController = new UpgradeListController(_upgradeList, _upgradeUITemplate, _upgradeEntries);
 
+        // Setup UI lists
+        _towerController.Setup();
+        _upgradeController.Setup();
+
+        _upgradeList.RemoveFromClassList("hidden");
+        _towerList.AddToClassList("hidden");
+
+        _upgradeButton.AddToClassList("tab-on");
+        _towerButton.RemoveFromClassList("tab-on");
+        SetupCollapseButtonPosition(true); // Initially collapsed
     }
 
     void CollapseButtonClicked(ClickEvent evt)
     {
         _isVisible = !_isVisible;
         TogglePanel(_isVisible);
+    }
+
+    void OnTowerButtonClicked(ClickEvent evt)
+    {
+        _upgradeList.AddToClassList("hidden");
+        _towerList.RemoveFromClassList("hidden");
+        _upgradeButton.AddToClassList("tab-on");
+        _towerButton.RemoveFromClassList("tab-on");
+    }
+
+    void OnUpgradeButtonClicked(ClickEvent evt)
+    {
+        _towerList.AddToClassList("hidden");
+        _upgradeList.RemoveFromClassList("hidden");
+        _towerButton.AddToClassList("tab-on");
+        _upgradeButton.RemoveFromClassList("tab-on");
     }
 
     void BuildModeChanged(BuildingEntry entry, bool isBuilding)
@@ -66,14 +110,11 @@ public class SidePanelController : MonoBehaviour
         {
             _panel.RemoveFromClassList("hidden");
             _panel.AddToClassList("visible");
-            Debug.Log("Added 'visible' class, removed 'hidden'");
         }
         else
         {
             _panel.RemoveFromClassList("visible");
             _panel.AddToClassList("hidden");
-            Debug.Log("Added 'hidden' class, removed 'visible'");
-
         }
 
         SetupCollapseButtonPosition(!isVisible);
@@ -83,45 +124,5 @@ public class SidePanelController : MonoBehaviour
     {
         _collapseButton.style.top = new StyleLength(new Length(2, LengthUnit.Percent));
         _collapseButton.style.left = new StyleLength(new Length(isCollapsed ? 2 : 25, LengthUnit.Percent));
-    }
-
-    void SetupEntries()
-    {
-        foreach (var d in _buildingConfigEntry.BuildingEntries)
-        {
-            d.BuildingLogic = () =>
-            {
-                if (CurrencyStorage.Instance.Spend(CurrencyType.Sunlight, d.Cost))
-                {
-                    BuildManager.Instance.SelectPrefab(d);
-                }
-                else
-                    Debug.LogWarning($"Not enough sunlight for {d.Prefab.name}");
-            };
-            _entries.Add(d);
-        }
-    }
-
-    // TODO: Dowee, using strings is very prone error. we'll have to use Unity Localization for this.
-    void SetupListView()
-    {
-        _towerList.makeItem = () => _towerUITemplate.Instantiate();
-        _towerList.bindItem = (element, index) =>
-        {
-            var data = _entries[index];
-            var config = data.Prefab.GetComponent<TowerDefense>().StatConfig;
-            if (config == null) return;
-
-            element.Q<Label>("DefenseName").text = data.BuildEntryName;
-            element.Q<Image>("Thumbnail").sprite = data.Thumbnail;
-            element.Q<Label>("DMG").text = "DMG: " + config.GetValue(TowerStats.Attack);
-            element.Q<Label>("RNG").text = "RNG: " + config.GetValue(TowerStats.Range);
-            element.Q<Label>("SPD").text = "SPD: " + config.GetValue(TowerStats.Speed);
-            element.Q<Button>("BuildButton").text = $"Cost {data.Cost}";
-            element.Q<Button>("BuildButton").clickable.clicked += data.BuildingLogic;
-        };
-        _towerList.itemsSource = _entries;
-        _towerList.selectionType = SelectionType.None;
-        _towerList.fixedItemHeight = 100;
     }
 }

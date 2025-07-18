@@ -3816,9 +3816,77 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 494637967}
     - target: {fileID: 2746208957588788433, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: _upgradeUITemplate
+      value: 
+      objectReference: {fileID: 9197481963319205126, guid: 77ca191e09db765428e7b18d88e3c81b, type: 3}
+    - target: {fileID: 2746208957588788433, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
       propertyPath: _buildingConfigEntry
       value: 
       objectReference: {fileID: 11400000, guid: 68ce767f03a96d140bdb7f1f845a189a, type: 2}
+    - target: {fileID: 2746208957588788433, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: _upgradeEntries.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2746208957588788433, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: _upgradeEntries.Array.data[0].Name
+      value: Water Upgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 2746208957588788433, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: _upgradeEntries.Array.data[0].Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2746208957588788433, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: _upgradeEntries.Array.data[1].Name
+      value: Sun Upgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 2746208957588788433, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: _upgradeEntries.Array.data[1].Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2746208957588788433, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: _upgradeEntries.Array.data[0].Level
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2746208957588788433, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: _upgradeEntries.Array.data[0].Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2746208957588788433, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: _upgradeEntries.Array.data[1].Level
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2746208957588788433, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: _upgradeEntries.Array.data[1].Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2746208957588788433, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: _upgradeEntries.Array.data[0].BaseCost
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2746208957588788433, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: _upgradeEntries.Array.data[0].MaxLevel
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2746208957588788433, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: _upgradeEntries.Array.data[1].BaseCost
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2746208957588788433, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: _upgradeEntries.Array.data[1].MaxLevel
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2746208957588788433, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: _upgradeEntries.Array.data[0].CostMultiplier
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2746208957588788433, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: _upgradeEntries.Array.data[1].CostMultiplier
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2746208957588788433, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: _upgradeEntries.Array.data[1].TargetCurrency
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4470121764532456616, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
       propertyPath: _hudDocument
       value: 
