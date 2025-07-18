@@ -5,7 +5,7 @@ using UnityEngine;
 public class BuildingEntry
 {
     public string BuildEntryName;
-    public BuildCategory Category;
+    public BuildingType Category;
     public GameObject Prefab;
     public Sprite Thumbnail;
     public float Cost;

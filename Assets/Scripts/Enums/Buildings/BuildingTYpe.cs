@@ -1,1 +1,1 @@
-public enum BuildCategory { Tower, Farm, Wall, Trap }
+public enum BuildingType { Defense, Resources }
