@@ -2,16 +2,12 @@ using UnityEngine;
 
 public class PlacedObject : MonoBehaviour
 {
+    public BuildingEntry Entry;
     public int TileId;
-    ObjectUIController _objectUIController;
 
-    void Awake()
+    public void Init(BuildingEntry entry, int tileId)
     {
-        _objectUIController = FindFirstObjectByType<ObjectUIController>();
-    }
-
-    void OnMouseUpAsButton()
-    {
-        _objectUIController.Show();
+        Entry = entry;
+        TileId = tileId;
     }
 }
