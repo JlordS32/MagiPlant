@@ -1,83 +1,96 @@
-using UnityEngine;
-using System.Collections.Generic;
-using System;
+// WARNING[DEPRECATED]
+// ---------------------------------
 
-public class CurrencyGenerator : MonoBehaviour, IUpgradableCurrency, IPhaseListener
-{
-    // PROPERTIES
-    [SerializeField] float _interval = 1f;
+// using UnityEngine;
+// using System.Collections.Generic;
+// using System;
 
-    // REFERENCES
-    CurrencyStorage _storage;
+// public class CurrencyGenerator : MonoBehaviour, IUpgradableCurrency, IPhaseListener
+// {
+//     public static CurrencyGenerator Instance { get; private set; }
 
-    // PRIVATE VARIABLES
-    Dictionary<CurrencyType, float> _rates = new();
-    bool _canGenerate = true;
-    float _timer = 0f;
-    readonly float _defaultRate = 0.5f;
+//     // PROPERTIES
+//     [SerializeField] float _interval = 1f;
 
-    #region PHASE LISTENER
-    void OnEnable()
-    {
-        PhaseService.Register(this);
-        OnPhaseChanged(PhaseService.Current);
-    }
-    void OnDisable()
-    {
-        PhaseService.Unregister(this);
-    }
+//     // REFERENCES
+//     CurrencyStorage _storage;
 
-    public void OnPhaseChanged(GamePhase phase)
-    {
-        _canGenerate = phase == GamePhase.Day;
+//     // PRIVATE VARIABLES
+//     Dictionary<CurrencyType, float> _rates = new();
+//     bool _canGenerate = true;
+//     float _timer = 0f;
+//     readonly float _defaultRate = 0.5f;
 
-        if (_canGenerate)
-            _timer = 0f;
+//     #region PHASE LISTENER
+//     void OnEnable()
+//     {
+//         PhaseService.Register(this);
+//         OnPhaseChanged(PhaseService.Current);
+//     }
+//     void OnDisable()
+//     {
+//         PhaseService.Unregister(this);
+//     }
 
-        Debug.LogWarning($"CurrencyGenerator phase changed: {phase}, enabled: {_canGenerate}");
-    }
+//     public void OnPhaseChanged(GamePhase phase)
+//     {
+//         _canGenerate = phase == GamePhase.Day;
 
-    #endregion
+//         if (_canGenerate)
+//             _timer = 0f;
 
-    void Awake()
-    {
-        _storage = GetComponent<CurrencyStorage>();
+//         Debugger.LogWarning(DebugCategory.GamePhase, $"CurrencyGenerator phase changed: {phase}, enabled: {_canGenerate}");
+//     }
 
-        // Initialise default rate on each currency
-        foreach (CurrencyType type in Enum.GetValues(typeof(CurrencyType)))
-        {
-            _rates[type] = _defaultRate;
-        }
-    }
+//     #endregion
 
-    // UNITY FUNCTIONS
-    void Update()
-    {
-        if (!_canGenerate || _storage == null) return;
-        
-        _timer += Time.deltaTime;
-        
-        if (_timer >= _interval)
-        {
-            // Add value based on 
-            foreach (CurrencyType type in Enum.GetValues(typeof(CurrencyType)))
-                _storage.Add(type, _rates[type]);
+//     void Awake()
+//     {
+//         if (Instance != null && Instance != this)
+//         {
+//             Debugger.LogWarning(DebugCategory.Singletons, "Multiple instances of CurrencyGenerator detected. Destroying the new instance.");
+//             Destroy(Instance);
+//             return;
+//         }
+//         Instance = this;
 
-            // Reset timer
-            _timer = 0f;
-        }
-    }
+//         _storage = GetComponent<CurrencyStorage>();
 
-    // GETTERS & SETTERS
-    public float GetRate(CurrencyType type) => _rates[type];
+//         // Initialise default rate on each currency
+//         foreach (CurrencyType type in Enum.GetValues(typeof(CurrencyType)))
+//         {
+//             _rates[type] = _defaultRate;
+//         }
+//     }
 
-    public void ApplyUpgrade(UpgradeEntry upgrade, CurrencyType type)
-    {
-        if (upgrade.Type == UpgradeType.GenerateRate)
-        {
-            _rates[type] = upgrade.GetUpgradeValue();
-            GameEventsManager.RaiseGenerateRateUpdated(type, _rates[type], upgrade.Level);
-        }
-    }
+//     // UNITY FUNCTIONS
+//     void Update()
+//     {
+//         if (!_canGenerate || _storage == null) return;
 
-}
+//         _timer += Time.deltaTime;
+
+//         if (_timer >= _interval)
+//         {
+//             // Add value based on 
+//             foreach (CurrencyType type in Enum.GetValues(typeof(CurrencyType)))
+//                 _storage.Add(type, _rates[type]);
+
+//             // Reset timer
+//             _timer = 0f;
+//         }
+//     }
+
+//     // GETTERS & SETTERS
+//     public float GetRate(CurrencyType type) => _rates[type];
+
+//     public void ApplyUpgrade(UpgradeEntry upgrade, CurrencyType type)
+//     {
+//         if (upgrade.Type == UpgradeType.GenerateRate)
+//         {
+//             _rates[type] = upgrade.GetUpgradeValue();
+//             GameEventsManager.RaiseGenerateRateUpdated(type, _rates[type], upgrade.Level);
+//         }
+//     }
+
+// }
