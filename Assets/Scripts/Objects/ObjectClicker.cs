@@ -1,28 +1,30 @@
-using UnityEngine;
+// WARNING[DEPRECATED]: 
 
-public class ObjectClicker : MonoBehaviour
-{
-    [SerializeField] CurrencyType _currencyType;
-    [SerializeField] AudioClip _clickSound;
+// using UnityEngine;
 
-    CurrencyClicker _currencyClick;
+// public class ObjectClicker : MonoBehaviour
+// {
+//     [SerializeField] CurrencyType _currencyType;
+//     [SerializeField] AudioClip _clickSound;
 
-    void Awake()
-    {
-        _currencyClick = FindFirstObjectByType<CurrencyClicker>();
-    }
+//     CurrencyClicker _currencyClick;
 
-    void OnMouseUpAsButton()
-    {
-        AudioManager.Instance.PlaySound(_clickSound);
-        CropIsPressed();
-    }
+//     void Awake()
+//     {
+//         _currencyClick = FindFirstObjectByType<CurrencyClicker>();
+//     }
 
-    public void CropIsPressed()
-    {
-        if (_currencyClick != null)
-        {
-            _currencyClick.Click(_currencyType);
-        }
-    }
-}
+//     void OnMouseUpAsButton()
+//     {
+//         AudioManager.Instance.PlaySound(_clickSound);
+//         CropIsPressed();
+//     }
+
+//     public void CropIsPressed()
+//     {
+//         if (_currencyClick != null)
+//         {
+//             _currencyClick.Click(_currencyType);
+//         }
+//     }
+// }
