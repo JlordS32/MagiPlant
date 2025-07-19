@@ -29,7 +29,7 @@ public class UpgradeListController
             {
                 if (upgrade.Level >= upgrade.MaxLevel)
                 {
-                    Debug.Log("Upgrade maxed out!");
+                    Debugger.Log(DebugCategory.UI,"Upgrade maxed out!");
                     return;
                 }
 
@@ -51,7 +51,7 @@ public class UpgradeListController
                 }
                 else
                 {
-                    Debug.LogWarning("Not enough sunlight to upgrade.");
+                    Debugger.LogWarning(DebugCategory.UI,"Not enough sunlight to upgrade.");
                 }
             };
         }

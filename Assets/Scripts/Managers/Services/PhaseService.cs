@@ -8,12 +8,24 @@ public static class PhaseService
 
     public static void Register(IPhaseListener listener)
     {
+        if (listener == null)
+        {
+            Debugger.LogError(DebugCategory.Services, "Attempted to register a null listener.");
+            return;
+        }
+
         if (_listeners.Contains(listener)) return;
         _listeners.Add(listener);
     }
 
     public static void Unregister(IPhaseListener listener)
     {
+        if (listener == null)
+        {
+            Debugger.LogError(DebugCategory.Services, "Attempted to unregister a null listener.");
+            return;
+        }
+
         if (!_listeners.Contains(listener)) return;
         _listeners.Remove(listener);
     }
@@ -27,6 +39,8 @@ public static class PhaseService
 
     static void NotifyPhaseChanged(GamePhase phase)
     {
+        Debugger.Log(DebugCategory.Services, $"Phase changed to: {phase}");
+
         var snapshot = _listeners.ToArray();
         foreach (var l in snapshot)
             l.OnPhaseChanged(phase);

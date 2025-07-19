@@ -35,6 +35,6 @@ public class Player : MonoBehaviour, IDamageable
     void DebugStats()
     {
         foreach (var kv in _playerData.Snapshot)
-            Debug.Log($"{kv.Key}: {kv.Value}");
+            DebugManager.Instance.Log(DebugCategory.Player, $"{kv.Key}: {kv.Value}");
     }
 }

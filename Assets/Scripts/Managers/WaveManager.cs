@@ -28,7 +28,7 @@ public class WaveManager : MonoBehaviour, IPhaseListener
     {
         if (Instance != null && Instance != this)
         {
-            Debug.LogWarning("Multiple instances of WaveManager detected. Destroying the new instance.");
+            Debugger.LogWarning(DebugCategory.Waves, "Multiple instances of WaveManager detected. Destroying the new instance.");
             Destroy(gameObject);
             return;
         }
@@ -39,7 +39,6 @@ public class WaveManager : MonoBehaviour, IPhaseListener
 
     public void OnPhaseChanged(GamePhase phase)
     {
-        Debug.Log($"Phase changed: {phase}");
         if (phase == GamePhase.Night && _nightLoop == null)
             _nightLoop = StartCoroutine(RunWaves());
         else if (phase == GamePhase.Day && _nightLoop != null)
@@ -63,11 +62,11 @@ public class WaveManager : MonoBehaviour, IPhaseListener
     {
         if (_spawners.Length == 0)
         {
-            Debug.LogWarning("No spawners available to spawn enemies.");
+            Debugger.LogWarning(DebugCategory.Waves,"No spawners available to spawn enemies.");
             yield break;
         }
 
-        Debug.Log(w.Groups.Length + " groups in wave " + _waveIndex);
+        Debugger.Log(DebugCategory.Waves, w.Groups.Length + " groups in wave " + _waveIndex);
 
         Spawner s;
         foreach (var g in w.Groups)
@@ -81,7 +80,7 @@ public class WaveManager : MonoBehaviour, IPhaseListener
                     yield return Wait(g.Gap);
             }
 
-            Debug.Log($"Spawned {g.Count} of {g.Prefab.name} with gap {g.Gap}");
+            Debugger.Log(DebugCategory.Waves, $"Spawned {g.Count} of {g.Prefab.name} with gap {g.Gap}");
             yield return Wait(_interGroupDelay);
         }
     }

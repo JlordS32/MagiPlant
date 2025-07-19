@@ -32,7 +32,7 @@ public class BuildManager : MonoBehaviour, IPhaseListener
     {
         if (Instance != null && Instance != this)
         {
-            Debug.LogWarning("Multiple BuildManager instances found, destroying the new one.");
+            Debugger.LogWarning(DebugCategory.Singletons, "Multiple BuildManager instances found, destroying the new one.");
             Destroy(gameObject);
             return;
         }
@@ -62,7 +62,7 @@ public class BuildManager : MonoBehaviour, IPhaseListener
             if (_previewPrefab) Destroy(_previewPrefab);
         }
 
-        Debug.LogWarning($"BuildManager phase changed: {phase}, enabled: {enabled}");
+        Debugger.LogWarning(DebugCategory.GamePhase, $"BuildManager phase changed: {phase}, enabled: {enabled}");
     }
     #endregion
 

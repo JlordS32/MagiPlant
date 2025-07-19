@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Debug.LogWarning("Multiple instances of UIManager detected. Destroying the new instance.");
+            Debugger.LogWarning(DebugCategory.Singletons, "Multiple instances of UIManager detected. Destroying the new instance.");
             Destroy(gameObject);
             return;
         }

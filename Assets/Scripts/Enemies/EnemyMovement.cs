@@ -17,7 +17,6 @@ public class EnemyMovement : MonoBehaviour
     [Range(0, 1)]
     [SerializeField] float wobbleY = 0.5f;
 
-
     // VARIABLES
     Enemy _enemy;
     Rigidbody2D _rb;
@@ -54,7 +53,7 @@ public class EnemyMovement : MonoBehaviour
 
         if (!TileManager.Instance.IsInBounds(start.x, start.y) || !TileManager.Instance.IsInBounds(target.x, target.y))
         {
-            Debug.LogWarning("Out of bounds!!!");
+            Debugger.LogError(DebugCategory.Enemies, $"{_enemy.name} is out of bounds!!!");
             _path.Clear();
             _rb.linearVelocity = Vector2.zero;
             return;

@@ -13,7 +13,7 @@ public class ObjectUIController : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Debug.LogWarning("Multiple instances of ObjectUIController detected. Destroying the new instance.");
+            Debugger.LogWarning(DebugCategory.Singletons, "Multiple instances of ObjectUIController detected. Destroying the new instance.");
             Destroy(gameObject);
             return;
         }
@@ -22,7 +22,7 @@ public class ObjectUIController : MonoBehaviour
         _panel = _uiDocument.rootVisualElement.Q<VisualElement>("Panel");
         if (_panel == null)
         {
-            Debug.LogError("Panel element not found in the UIDocument.");
+            Debugger.LogError(DebugCategory.UI, "Panel element not found in the UIDocument.");
             return;
         }
 

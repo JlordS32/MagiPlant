@@ -25,6 +25,7 @@ public class PlantGrow : MonoBehaviour, IPhaseListener
     // REFERENCES
     GameObject _currentSprite;
     Player _player;
+    PlayerData _playerData;
 
     // VARIABLES
     int _lastKnownIndex = -1;
@@ -51,7 +52,21 @@ public class PlantGrow : MonoBehaviour, IPhaseListener
     void Awake()
     {
         _currentSprite = GetComponentInChildren<SpriteRenderer>().gameObject; // WARNING: Only works if there's one child sprite renderer. We'll have to rework this approach if we want multiple sprites.
+
+        if (_currentSprite == null)
+        {
+            Debugger.LogError(DebugCategory.Player, "No sprite found for PlantGrow.");
+            return;
+        }
+
         _player = GetComponent<Player>();
+        _playerData = _player.PlayerData;
+
+        if (_playerData == null)
+        {
+            Debugger.LogError(DebugCategory.Player, "Player data is not available.");
+            return;
+        }
     }
 
     public void OnTest()
@@ -59,11 +74,15 @@ public class PlantGrow : MonoBehaviour, IPhaseListener
         _player.PlayerData.AddExp(10);
         CurrencyStorage.Instance.Add(CurrencyType.Water, 10);
         CurrencyStorage.Instance.Add(CurrencyType.Sunlight, 10);
-        // int currLevel = (int)_player.PlayerData.Get(PlayerStats.Level);
     }
 
     void OnLevelUp(int level)
     {
+        Debugger.Log(DebugCategory.Player, $"Player leveled up to {level}.");
+
+        foreach (var kv in _playerData.Snapshot)
+            Debugger.Log(DebugCategory.Player, $"{kv.Key}: {kv.Value}");
+
         AudioManager.Instance.PlaySound(_levelUpSound);
         OnPlantGrowing?.Invoke();
         UpdateSprite();
@@ -89,7 +108,7 @@ public class PlantGrow : MonoBehaviour, IPhaseListener
     {
         if (!_canWater)
         {
-            Debug.LogWarning("Cannot water plants at night.");
+            Debugger.LogWarning(DebugCategory.Player, "Cannot water plants during the night.");
             return;
         }
 
@@ -100,7 +119,7 @@ public class PlantGrow : MonoBehaviour, IPhaseListener
     {
         if (_player.PlayerData != null)
         {
-            int currLevel = (int)_player.PlayerData.Get(PlayerStats.Level);
+            Debugger.Log(DebugCategory.Player, "Watering plant (player)...");
             float waterAmount = CurrencyStorage.Instance.Get(CurrencyType.Water);
 
             if (CurrencyStorage.Instance.Spend(CurrencyType.Water, CurrencyStorage.Instance.Get(CurrencyType.Water)))
