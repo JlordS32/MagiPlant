@@ -1,0 +1,27 @@
+.unity-progress-bar__container {
+    min-height: 15px;
+    height: 25px;
+}
+
+.unity-progress-bar__background {
+    background-color: black;
+    border-radius: 4px 0 0 4px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.unity-progress-bar__progress {
+    background-color: rgba(76, 175, 80, 0);
+    border-radius: 4px 0 0 4px;
+    background-image: url("project://database/Assets/Sprites/UI/03_Wood_Theme/Sprites/UI_Wood_Fillbar_Filler_Green.png?fileID=2800000&guid=5f750e1f8eb28c4418d4844d4225e17a&type=3#UI_Wood_Fillbar_Filler_Green");
+    -unity-background-scale-mode: scale-to-fit;
+    background-position-y: center 0;
+    background-position-x: center 0;
+    background-size: 100% 150px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
