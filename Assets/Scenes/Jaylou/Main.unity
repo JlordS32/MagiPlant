@@ -3817,7 +3817,7 @@ PrefabInstance:
       objectReference: {fileID: 494637967}
     - target: {fileID: 3130986033617807580, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
       propertyPath: _categories.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3130986033617807580, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
       propertyPath: _categories.Array.data[1].Name
@@ -3840,6 +3840,10 @@ PrefabInstance:
       value: UI
       objectReference: {fileID: 0}
     - target: {fileID: 3130986033617807580, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: _categories.Array.data[6].Name
+      value: Towers
+      objectReference: {fileID: 0}
+    - target: {fileID: 3130986033617807580, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
       propertyPath: _categories.Array.data[1].Category
       value: 1
       objectReference: {fileID: 0}
@@ -3860,8 +3864,16 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3130986033617807580, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: _categories.Array.data[6].Category
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3130986033617807580, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: _categories.Array.data[0].IsEnabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3130986033617807580, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
       propertyPath: _categories.Array.data[1].IsEnabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3130986033617807580, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
       propertyPath: _categories.Array.data[2].IsEnabled
@@ -3869,14 +3881,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3130986033617807580, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
       propertyPath: _categories.Array.data[3].IsEnabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3130986033617807580, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
       propertyPath: _categories.Array.data[4].IsEnabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3130986033617807580, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
       propertyPath: _categories.Array.data[5].IsEnabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3130986033617807580, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}
+      propertyPath: _categories.Array.data[6].IsEnabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4470121764532456616, guid: 4e95c182657b7454ba7e2e4a655aa47e, type: 3}

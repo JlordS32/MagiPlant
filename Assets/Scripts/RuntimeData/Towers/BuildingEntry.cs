@@ -11,15 +11,4 @@ public class BuildingEntry
     public float Cost;
 
     [NonSerialized] public Action BuildingLogic;
-
-#if UNITY_EDITOR
-    void OnValidate()
-    {
-        if (Prefab && Prefab.GetComponent<IBuildable>() == null)
-        {
-            Debug.LogWarning($"{Prefab.name} isn’t a defence prefab", Prefab);
-            Prefab = null;      // optional: auto-clear
-        }
-    }
-#endif
 }

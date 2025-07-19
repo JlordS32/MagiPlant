@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -8,6 +9,8 @@ public class ObjectUIController : MonoBehaviour
     [SerializeField] UIDocument _uiDocument;
     VisualElement _panel;
     Label _objectNameLabel;
+    Button _upgradeButton;
+    PlacedObject _currentPlacedObject;
 
     void Awake()
     {
@@ -34,6 +37,15 @@ public class ObjectUIController : MonoBehaviour
     {
         var root = _uiDocument.rootVisualElement;
         _objectNameLabel = root.Q<Label>("ObjectName");
+        _upgradeButton = root.Q<Button>("UpgradeBtn");
+        _upgradeButton.RegisterCallback<ClickEvent>(evt =>
+        {
+            if (_currentPlacedObject != null && _currentPlacedObject.TryGetComponent<TowerDefense>(out var towerDefense))
+            {
+                TowerData towerData = towerDefense.Data;
+                towerData.UpgradeAll();
+            }
+        });
     }
 
     void Update()
@@ -93,6 +105,7 @@ public class ObjectUIController : MonoBehaviour
             // Check if the hit object is a PlacedObject
             if (hit.TryGetComponent<PlacedObject>(out var placedObject))
             {
+                _currentPlacedObject = placedObject;
                 Show(placedObject.Entry);
                 return true;
             }
