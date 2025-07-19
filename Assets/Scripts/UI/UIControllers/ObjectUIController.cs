@@ -9,8 +9,11 @@ public class ObjectUIController : MonoBehaviour
     [SerializeField] UIDocument _uiDocument;
     VisualElement _panel;
     Label _objectNameLabel;
-    Button _upgradeButton;
+    Button _upgradeBtn;
+    Button _infoBtn;
     PlacedObject _currentPlacedObject;
+
+    bool _enableMouseClickCheck = true;
 
     void Awake()
     {
@@ -37,19 +40,38 @@ public class ObjectUIController : MonoBehaviour
     {
         var root = _uiDocument.rootVisualElement;
         _objectNameLabel = root.Q<Label>("ObjectName");
-        _upgradeButton = root.Q<Button>("UpgradeBtn");
-        _upgradeButton.RegisterCallback<ClickEvent>(evt =>
+        _upgradeBtn = root.Q<Button>("UpgradeBtn");
+        _infoBtn = root.Q<Button>("InfoBtn");
+
+        // Registering callbacks
+        _upgradeBtn.RegisterCallback<ClickEvent>(_ =>
         {
-            if (_currentPlacedObject != null && _currentPlacedObject.TryGetComponent<TowerDefense>(out var towerDefense))
+            if (_currentPlacedObject != null)
             {
-                TowerData towerData = towerDefense.Data;
-                towerData.UpgradeAll();
+                ToggleObjectUI(false);
+                ObjectDialogController.Instance.Show(_currentPlacedObject);
+            }
+        });
+        
+        _infoBtn.RegisterCallback<ClickEvent>(_ =>
+        {
+            if (_currentPlacedObject != null)
+            {
+                ToggleObjectUI(false);
+                ObjectDialogController.Instance.Show(_currentPlacedObject);
             }
         });
     }
 
+    public void ToggleObjectUI(bool enabled)
+    {
+        _enableMouseClickCheck = enabled;
+    }
+
     void Update()
     {
+        if (!_enableMouseClickCheck) return;
+
         if (Input.GetMouseButtonDown(0))
         {
             Vector2 mousePos = Input.mousePosition;
