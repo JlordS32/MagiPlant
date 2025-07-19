@@ -7,6 +7,9 @@ public class TowerData
     Dictionary<TowerStats, float> _stats = new();
     TowerStatConfig _config;
 
+    int _level = 1;
+    public int Level => _level;
+
     // Constructor
     public TowerData(TowerStatConfig config)
     {
@@ -18,6 +21,7 @@ public class TowerData
             _stats[stat] = 0f;
         }
 
+        // Set initial values based on config
         Reset();
     }
 
@@ -29,12 +33,54 @@ public class TowerData
         GameEventsManager.RaiseTowerStatUpdate(stat, value);
     }
 
+    public void Upgrade(TowerStats stat)
+    {
+        if (!_stats.ContainsKey(stat))
+        {
+            Debugger.LogWarning(DebugCategory.Towers, $"Tower stat '{stat}' not found.");
+            return;
+        }
+
+        float newValue = _config.GetValue(stat, _level);
+
+        _stats[stat] = newValue;
+
+        GameEventsManager.RaiseTowerStatUpdate(stat, newValue);
+    }
+
+    public void UpgradeAll()
+    {
+        if (_level >= _config.MaxLevel)
+        {
+            Debugger.LogWarning(DebugCategory.Towers, "Attempting to upgrade tower beyond max level.");
+            return;
+        }
+
+        foreach (var stat in _stats)
+        {
+            Debugger.Log(DebugCategory.Towers, $"Level {_level}: {stat.Key}: {stat.Value}");
+        }
+        _level++;
+
+        foreach (var entry in _config.Stats)
+        {
+            Upgrade(entry.Stat);
+        }
+
+        foreach (var stat in _stats)
+        {
+            Debugger.Log(DebugCategory.Towers, $"Level {_level}: {stat.Key}: {stat.Value}");
+        }
+    }
+
     public void Reset()
     {
         foreach (TowerStats stat in Enum.GetValues(typeof(TowerStats)))
         {
-            _stats[stat] = _config.GetValue(stat);
+            _stats[stat] = _config.GetValue(stat, 0);
         }
+
+        _level = 1;
         GameEventsManager.RaiseTowerStatReset();
     }
 }

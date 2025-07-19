@@ -6,5 +6,6 @@ public enum DebugCategory
     Services,
     Waves,
     Singletons,
-    UI
+    UI,
+    Towers
 }

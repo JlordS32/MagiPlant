@@ -5,12 +5,16 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "SO/Tower/Tower Defense Stat Config")]
 public class TowerStatConfig : ScriptableObject
 {
+    public int MaxLevel;
     public TowerStatEntry[] Stats;
-    public Dictionary<TowerStats, float> _statLookup;
+    public Dictionary<TowerStats, TowerStatEntry> _statLookup;
 
-    public float GetValue(TowerStats stat)
+    void InitLookup() => _statLookup ??= Stats.ToDictionary(stat => stat.Stat, stat => stat);
+
+    public float GetValue(TowerStats stat, int level = 0)
     {
-        _statLookup ??= Stats.ToDictionary(entry => entry.Stat, entry => entry.Value);
-        return _statLookup.TryGetValue(stat, out var value) ? value : 0f;
+        InitLookup();
+        return _statLookup.TryGetValue(stat, out var entry) ? entry.GetValue(level) : 0f;
     }
+
 }
