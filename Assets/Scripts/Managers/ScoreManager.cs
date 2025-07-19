@@ -8,7 +8,7 @@ public class ScoreManager : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Debug.LogWarning("Multiple instances of ScoreManager detected. Destroying the new instance.");
+            Debugger.LogWarning(DebugCategory.Singletons, "Multiple instances of ScoreManager detected. Destroying the new instance.");
             Destroy(gameObject);
             return;
         }

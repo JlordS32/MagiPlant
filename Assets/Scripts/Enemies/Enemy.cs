@@ -21,6 +21,8 @@ public class Enemy : MonoBehaviour, IDamageable
         _enemyAttack = GetComponent<EnemyAttack>();
         _enemyData = new EnemyData(_enemyStatConfig);
         _healthUI = GetComponentInChildren<HealthUI>();
+
+        Debugger.Log(DebugCategory.Enemies, $"Initialized: {gameObject.name} with HP {_enemyData.Get(EnemyStats.HP)}");
     }
 
     void OnEnable() => EnemyManager.Instance.Register(this);
@@ -60,6 +62,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
         if (_enemyData.IsDead)
         {
+            Debugger.Log(DebugCategory.Enemies, $"Enemy defeated: {gameObject.name}");
             Destroy(gameObject);
         }
     }

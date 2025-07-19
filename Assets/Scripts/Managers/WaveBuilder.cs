@@ -18,11 +18,24 @@ public class WaveBuilder : MonoBehaviour
 
     public Wave Build(int waveIndex)
     {
+        if (_gruntCatalog == null || _gruntCatalog.entries.Length == 0)
+        {
+            Debugger.LogError(DebugCategory.Waves, "Grunt catalog is empty or not assigned.");
+            return new Wave();
+        }
+
+        if (waveIndex < 0)
+        {
+            Debugger.LogError(DebugCategory.Waves, "Wave index cannot be negative.");
+            return new Wave();
+        }
+
         int budget = Mathf.RoundToInt(budgetCurve.Evaluate(waveIndex));
         float gap = gapCurve.Evaluate(waveIndex);
 
-        Debug.Log("Current Budget: " + budget);
-        Debug.Log("Current gap: " + gap);
+        Debugger.Log(DebugCategory.Waves, "Current Wave: " + waveIndex);
+        Debugger.Log(DebugCategory.Waves, "Current Budget: " + budget);
+        Debugger.Log(DebugCategory.Waves, "Current gap: " + gap);
 
         List<EnemyGroup> groups = new();
 
@@ -32,7 +45,7 @@ public class WaveBuilder : MonoBehaviour
             EnemyEntry enemy = _gruntCatalog.entries[Random.Range(0, _gruntCatalog.entries.Length)];
             if (enemy.Cost <= 0)
             {
-                Debug.LogWarning($"{enemy.EnemyPrefab.name} has cost 0. Skipping. Please check the catalog.");
+                Debugger.LogWarning(DebugCategory.Waves, $"{enemy.EnemyPrefab.name} has cost 0. Skipping. Please check the catalog.");
                 continue;
             }
 

@@ -33,7 +33,7 @@ public class TowerListController
                     BuildManager.Instance.SelectPrefab(d);
                 }
                 else
-                    Debug.LogWarning($"Not enough sunlight for {d.Prefab.name}");
+                    Debugger.LogWarning(DebugCategory.UI, $"Not enough sunlight for {d.Prefab.name}");
             };
             _entries.Add(d);
         }

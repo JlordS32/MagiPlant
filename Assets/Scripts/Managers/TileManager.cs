@@ -44,7 +44,7 @@ public class TileManager : MonoBehaviour
 
         if (Instance != null && Instance != this)
         {
-            Debug.LogWarning("Multiple TileManager instances found, destroying the new one.");
+            Debugger.LogWarning(DebugCategory.Singletons, "Multiple TileManager instances found, destroying the new one.");
             Destroy(gameObject);
             return;
         }

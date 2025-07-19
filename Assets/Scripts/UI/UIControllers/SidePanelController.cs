@@ -35,7 +35,7 @@ public class SidePanelController : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Debug.LogWarning("Multiple instances of SidePanelController detected. Destroying the new instance.");
+            Debugger.LogWarning(DebugCategory.Singletons, "Multiple instances of SidePanelController detected. Destroying the new instance.");
             Destroy(gameObject);
             return;
         }

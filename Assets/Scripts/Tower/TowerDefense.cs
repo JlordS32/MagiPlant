@@ -9,9 +9,6 @@ public class TowerDefense : MonoBehaviour, IBuildable
     TowerDefenseAttack _towerAttack;
     TowerDetection _towerDetection;
 
-    [Header("Debug Mode")]
-    [SerializeField] bool _enableDebug;
-
     // GETTERS
     public TowerData Data => _towerData;
     public TowerStatConfig StatConfig => _towerStatConfig;
