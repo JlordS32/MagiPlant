@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5871360287044166063}
   - component: {fileID: 6799194101000988122}
   - component: {fileID: 6228705577627114176}
-  - component: {fileID: 5085732602736586086}
+  - component: {fileID: -5144669935760784287}
   m_Layer: 0
   m_Name: BaseResourceBuilding
   m_TagString: Untagged
@@ -163,7 +163,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &5085732602736586086
+--- !u!114 &-5144669935760784287
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,5 +176,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResourceType: 0
-  GenerateAmount: 10
-  Interval: 1
+  GenerateAmount: 1
+  Interval: 2

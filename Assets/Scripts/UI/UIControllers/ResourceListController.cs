@@ -47,7 +47,7 @@ public class ResourceListController
         _resourceList.bindItem = (element, index) =>
         {
             var data = _entries[index];
-            var generator = data.Prefab.GetComponent<ResourceGenerator>();
+            var generator = data.Prefab.GetComponent<ResourceBuilding>();
             if (generator == null) return;
 
             element.Q<Label>("ResourceName").text = data.BuildEntryName;

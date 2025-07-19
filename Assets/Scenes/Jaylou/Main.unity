@@ -830,6 +830,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7218447435030563110, guid: 911602d9b8cd8fa4c90c11bef11b9d76, type: 3}
+      propertyPath: _dialogDocument
+      value: 
+      objectReference: {fileID: 754590077}
     - target: {fileID: 7510286357049526526, guid: 911602d9b8cd8fa4c90c11bef11b9d76, type: 3}
       propertyPath: _sidePanelDocument
       value: 
