@@ -8,7 +8,7 @@
             <ui:Button text="Upgrade" name="UpgradeTab" class="tab active" style="border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;" />
             <ui:Button text="Tower" name="TowerTab" class="tab" style="border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;" />
         </ui:VisualElement>
-        <ui:ListView name="UpgradeList" class="tower-list active" />
+        <ui:ListView name="ResourceList" class="tower-list active" />
         <ui:ListView name="TowerList" enabled="true" class="tower-list" />
     </ui:VisualElement>
     <ui:Button name="CollapseButton" class="collapse-button" style="top: 6px; left: 490px; right: auto; background-image: url(&quot;project://database/Assets/Sprites/UI/03_Wood_Theme/Spritesheet/Spritesheet_UI_Wood.png?fileID=7040127981004622051&amp;guid=ae151afc96ee65144a17f8e909e1d581&amp;type=3#Spritesheet_UI_Wood_59&quot;); height: 110px; width: 111px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;">
