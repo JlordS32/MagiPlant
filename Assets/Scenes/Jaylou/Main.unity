@@ -834,6 +834,14 @@ PrefabInstance:
       propertyPath: _sidePanelDocument
       value: 
       objectReference: {fileID: 494637967}
+    - target: {fileID: 7510286357049526526, guid: 911602d9b8cd8fa4c90c11bef11b9d76, type: 3}
+      propertyPath: _upgradeUITemplate
+      value: 
+      objectReference: {fileID: 9197481963319205126, guid: 09730a234b3196c40949b9792353927d, type: 3}
+    - target: {fileID: 7510286357049526526, guid: 911602d9b8cd8fa4c90c11bef11b9d76, type: 3}
+      propertyPath: _resourceConfigEntry
+      value: 
+      objectReference: {fileID: 11400000, guid: c8ee7a5f9fbc0f34699c1d96055375f7, type: 2}
     - target: {fileID: 8082989182878093447, guid: 911602d9b8cd8fa4c90c11bef11b9d76, type: 3}
       propertyPath: _hudDocument
       value: 

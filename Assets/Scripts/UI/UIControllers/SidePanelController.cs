@@ -13,7 +13,7 @@ public class SidePanelController : MonoBehaviour
 
     [Header("Config Data")]
     [SerializeField] BuildingConfigEntry _buildingConfigEntry;
-    [SerializeField] List<UpgradeEntry> _upgradeEntries = new();
+    [SerializeField] BuildingConfigEntry _resourceConfigEntry;
 
     // UI Elements
     VisualElement _panel;
@@ -26,7 +26,7 @@ public class SidePanelController : MonoBehaviour
     bool _isVisible = false;
 
     TowerListController _towerController;
-    UpgradeListController _upgradeController;
+    ResourceListController _resourceController;
 
     void OnEnable() => GameEventsManager.OnBuildMode += BuildModeChanged;
     void OnDisable() => GameEventsManager.OnBuildMode -= BuildModeChanged;
@@ -50,7 +50,7 @@ public class SidePanelController : MonoBehaviour
         _panel = root.Q<VisualElement>("Panel");
         _collapseButton = root.Q<Button>("CollapseButton");
         _towerList = root.Q<ListView>("TowerList");
-        _upgradeList = root.Q<ListView>("UpgradeList");
+        _upgradeList = root.Q<ListView>("ResourceList");
         _towerTab = root.Q<Button>("TowerTab");
         _upgradeTab = root.Q<Button>("UpgradeTab");
 
@@ -65,11 +65,11 @@ public class SidePanelController : MonoBehaviour
 
         // Initialize sub-controllers with dependencies
         _towerController = new TowerListController(_towerList, _towerUITemplate, _buildingConfigEntry);
-        _upgradeController = new UpgradeListController(_upgradeList, _upgradeUITemplate, _upgradeEntries);
+        _resourceController = new ResourceListController(_upgradeList, _upgradeUITemplate, _resourceConfigEntry);
 
         // Setup UI lists
         _towerController.Setup();
-        _upgradeController.Setup();
+        _resourceController.Setup();
         SetupCollapseButtonPosition(true); // Initially collapsed
     }
 

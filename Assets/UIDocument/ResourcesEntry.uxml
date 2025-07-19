@@ -1,0 +1,16 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/USS/TowerEntryUSS.uss?fileID=7433441132597879392&amp;guid=86a323b1d95a84e4bbf06d127d493aa0&amp;type=3#TowerEntryUSS" />
+    <ui:VisualElement name="VisualElement" class="tower-entry" style="margin-bottom: 0;">
+        <ui:VisualElement name="SpriteBackground" class="sprite-background">
+            <ui:Image name="Thumbnail" class="thumbnail" />
+        </ui:VisualElement>
+        <ui:VisualElement class="text-container">
+            <ui:Label name="ResourceName" text="Cannon Tower" class="defense-name" style="height: auto; font-size: 25px; -unity-font-definition: url(&quot;project://database/Assets/Fonts/Minecraftia-Regular.ttf?fileID=12800000&amp;guid=dd91240ca23e7bc48a7441cd07ef9aa1&amp;type=3#Minecraftia-Regular&quot;);" />
+            <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+                <ui:Label text="Label" name="GEN" style="color: rgb(255, 255, 255);" />
+                <ui:Label text="Label" name="TYPE" style="color: rgb(255, 255, 255);" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:Button name="BuildButton" text="Build" class="build-button" style="-unity-font-definition: url(&quot;project://database/Assets/Fonts/Minecraftia-Regular.ttf?fileID=12800000&amp;guid=dd91240ca23e7bc48a7441cd07ef9aa1&amp;type=3#Minecraftia-Regular&quot;);" />
+    </ui:VisualElement>
+</ui:UXML>
