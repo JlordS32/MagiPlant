@@ -46,3 +46,21 @@
 .wrapper {
     flex-direction: row;
 }
+
+.hidden {
+    visibility: hidden;
+    display: none;
+}
+
+.active {
+}
+
+.closeBtn {
+    visibility: visible;
+    background-image: url("project://database/Assets/Sprites/UI/02_Paper_Theme/Spritesheets/Spritesheet_UI_Paper.png?fileID=-3102420179315730902&guid=85092d4b12e8fca49a0d7fd4fe5a6623&type=3#Spritesheet_UI_Paper_14");
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: -5%;
+    right: -5%;
+}

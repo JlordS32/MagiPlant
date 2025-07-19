@@ -47,4 +47,22 @@ MonoBehaviour:
   _categories:
   - Name: Player
     Category: 0
+    IsEnabled: 0
+  - Name: Enemies
+    Category: 1
+    IsEnabled: 0
+  - Name: Game Phase
+    Category: 2
+    IsEnabled: 1
+  - Name: Services
+    Category: 3
+    IsEnabled: 0
+  - Name: Singletons
+    Category: 5
+    IsEnabled: 0
+  - Name: UI
+    Category: 6
+    IsEnabled: 0
+  - Name: Towers
+    Category: 7
     IsEnabled: 1

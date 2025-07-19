@@ -45,6 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce90b6ef56373004f8e32538766ca219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spawners:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _interGroupDelay: 1
 --- !u!114 &6343902407231553809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 898e8c3d30fde80499f3c170524c62e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyCatalog: {fileID: 0}
+  _gruntCatalog: {fileID: 11400000, guid: c9281c7affd98474db6574d32b4704e4, type: 2}
   budgetCurve:
     serializedVersion: 2
     m_Curve:

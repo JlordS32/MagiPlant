@@ -9,6 +9,7 @@ public class TowerDefenseAttack : MonoBehaviour
     TowerDefense _tower;
     TowerData _towerData;
     float _timer;
+    float _speedFactor = 100;
 
 // Ensure the projectile prefab has a Projectile component
 #if UNITY_EDITOR
@@ -50,7 +51,7 @@ public class TowerDefenseAttack : MonoBehaviour
             lifetime = _towerData.Get(TowerStats.ProjectileLifetime)
         };
 
-        if (_timer >= _towerData.Get(TowerStats.Speed) && _attackStrategy != null)
+        if (_timer >= _speedFactor / _towerData.Get(TowerStats.Speed) && _attackStrategy != null)
         {
             _attackStrategy.Attack(_projectilePrefab, direction, projStats, _firePoint, transform);
             _timer = 0f;
