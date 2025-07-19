@@ -45,4 +45,11 @@ public static class PhaseService
         foreach (var l in snapshot)
             l.OnPhaseChanged(phase);
     }
+
+    [UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.SubsystemRegistration)]
+    static void Reset()
+    {
+        Current = GamePhase.Day;
+        _listeners.Clear();
+    }
 }
