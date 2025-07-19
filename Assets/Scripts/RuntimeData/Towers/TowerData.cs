@@ -23,6 +23,11 @@ public class TowerData
 
         // Set initial values based on config
         Reset();
+
+        foreach (var stat in _stats)
+        {
+            Debugger.Log(DebugCategory.Towers, $"Level {_level}: {stat.Key}: {stat.Value}");
+        }
     }
 
     public float Get(TowerStats stat) => _stats[stat];
@@ -55,21 +60,12 @@ public class TowerData
             Debugger.LogWarning(DebugCategory.Towers, "Attempting to upgrade tower beyond max level.");
             return;
         }
-
-        foreach (var stat in _stats)
-        {
-            Debugger.Log(DebugCategory.Towers, $"Level {_level}: {stat.Key}: {stat.Value}");
-        }
         _level++;
 
         foreach (var entry in _config.Stats)
         {
             Upgrade(entry.Stat);
-        }
-
-        foreach (var stat in _stats)
-        {
-            Debugger.Log(DebugCategory.Towers, $"Level {_level}: {stat.Key}: {stat.Value}");
+            Debugger.Log(DebugCategory.Towers, $"Level {_level}: {entry.Stat}: {_stats[entry.Stat]}");
         }
     }
 
