@@ -14,6 +14,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxLevel: 10
   Interval: 1
+  BaseCost: 5
+  CostType: 00000000
+  CostUpgrade:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  CostUpgradeOperation: 0
   Resources:
   - Name: Water
     Currency: 1
@@ -42,7 +69,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    UpgradeOperation: 0
+    UpgradeOperation: 1
   - Name: Sunlight
     Currency: 0
     BaseValue: 2
@@ -70,4 +97,4 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    UpgradeOperation: 0
+    UpgradeOperation: 1

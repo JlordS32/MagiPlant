@@ -1,6 +1,6 @@
 using UnityEngine;
 
-// TODO: Document this code, dowee.
+// TODO[DUY]: Document this code, dowee.
 public class DoubleShot : MonoBehaviour, IAttackStrategy
 {
     [SerializeField] float _spreadAngle = 10f;

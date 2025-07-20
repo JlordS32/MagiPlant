@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 [Serializable]
 public class ResourceData
@@ -54,6 +55,25 @@ public class ResourceData
             return;
         }
 
+        float cost = _config.GetCost(_level);
+        Debugger.Log(DebugCategory.Resources, $"Current Cost: {cost}");
+        var currencies = _config.CostType;
+
+        // Check if player can afford upgrade
+        bool canAfford = currencies.All(currency => CurrencyStorage.Instance.CanAfford(currency, cost));
+        if (!canAfford)
+        {
+            Debugger.LogWarning(DebugCategory.Resources, "Insufficient currency to upgrade.");
+            return;
+        }
+
+        // Spend the resources
+        // WARNING: If bug occurs, we might have to add a rollback feature just in case.
+        foreach (var currency in currencies)
+        {
+            CurrencyStorage.Instance.Spend(currency, cost);
+        }
+
         _level++;
 
         foreach (var entry in _config.Resources)
@@ -70,7 +90,7 @@ public class ResourceData
 
         foreach (CurrencyType currency in Enum.GetValues(typeof(CurrencyType)))
         {
-            float value = _config.GetValue(currency, 0);
+            float value = _config.GetValue(currency, _level);
             _rates[currency] = value;
             GameEventsManager.RaiseResourceStatUpdate(currency, value);
         }

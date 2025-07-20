@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 [Serializable]
 public class TowerData
@@ -60,6 +61,27 @@ public class TowerData
             Debugger.LogWarning(DebugCategory.Towers, "Attempting to upgrade tower beyond max level.");
             return;
         }
+
+        float cost = _config.GetCost(_level);
+        Debugger.Log(DebugCategory.Towers, $"Current cost: {cost}");
+        var currencies = _config.CostType;
+
+        // Check if player can afford upgrade
+        bool canAfford = currencies.All(currency => CurrencyStorage.Instance.CanAfford(currency, cost));
+        if (!canAfford)
+        {
+            Debugger.LogWarning(DebugCategory.Towers, "Insufficient currency to upgrade.");
+            return;
+        }
+
+        // Spend the resources
+        // WARNING: If bug occurs, we might have to add a rollback feature just in case.
+        foreach (var currency in currencies)
+        {
+            CurrencyStorage.Instance.Spend(currency, cost);
+        }
+
+        // Upgrade levle
         _level++;
 
         foreach (var entry in _config.Stats)

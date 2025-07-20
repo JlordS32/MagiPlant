@@ -6,7 +6,7 @@ public class ResourceBuilding : MonoBehaviour, IBuildable, IUpgradeable
     [SerializeField] ResourceStatConfig _config;
     ResourceData _resourceData;
 
-    // TODO: ADD SUPPORT FOR GENERATION, make it into an upgrade. So it's an auto-clicker.
+    // TODO[JAYLOU]: ADD SUPPORT FOR GENERATION, make it into an upgrade. So it's an auto-clicker.
 
     public ResourceData Data => _resourceData;
 
