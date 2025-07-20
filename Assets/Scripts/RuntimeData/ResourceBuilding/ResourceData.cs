@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 [Serializable]
-public class ResourceData : IUpgradeable
+public class ResourceData
 {
     Dictionary<CurrencyType, float> _rates = new();
     ResourceStatConfig _config;

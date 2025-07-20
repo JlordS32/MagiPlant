@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TowerDefense : MonoBehaviour, IBuildable
+public class TowerDefense : MonoBehaviour, IBuildable, IUpgradeable
 {
     [SerializeField] TowerStatConfig _towerStatConfig;
 
@@ -42,5 +42,10 @@ public class TowerDefense : MonoBehaviour, IBuildable
         return new Vector2Int(
             Mathf.CeilToInt(bounds.x / cellSize.x),
             Mathf.CeilToInt(bounds.y / cellSize.y));
+    }
+
+    public void Upgrade()
+    {
+        _towerData.UpgradeAll();
     }
 }

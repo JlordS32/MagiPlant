@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ResourceBuilding : MonoBehaviour, IBuildable
+public class ResourceBuilding : MonoBehaviour, IBuildable, IUpgradeable
 {
     // PROPERTIES
     [SerializeField] ResourceStatConfig _config;
@@ -30,5 +30,10 @@ public class ResourceBuilding : MonoBehaviour, IBuildable
         return new Vector2Int(
             Mathf.CeilToInt(bounds.x / cellSize.x),
             Mathf.CeilToInt(bounds.y / cellSize.y));
+    }
+
+    public void Upgrade()
+    {
+        _resourceData.UpgradeAll();
     }
 }
