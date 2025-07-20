@@ -62,17 +62,20 @@ public static class Debugger
 #if UNITY_EDITOR
     public static void Log(DebugCategory category, string message)
     {
-        DebugManager.Instance.Log(category, message);
+        if (DebugManager.Instance != null)
+            DebugManager.Instance.Log(category, message);
     }
 
     public static void LogWarning(DebugCategory category, string message)
     {
-        DebugManager.Instance.LogWarning(category, message);
+        if (DebugManager.Instance != null)
+            DebugManager.Instance.LogWarning(category, message);
     }
 
     public static void LogError(DebugCategory category, string message)
     {
-        DebugManager.Instance.LogError(category, message);
+        if (DebugManager.Instance != null)
+            DebugManager.Instance.LogError(category, message);
     }
 #else
     public static void Log(DebugCategory category, string message) { }

@@ -251,6 +251,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae6af9d3a971ff845bb16db0f0e54e4f, type: 3}
+--- !u!114 &702348712 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7699619808651642761, guid: 64451f48e90983940832dc08791c9bfd, type: 3}
+  m_PrefabInstance: {fileID: 1192294076064564523}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &728717025 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7420953995150722578, guid: 64451f48e90983940832dc08791c9bfd, type: 3}
@@ -262,57 +273,6 @@ MonoBehaviour:
   m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &754590075
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 754590076}
-  - component: {fileID: 754590077}
-  m_Layer: 0
-  m_Name: ObjectDialogUI
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &754590076
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 754590075}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1684043165}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &754590077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 754590075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PanelSettings: {fileID: 11400000, guid: 37c19fec32aded2479d89ba95cf1a132, type: 2}
-  m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: ad215ab616641fd46b6f204b02f574f9, type: 3}
-  m_SortingOrder: 0
-  m_WorldSpaceSizeMode: 1
-  m_WorldSpaceWidth: 1920
-  m_WorldSpaceHeight: 1080
 --- !u!1001 &856958410
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -496,11 +456,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1684043165 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5051735821669372867, guid: 64451f48e90983940832dc08791c9bfd, type: 3}
-  m_PrefabInstance: {fileID: 1192294076064564523}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1709245784
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,10 +650,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 5051735821669372867, guid: 64451f48e90983940832dc08791c9bfd, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 754590076}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64451f48e90983940832dc08791c9bfd, type: 3}
 --- !u!1001 &1659563636889849442
@@ -830,18 +782,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7218447435030563110, guid: 911602d9b8cd8fa4c90c11bef11b9d76, type: 3}
+      propertyPath: _dialogDocument
+      value: 
+      objectReference: {fileID: 702348712}
     - target: {fileID: 7510286357049526526, guid: 911602d9b8cd8fa4c90c11bef11b9d76, type: 3}
       propertyPath: _sidePanelDocument
       value: 
       objectReference: {fileID: 494637967}
-    - target: {fileID: 7510286357049526526, guid: 911602d9b8cd8fa4c90c11bef11b9d76, type: 3}
-      propertyPath: _upgradeUITemplate
-      value: 
-      objectReference: {fileID: 9197481963319205126, guid: 09730a234b3196c40949b9792353927d, type: 3}
-    - target: {fileID: 7510286357049526526, guid: 911602d9b8cd8fa4c90c11bef11b9d76, type: 3}
-      propertyPath: _resourceConfigEntry
-      value: 
-      objectReference: {fileID: 11400000, guid: c8ee7a5f9fbc0f34699c1d96055375f7, type: 2}
     - target: {fileID: 8082989182878093447, guid: 911602d9b8cd8fa4c90c11bef11b9d76, type: 3}
       propertyPath: _hudDocument
       value: 
@@ -4404,6 +4352,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 934774349628676129, guid: e2bf8df405595024cbd43d28dbb59143, type: 3}
+      propertyPath: _categories.Array.data[7].Name
+      value: Resources
+      objectReference: {fileID: 0}
+    - target: {fileID: 934774349628676129, guid: e2bf8df405595024cbd43d28dbb59143, type: 3}
+      propertyPath: _categories.Array.data[7].Category
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 934774349628676129, guid: e2bf8df405595024cbd43d28dbb59143, type: 3}
+      propertyPath: _categories.Array.data[7].IsEnabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3980554904250547147, guid: e2bf8df405595024cbd43d28dbb59143, type: 3}
       propertyPath: m_LocalPosition.x
       value: 365.62494
@@ -4464,6 +4424,10 @@ PrefabInstance:
     - target: {fileID: 3469833265186095275, guid: e329a22cf5900d74bb4547793d3f1db4, type: 3}
       propertyPath: m_Name
       value: TimeManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8310909475113405435, guid: e329a22cf5900d74bb4547793d3f1db4, type: 3}
+      propertyPath: _startHour
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8310909475113405435, guid: e329a22cf5900d74bb4547793d3f1db4, type: 3}
       propertyPath: _globalLight

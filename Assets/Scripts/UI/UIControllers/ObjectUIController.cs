@@ -46,13 +46,12 @@ public class ObjectUIController : MonoBehaviour
         // Registering callbacks
         _upgradeBtn.RegisterCallback<ClickEvent>(_ =>
         {
-            if (_currentPlacedObject != null)
+            if (_currentPlacedObject.TryGetComponent<IUpgradeable>(out var building))
             {
-                ToggleObjectUI(false);
-                ObjectDialogController.Instance.Show(_currentPlacedObject);
+                building.Upgrade();
             }
         });
-        
+
         _infoBtn.RegisterCallback<ClickEvent>(_ =>
         {
             if (_currentPlacedObject != null)
@@ -67,6 +66,7 @@ public class ObjectUIController : MonoBehaviour
     {
         _enableMouseClickCheck = enabled;
     }
+
 
     void Update()
     {

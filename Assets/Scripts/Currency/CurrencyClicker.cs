@@ -1,61 +1,74 @@
-using System;
-using UnityEngine;
-using System.Collections.Generic;
+// WARNING[DEPRECATED]
+// ---------------------------------
 
-public class CurrencyClicker : MonoBehaviour, IUpgradableCurrency, IPhaseListener
-{
-    // REFERENCES
-    CurrencyStorage _storage;
+// using System;
+// using UnityEngine;
+// using System.Collections.Generic;
 
-    // VARIABLES
-    Dictionary<CurrencyType, float> _clickRate = new();
-    readonly float _defaultRate = 0.125f;
-    bool _canClick = true;
+// public class CurrencyClicker : MonoBehaviour, IUpgradableCurrency, IPhaseListener
+// {
+//     public static CurrencyClicker Instance { get; private set; }
 
-    #region PHASE LISTENER
-    void OnEnable()
-    {
-        PhaseService.Register(this);
-        OnPhaseChanged(PhaseService.Current);
-    }
-    void OnDisable()
-    {
-        PhaseService.Unregister(this);
-    }
+//     // REFERENCES
+//     CurrencyStorage _storage;
 
-    public void OnPhaseChanged(GamePhase phase)
-    {
-        _canClick = phase == GamePhase.Day;
-    }
-    #endregion
+//     // VARIABLES
+//     Dictionary<CurrencyType, float> _clickRate = new();
+//     readonly float _defaultRate = 0.125f;
+//     bool _canClick = true;
 
-    // UNITY FUNCTIONS
-    void Awake()
-    {
-        _storage = GetComponent<CurrencyStorage>();
+//     #region PHASE LISTENER
+//     void OnEnable()
+//     {
+//         PhaseService.Register(this);
+//         OnPhaseChanged(PhaseService.Current);
+//     }
+//     void OnDisable()
+//     {
+//         PhaseService.Unregister(this);
+//     }
 
-        foreach (CurrencyType type in Enum.GetValues(typeof(CurrencyType)))
-        {
-            _clickRate[type] = _defaultRate;
-        }
-    }
+//     public void OnPhaseChanged(GamePhase phase)
+//     {
+//         _canClick = phase == GamePhase.Day;
+//     }
+//     #endregion
 
-    // GETTERS & SETTERS
-    public float GetClickRate(CurrencyType type) => _clickRate[type];
+//     // UNITY FUNCTIONS
+//     void Awake()
+//     {
+//         if (Instance != null && Instance != this)
+//         {
+//             Debugger.LogWarning(DebugCategory.Singletons, "Multiple instances of CurrencyClicker detected. Destroying the new instance.");
+//             Destroy(Instance);
+//             return;
+//         }
+//         Instance = this;
+
+//         _storage = GetComponent<CurrencyStorage>();
+
+//         foreach (CurrencyType type in Enum.GetValues(typeof(CurrencyType)))
+//         {
+//             _clickRate[type] = _defaultRate;
+//         }
+//     }
+
+//     // GETTERS & SETTERS
+//     public float GetClickRate(CurrencyType type) => _clickRate[type];
 
 
-    public void Click(CurrencyType type)
-    {
-        if (!_canClick) return;
-        _storage.Add(type, _clickRate[type]);
-    }
+//     public void Click(CurrencyType type)
+//     {
+//         if (!_canClick) return;
+//         _storage.Add(type, _clickRate[type]);
+//     }
 
-    public void ApplyUpgrade(UpgradeEntry upgrade, CurrencyType type)
-    {
-        if (upgrade.Type == UpgradeType.ClickRate)
-        {
-            _clickRate[type] = upgrade.GetUpgradeValue();
-            GameEventsManager.RaiseClickRateUpdated(type, _clickRate[type], upgrade.Level);
-        }
-    }
-}
+//     public void ApplyUpgrade(UpgradeEntry upgrade, CurrencyType type)
+//     {
+//         if (upgrade.Type == UpgradeType.ClickRate)
+//         {
+//             _clickRate[type] = upgrade.GetUpgradeValue();
+//             GameEventsManager.RaiseClickRateUpdated(type, _clickRate[type], upgrade.Level);
+//         }
+//     }
+// }

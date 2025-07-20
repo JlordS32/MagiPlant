@@ -23,6 +23,10 @@ public static class GameEventsManager
     public static event Action<CurrencyType, float> OnCurrencyUpdate;
     public static event Action OnCurrencyReset;
 
+    // Resources
+    public static event Action<CurrencyType, float> OnResourceStatUpdate;
+    public static event Action OnResourceReset;
+
     // Click Rate 
     public static event Action<CurrencyType, float, int> OnClickRateUpdated;
 
@@ -69,6 +73,11 @@ public static class GameEventsManager
 
     public static void RaiseCurrencyReset()
         => OnCurrencyReset?.Invoke();
+
+    // Resources
+    public static void RaiseResourceStatUpdate(CurrencyType type, float value) => OnResourceStatUpdate?.Invoke(type, value);
+    public static void RaiseResourceReset()
+        => OnResourceReset?.Invoke();
 
     // Click Rate 
     public static void RaiseClickRateUpdated(CurrencyType type, float rate, int level)

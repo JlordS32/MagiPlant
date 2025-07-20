@@ -1,24 +1,26 @@
-using UnityEngine;
+// WARNING[DEPRECATED]
+// ---------------------------------
 
-// WARNING: CODE DEPRECATED...
-public class UpgradeManager : MonoBehaviour
-{
-    // // REFERENCES
-    // CurrencyStorage _storage;
+// using UnityEngine;
 
-    // void Awake() => _storage = GetComponent<CurrencyStorage>();
+// public class UpgradeManager : MonoBehaviour
+// {
+//     // // REFERENCES
+//     // CurrencyStorage _storage;
 
-    // public void TryUpgrade(UpgradeEntry entry, IUpgradableCurrency target, CurrencyType type)
-    // {
-    //     if (entry.Level >= entry.MaxLevel)
-    //         return;
+//     // void Awake() => _storage = GetComponent<CurrencyStorage>();
 
-    //     float cost = entry.GetCost();
+//     // public void TryUpgrade(UpgradeEntry entry, IUpgradableCurrency target, CurrencyType type)
+//     // {
+//     //     if (entry.Level >= entry.MaxLevel)
+//     //         return;
 
-    //     if (_storage.Spend(CurrencyType.Sunlight, cost))
-    //     {
-    //         entry.Upgrade();                         // Increase level
-    //         target.ApplyUpgrade(entry, type);        // Apply effect
-    //     }
-    // }
-}
+//     //     float cost = entry.GetCost();
+
+//     //     if (_storage.Spend(CurrencyType.Sunlight, cost))
+//     //     {
+//     //         entry.Upgrade();                         // Increase level
+//     //         target.ApplyUpgrade(entry, type);        // Apply effect
+//     //     }
+//     // }
+// }

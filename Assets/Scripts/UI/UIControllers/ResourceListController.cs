@@ -47,13 +47,13 @@ public class ResourceListController
         _resourceList.bindItem = (element, index) =>
         {
             var data = _entries[index];
-            var generator = data.Prefab.GetComponent<ResourceGenerator>();
+            var generator = data.Prefab.GetComponent<ResourceBuilding>();
             if (generator == null) return;
 
             element.Q<Label>("ResourceName").text = data.BuildEntryName;
             element.Q<Image>("Thumbnail").sprite = data.Thumbnail;
-            element.Q<Label>("GEN").text = $"+{generator.GenerateAmount}/{generator.Interval}s";
-            element.Q<Label>("TYPE").text = generator.ResourceType.ToString();
+            element.Q<Label>("GEN").text = $"Hello world";
+            element.Q<Label>("TYPE").text = "Konichiwa";
             var buildButton = element.Q<Button>("BuildButton");
             buildButton.text = $"Cost {data.Cost}";
 

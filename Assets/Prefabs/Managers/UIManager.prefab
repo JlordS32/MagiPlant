@@ -75,25 +75,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sidePanelDocument: {fileID: 0}
   _towerUITemplate: {fileID: 9197481963319205126, guid: 614462fbf8767564a83af6bb23495d2b, type: 3}
-  _upgradeUITemplate: {fileID: 9197481963319205126, guid: 77ca191e09db765428e7b18d88e3c81b, type: 3}
+  _upgradeUITemplate: {fileID: 9197481963319205126, guid: 09730a234b3196c40949b9792353927d, type: 3}
   _buildingConfigEntry: {fileID: 11400000, guid: 68ce767f03a96d140bdb7f1f845a189a, type: 2}
-  _upgradeEntries:
-  - Name: Water Upgrade
-    Type: 1
-    TargetCurrency: 0
-    Value: 1
-    BaseCost: 1
-    CostMultiplier: 1.2
-    Level: 1
-    MaxLevel: 10
-  - Name: Sun Upgrade
-    Type: 1
-    TargetCurrency: 1
-    Value: 1
-    BaseCost: 1
-    CostMultiplier: 1.2
-    Level: 1
-    MaxLevel: 10
+  _resourceConfigEntry: {fileID: 11400000, guid: c8ee7a5f9fbc0f34699c1d96055375f7, type: 2}
 --- !u!114 &4387091378644409850
 MonoBehaviour:
   m_ObjectHideFlags: 0
