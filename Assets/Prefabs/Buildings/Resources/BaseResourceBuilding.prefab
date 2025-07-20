@@ -175,6 +175,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81f2f19ea986fea4b800611b91861638, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ResourceType: 0
-  GenerateAmount: 1
-  Interval: 2
+  _config: {fileID: 11400000, guid: fca2bbae8b34248438511421e531fcdd, type: 2}

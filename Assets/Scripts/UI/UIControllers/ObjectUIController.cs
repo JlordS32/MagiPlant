@@ -49,7 +49,12 @@ public class ObjectUIController : MonoBehaviour
             if (_currentPlacedObject != null)
             {
                 ToggleObjectUI(false);
-                ObjectDialogController.Instance.Show(_currentPlacedObject);
+                ResourceData data = _currentPlacedObject.GetComponent<ResourceBuilding>().Data;
+
+                if (data != null)
+                {
+                    data.UpgradeAll();
+                }
             }
         });
         

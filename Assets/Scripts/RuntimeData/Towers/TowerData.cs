@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 [Serializable]
-public class TowerData
+public class TowerData : IUpgradeable
 {
     Dictionary<TowerStats, float> _stats = new();
     TowerStatConfig _config;

@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 
 [Serializable]
-public class ResourceData
+public class ResourceData : IUpgradeable
 {
-    Dictionary<CurrencyType, float> _values = new();
+    Dictionary<CurrencyType, float> _rates = new();
     ResourceStatConfig _config;
 
     int _level = 1;
@@ -18,22 +18,23 @@ public class ResourceData
         // Initialise values
         foreach (CurrencyType currency in Enum.GetValues(typeof(CurrencyType)))
         {
-            _values[currency] = 0f;
+            _rates[currency] = 0f;
         }
 
         Reset();
 
-        foreach (var entry in _values)
+        foreach (var entry in _rates)
         {
             Debugger.Log(DebugCategory.Resources, $"Level {_level}: {entry.Key}: {entry.Value}");
         }
     }
 
     #region GETTERS & SETTERS
-    public float Get(CurrencyType currency) => _values[currency];
+    public IReadOnlyDictionary<CurrencyType, float> Snapshot => _rates;
+    public float Get(CurrencyType currency) => _rates[currency];
     public void Set(CurrencyType currency, float value)
     {
-        _values[currency] = value;
+        _rates[currency] = value;
         GameEventsManager.RaiseResourceStatUpdate(currency, value); // assume you have this
     }
     #endregion
@@ -41,7 +42,7 @@ public class ResourceData
     public void Upgrade(CurrencyType currency)
     {
         float newValue = _config.GetValue(currency, _level);
-        _values[currency] = newValue;
+        _rates[currency] = newValue;
         GameEventsManager.RaiseResourceStatUpdate(currency, newValue);
     }
 
@@ -58,7 +59,7 @@ public class ResourceData
         foreach (var entry in _config.Resources)
         {
             Upgrade(entry.Currency);
-            Debugger.Log(DebugCategory.Resources, $"Level {_level}: {entry.Currency}: {_values[entry.Currency]}");
+            Debugger.Log(DebugCategory.Resources, $"Level {_level}: {entry.Currency}: {_rates[entry.Currency]}");
         }
     }
     #endregion
@@ -70,7 +71,7 @@ public class ResourceData
         foreach (CurrencyType currency in Enum.GetValues(typeof(CurrencyType)))
         {
             float value = _config.GetValue(currency, 0);
-            _values[currency] = value;
+            _rates[currency] = value;
             GameEventsManager.RaiseResourceStatUpdate(currency, value);
         }
 
