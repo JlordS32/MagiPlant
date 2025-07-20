@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // TODO: Switch pause to using UI Toolkit Document
+    // TODO[DUY]: Switch pause to using UI Toolkit Document
     public void TogglePause()
     {
         AudioManager.Instance.PauseMusic();

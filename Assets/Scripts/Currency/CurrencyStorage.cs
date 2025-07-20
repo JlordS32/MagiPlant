@@ -42,6 +42,11 @@ public class CurrencyStorage : MonoBehaviour
         return spent;
     }
 
+    public bool CanAfford(CurrencyType type, float amount)
+    {
+        return _storage[type].Value >= amount;
+    }
+
     public float Get(CurrencyType type) => _storage[type].Value;
 
     // RESET

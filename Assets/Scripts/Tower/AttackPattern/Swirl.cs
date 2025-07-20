@@ -1,6 +1,6 @@
 using UnityEngine;
 
-// TODO: Document this code, dowee.
+// TODO[DUY]: Document this code, dowee.
 public class Swirl : MonoBehaviour, IAttackStrategy
 {
     [SerializeField, Range(3, 36)] int _projectileCount = 8;
