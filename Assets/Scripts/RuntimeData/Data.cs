@@ -9,6 +9,9 @@ public abstract class Data<TEnum, TConfig> where TEnum : Enum
     protected int _level = 1;
 
     public int Level => _level;
+    public IReadOnlyDictionary<TEnum, float> Snapshot => _data;
+
+    // Initalise
     protected void Init(TConfig config, DebugCategory debugCategory)
     {
         _config = config;
