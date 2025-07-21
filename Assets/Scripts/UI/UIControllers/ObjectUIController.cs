@@ -85,10 +85,10 @@ public class ObjectUIController : MonoBehaviour
         }
     }
 
-    public void Show(BuildingEntry entry)
+    public void Show()
     {
         if (_objectNameLabel != null)
-            _objectNameLabel.text = $"{entry.BuildEntryName}";
+            _objectNameLabel.text = $"{_currentPlacedObject.Entry.BuildEntryName} (Level {_currentPlacedObject.GetData().Level})";
 
         if (_panel != null && _panel.ClassListContains("hidden"))
         {
@@ -127,7 +127,7 @@ public class ObjectUIController : MonoBehaviour
             if (hit.TryGetComponent<PlacedObject>(out var placedObject))
             {
                 _currentPlacedObject = placedObject;
-                Show(placedObject.Entry);
+                Show();
                 return true;
             }
 

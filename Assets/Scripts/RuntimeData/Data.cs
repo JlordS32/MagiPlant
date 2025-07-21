@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
-public abstract class Data<TEnum, TConfig> where TEnum : Enum
+public abstract class Data<TEnum, TConfig> : IStatData where TEnum : Enum
 {
     protected Dictionary<TEnum, float> _data = new();
     protected TConfig _config;
@@ -48,5 +49,10 @@ public abstract class Data<TEnum, TConfig> where TEnum : Enum
     {
         foreach (var stat in _data)
             Debugger.Log(_debugCategory, $"Level {_level}: {stat.Key}: {stat.Value}");
+    }
+
+    public Dictionary<string, float> GetStats()
+    {
+        return _data.ToDictionary(kv => kv.Key.ToString(), kv => kv.Value);
     }
 }

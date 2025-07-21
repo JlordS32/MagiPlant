@@ -36,4 +36,6 @@ public class ResourceBuilding : MonoBehaviour, IBuildable, IUpgradeable
     {
         _resourceData.UpgradeAll();
     }
+
+    public IStatData GetData() => _resourceData;
 }

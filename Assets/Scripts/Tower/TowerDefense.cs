@@ -48,4 +48,6 @@ public class TowerDefense : MonoBehaviour, IBuildable, IUpgradeable
     {
         _towerData.UpgradeAll();
     }
+
+    public IStatData GetData() => _towerData;
 }
