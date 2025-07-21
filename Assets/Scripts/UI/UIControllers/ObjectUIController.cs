@@ -88,7 +88,7 @@ public class ObjectUIController : MonoBehaviour
     public void Show(BuildingEntry entry)
     {
         if (_objectNameLabel != null)
-            _objectNameLabel.text = entry.BuildEntryName;
+            _objectNameLabel.text = $"{entry.BuildEntryName}";
 
         if (_panel != null && _panel.ClassListContains("hidden"))
         {
@@ -115,7 +115,6 @@ public class ObjectUIController : MonoBehaviour
         // If any element besides the root is picked, it's a UI element
         return picked != null && picked != _uiDocument.rootVisualElement;
     }
-
 
     bool ClickedOnPlacedObject()
     {
