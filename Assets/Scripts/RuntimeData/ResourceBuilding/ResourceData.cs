@@ -7,20 +7,7 @@ public class ResourceData : Data<CurrencyType, ResourceStatConfig>
     // Constructor
     public ResourceData(ResourceStatConfig config)
     {
-        _config = config;
-
-        // Initialise values
-        foreach (CurrencyType currency in Enum.GetValues(typeof(CurrencyType)))
-        {
-            _data[currency] = 0f;
-        }
-
-        Reset();
-
-        foreach (var entry in _data)
-        {
-            Debugger.Log(DebugCategory.Resources, $"Level {_level}: {entry.Key}: {entry.Value}");
-        }
+        Init(config, DebugCategory.Resources);
     }
 
     #region GETTERS & SETTERS

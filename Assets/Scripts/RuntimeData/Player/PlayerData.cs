@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO[JAYLOU]: Need to refactored
 [Serializable]
 public class PlayerData
 {
