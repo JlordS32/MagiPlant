@@ -1,50 +1,23 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 [Serializable]
-public class ResourceData
+public class ResourceData : Data<CurrencyType, ResourceStatConfig>
 {
-    Dictionary<CurrencyType, float> _rates = new();
-    ResourceStatConfig _config;
-
-    int _level = 1;
-    public int Level => _level;
-
     // Constructor
     public ResourceData(ResourceStatConfig config)
     {
-        _config = config;
-
-        // Initialise values
-        foreach (CurrencyType currency in Enum.GetValues(typeof(CurrencyType)))
-        {
-            _rates[currency] = 0f;
-        }
-
-        Reset();
-
-        foreach (var entry in _rates)
-        {
-            Debugger.Log(DebugCategory.Resources, $"Level {_level}: {entry.Key}: {entry.Value}");
-        }
+        Init(config, DebugCategory.Resources);
     }
 
     #region GETTERS & SETTERS
-    public IReadOnlyDictionary<CurrencyType, float> Snapshot => _rates;
-    public float Get(CurrencyType currency) => _rates[currency];
-    public void Set(CurrencyType currency, float value)
-    {
-        _rates[currency] = value;
-        GameEventsManager.RaiseResourceStatUpdate(currency, value); // assume you have this
-    }
     #endregion
     #region UPGRADE
     public void Upgrade(CurrencyType currency)
     {
         float newValue = _config.GetValue(currency, _level);
-        _rates[currency] = newValue;
-        GameEventsManager.RaiseResourceStatUpdate(currency, newValue);
+        _data[currency] = newValue;
+        RaiseStatUpdateEvent(currency, newValue);
     }
 
     public void UpgradeAll()
@@ -79,23 +52,28 @@ public class ResourceData
         foreach (var entry in _config.Resources)
         {
             Upgrade(entry.Currency);
-            Debugger.Log(DebugCategory.Resources, $"Level {_level}: {entry.Currency}: {_rates[entry.Currency]}");
+            Debugger.Log(DebugCategory.Resources, $"Level {_level}: {entry.Currency}: {_data[entry.Currency]}");
         }
     }
     #endregion
     #region RESET
-    public void Reset()
+    public override void Reset()
     {
         _level = 1;
 
         foreach (CurrencyType currency in Enum.GetValues(typeof(CurrencyType)))
         {
             float value = _config.GetValue(currency, _level);
-            _rates[currency] = value;
-            GameEventsManager.RaiseResourceStatUpdate(currency, value);
+            _data[currency] = value;
+            RaiseStatUpdateEvent(currency, value);
         }
 
         GameEventsManager.RaiseResourceReset();
     }
-#endregion
+
+    protected override void RaiseStatUpdateEvent(CurrencyType stat, float value)
+    {
+        GameEventsManager.RaiseResourceStatUpdate(stat, value);
+    }
+    #endregion
 }
