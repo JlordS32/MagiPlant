@@ -4,6 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "SO/Enemies/Enemy Stat Config")]
 public class EnemyStatConfig : ScriptableObject
 {
+    public int MaxLevel;
     public float HP = 50;
     public float Attack = 10;
     public float Defense = 3;

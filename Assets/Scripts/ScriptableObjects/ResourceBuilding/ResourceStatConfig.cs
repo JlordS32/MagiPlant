@@ -14,7 +14,7 @@ public class ResourceStatConfig : ScriptableObject
     public ResourceStatEntry[] Resources;
     public Dictionary<CurrencyType, ResourceStatEntry> _statLookup;
 
-    void InitLookup() => _statLookup ??= Resources.ToDictionary(currency => currency.Currency, currency => currency);
+    void InitLookup() => _statLookup ??= Resources.ToDictionary(currency => currency.Stat, currency => currency);
 
     public float GetCost(int level = 0)
     {

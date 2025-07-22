@@ -33,5 +33,4 @@ public class TowerStatConfig : ScriptableObject
         InitLookup();
         return _statLookup.TryGetValue(stat, out var entry) ? entry.GetValue(level) : 0f;
     }
-
 }
