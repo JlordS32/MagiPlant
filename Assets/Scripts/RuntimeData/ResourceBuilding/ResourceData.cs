@@ -51,8 +51,8 @@ public class ResourceData : Data<CurrencyType, ResourceStatConfig>
 
         foreach (var entry in _config.Resources)
         {
-            Upgrade(entry.Currency);
-            Debugger.Log(DebugCategory.Resources, $"Level {_level}: {entry.Currency}: {_data[entry.Currency]}");
+            Upgrade(entry.Stat);
+            Debugger.Log(DebugCategory.Resources, $"Level {_level}: {entry.Stat}: {_data[entry.Stat]}");
         }
     }
     #endregion
