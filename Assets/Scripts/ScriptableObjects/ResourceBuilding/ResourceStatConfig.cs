@@ -5,14 +5,19 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "SO/Resources/Resource Stat Config")]
 public class ResourceStatConfig : ScriptableObject
 {
+    [Header ("Base Parameters")]
     public int MaxLevel;
     public float Interval;
+
+    [Header ("Cost Parameters")]
     public float BaseCost;
     public CurrencyType[] CostType;
     public AnimationCurve CostUpgrade;
     public UpgradeOperation CostUpgradeOperation = UpgradeOperation.Multiply;
-    public ResourceStatEntry[] Resources;
-    public Dictionary<CurrencyType, ResourceStatEntry> _statLookup;
+
+    [Header ("Stat Entries")]
+    public StatEntry<CurrencyType>[] Resources;
+    public Dictionary<CurrencyType, StatEntry<CurrencyType>> _statLookup;
 
     void InitLookup() => _statLookup ??= Resources.ToDictionary(currency => currency.Stat, currency => currency);
 

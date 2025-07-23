@@ -8,8 +8,8 @@ public class EnemyStatConfig : ScriptableObject
 {
     public int MaxLevel;
     public float BaseCost;
-    public EnemyStatEntry[] Stats;
-    public Dictionary<EnemyStats, EnemyStatEntry> _statLookup;
+    public StatEntry<EnemyStats>[] Stats;
+    public Dictionary<EnemyStats, StatEntry<EnemyStats>> _statLookup;
 
     void InitLookup() => _statLookup ??= Stats.ToDictionary(stat => stat.Stat, stat => stat);
 

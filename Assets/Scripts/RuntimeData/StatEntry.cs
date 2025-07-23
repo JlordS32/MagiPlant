@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public abstract class StatEntry<TEnum> where TEnum : Enum
+public class StatEntry<TEnum> where TEnum : Enum
 {
     public string Name;
     public TEnum Stat;
