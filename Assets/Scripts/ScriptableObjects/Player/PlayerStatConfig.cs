@@ -13,11 +13,29 @@ public class PlayerStatConfig : ScriptableObject
     public StatEntry<PlayerStats>[] Stats;
     public Dictionary<PlayerStats, StatEntry<PlayerStats>> _statLookup;
 
+    [Header("EXP Settings")]
+    public float BaseExp = 10f;
+    public AnimationCurve ExpCurve;
+    public UpgradeOperation ExpOperation = UpgradeOperation.Multiply;
+
     void InitLookup() => _statLookup ??= Stats.ToDictionary(stat => stat.Stat, stat => stat);
 
     public float GetValue(PlayerStats stat, int level = 0)
     {
         InitLookup();
         return _statLookup.TryGetValue(stat, out var entry) ? entry.GetValue(level) : 0f;
+    }
+
+    public float GetRequiredExp(int level)
+    {
+        float delta = ExpCurve?.Evaluate(level) ?? 1f;
+        
+        return ExpOperation switch
+        {
+            UpgradeOperation.Add => BaseExp + delta,
+            UpgradeOperation.Multiply => BaseExp * delta,
+            UpgradeOperation.Exponent => Mathf.Pow(BaseExp, delta),
+            _ => BaseExp
+        };
     }
 }
