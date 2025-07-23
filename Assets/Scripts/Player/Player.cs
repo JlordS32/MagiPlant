@@ -30,11 +30,4 @@ public class Player : MonoBehaviour, IDamageable
         _playerData.ApplyDamage(dmg);
         _healthUI.UpdateBar(_playerData.Get(PlayerStats.HP), _playerData.Get(PlayerStats.MaxHP));
     }
-
-    [ContextMenu("Log Player Stats")]
-    void DebugStats()
-    {
-        foreach (var kv in _playerData.Snapshot)
-            DebugManager.Instance.Log(DebugCategory.Player, $"{kv.Key}: {kv.Value}");
-    }
 }

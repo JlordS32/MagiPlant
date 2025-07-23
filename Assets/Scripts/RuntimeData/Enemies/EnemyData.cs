@@ -29,4 +29,22 @@ public class EnemyData : Data<EnemyStats, EnemyStatConfig>
     {
         GameEventsManager.RaiseEnemyStatReset();
     }
+
+    public override void Reset()
+    {
+        foreach (EnemyStats stat in Enum.GetValues(typeof(EnemyStats)))
+        {
+            // Skip HP — set it later based on MaxHP
+            if (stat == EnemyStats.HP)
+                continue;
+
+            _data[stat] = _config.GetValue(stat, 0);
+        }
+
+        // Ensure HP is synced to MaxHP
+        _data[EnemyStats.HP] = _data[EnemyStats.MaxHP];
+
+        _level = 1;
+        RaiseResetUpdateEvent();
+    }
 }

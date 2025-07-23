@@ -49,6 +49,7 @@ public class PlayerData : Data<PlayerStats, PlayerStatConfig>
     {
         float newValue = _config.GetValue(stat, _level);
         _data[stat] = newValue;
+
         RaiseStatUpdateEvent(stat, newValue);
     }
 
@@ -67,6 +68,10 @@ public class PlayerData : Data<PlayerStats, PlayerStatConfig>
             Upgrade(entry.Stat);
             Debugger.Log(_debugCategory, $"Level {_level}: {entry.Stat}: {_data[entry.Stat]}");
         }
+
+        // Set MaxHP and restore full HP
+        if (_data.ContainsKey(PlayerStats.MaxHP))
+            _data[PlayerStats.HP] = _data[PlayerStats.MaxHP];
     }
 
     bool CheckLevelUp()
@@ -91,13 +96,32 @@ public class PlayerData : Data<PlayerStats, PlayerStatConfig>
         _data[PlayerStats.EXP] = currentExp;
         return leveledUp;
     }
-    
+
     protected override void RaiseStatUpdateEvent(PlayerStats stat, float value)
     {
         GameEventsManager.RaisePlayerStatUpdate(stat, value);
     }
+
     protected override void RaiseResetUpdateEvent()
     {
         GameEventsManager.RaisePlayerStatReset();
+    }
+
+    public override void Reset()
+    {
+        foreach (PlayerStats stat in Enum.GetValues(typeof(PlayerStats)))
+        {
+            // Skip HP — set it later based on MaxHP
+            if (stat == PlayerStats.HP)
+                continue;
+
+            _data[stat] = _config.GetValue(stat, 0);
+        }
+
+        // Ensure HP is synced to MaxHP
+        _data[PlayerStats.HP] = _data[PlayerStats.MaxHP];
+
+        _level = 1;
+        RaiseResetUpdateEvent();
     }
 }
