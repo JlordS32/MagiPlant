@@ -90,7 +90,7 @@ public class PlantGrow : MonoBehaviour, IPhaseListener
 
     void UpdateSprite()
     {
-        int currLevel = (int)_player.PlayerData.Get(PlayerStats.Level);
+        int currLevel = _playerData.Level;
         int index = Mathf.Clamp((currLevel - 1) / _levelGap, 0, _levelPrefabs.Count - 1);
         _lastKnownIndex = index;
 

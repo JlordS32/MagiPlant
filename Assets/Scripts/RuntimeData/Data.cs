@@ -2,15 +2,25 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public abstract class Data<TEnum, TConfig> : IStatData where TEnum : Enum
+public abstract class Data<TEnum, TConfig> : IStatData
+    where TEnum : Enum
+    where TConfig : IStatConfig<TEnum>
 {
     protected Dictionary<TEnum, float> _data = new();
     protected TConfig _config;
     protected DebugCategory _debugCategory;
     protected int _level = 1;
 
+    // GETTERS & SETTERS
     public int Level => _level;
     public IReadOnlyDictionary<TEnum, float> Snapshot => _data;
+    public Dictionary<string, float> GetStats() => _data.ToDictionary(kv => kv.Key.ToString(), kv => kv.Value);
+    public virtual float Get(TEnum stat) => _data[stat];
+    public virtual void Set(TEnum stat, float value)
+    {
+        _data[stat] = value;
+        RaiseStatUpdateEvent(stat, value);
+    }
 
     // Initalise
     protected void Init(TConfig config, DebugCategory debugCategory)
@@ -25,7 +35,7 @@ public abstract class Data<TEnum, TConfig> : IStatData where TEnum : Enum
         }
 
         // // Set initial values based on config
-        // Reset();
+        Reset();
 
         foreach (var stat in _data)
         {
@@ -33,26 +43,23 @@ public abstract class Data<TEnum, TConfig> : IStatData where TEnum : Enum
         }
     }
 
-    public virtual float Get(TEnum stat) => _data[stat];
-
-    public virtual void Set(TEnum stat, float value)
+    public virtual void Reset()
     {
-        _data[stat] = value;
-        RaiseStatUpdateEvent(stat, value);
+        foreach (TEnum stat in Enum.GetValues(typeof(TEnum)))
+            _data[stat] = _config.GetValue(stat, 0);
+
+        _level = 1;
+        RaiseResetUpdateEvent();
     }
 
-    public abstract void Reset();
-
+    // TO BE IMPLEMENTED ON INHERITING CLASSES
     protected abstract void RaiseStatUpdateEvent(TEnum stat, float value);
+    protected abstract void RaiseResetUpdateEvent();
 
+    // DEBUG
     protected void LogAllStats()
     {
         foreach (var stat in _data)
             Debugger.Log(_debugCategory, $"Level {_level}: {stat.Key}: {stat.Value}");
-    }
-
-    public Dictionary<string, float> GetStats()
-    {
-        return _data.ToDictionary(kv => kv.Key.ToString(), kv => kv.Value);
     }
 }

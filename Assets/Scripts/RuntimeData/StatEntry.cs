@@ -2,10 +2,10 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class ResourceStatEntry
+public class StatEntry<TEnum> where TEnum : Enum
 {
     public string Name;
-    public CurrencyType Currency;
+    public TEnum Stat;
     public float BaseValue;
     public AnimationCurve UpgradeCurve;
     public UpgradeOperation UpgradeOperation = UpgradeOperation.Add;

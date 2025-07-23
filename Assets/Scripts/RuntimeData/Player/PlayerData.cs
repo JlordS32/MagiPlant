@@ -1,27 +1,16 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 // TODO[JAYLOU]: Need to refactored
 [Serializable]
-public class PlayerData
+public class PlayerData : Data<PlayerStats, PlayerStatConfig>
 {
     // VARIABLES
     float _minDamage = 1f;
 
-    // REFERENCES
-    Dictionary<PlayerStats, float> _stats = new();
-    PlayerStatConfig _config;
-
-    public IReadOnlyDictionary<PlayerStats, float> Snapshot => _stats;
     public PlayerData(PlayerStatConfig config)
     {
-        _config = config;
-
-        foreach (PlayerStats stat in Enum.GetValues(typeof(PlayerStats)))
-            _stats[stat] = 0f;
-
-        Reset();
+        Init(config, DebugCategory.Player);
     }
 
     public void AddStats(PlayerStats stat, float amount)
@@ -29,90 +18,110 @@ public class PlayerData
         // Only take non-negatives
         if (amount > 0 && stat != PlayerStats.EXP)
         {
-            _stats[stat] += amount;
+            _data[stat] += amount;
         }
-        GameEventsManager.RaisePlayerStatUpdate(stat, _stats[stat]);
+        RaiseStatUpdateEvent(stat, _data[stat]);
     }
 
     public void AddExp(float amount)
     {
         if (amount > 0)
         {
-            _stats[PlayerStats.EXP] += amount;
+            _data[PlayerStats.EXP] += amount;
         }
         CheckLevelUp();
-        GameEventsManager.RaiseExpGainUpdate(_stats[PlayerStats.EXP], GetRequiredEXP(_stats[PlayerStats.Level]));
-    }
-
-    public float Get(PlayerStats stat) => _stats[stat];
-    public void Set(PlayerStats stat, float value) { _stats[stat] = value; GameEventsManager.RaisePlayerStatUpdate(stat, _stats[stat]); }
-
-    public float GetRequiredEXP(float level)
-    {
-        float baseExp = _config.baseStats.Find(stat => stat.Type == PlayerStats.EXP)?.Value ?? 10f;
-
-        return baseExp * Mathf.Pow(_config.expLevelUpRate, level - 1);
+        GameEventsManager.RaiseExpGainUpdate(_data[PlayerStats.EXP], _config.GetRequiredExp(_level));
     }
 
     public float ApplyDamage(float amount)
     {
-        float defense = _stats[PlayerStats.Defense];
+        float defense = _data[PlayerStats.Defense];
         float finalDamage = Mathf.Max(_minDamage, amount - defense);
-        _stats[PlayerStats.HP] = Mathf.Max(0, _stats[PlayerStats.HP] - finalDamage);
-        GameEventsManager.RaisePlayerStatUpdate(PlayerStats.HP, _stats[PlayerStats.HP]);
+        _data[PlayerStats.HP] = Mathf.Max(0, _data[PlayerStats.HP] - finalDamage);
+        RaiseStatUpdateEvent(PlayerStats.HP, _data[PlayerStats.HP]);
 
         return finalDamage;
     }
 
-    public bool IsDead => _stats[PlayerStats.HP] <= 0;
+    public bool IsDead => _data[PlayerStats.HP] <= 0;
 
-    public void Reset()
+    public void Upgrade(PlayerStats stat)
     {
-        foreach (var stats in _config.baseStats)
-        {
-            _stats[stats.Type] = stats.Value;
-        }
+        float newValue = _config.GetValue(stat, _level);
+        _data[stat] = newValue;
 
-        GameEventsManager.RaisePlayerStatReset();
+        RaiseStatUpdateEvent(stat, newValue);
     }
 
-    void Upgrade()
+    public void UpgradeAll()
     {
-        float level = _stats[PlayerStats.Level];
-
-        foreach (var gain in _config.perLevelGains)
+        if (_level >= _config.MaxLevel)
         {
-            float baseValue = _stats.ContainsKey(gain.Type) ? _stats[gain.Type] : 0f;
-            float increase = gain.Increase * (level - 1);
-            _stats[gain.Type] = baseValue + increase;
+            Debugger.LogWarning(_debugCategory, "Attempting to level up beyond max level.");
+            return;
+        }
+
+        _level++;
+
+        foreach (var entry in _config.Stats)
+        {
+            Upgrade(entry.Stat);
+            Debugger.Log(_debugCategory, $"Level {_level}: {entry.Stat}: {_data[entry.Stat]}");
         }
 
         // Set MaxHP and restore full HP
-        if (_stats.ContainsKey(PlayerStats.MaxHP))
-            _stats[PlayerStats.HP] = _stats[PlayerStats.MaxHP];
-
-        GameEventsManager.RaisePlayerStatUpgrade(_stats);
+        if (_data.ContainsKey(PlayerStats.MaxHP))
+            _data[PlayerStats.HP] = _data[PlayerStats.MaxHP];
     }
 
     bool CheckLevelUp()
     {
-        float currentExp = _stats[PlayerStats.EXP];
-        float currentLevel = _stats[PlayerStats.Level];
-        float requiredExp = GetRequiredEXP(currentLevel);
+        if (_level >= _config.MaxLevel) return false;
+
+        float currentExp = _data[PlayerStats.EXP];
+        float requiredExp = _config.GetRequiredExp(_level);
 
         bool leveledUp = false;
         while (currentExp >= requiredExp)
         {
-            _stats[PlayerStats.Level]++;
-            Upgrade();
-                
+            _level++;
+            UpgradeAll();
+
             currentExp -= requiredExp;
-            requiredExp = GetRequiredEXP(_stats[PlayerStats.Level]);
+            requiredExp = _config.GetRequiredExp(_level);
             leveledUp = true;
-            GameEventsManager.RaiseLevelUpUpdate((int)_stats[PlayerStats.Level]);
+            GameEventsManager.RaiseLevelUpUpdate(_level);
         }
 
-        _stats[PlayerStats.EXP] = currentExp;
+        _data[PlayerStats.EXP] = currentExp;
         return leveledUp;
+    }
+
+    protected override void RaiseStatUpdateEvent(PlayerStats stat, float value)
+    {
+        GameEventsManager.RaisePlayerStatUpdate(stat, value);
+    }
+
+    protected override void RaiseResetUpdateEvent()
+    {
+        GameEventsManager.RaisePlayerStatReset();
+    }
+
+    public override void Reset()
+    {
+        foreach (PlayerStats stat in Enum.GetValues(typeof(PlayerStats)))
+        {
+            // Skip HP — set it later based on MaxHP
+            if (stat == PlayerStats.HP)
+                continue;
+
+            _data[stat] = _config.GetValue(stat, 0);
+        }
+
+        // Ensure HP is synced to MaxHP
+        _data[PlayerStats.HP] = _data[PlayerStats.MaxHP];
+
+        _level = 1;
+        RaiseResetUpdateEvent();
     }
 }

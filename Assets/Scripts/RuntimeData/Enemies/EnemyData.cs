@@ -1,54 +1,50 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
-
-// TODO[JAYLOU]: Need to refactored
 [Serializable]
-public class EnemyData
+public class EnemyData : Data<EnemyStats, EnemyStatConfig>
 {
-    Dictionary<EnemyStats, float> _stats = new();
-    EnemyStatConfig _config;
-
-    // Constructor
     public EnemyData(EnemyStatConfig config)
     {
-        _config = config;
-
-        foreach (EnemyStats stat in Enum.GetValues(typeof(EnemyStats)))
-            _stats[stat] = 0f;
-
-        Reset();
-    }
-
-    public float Get(EnemyStats stat) => _stats[stat];
-    public void Set(EnemyStats stat, float value)
-    {
-        _stats[stat] = value;
-        
-        GameEventsManager.RaiseEnemyStatReset();
+        Init(config, DebugCategory.Enemies);
     }
 
     public float ApplyDamage(float amount)
     {
-        float defense = _stats[EnemyStats.Defense];
+        float defense = _data[EnemyStats.Defense];
         float finalDamage = Mathf.Max(0, amount - defense);
-        _stats[EnemyStats.HP] = Mathf.Max(0, _stats[EnemyStats.HP] - finalDamage);
+        _data[EnemyStats.HP] = Mathf.Max(0, _data[EnemyStats.HP] - finalDamage);
 
-        GameEventsManager.RaiseEnemyStatUpdate(EnemyStats.HP, _stats[EnemyStats.HP]);
+        RaiseStatUpdateEvent(EnemyStats.HP, _data[EnemyStats.HP]);
         return finalDamage;
     }
 
-    public bool IsDead => _stats[EnemyStats.HP] <= 0;
+    public bool IsDead => _data[EnemyStats.HP] <= 0;
 
-    public void Reset()
+    protected override void RaiseStatUpdateEvent(EnemyStats stat, float value)
     {
-        _stats[EnemyStats.HP] = _config.HP;
-        _stats[EnemyStats.MaxHP] = _config.HP;
-        _stats[EnemyStats.Attack] = _config.Attack;
-        _stats[EnemyStats.Defense] = _config.Defense;
-        _stats[EnemyStats.Speed] = _config.Speed;
-
+        GameEventsManager.RaiseEnemyStatUpdate(stat, value);
+    }
+    protected override void RaiseResetUpdateEvent()
+    {
         GameEventsManager.RaiseEnemyStatReset();
+    }
+
+    public override void Reset()
+    {
+        foreach (EnemyStats stat in Enum.GetValues(typeof(EnemyStats)))
+        {
+            // Skip HP — set it later based on MaxHP
+            if (stat == EnemyStats.HP)
+                continue;
+
+            _data[stat] = _config.GetValue(stat, 0);
+        }
+
+        // Ensure HP is synced to MaxHP
+        _data[EnemyStats.HP] = _data[EnemyStats.MaxHP];
+
+        _level = 1;
+        RaiseResetUpdateEvent();
     }
 }

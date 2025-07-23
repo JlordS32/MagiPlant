@@ -3,18 +3,23 @@ using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "SO/Resources/Resource Stat Config")]
-public class ResourceStatConfig : ScriptableObject
+public class ResourceStatConfig : ScriptableObject, IStatConfig<CurrencyType>
 {
+    [Header ("Base Parameters")]
     public int MaxLevel;
     public float Interval;
+
+    [Header ("Cost Parameters")]
     public float BaseCost;
     public CurrencyType[] CostType;
     public AnimationCurve CostUpgrade;
     public UpgradeOperation CostUpgradeOperation = UpgradeOperation.Multiply;
-    public ResourceStatEntry[] Resources;
-    public Dictionary<CurrencyType, ResourceStatEntry> _statLookup;
 
-    void InitLookup() => _statLookup ??= Resources.ToDictionary(currency => currency.Currency, currency => currency);
+    [Header ("Stat Entries")]
+    public StatEntry<CurrencyType>[] Resources;
+    public Dictionary<CurrencyType, StatEntry<CurrencyType>> _statLookup;
+
+    void InitLookup() => _statLookup ??= Resources.ToDictionary(currency => currency.Stat, currency => currency);
 
     public float GetCost(int level = 0)
     {
@@ -29,7 +34,7 @@ public class ResourceStatConfig : ScriptableObject
         };
     }
 
-    public float GetValue(CurrencyType currency, int level = 0)
+    public float GetValue(CurrencyType currency, int level = 1)
     {
         InitLookup();
         return _statLookup.TryGetValue(currency, out var entry) ? entry.GetValue(level) : 0f;

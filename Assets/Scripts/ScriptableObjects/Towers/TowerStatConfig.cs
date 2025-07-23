@@ -3,15 +3,20 @@ using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "SO/Tower/Tower Defense Stat Config")]
-public class TowerStatConfig : ScriptableObject
+public class TowerStatConfig : ScriptableObject, IStatConfig<TowerStats>
 {
+    [Header("Base Parameters")]
     public int MaxLevel;
     public float BaseCost;
+
+    [Header("Cost Parameters")]
     public CurrencyType[] CostType;
     public AnimationCurve CostUpgrade;
     public UpgradeOperation CostUpgradeOperation = UpgradeOperation.Multiply;
-    public TowerStatEntry[] Stats;
-    public Dictionary<TowerStats, TowerStatEntry> _statLookup;
+
+    [Header("Stat Entries")]
+    public StatEntry<TowerStats>[] Stats;
+    public Dictionary<TowerStats, StatEntry<TowerStats>> _statLookup;
 
     void InitLookup() => _statLookup ??= Stats.ToDictionary(stat => stat.Stat, stat => stat);
 
@@ -28,10 +33,9 @@ public class TowerStatConfig : ScriptableObject
         };
     }
 
-    public float GetValue(TowerStats stat, int level = 0)
+    public float GetValue(TowerStats stat, int level = 1)
     {
         InitLookup();
         return _statLookup.TryGetValue(stat, out var entry) ? entry.GetValue(level) : 0f;
     }
-
 }
