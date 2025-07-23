@@ -10,9 +10,6 @@ public class ResourceData : Data<CurrencyType, ResourceStatConfig>
         Init(config, DebugCategory.Resources);
     }
 
-    #region GETTERS & SETTERS
-    #endregion
-    #region UPGRADE
     public void Upgrade(CurrencyType currency)
     {
         float newValue = _config.GetValue(currency, _level);
@@ -55,25 +52,13 @@ public class ResourceData : Data<CurrencyType, ResourceStatConfig>
             Debugger.Log(DebugCategory.Resources, $"Level {_level}: {entry.Stat}: {_data[entry.Stat]}");
         }
     }
-    #endregion
-    #region RESET
-    public override void Reset()
-    {
-        _level = 1;
-
-        foreach (CurrencyType currency in Enum.GetValues(typeof(CurrencyType)))
-        {
-            float value = _config.GetValue(currency, _level);
-            _data[currency] = value;
-            RaiseStatUpdateEvent(currency, value);
-        }
-
-        GameEventsManager.RaiseResourceReset();
-    }
-
+    
     protected override void RaiseStatUpdateEvent(CurrencyType stat, float value)
     {
         GameEventsManager.RaiseResourceStatUpdate(stat, value);
     }
-    #endregion
+    protected override void RaiseResetUpdateEvent()
+    {
+        GameEventsManager.RaiseResourceReset();
+    }
 }

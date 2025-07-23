@@ -8,16 +8,7 @@ public class TowerData : Data<TowerStats, TowerStatConfig>
     {
         Init(config, DebugCategory.Towers);
     }
-
-    public override void Reset()
-    {
-        foreach (TowerStats stat in Enum.GetValues(typeof(TowerStats)))
-            _data[stat] = _config.GetValue(stat, 0);
-
-        _level = 1;
-        GameEventsManager.RaiseTowerStatReset();
-    }
-
+    
     public void Upgrade(TowerStats stat)
     {
         if (!_data.ContainsKey(stat))
@@ -64,5 +55,10 @@ public class TowerData : Data<TowerStats, TowerStatConfig>
     protected override void RaiseStatUpdateEvent(TowerStats stat, float value)
     {
         GameEventsManager.RaiseTowerStatUpdate(stat, value);
+    }
+
+    protected override void RaiseResetUpdateEvent()
+    {
+        GameEventsManager.RaiseTowerStatReset();
     }
 }

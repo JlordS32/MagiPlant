@@ -1,25 +1,27 @@
-using System;
-using UnityEngine;
+// WARNING [DEPRECATED]
 
-[Serializable]
-public class UpgradeEntry
-{
-    public string Name;
-    public UpgradeType Type;
-    public CurrencyType TargetCurrency;
-    public float Value;
-    public float BaseCost;
-    public float CostMultiplier;
-    public int Level;
-    public int MaxLevel;
+// using System;
+// using UnityEngine;
 
-    [NonSerialized] public Action UpgradeLogic;
+// [Serializable]
+// public class UpgradeEntry
+// {
+//     public string Name;
+//     public UpgradeType Type;
+//     public CurrencyType TargetCurrency;
+//     public float Value;
+//     public float BaseCost;
+//     public float CostMultiplier;
+//     public int Level;
+//     public int MaxLevel;
 
-    public void Upgrade()
-    {
-        if (Level < MaxLevel) Level++;
-    }
+//     [NonSerialized] public Action UpgradeLogic;
 
-    public float GetUpgradeValue() => Value * Level;
-    public float GetCost() => Mathf.Round(BaseCost * Mathf.Pow(CostMultiplier, Level));
-}
+//     public void Upgrade()
+//     {
+//         if (Level < MaxLevel) Level++;
+//     }
+
+//     public float GetUpgradeValue() => Value * Level;
+//     public float GetCost() => Mathf.Round(BaseCost * Mathf.Pow(CostMultiplier, Level));
+// }

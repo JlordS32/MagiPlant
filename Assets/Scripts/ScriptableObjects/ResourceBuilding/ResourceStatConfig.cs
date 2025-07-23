@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "SO/Resources/Resource Stat Config")]
-public class ResourceStatConfig : ScriptableObject
+public class ResourceStatConfig : ScriptableObject, IStatConfig<CurrencyType>
 {
     [Header ("Base Parameters")]
     public int MaxLevel;
@@ -34,7 +34,7 @@ public class ResourceStatConfig : ScriptableObject
         };
     }
 
-    public float GetValue(CurrencyType currency, int level = 0)
+    public float GetValue(CurrencyType currency, int level = 1)
     {
         InitLookup();
         return _statLookup.TryGetValue(currency, out var entry) ? entry.GetValue(level) : 0f;
