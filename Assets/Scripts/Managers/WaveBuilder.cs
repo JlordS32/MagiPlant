@@ -1,10 +1,22 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+
+[Serializable]
+public class CatalogEntry
+{
+    public string Name;
+    public EnemyTier Tier;
+    public EnemyCatalog Catalog;
+    public AnimationCurve CountCurve;
+    public int SpawnInEveryWave = 1;
+}
 
 public class WaveBuilder : MonoBehaviour
 {
     [Header("Enemy Pool")]
-    [SerializeField] EnemyCatalog _gruntCatalog;
+    [SerializeField] CatalogEntry[] _catalogEntries;
 
     [Header("Tuning curves")]
     [SerializeField]
@@ -12,18 +24,12 @@ public class WaveBuilder : MonoBehaviour
         AnimationCurve.Linear(0, 10, 10, 250);
     [SerializeField]
     AnimationCurve gapCurve =
-        AnimationCurve.Linear(0, 1.2f, 10, 0.3f);
+        AnimationCurve.Linear(0, 0.3f, 10, 0.1f);
 
     [SerializeField] int maxPerGroup = 8;
 
     public Wave Build(int waveIndex)
     {
-        if (_gruntCatalog == null || _gruntCatalog.entries.Length == 0)
-        {
-            Debugger.LogError(DebugCategory.Waves, "Grunt catalog is empty or not assigned.");
-            return new Wave();
-        }
-
         if (waveIndex < 0)
         {
             Debugger.LogError(DebugCategory.Waves, "Wave index cannot be negative.");
@@ -32,39 +38,45 @@ public class WaveBuilder : MonoBehaviour
 
         int budget = Mathf.RoundToInt(budgetCurve.Evaluate(waveIndex));
         float gap = gapCurve.Evaluate(waveIndex);
-
-        Debugger.Log(DebugCategory.Waves, "Current Wave: " + waveIndex);
-        Debugger.Log(DebugCategory.Waves, "Current Budget: " + budget);
-        Debugger.Log(DebugCategory.Waves, "Current gap: " + gap);
-
         List<EnemyGroup> groups = new();
 
-        while (budget > 0)
+        // Try to spawn higher tier enemies first.
+        foreach (var entry in _catalogEntries.Where(e => e.Tier >= EnemyTier.Rare))
         {
-            // Randomly select enemy
-            EnemyEntry enemy = _gruntCatalog.entries[Random.Range(0, _gruntCatalog.entries.Length)];
-            if (enemy.Cost <= 0)
-            {
-                Debugger.LogWarning(DebugCategory.Waves, $"{enemy.EnemyPrefab.name} has cost 0. Skipping. Please check the catalog.");
-                continue;
-            }
-
-            int count = Mathf.Min(
-                Random.Range(3, maxPerGroup + 1),
-                budget / enemy.Cost);
-
-            if (count == 0) break;
-
-            groups.Add(new EnemyGroup
-            {
-                Prefab = enemy.EnemyPrefab,
-                Gap = gap,
-                Count = count
-            });
-
-            budget -= enemy.Cost * count;
+            TrySpawnFromCatalog(entry, waveIndex, gap, groups, ref budget);
         }
 
+        // Then spawn Grunts
+        var gruntEntry = _catalogEntries.FirstOrDefault(e => e.Tier == EnemyTier.Grunt);
+        if (gruntEntry.Catalog == null || gruntEntry.Catalog.entries.Length == 0)
+        {
+            Debugger.LogError(DebugCategory.Waves, "Grunt catalog is empty or not assigned.");
+            return new Wave();
+        }
+
+        while (budget > 0)
+            TrySpawnFromCatalog(gruntEntry, waveIndex, gap, groups, ref budget);
+
         return new Wave { Groups = groups.ToArray() };
+    }
+
+    private void TrySpawnFromCatalog(CatalogEntry entry, int waveIndex, float gap, List<EnemyGroup> groups, ref int budget)
+    {
+        int count = Mathf.RoundToInt(entry.CountCurve.Evaluate(waveIndex));
+        if (count <= 0 || entry.Catalog == null || entry.Catalog.entries.Length == 0) return;
+
+        var enemy = entry.Catalog.entries[UnityEngine.Random.Range(0, entry.Catalog.entries.Length)];
+        int totalCost = enemy.Cost * count;
+
+        if (enemy.Cost <= 0 || totalCost > budget) return;
+
+        groups.Add(new EnemyGroup
+        {
+            Prefab = enemy.EnemyPrefab,
+            Gap = gap,
+            Count = count
+        });
+
+        budget -= totalCost;
     }
 }

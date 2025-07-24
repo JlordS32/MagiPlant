@@ -40,7 +40,7 @@ MonoBehaviour:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 50.508118
+        time: 50.616333
         value: 4.7714233
         inSlope: 0.048614778
         outSlope: 0.048614778
@@ -69,18 +69,27 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
-        inSlope: 0.6412364
-        outSlope: 0.6412364
+        value: 1
+        inSlope: 0.011505602
+        outSlope: 0.011505602
         tangentMode: 34
         weightedMode: 0
         inWeight: 0
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 15.435737
-        value: 9.897957
-        inSlope: 0.6412364
-        outSlope: 0.6412364
+        time: 54.902283
+        value: 1.6316838
+        inSlope: 0.06527151
+        outSlope: 0.06527151
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 100
+        value: 7
+        inSlope: 0.11903743
+        outSlope: 0.11903743
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
@@ -88,7 +97,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    UpgradeOperation: 1
+    UpgradeOperation: 0
   - Name: Attack
     Stat: 3
     BaseValue: 10
