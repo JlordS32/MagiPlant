@@ -22,23 +22,42 @@ public abstract class StatConfig<TEnum> : StatConfig
         return _statLookup.TryGetValue(stat, out var entry) ? entry.GetValue(level) : 0f;
     }
 
-    public float[] GetValuesInRange(TEnum stat, int startLevel, int endLevel)
+    public float GetBaseValue(TEnum stat)
+    {
+        InitLookup();
+        return _statLookup.TryGetValue(stat, out var entry) ? entry.BaseValue : 0f;
+    }
+
+    public float[] GetValuesInRange(TEnum stat, int startLevel, int endLevel, bool cumulative = false)
     {
         int count = Mathf.Max(0, endLevel - startLevel + 1);
         float[] values = new float[count];
+
+        float current = 0;
         for (int i = 0; i < count; i++)
         {
             int level = startLevel + i;
-            values[i] = GetValue(stat, level);
+            float value = GetValue(stat, level);
+
+            if (cumulative)
+            {
+                Debug.Log("Cumulative");
+                current += value;
+                values[i] = current;
+            }
+            else
+            {
+                values[i] = value;
+            }
         }
         return values;
     }
 
-    public override void PrintValuesInRange(Enum stat, int start, int end)
+    public override void PrintValuesInRange(Enum stat, int start, int end, bool cumulative = false)
     {
         if (stat is TEnum typeStat)
         {
-            var values = GetValuesInRange(typeStat, start, end);
+            var values = GetValuesInRange(typeStat, start, end, cumulative);
 
             for (int i = 0; i < values.Length; i++)
             {
@@ -54,5 +73,5 @@ public abstract class StatConfig<TEnum> : StatConfig
 
 public abstract class StatConfig : ScriptableObject
 {
-    public abstract void PrintValuesInRange(Enum stat, int start, int end);
+    public abstract void PrintValuesInRange(Enum stat, int start, int end, bool cumulative = false);
 }

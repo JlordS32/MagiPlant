@@ -71,7 +71,7 @@ public class PlantGrow : MonoBehaviour, IPhaseListener
 
     public void OnTest()
     {
-        _player.PlayerData.AddExp(10);
+        _player.PlayerData.LevelUp();
         CurrencyStorage.Instance.Add(CurrencyType.Water, 10);
         CurrencyStorage.Instance.Add(CurrencyType.Sunlight, 10);
     }

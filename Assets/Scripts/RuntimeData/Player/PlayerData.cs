@@ -32,6 +32,13 @@ public class PlayerData : Data<PlayerStats, PlayerStatConfig>
         GameEventsManager.RaiseExpGainUpdate(_data[PlayerStats.EXP], _config.GetRequiredExp(_level));
     }
 
+    public void LevelUp()
+    {
+        _data[PlayerStats.EXP] += _config.GetRequiredExp(_level) * 0.5f;
+        CheckLevelUp();
+        GameEventsManager.RaiseExpGainUpdate(_data[PlayerStats.EXP], _config.GetRequiredExp(_level));
+    }
+
     public float ApplyDamage(float amount)
     {
         float defense = _data[PlayerStats.Defense];
@@ -59,8 +66,6 @@ public class PlayerData : Data<PlayerStats, PlayerStatConfig>
             Debugger.LogWarning(_config.DebugCategory, "Attempting to level up beyond max level.");
             return;
         }
-
-        _level++;
 
         foreach (var entry in _config.Stats)
         {
@@ -108,14 +113,7 @@ public class PlayerData : Data<PlayerStats, PlayerStatConfig>
 
     public override void Reset()
     {
-        foreach (PlayerStats stat in Enum.GetValues(typeof(PlayerStats)))
-        {
-            // Skip HP — set it later based on MaxHP
-            if (stat == PlayerStats.HP)
-                continue;
-
-            _data[stat] = _config.GetValue(stat, 0);
-        }
+        base.Reset();
 
         // Ensure HP is synced to MaxHP
         _data[PlayerStats.HP] = _data[PlayerStats.MaxHP];
