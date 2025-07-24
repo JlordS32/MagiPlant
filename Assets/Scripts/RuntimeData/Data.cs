@@ -44,7 +44,7 @@ public abstract class Data<TEnum, TConfig> : IStatData
     public virtual void Reset()
     {
         foreach (TEnum stat in Enum.GetValues(typeof(TEnum)))
-            _data[stat] = _config.GetValue(stat, 0);
+            _data[stat] = _config.GetBaseValue(stat);
 
         _level = 1;
         RaiseResetUpdateEvent();

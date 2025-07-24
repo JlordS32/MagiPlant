@@ -17,7 +17,7 @@ MonoBehaviour:
   Stats:
   - Name: EXP
     Stat: 0
-    BaseValue: 10
+    BaseValue: 100
     UpgradeCurve:
       serializedVersion: 2
       m_Curve:
@@ -91,7 +91,7 @@ MonoBehaviour:
     UpgradeOperation: 1
   - Name: Attack
     Stat: 3
-    BaseValue: 100
+    BaseValue: 10
     UpgradeCurve:
       serializedVersion: 2
       m_Curve:
@@ -119,7 +119,7 @@ MonoBehaviour:
     UpgradeOperation: 1
   - Name: Defense
     Stat: 4
-    BaseValue: 100
+    BaseValue: 5
     UpgradeCurve:
       serializedVersion: 2
       m_Curve:

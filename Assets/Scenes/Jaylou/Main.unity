@@ -4357,8 +4357,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 9117e2f4c4b299444ae19ccb35242cea, type: 2}
     - target: {fileID: 2696338478607418421, guid: e2bf8df405595024cbd43d28dbb59143, type: 3}
+      propertyPath: _config
+      value: 
+      objectReference: {fileID: 11400000, guid: 9117e2f4c4b299444ae19ccb35242cea, type: 2}
+    - target: {fileID: 2696338478607418421, guid: e2bf8df405595024cbd43d28dbb59143, type: 3}
       propertyPath: statName
       value: EXP
+      objectReference: {fileID: 0}
+    - target: {fileID: 2696338478607418421, guid: e2bf8df405595024cbd43d28dbb59143, type: 3}
+      propertyPath: _statName
+      value: Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 2696338478607418421, guid: e2bf8df405595024cbd43d28dbb59143, type: 3}
+      propertyPath: _cumulative
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2696338478607418421, guid: e2bf8df405595024cbd43d28dbb59143, type: 3}
+      propertyPath: _startLevel
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3980554904250547147, guid: e2bf8df405595024cbd43d28dbb59143, type: 3}
       propertyPath: m_LocalPosition.x
