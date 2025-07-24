@@ -6,7 +6,7 @@ public class EnemyData : Data<EnemyStats, EnemyStatConfig>
 {
     public EnemyData(EnemyStatConfig config)
     {
-        Init(config, DebugCategory.Enemies);
+        Init(config);
     }
 
     public float ApplyDamage(float amount)

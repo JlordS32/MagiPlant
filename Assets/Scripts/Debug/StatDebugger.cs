@@ -1,37 +1,30 @@
 using UnityEngine;
 using System;
-using System.Collections.Generic;
-
-public enum ConfigType
-{
-    Player,
-    Enemy,
-    Resource,
-    Tower
-}
-
-[Serializable]
-public struct StatConfigEntry
-{
-    public string Name;
-    public ConfigType Type;
-    ScriptableObject StatConfig;
-}
 
 public class StatDebugger : MonoBehaviour
 {
-    [SerializeField] StatConfigEntry[] _statConfigs;
+    [SerializeField] StatConfig config; // Non-generic base
+    [SerializeField] int startLevel = 1;
+    [SerializeField] int endLevel = 10;
+    [SerializeField] string statName;
 
-    Dictionary<ConfigType, StatConfigEntry> _statLookUp;
-
-
-
-    [ContextMenu("Print All Config Progressions")]
-    void PrintAll()
+    [ContextMenu("Print Stat Range")]
+    void PrintStatRange()
     {
-        foreach (var config in _statConfigs)
+        if (config == null)
         {
-            // if (config is )
+            Debug.LogWarning("No config assigned.");
+            return;
+        }
+
+        Type enumType = config.GetType().BaseType.GetGenericArguments()[0];
+        if (Enum.TryParse(enumType, statName, true, out object result))
+        {
+            config.PrintValuesInRange((Enum)result, startLevel, endLevel);
+        }
+        else
+        {
+            Debug.LogWarning($"'{statName}' is not a valid {enumType.Name}.");
         }
     }
 }

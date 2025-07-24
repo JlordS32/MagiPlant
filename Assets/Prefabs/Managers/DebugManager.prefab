@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3980554904250547147}
   - component: {fileID: 934774349628676129}
+  - component: {fileID: 2696338478607418421}
   m_Layer: 0
   m_Name: DebugManager
   m_TagString: Untagged
@@ -47,7 +48,7 @@ MonoBehaviour:
   _categories:
   - Name: Player
     Category: 0
-    IsEnabled: 0
+    IsEnabled: 1
   - Name: Enemies
     Category: 1
     IsEnabled: 0
@@ -66,6 +67,22 @@ MonoBehaviour:
   - Name: Towers
     Category: 7
     IsEnabled: 0
-  - Name: Towers
-    Category: 7
-    IsEnabled: 0
+  - Name: Resources
+    Category: 8
+    IsEnabled: 1
+--- !u!114 &2696338478607418421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6833301766913336403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3a8fb12a96594741a877c5b40f2eb35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  config: {fileID: 0}
+  startLevel: 1
+  endLevel: 10
+  statName: 

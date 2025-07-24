@@ -7,7 +7,7 @@ public class ResourceData : Data<CurrencyType, ResourceStatConfig>
     // Constructor
     public ResourceData(ResourceStatConfig config)
     {
-        Init(config, DebugCategory.Resources);
+        Init(config);
     }
 
     public void Upgrade(CurrencyType currency)

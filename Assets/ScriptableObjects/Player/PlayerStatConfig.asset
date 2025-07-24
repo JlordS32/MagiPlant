@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: PlayerStatConfig
   m_EditorClassIdentifier: 
   MaxLevel: 100
+  _debugCategory: 0
   Stats:
   - Name: EXP
     Stat: 0
@@ -22,26 +23,44 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
-        inSlope: 2
-        outSlope: 2
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 5.047737
-        value: 1.5029907
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
         outWeight: 0
+      - serializedVersion: 3
+        time: 15.081299
+        value: 3.0428772
+        inSlope: 0.018802615
+        outSlope: 0.018802615
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 50.508118
+        value: 4.7714233
+        inSlope: 0.048614778
+        outSlope: 0.048614778
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 100
+        value: 7
+        inSlope: 0.123224415
+        outSlope: 0.123224415
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.085165784
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    UpgradeOperation: 0
+    UpgradeOperation: 2
   - Name: MAX HP
     Stat: 1
     BaseValue: 100
