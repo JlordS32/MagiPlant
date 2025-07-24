@@ -38,4 +38,9 @@ public class ResourceBuilding : MonoBehaviour, IBuildable, IUpgradeable
     }
 
     public IStatData GetData() => _resourceData;
+    [ContextMenu("Log Resource Stats")]
+    void DebugStats()
+    {
+        _resourceData.LogAllStats();
+    }
 }

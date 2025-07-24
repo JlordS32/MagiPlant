@@ -4,7 +4,7 @@ using System.Linq;
 
 public abstract class Data<TEnum, TConfig> : IStatData
     where TEnum : Enum
-    where TConfig : IStatConfig<TEnum>
+    where TConfig : StatConfig<TEnum>
 {
     protected Dictionary<TEnum, float> _data = new();
     protected TConfig _config;
@@ -57,7 +57,7 @@ public abstract class Data<TEnum, TConfig> : IStatData
     protected abstract void RaiseResetUpdateEvent();
 
     // DEBUG
-    protected void LogAllStats()
+    public void LogAllStats()
     {
         foreach (var stat in _data)
             Debugger.Log(_debugCategory, $"Level {_level}: {stat.Key}: {stat.Value}");
