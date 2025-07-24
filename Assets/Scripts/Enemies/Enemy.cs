@@ -66,4 +66,10 @@ public class Enemy : MonoBehaviour, IDamageable
             Destroy(gameObject);
         }
     }
+
+    [ContextMenu("Log Enemy Stats")]
+    void DebugStats()
+    {
+        _enemyData.LogAllStats();
+    }
 }

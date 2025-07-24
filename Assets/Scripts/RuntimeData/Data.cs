@@ -4,11 +4,10 @@ using System.Linq;
 
 public abstract class Data<TEnum, TConfig> : IStatData
     where TEnum : Enum
-    where TConfig : IStatConfig<TEnum>
+    where TConfig : StatConfig<TEnum>
 {
     protected Dictionary<TEnum, float> _data = new();
     protected TConfig _config;
-    protected DebugCategory _debugCategory;
     protected int _level = 1;
 
     // GETTERS & SETTERS
@@ -23,10 +22,9 @@ public abstract class Data<TEnum, TConfig> : IStatData
     }
 
     // Initalise
-    protected void Init(TConfig config, DebugCategory debugCategory)
+    protected void Init(TConfig config)
     {
         _config = config;
-        _debugCategory = debugCategory;
 
         // Initialising all stats to 0
         foreach (TEnum d in Enum.GetValues(typeof(TEnum)))
@@ -39,7 +37,7 @@ public abstract class Data<TEnum, TConfig> : IStatData
 
         foreach (var stat in _data)
         {
-            Debugger.Log(debugCategory, $"Level {_level}: {stat.Key}: {stat.Value}");
+            Debugger.Log(_config.DebugCategory, $"Level {_level}: {stat.Key}: {stat.Value}");
         }
     }
 
@@ -57,9 +55,9 @@ public abstract class Data<TEnum, TConfig> : IStatData
     protected abstract void RaiseResetUpdateEvent();
 
     // DEBUG
-    protected void LogAllStats()
+    public void LogAllStats()
     {
         foreach (var stat in _data)
-            Debugger.Log(_debugCategory, $"Level {_level}: {stat.Key}: {stat.Value}");
+            Debugger.Log(_config.DebugCategory, $"Level {_level}: {stat.Key}: {stat.Value}");
     }
 }

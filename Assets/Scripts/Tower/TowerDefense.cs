@@ -50,4 +50,9 @@ public class TowerDefense : MonoBehaviour, IBuildable, IUpgradeable
     }
 
     public IStatData GetData() => _towerData;
+    [ContextMenu("Log Tower Stats")]
+    void DebugStats()
+    {
+        _towerData.LogAllStats();
+    }
 }

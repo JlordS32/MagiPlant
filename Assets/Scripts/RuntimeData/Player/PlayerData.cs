@@ -9,7 +9,7 @@ public class PlayerData : Data<PlayerStats, PlayerStatConfig>
 
     public PlayerData(PlayerStatConfig config)
     {
-        Init(config, DebugCategory.Player);
+        Init(config);
     }
 
     public void AddStats(PlayerStats stat, float amount)
@@ -56,7 +56,7 @@ public class PlayerData : Data<PlayerStats, PlayerStatConfig>
     {
         if (_level >= _config.MaxLevel)
         {
-            Debugger.LogWarning(_debugCategory, "Attempting to level up beyond max level.");
+            Debugger.LogWarning(_config.DebugCategory, "Attempting to level up beyond max level.");
             return;
         }
 
@@ -65,7 +65,7 @@ public class PlayerData : Data<PlayerStats, PlayerStatConfig>
         foreach (var entry in _config.Stats)
         {
             Upgrade(entry.Stat);
-            Debugger.Log(_debugCategory, $"Level {_level}: {entry.Stat}: {_data[entry.Stat]}");
+            Debugger.Log(_config.DebugCategory, $"Level {_level}: {entry.Stat}: {_data[entry.Stat]}");
         }
 
         // Set MaxHP and restore full HP

@@ -7,7 +7,7 @@ public class ResourceData : Data<CurrencyType, ResourceStatConfig>
     // Constructor
     public ResourceData(ResourceStatConfig config)
     {
-        Init(config, DebugCategory.Resources);
+        Init(config);
     }
 
     public void Upgrade(CurrencyType currency)
@@ -46,13 +46,13 @@ public class ResourceData : Data<CurrencyType, ResourceStatConfig>
 
         _level++;
 
-        foreach (var entry in _config.Resources)
+        foreach (var entry in _config.Stats)
         {
             Upgrade(entry.Stat);
             Debugger.Log(DebugCategory.Resources, $"Level {_level}: {entry.Stat}: {_data[entry.Stat]}");
         }
     }
-    
+
     protected override void RaiseStatUpdateEvent(CurrencyType stat, float value)
     {
         GameEventsManager.RaiseResourceStatUpdate(stat, value);

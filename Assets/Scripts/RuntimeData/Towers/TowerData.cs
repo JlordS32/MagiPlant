@@ -6,14 +6,14 @@ public class TowerData : Data<TowerStats, TowerStatConfig>
 {
     public TowerData(TowerStatConfig config)
     {
-        Init(config, DebugCategory.Towers);
+        Init(config);
     }
     
     public void Upgrade(TowerStats stat)
     {
         if (!_data.ContainsKey(stat))
         {
-            Debugger.LogWarning(_debugCategory, $"Tower stat '{stat}' not found.");
+            Debugger.LogWarning(_config.DebugCategory, $"Tower stat '{stat}' not found.");
             return;
         }
 
@@ -26,7 +26,7 @@ public class TowerData : Data<TowerStats, TowerStatConfig>
     {
         if (_level >= _config.MaxLevel)
         {
-            Debugger.LogWarning(_debugCategory, "Attempting to upgrade tower beyond max level.");
+            Debugger.LogWarning(_config.DebugCategory, "Attempting to upgrade tower beyond max level.");
             return;
         }
 
@@ -36,7 +36,7 @@ public class TowerData : Data<TowerStats, TowerStatConfig>
         bool canAfford = currencies.All(currency => CurrencyStorage.Instance.CanAfford(currency, cost));
         if (!canAfford)
         {
-            Debugger.LogWarning(_debugCategory, "Insufficient currency to upgrade.");
+            Debugger.LogWarning(_config.DebugCategory, "Insufficient currency to upgrade.");
             return;
         }
 
@@ -48,7 +48,7 @@ public class TowerData : Data<TowerStats, TowerStatConfig>
         foreach (var entry in _config.Stats)
         {
             Upgrade(entry.Stat);
-            Debugger.Log(_debugCategory, $"Level {_level}: {entry.Stat}: {_data[entry.Stat]}");
+            Debugger.Log(_config.DebugCategory, $"Level {_level}: {entry.Stat}: {_data[entry.Stat]}");
         }
     }
 

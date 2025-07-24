@@ -21,4 +21,16 @@ public class StatEntry<TEnum> where TEnum : Enum
             _ => BaseValue,
         };
     }
+
+    public float[] GetValuesInRange(int startLevel, int endLevel)
+    {
+        int count = Mathf.Max(0, endLevel - startLevel + 1);
+        float[] values = new float[count];
+        for (int i = 0; i < count; i++)
+        {
+            int level = startLevel + i;
+            values[i] = GetValue(level);
+        }
+        return values;
+    }
 }
