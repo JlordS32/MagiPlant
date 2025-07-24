@@ -51,7 +51,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _interGroupDelay: 1
+  _interGroupDelay: 0.1
 --- !u!114 &6343902407231553809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,27 +64,111 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 898e8c3d30fde80499f3c170524c62e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gruntCatalog: {fileID: 11400000, guid: c9281c7affd98474db6574d32b4704e4, type: 2}
+  _catalogEntries:
+  - Name: Grunt
+    Tier: 0
+    Catalog: {fileID: 11400000, guid: c9281c7affd98474db6574d32b4704e4, type: 2}
+    CountCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 5
+        inSlope: 4.95
+        outSlope: 4.95
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 100
+        value: 500
+        inSlope: 4.95
+        outSlope: 4.95
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    SpawnInEveryWave: 1
+  - Name: Elite
+    Tier: 2
+    Catalog: {fileID: 11400000, guid: 63d435324c9c8d2419bb39bd02ba7fd1, type: 2}
+    CountCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0.1
+        outSlope: 0.1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 100
+        value: 10
+        inSlope: 0.1
+        outSlope: 0.1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    SpawnInEveryWave: 3
+  - Name: Boss
+    Tier: 4
+    Catalog: {fileID: 11400000, guid: 85bcf1278c1dd2f44acbac465dd14d1e, type: 2}
+    CountCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    SpawnInEveryWave: 10
   budgetCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 10
-      inSlope: 0
-      outSlope: 4.8
-      tangentMode: 0
+      value: 313.3073
+      inSlope: 1.8669269
+      outSlope: 1.8669269
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.33333334
     - serializedVersion: 3
-      time: 50
-      value: 250
-      inSlope: 4.8
-      outSlope: 0
-      tangentMode: 0
+      time: 100
+      value: 500
+      inSlope: 1.8669269
+      outSlope: 1.8669269
+      tangentMode: 34
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

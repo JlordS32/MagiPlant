@@ -6,6 +6,7 @@ public class WaveManager : MonoBehaviour, IPhaseListener
     public static WaveManager Instance { get; private set; }
 
     [SerializeField] Spawner[] _spawners;
+    [SerializeField] int _startingWaveIndex = 1;
     [SerializeField] float _interGroupDelay = 1f;
 
     WaveBuilder _builder;
@@ -34,6 +35,7 @@ public class WaveManager : MonoBehaviour, IPhaseListener
         }
         Instance = this;
 
+        _waveIndex = _startingWaveIndex;
         _builder = GetComponent<WaveBuilder>();
     }
 
@@ -54,7 +56,23 @@ public class WaveManager : MonoBehaviour, IPhaseListener
         {
             Wave wave = _builder.Build(_waveIndex++);
             yield return StartCoroutine(SpawnWave(wave));
-            yield return new WaitUntil(() => EnemyManager.Instance.ActiveCount == 0);
+            yield return StartCoroutine(WaitUntilEnemiesCleared(30f));
+        }
+    }
+
+    IEnumerator WaitUntilEnemiesCleared(float timeout)
+    {
+        float timer = 0f;
+        while (EnemyManager.Instance.ActiveCount > 0)
+        {
+            if (timer >= timeout)
+            {
+                Debugger.LogWarning(DebugCategory.Waves, "Wave timeout reached. Proceeding to next wave.");
+                yield break;
+            }
+
+            timer += Time.deltaTime;
+            yield return null;
         }
     }
 
@@ -62,7 +80,7 @@ public class WaveManager : MonoBehaviour, IPhaseListener
     {
         if (_spawners.Length == 0)
         {
-            Debugger.LogWarning(DebugCategory.Waves,"No spawners available to spawn enemies.");
+            Debugger.LogWarning(DebugCategory.Waves, "No spawners available to spawn enemies.");
             yield break;
         }
 

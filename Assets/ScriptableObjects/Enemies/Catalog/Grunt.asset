@@ -15,25 +15,21 @@ MonoBehaviour:
   entries:
   - EnemyEntryName: Slime
     EnemyPrefab: {fileID: 4427036724313737658, guid: b2bec4030159adf4bab3e49bbcc7dfec, type: 3}
-    Tier: 0
     Type: 0
     Traits: 56
     Cost: 1
   - EnemyEntryName: Ant
     EnemyPrefab: {fileID: 2339890260058669062, guid: 2289aa7d5ad65784f8d5897ea11be825, type: 3}
-    Tier: 0
     Type: 0
     Traits: 132
     Cost: 2
-  - EnemyEntryName: 1
+  - EnemyEntryName: Skeleton
     EnemyPrefab: {fileID: 2339890260058669062, guid: 628745bff07487646b26fab3e93e1718, type: 3}
-    Tier: 0
     Type: 0
     Traits: 164
     Cost: 1
-  - EnemyEntryName: 
+  - EnemyEntryName: Wolf
     EnemyPrefab: {fileID: 2339890260058669062, guid: 3200122fa37b50c4ba2afc0abb0aec17, type: 3}
-    Tier: 0
     Type: 0
     Traits: 132
     Cost: 3

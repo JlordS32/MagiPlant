@@ -71,7 +71,7 @@ PrefabInstance:
     - target: {fileID: 3205983734671086994, guid: e19e9ea02464d8b4d95f5e11ce5cf187, type: 3}
       propertyPath: _enemyStatConfig
       value: 
-      objectReference: {fileID: 11400000, guid: 51e068a0d594a124795d5085f6450acd, type: 2}
+      objectReference: {fileID: 11400000, guid: 207bcf44cdb0a334a8bb089947708885, type: 2}
     - target: {fileID: 3205983734671086994, guid: e19e9ea02464d8b4d95f5e11ce5cf187, type: 3}
       propertyPath: _enemyTags.Array.size
       value: 1

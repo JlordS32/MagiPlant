@@ -65,6 +65,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3205983734671086994, guid: e19e9ea02464d8b4d95f5e11ce5cf187, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3205983734671086994, guid: e19e9ea02464d8b4d95f5e11ce5cf187, type: 3}
       propertyPath: _enemyTier
       value: 1
       objectReference: {fileID: 0}

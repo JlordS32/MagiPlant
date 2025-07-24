@@ -1,14 +1,7 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [Header("Spawn Properties")]
-    [SerializeField] int _maxSpawn = 10;
-
-    // VARIABLES
-    float _timer;
-
     void Awake()
     {   
         // Snap spawner to tile.
@@ -19,8 +12,6 @@ public class Spawner : MonoBehaviour
 
     public bool TrySpawn(GameObject prefab, Vector3 offset = default)
     {
-        if (transform.childCount >= _maxSpawn) return false;
-
         Instantiate(prefab, transform.position + offset,
                     Quaternion.identity, transform);
         return true;
