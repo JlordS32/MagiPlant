@@ -45,7 +45,7 @@ MonoBehaviour:
     UpgradeOperation: 0
   - Name: Defense
     Stat: 3
-    BaseValue: 10
+    BaseValue: 3
     UpgradeCurve:
       serializedVersion: 2
       m_Curve:

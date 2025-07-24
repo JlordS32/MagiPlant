@@ -851,6 +851,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: WaveManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6343902407231553809, guid: 2108ecd619f54be4481594fe3ee433dc, type: 3}
+      propertyPath: maxPerGroup
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343902407231553809, guid: 2108ecd619f54be4481594fe3ee433dc, type: 3}
+      propertyPath: budgetCurve.m_Curve.Array.data[0].value
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343902407231553809, guid: 2108ecd619f54be4481594fe3ee433dc, type: 3}
+      propertyPath: budgetCurve.m_Curve.Array.data[0].inSlope
+      value: 4.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343902407231553809, guid: 2108ecd619f54be4481594fe3ee433dc, type: 3}
+      propertyPath: budgetCurve.m_Curve.Array.data[1].inSlope
+      value: 4.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343902407231553809, guid: 2108ecd619f54be4481594fe3ee433dc, type: 3}
+      propertyPath: budgetCurve.m_Curve.Array.data[0].outSlope
+      value: 4.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343902407231553809, guid: 2108ecd619f54be4481594fe3ee433dc, type: 3}
+      propertyPath: budgetCurve.m_Curve.Array.data[1].outSlope
+      value: 4.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8561321574247085385, guid: 2108ecd619f54be4481594fe3ee433dc, type: 3}
+      propertyPath: _startingWaveIndex
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8561321574247085385, guid: 2108ecd619f54be4481594fe3ee433dc, type: 3}
       propertyPath: '_spawners.Array.data[0]'
       value: 
@@ -4352,6 +4380,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 934774349628676129, guid: e2bf8df405595024cbd43d28dbb59143, type: 3}
+      propertyPath: _categories.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 934774349628676129, guid: e2bf8df405595024cbd43d28dbb59143, type: 3}
+      propertyPath: _categories.Array.data[9].Name
+      value: Waves
+      objectReference: {fileID: 0}
+    - target: {fileID: 934774349628676129, guid: e2bf8df405595024cbd43d28dbb59143, type: 3}
+      propertyPath: _categories.Array.data[9].Category
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 934774349628676129, guid: e2bf8df405595024cbd43d28dbb59143, type: 3}
+      propertyPath: _categories.Array.data[0].IsEnabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 934774349628676129, guid: e2bf8df405595024cbd43d28dbb59143, type: 3}
+      propertyPath: _categories.Array.data[7].IsEnabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 934774349628676129, guid: e2bf8df405595024cbd43d28dbb59143, type: 3}
+      propertyPath: _categories.Array.data[8].IsEnabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 934774349628676129, guid: e2bf8df405595024cbd43d28dbb59143, type: 3}
+      propertyPath: _categories.Array.data[9].IsEnabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2696338478607418421, guid: e2bf8df405595024cbd43d28dbb59143, type: 3}
       propertyPath: config
       value: 
@@ -4438,8 +4494,12 @@ PrefabInstance:
       value: TimeManager
       objectReference: {fileID: 0}
     - target: {fileID: 8310909475113405435, guid: e329a22cf5900d74bb4547793d3f1db4, type: 3}
+      propertyPath: _timeRate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8310909475113405435, guid: e329a22cf5900d74bb4547793d3f1db4, type: 3}
       propertyPath: _startHour
-      value: 7
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 8310909475113405435, guid: e329a22cf5900d74bb4547793d3f1db4, type: 3}
       propertyPath: _globalLight
