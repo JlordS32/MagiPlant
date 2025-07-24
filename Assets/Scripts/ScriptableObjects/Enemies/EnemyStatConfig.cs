@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-//TODO[JAYLOU]: Update the stat config so it's more configurable like Resource and Tower.
 [CreateAssetMenu(menuName = "SO/Enemies/Enemy Stat Config")]
 public class EnemyStatConfig : ScriptableObject, IStatConfig<EnemyStats>
 {

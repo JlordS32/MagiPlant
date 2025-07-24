@@ -2,8 +2,6 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 
-//TODO[JAYLOU]: Update the stat config so it's more configurable like Resource and Tower.
-//TODO: Centralised required exp in this config using animation curve.
 [CreateAssetMenu(menuName = "SO/Player/Player Stat Config")]
 public class PlayerStatConfig : ScriptableObject, IStatConfig<PlayerStats>
 {

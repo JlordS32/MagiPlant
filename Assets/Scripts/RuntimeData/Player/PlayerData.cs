@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 
-// TODO[JAYLOU]: Need to refactored
 [Serializable]
 public class PlayerData : Data<PlayerStats, PlayerStatConfig>
 {
