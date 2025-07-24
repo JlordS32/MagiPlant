@@ -41,27 +41,34 @@ public class WaveBuilder : MonoBehaviour
         List<EnemyGroup> groups = new();
 
         // Try to spawn higher tier enemies first.
-        foreach (var entry in _catalogEntries.Where(e => e.Tier >= EnemyTier.Rare))
+        foreach (var entry in _catalogEntries
+            .Where(e => e.Tier >= EnemyTier.Rare)
+            .OrderByDescending(e => e.Tier))
         {
             TrySpawnFromCatalog(entry, waveIndex, gap, groups, ref budget);
         }
 
-        // Then spawn Grunts
-        var gruntEntry = _catalogEntries.FirstOrDefault(e => e.Tier == EnemyTier.Grunt);
-        if (gruntEntry.Catalog == null || gruntEntry.Catalog.entries.Length == 0)
+        // Then spawn grunts
+        var gruntEntries = _catalogEntries
+            .Where(e => e.Tier == EnemyTier.Grunt && e.Catalog != null && e.Catalog.entries.Length > 0)
+            .ToArray();
+        
+        foreach (var entry in gruntEntries)
         {
-            Debugger.LogError(DebugCategory.Waves, "Grunt catalog is empty or not assigned.");
-            return new Wave();
+            TrySpawnFromCatalog(entry, waveIndex, gap, groups, ref budget);
+            if (budget <= 0) break;
         }
 
-        while (budget > 0)
-            TrySpawnFromCatalog(gruntEntry, waveIndex, gap, groups, ref budget);
 
         return new Wave { Groups = groups.ToArray() };
     }
 
     private void TrySpawnFromCatalog(CatalogEntry entry, int waveIndex, float gap, List<EnemyGroup> groups, ref int budget)
     {
+        // Skip if entry is not meant to spawn in this wave.
+        if (entry.SpawnInEveryWave > 1 && waveIndex % entry.SpawnInEveryWave != 0)
+            return;
+
         int count = Mathf.RoundToInt(entry.CountCurve.Evaluate(waveIndex));
         if (count <= 0 || entry.Catalog == null || entry.Catalog.entries.Length == 0) return;
 
