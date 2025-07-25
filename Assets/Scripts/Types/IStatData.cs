@@ -3,7 +3,10 @@ using System.Collections.Generic;
 
 public interface IStatData
 {
-    int Level { get; }
+    public int Level { get; }
     Dictionary<string, float> GetStats();
-    public event Action<int> OnLevelChanged;
+    event Action<int> OnLevelChanged;
+    float GetBaseValue(string stat);
+    float GetMaxLevelValue(string stat);
+    int GetMaxLevel();
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -9,8 +10,10 @@ public class ObjectDialogController : MonoBehaviour
     [SerializeField] VisualTreeAsset _progressBar;
 
     VisualElement _modal;
+    VisualElement _statContainer;
     Button _closeBtn;
     Camera _cam;
+    IStatData _data;
 
     void Awake()
     {
@@ -30,6 +33,7 @@ public class ObjectDialogController : MonoBehaviour
     {
         var root = _dialogDocument.rootVisualElement;
         _modal = root.Q<VisualElement>("Modal");
+        _statContainer = root.Q<VisualElement>("StatContainer");
         _closeBtn = root.Q<Button>("CloseButton");
 
         _closeBtn.RegisterCallback<ClickEvent>(Hide);
@@ -42,11 +46,25 @@ public class ObjectDialogController : MonoBehaviour
 
         // Enable Object UI Controller back
         ObjectUIController.Instance.ToggleObjectUI(true);
+        _statContainer.Clear();
     }
 
     // WARNING: Unused param
+    // TODO: Show the stats on the GUI
     public void Show(PlacedObject placedObject)
     {
+        _data = placedObject.GetData();
+
+        foreach (var stat in _data.GetStats())
+        {
+            float current = stat.Value;
+            float max = _data.GetMaxLevelValue(stat.Key);
+            float baseVal = _data.GetBaseValue(stat.Key);
+
+            Label statLabel = new($"{stat.Key} : {current} / {max} (base: {baseVal})");
+            _statContainer.Add(statLabel);
+        }
+
         ToggleModal(true);
     }
 

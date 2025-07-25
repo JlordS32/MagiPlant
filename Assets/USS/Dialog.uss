@@ -24,14 +24,14 @@
     width: 50%;
     background-image: url("project://database/Assets/Sprites/UI/02_Paper_Theme/Sprites/UI_Paper_Frame_01_Standard.png?fileID=2800000&guid=194b5bbfc8c9f5244abbe31f69ff7b1c&type=3#UI_Paper_Frame_01_Standard");
     height: 500px;
-    padding-top: 100px;
-    padding-right: 100px;
-    padding-bottom: 100px;
-    padding-left: 100px;
+    padding-top: 50px;
+    padding-right: 50px;
+    padding-bottom: 50px;
+    padding-left: 50px;
 }
 
 .title {
-    font-size: 50px;
+    font-size: 40px;
     -unity-text-align: upper-center;
 }
 

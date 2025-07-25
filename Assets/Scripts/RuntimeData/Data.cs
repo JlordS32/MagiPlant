@@ -7,8 +7,6 @@ public abstract class Data<TEnum, TConfig> : IStatData
     where TEnum : Enum
     where TConfig : StatConfig<TEnum>
 {
-    public event Action<int> OnLevelChanged;
-
     protected Dictionary<TEnum, float> _data = new();
     protected TConfig _config;
     protected int _level = 1;
@@ -17,13 +15,36 @@ public abstract class Data<TEnum, TConfig> : IStatData
     public int Level => _level;
     public TConfig Config => _config;
     public IReadOnlyDictionary<TEnum, float> Snapshot => _data;
-    public Dictionary<string, float> GetStats() => _data.ToDictionary(kv => kv.Key.ToString(), kv => kv.Value);
     public virtual float Get(TEnum stat) => _data[stat];
     public virtual void Set(TEnum stat, float value)
     {
         _data[stat] = value;
         RaiseStatUpdateEvent(stat, value);
     }
+
+    // IStatConfigs
+    public Dictionary<string, float> GetStats() => _data.ToDictionary(kv => kv.Key.ToString(), kv => kv.Value);
+    public event Action<int> OnLevelChanged;
+    float IStatData.GetMaxLevelValue(string statName)
+    {
+        if (Enum.TryParse(typeof(TEnum), statName, out var result) && result is TEnum stat)
+            return _config.GetMaxValue(stat);
+
+        Debugger.LogError(_config.DebugCategory, $"Invalid stat key: {statName}");
+        return 0f;
+    }
+
+    float IStatData.GetBaseValue(string statName)
+    {
+        if (Enum.TryParse(typeof(TEnum), statName, out var result) && result is TEnum stat)
+            return _config.GetBaseValue(stat);
+
+        Debugger.LogError(_config.DebugCategory, $"Invalid stat key: {statName}");
+        return 0f;
+    }
+
+
+    int IStatData.GetMaxLevel() => _config.MaxLevel;
 
     // Initalise
     protected void Init(TConfig config)
