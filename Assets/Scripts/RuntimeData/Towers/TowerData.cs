@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using UnityEngine;
 
 [Serializable]
 public class TowerData : Data<TowerStats, TowerStatConfig>
@@ -10,47 +9,22 @@ public class TowerData : Data<TowerStats, TowerStatConfig>
         Init(config);
     }
     
-    public void Upgrade(TowerStats stat)
+    protected override bool CanUpgrade()
     {
-        if (!_data.ContainsKey(stat))
-        {
-            Debugger.LogWarning(_config.DebugCategory, $"Tower stat '{stat}' not found.");
-            return;
-        }
-
-        float newValue = Mathf.FloorToInt(_config.GetValue(stat, _level));
-        _data[stat] = newValue;
-        RaiseStatUpdateEvent(stat, newValue);
-    }
-
-    public void UpgradeAll()
-    {
-        if (_level >= _config.MaxLevel)
-        {
-            Debugger.LogWarning(_config.DebugCategory, "Attempting to upgrade tower beyond max level.");
-            return;
-        }
-
         float cost = _config.GetCost(_level);
         var currencies = _config.CostType;
 
-        bool canAfford = currencies.All(currency => CurrencyStorage.Instance.CanAfford(currency, cost));
-        if (!canAfford)
-        {
-            Debugger.LogWarning(_config.DebugCategory, "Insufficient currency to upgrade.");
-            return;
-        }
+        Debugger.Log(DebugCategory.Resources, $"Current Cost: {cost}");
 
-        foreach (var currency in currencies)
+        return currencies.All(c => CurrencyStorage.Instance.CanAfford(c, cost));
+    }
+
+    protected override void PostUpgrade()
+    {
+        float cost = _config.GetCost(_level);
+        foreach (var currency in _config.CostType)
+        {
             CurrencyStorage.Instance.Spend(currency, cost);
-
-        _level++;
-        RaiseLevelChanged(_level);
-
-        foreach (var entry in _config.Stats)
-        {
-            Upgrade(entry.Stat);
-            Debugger.Log(_config.DebugCategory, $"Level {_level}: {entry.Stat}: {_data[entry.Stat]}");
         }
     }
 

@@ -44,6 +44,43 @@ public abstract class Data<TEnum, TConfig> : IStatData
         }
     }
 
+    // Upgrade logic
+    public virtual void TryUpgradeAll()
+    {
+        if (_level >= _config.MaxLevel)
+        {
+            OnUpgradeBlocked("Max level reached.");
+            return;
+        }
+
+        if (!CanUpgrade())
+        {
+            OnUpgradeBlocked("Upgrade blocked by conditions.");
+            return;
+        }
+
+        _level++;
+        RaiseLevelChanged(_level);
+
+        foreach (var entry in _config.Stats)
+        {
+            float newValue = Mathf.FloorToInt(_config.GetValue(entry.Stat, _level));
+            _data[entry.Stat] = newValue;
+            RaiseStatUpdateEvent(entry.Stat, newValue);
+        }
+
+        LogAllStats();
+        PostUpgrade();
+    }
+
+    protected virtual void OnUpgradeBlocked(string reason)
+    {
+        Debugger.LogWarning(_config.DebugCategory, reason);
+    }
+
+    protected virtual bool CanUpgrade() => true;
+    protected virtual void PostUpgrade() { }
+
     public virtual void Reset()
     {
         foreach (TEnum stat in Enum.GetValues(typeof(TEnum)))

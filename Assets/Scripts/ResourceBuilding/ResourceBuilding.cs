@@ -33,7 +33,7 @@ public class ResourceBuilding : MonoBehaviour, IBuildable, IUpgradeable
 
     public void Upgrade()
     {
-        _resourceData.UpgradeAll();
+        _resourceData.TryUpgradeAll();
     }
 
     public IStatData GetData() => _resourceData;
