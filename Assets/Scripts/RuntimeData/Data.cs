@@ -15,6 +15,7 @@ public abstract class Data<TEnum, TConfig> : IStatData
 
     // GETTERS & SETTERS
     public int Level => _level;
+    public TConfig Config => _config;
     public IReadOnlyDictionary<TEnum, float> Snapshot => _data;
     public Dictionary<string, float> GetStats() => _data.ToDictionary(kv => kv.Key.ToString(), kv => kv.Value);
     public virtual float Get(TEnum stat) => _data[stat];
@@ -44,6 +45,13 @@ public abstract class Data<TEnum, TConfig> : IStatData
         }
     }
 
+    protected virtual void UpgradeStat(TEnum stat, int level)
+    {
+        float newValue = Mathf.FloorToInt(_config.GetValue(stat, level));
+        _data[stat] = newValue;
+        RaiseStatUpdateEvent(stat, newValue);
+    }
+
     // Upgrade logic
     public virtual void TryUpgradeAll()
     {
@@ -64,9 +72,7 @@ public abstract class Data<TEnum, TConfig> : IStatData
 
         foreach (var entry in _config.Stats)
         {
-            float newValue = Mathf.FloorToInt(_config.GetValue(entry.Stat, _level));
-            _data[entry.Stat] = newValue;
-            RaiseStatUpdateEvent(entry.Stat, newValue);
+            UpgradeStat(entry.Stat, _level);
         }
 
         LogAllStats();
