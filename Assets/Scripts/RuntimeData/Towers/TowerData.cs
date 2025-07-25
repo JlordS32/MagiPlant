@@ -45,6 +45,7 @@ public class TowerData : Data<TowerStats, TowerStatConfig>
             CurrencyStorage.Instance.Spend(currency, cost);
 
         _level++;
+        RaiseLevelChanged(_level);
 
         foreach (var entry in _config.Stats)
         {

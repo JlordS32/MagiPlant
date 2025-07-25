@@ -46,6 +46,7 @@ public class ResourceData : Data<CurrencyType, ResourceStatConfig>
         }
 
         _level++;
+        RaiseLevelChanged(_level);
 
         foreach (var entry in _config.Stats)
         {

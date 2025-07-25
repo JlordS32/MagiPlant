@@ -7,6 +7,8 @@ public abstract class Data<TEnum, TConfig> : IStatData
     where TEnum : Enum
     where TConfig : StatConfig<TEnum>
 {
+    public event Action<int> OnLevelChanged;
+
     protected Dictionary<TEnum, float> _data = new();
     protected TConfig _config;
     protected int _level = 1;
@@ -54,6 +56,7 @@ public abstract class Data<TEnum, TConfig> : IStatData
     // TO BE IMPLEMENTED ON INHERITING CLASSES
     protected abstract void RaiseStatUpdateEvent(TEnum stat, float value);
     protected abstract void RaiseResetUpdateEvent();
+    protected void RaiseLevelChanged(int level) => OnLevelChanged?.Invoke(level);
 
     // DEBUG
     public void LogAllStats()

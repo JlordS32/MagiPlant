@@ -38,24 +38,25 @@ public class ObjectDialogController : MonoBehaviour
 
     public void Hide(ClickEvent evt)
     {
-        _modal.AddToClassList("hidden");
-        _modal.RemoveFromClassList("active");
-
-        // Disable some camera controls
-        _cam.GetComponent<CameraDrag>().enabled = true;
-        _cam.GetComponent<CameraZoom>().enabled = true;
+        ToggleModal(false);
 
         // Enable Object UI Controller back
         ObjectUIController.Instance.ToggleObjectUI(true);
     }
 
+    // WARNING: Unused param
     public void Show(PlacedObject placedObject)
     {
-        _modal.AddToClassList("active");
-        _modal.RemoveFromClassList("hidden");
+        ToggleModal(true);
+    }
 
-        // Disable some camera controls
-        _cam.GetComponent<CameraDrag>().enabled = false;
-        _cam.GetComponent<CameraZoom>().enabled = false;
+    public void ToggleModal(bool toggle)
+    {
+        _modal.EnableInClassList("active", toggle);
+        _modal.EnableInClassList("hidden", !toggle);
+
+        // DISABLE CAMERA MOVEMENTS
+        _cam.GetComponent<CameraDrag>().enabled = !toggle;
+        _cam.GetComponent<CameraZoom>().enabled = !toggle;
     }
 }
