@@ -46,7 +46,7 @@ public class TowerDefense : MonoBehaviour, IBuildable, IUpgradeable
 
     public void Upgrade()
     {
-        _towerData.UpgradeAll();
+        _towerData.TryUpgradeAll();
     }
 
     public IStatData GetData() => _towerData;

@@ -2,24 +2,14 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class PlayerData : Data<PlayerStats, PlayerStatConfig>
+public class PlayerData : DamageableData<PlayerStats, PlayerStatConfig>
 {
-    // VARIABLES
-    float _minDamage = 1f;
+    protected override PlayerStats HPStat => PlayerStats.HP;
+    protected override PlayerStats DefenseStat => PlayerStats.Defense;
 
     public PlayerData(PlayerStatConfig config)
     {
         Init(config);
-    }
-
-    public void AddStats(PlayerStats stat, float amount)
-    {
-        // Only take non-negatives
-        if (amount > 0 && stat != PlayerStats.EXP)
-        {
-            _data[stat] += amount;
-        }
-        RaiseStatUpdateEvent(stat, _data[stat]);
     }
 
     public void AddExp(float amount)
@@ -32,52 +22,14 @@ public class PlayerData : Data<PlayerStats, PlayerStatConfig>
         GameEventsManager.RaiseExpGainUpdate(_data[PlayerStats.EXP], _config.GetRequiredExp(_level));
     }
 
+    // For cheating
     public void LevelUp()
     {
-        _data[PlayerStats.EXP] += _config.GetRequiredExp(_level) * 0.5f;
+        _data[PlayerStats.EXP] += _config.GetRequiredExp(_level);
         CheckLevelUp();
         GameEventsManager.RaiseExpGainUpdate(_data[PlayerStats.EXP], _config.GetRequiredExp(_level));
     }
-
-    public float ApplyDamage(float amount)
-    {
-        float defense = _data[PlayerStats.Defense];
-        float finalDamage = Mathf.Max(_minDamage, amount - defense);
-        _data[PlayerStats.HP] = Mathf.Max(0, _data[PlayerStats.HP] - finalDamage);
-        RaiseStatUpdateEvent(PlayerStats.HP, _data[PlayerStats.HP]);
-
-        return finalDamage;
-    }
-
-    public bool IsDead => _data[PlayerStats.HP] <= 0;
-
-    public void Upgrade(PlayerStats stat)
-    {
-        float newValue = _config.GetValue(stat, _level);
-        _data[stat] = newValue;
-
-        RaiseStatUpdateEvent(stat, newValue);
-    }
-
-    public void UpgradeAll()
-    {
-        if (_level >= _config.MaxLevel)
-        {
-            Debugger.LogWarning(_config.DebugCategory, "Attempting to level up beyond max level.");
-            return;
-        }
-
-        foreach (var entry in _config.Stats)
-        {
-            Upgrade(entry.Stat);
-            Debugger.Log(_config.DebugCategory, $"Level {_level}: {entry.Stat}: {_data[entry.Stat]}");
-        }
-
-        // Set MaxHP and restore full HP
-        if (_data.ContainsKey(PlayerStats.MaxHP))
-            _data[PlayerStats.HP] = _data[PlayerStats.MaxHP];
-    }
-
+    
     bool CheckLevelUp()
     {
         if (_level >= _config.MaxLevel) return false;
@@ -89,7 +41,7 @@ public class PlayerData : Data<PlayerStats, PlayerStatConfig>
         while (currentExp >= requiredExp)
         {
             _level++;
-            UpgradeAll();
+            TryUpgradeAll();
 
             currentExp -= requiredExp;
             requiredExp = _config.GetRequiredExp(_level);

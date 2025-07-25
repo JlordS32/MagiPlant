@@ -12,6 +12,7 @@ public class ObjectUIController : MonoBehaviour
     Button _upgradeBtn;
     Button _infoBtn;
     PlacedObject _currentPlacedObject;
+    IStatData _data;
 
     bool _enableMouseClickCheck = true;
 
@@ -32,8 +33,7 @@ public class ObjectUIController : MonoBehaviour
             return;
         }
 
-        _panel.AddToClassList("hidden");
-        _panel.RemoveFromClassList("active");
+        TogglePanel(false);
     }
 
     void Start()
@@ -67,6 +67,11 @@ public class ObjectUIController : MonoBehaviour
         _enableMouseClickCheck = enabled;
     }
 
+    public void TogglePanel(bool toggle)
+    {
+        _panel.EnableInClassList("active", toggle);
+        _panel.EnableInClassList("hidden", !toggle);
+    }
 
     void Update()
     {
@@ -87,21 +92,20 @@ public class ObjectUIController : MonoBehaviour
 
     public void Show()
     {
-        if (_objectNameLabel != null)
-            _objectNameLabel.text = $"{_currentPlacedObject.Entry.BuildEntryName} (Level {_currentPlacedObject.GetData().Level})";
-
-        if (_panel != null && _panel.ClassListContains("hidden"))
-        {
-            _panel.RemoveFromClassList("hidden");
-            _panel.AddToClassList("active");
-        }
+        _data = _currentPlacedObject.GetData();
+        _data.OnLevelChanged += HandleLevel;
+        HandleLevel(_data.Level);
+        
+        TogglePanel(true);
     }
 
     public void Hide()
     {
-        _panel.RemoveFromClassList("active");
-        _panel.AddToClassList("hidden");
+        if (_data != null) _data.OnLevelChanged -= HandleLevel;
+        TogglePanel(false);
     }
+
+    void HandleLevel(int level) => _objectNameLabel.text = $"{_currentPlacedObject.Entry.BuildEntryName} (Level {level})";
 
     bool IsPointerOverUI(Vector2 screenPosition)
     {

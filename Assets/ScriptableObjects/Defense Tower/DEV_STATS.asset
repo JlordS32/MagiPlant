@@ -12,19 +12,164 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a4f6af789bea2440b74518e1a722a43, type: 3}
   m_Name: DEV_STATS
   m_EditorClassIdentifier: 
+  MaxLevel: 100
+  _debugCategory: 7
   Stats:
   - Name: Attack
     Stat: 0
-    Value: 100
+    BaseValue: 100
+    UpgradeCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 1.9708635
+        outSlope: 1.9708635
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 10.094183
+        value: 19.894257
+        inSlope: 1.9708635
+        outSlope: 1.9708635
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    UpgradeOperation: 0
   - Name: Speed
     Stat: 1
-    Value: 250
+    BaseValue: 250
+    UpgradeCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 1.9708635
+        outSlope: 1.9708635
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 10.094183
+        value: 19.894257
+        inSlope: 1.9708635
+        outSlope: 1.9708635
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    UpgradeOperation: 0
   - Name: Range
     Stat: 2
-    Value: 100
-  - Name: Projectile Lifetime
-    Stat: 3
-    Value: 5
+    BaseValue: 100
+    UpgradeCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 1.9708635
+        outSlope: 1.9708635
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 10.094183
+        value: 19.894257
+        inSlope: 1.9708635
+        outSlope: 1.9708635
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    UpgradeOperation: 0
   - Name: Projectile Speed
     Stat: 4
-    Value: 200
+    BaseValue: 50
+    UpgradeCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 1.9708635
+        outSlope: 1.9708635
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 10.094183
+        value: 19.894257
+        inSlope: 1.9708635
+        outSlope: 1.9708635
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    UpgradeOperation: 0
+  - Name: Projectile Lifetime
+    Stat: 3
+    BaseValue: 5
+    UpgradeCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0.0042095184
+        value: -0.0023155212
+        inSlope: -0.55006796
+        outSlope: -0.55006796
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    UpgradeOperation: 0
+  BaseCost: 1
+  CostType: 00000000
+  CostUpgrade:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  CostUpgradeOperation: 1

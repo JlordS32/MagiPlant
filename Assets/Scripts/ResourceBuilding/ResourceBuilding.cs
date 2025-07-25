@@ -7,7 +7,6 @@ public class ResourceBuilding : MonoBehaviour, IBuildable, IUpgradeable
     ResourceData _resourceData;
 
     // TODO[JAYLOU]: ADD SUPPORT FOR GENERATION, make it into an upgrade. So it's an auto-clicker.
-
     public ResourceData Data => _resourceData;
 
     void Awake()
@@ -34,7 +33,7 @@ public class ResourceBuilding : MonoBehaviour, IBuildable, IUpgradeable
 
     public void Upgrade()
     {
-        _resourceData.UpgradeAll();
+        _resourceData.TryUpgradeAll();
     }
 
     public IStatData GetData() => _resourceData;

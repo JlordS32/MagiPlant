@@ -28,6 +28,12 @@ public abstract class StatConfig<TEnum> : StatConfig
         return _statLookup.TryGetValue(stat, out var entry) ? entry.BaseValue : 0f;
     }
 
+    public float GetMaxValue(TEnum stat)
+    {
+        InitLookup();
+        return GetValue(stat, MaxLevel);
+    }
+
     public float[] GetValuesInRange(TEnum stat, int startLevel, int endLevel, bool cumulative = false)
     {
         int count = Mathf.Max(0, endLevel - startLevel + 1);
@@ -41,7 +47,6 @@ public abstract class StatConfig<TEnum> : StatConfig
 
             if (cumulative)
             {
-                Debug.Log("Cumulative");
                 current += value;
                 values[i] = current;
             }

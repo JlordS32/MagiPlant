@@ -88,7 +88,7 @@ public class WaveBuilder : MonoBehaviour
 
     private void TrySpawnFromCatalog(CatalogEntry entry, int waveIndex, float gap, List<EnemyGroup> groups, ref int budget)
     {
-        if (entry.SpawnInEveryWave > 1 && waveIndex % entry.SpawnInEveryWave != 0)
+        if (entry.SpawnInEveryWave > 1 && waveIndex % entry.SpawnInEveryWave != 0 && waveIndex > 0)
             return;
 
         if (entry.Catalog == null || entry.Catalog.entries.Length == 0) return;

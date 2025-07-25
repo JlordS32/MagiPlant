@@ -10,46 +10,22 @@ public class ResourceData : Data<CurrencyType, ResourceStatConfig>
         Init(config);
     }
 
-    public void Upgrade(CurrencyType currency)
+    protected override bool CanUpgrade()
     {
-        float newValue = _config.GetValue(currency, _level);
-        _data[currency] = newValue;
-        RaiseStatUpdateEvent(currency, newValue);
-    }
-
-    public void UpgradeAll()
-    {
-        if (_level >= _config.MaxLevel)
-        {
-            Debugger.LogWarning(DebugCategory.Resources, "Attempting to upgrade resources beyond max level.");
-            return;
-        }
-
         float cost = _config.GetCost(_level);
-        Debugger.Log(DebugCategory.Resources, $"Current Cost: {cost}");
         var currencies = _config.CostType;
 
-        // Check if player can afford upgrade
-        bool canAfford = currencies.All(currency => CurrencyStorage.Instance.CanAfford(currency, cost));
-        if (!canAfford)
-        {
-            Debugger.LogWarning(DebugCategory.Resources, "Insufficient currency to upgrade.");
-            return;
-        }
+        Debugger.Log(DebugCategory.Resources, $"Current Cost: {cost}");
 
-        // Spend the resources
-        // WARNING: If bug occurs, we might have to add a rollback feature just in case.
-        foreach (var currency in currencies)
+        return currencies.All(c => CurrencyStorage.Instance.CanAfford(c, cost));
+    }
+
+    protected override void PostUpgrade()
+    {
+        float cost = _config.GetCost(_level);
+        foreach (var currency in _config.CostType)
         {
             CurrencyStorage.Instance.Spend(currency, cost);
-        }
-
-        _level++;
-
-        foreach (var entry in _config.Stats)
-        {
-            Upgrade(entry.Stat);
-            Debugger.Log(DebugCategory.Resources, $"Level {_level}: {entry.Stat}: {_data[entry.Stat]}");
         }
     }
 
