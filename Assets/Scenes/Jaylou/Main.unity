@@ -4397,8 +4397,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 934774349628676129, guid: e2bf8df405595024cbd43d28dbb59143, type: 3}
+      propertyPath: _categories.Array.data[6].IsEnabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 934774349628676129, guid: e2bf8df405595024cbd43d28dbb59143, type: 3}
       propertyPath: _categories.Array.data[7].IsEnabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 934774349628676129, guid: e2bf8df405595024cbd43d28dbb59143, type: 3}
       propertyPath: _categories.Array.data[8].IsEnabled
@@ -4499,7 +4503,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8310909475113405435, guid: e329a22cf5900d74bb4547793d3f1db4, type: 3}
       propertyPath: _startHour
-      value: 17
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8310909475113405435, guid: e329a22cf5900d74bb4547793d3f1db4, type: 3}
       propertyPath: _globalLight
