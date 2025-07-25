@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using UnityEngine;
 
 [Serializable]
 public class ResourceData : Data<CurrencyType, ResourceStatConfig>
@@ -12,7 +13,7 @@ public class ResourceData : Data<CurrencyType, ResourceStatConfig>
 
     public void Upgrade(CurrencyType currency)
     {
-        float newValue = _config.GetValue(currency, _level);
+        float newValue = Mathf.FloorToInt(_config.GetValue(currency, _level));
         _data[currency] = newValue;
         RaiseStatUpdateEvent(currency, newValue);
     }

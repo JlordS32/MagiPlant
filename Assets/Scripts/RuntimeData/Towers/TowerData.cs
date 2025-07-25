@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using UnityEngine;
 
 [Serializable]
 public class TowerData : Data<TowerStats, TowerStatConfig>
@@ -17,7 +18,7 @@ public class TowerData : Data<TowerStats, TowerStatConfig>
             return;
         }
 
-        float newValue = _config.GetValue(stat, _level);
+        float newValue = Mathf.FloorToInt(_config.GetValue(stat, _level));
         _data[stat] = newValue;
         RaiseStatUpdateEvent(stat, newValue);
     }

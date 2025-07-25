@@ -53,7 +53,7 @@ public class PlayerData : Data<PlayerStats, PlayerStatConfig>
 
     public void Upgrade(PlayerStats stat)
     {
-        float newValue = _config.GetValue(stat, _level);
+        float newValue = Mathf.FloorToInt(_config.GetValue(stat, _level));
         _data[stat] = newValue;
 
         RaiseStatUpdateEvent(stat, newValue);

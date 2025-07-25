@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public abstract class Data<TEnum, TConfig> : IStatData
     where TEnum : Enum
@@ -44,7 +45,7 @@ public abstract class Data<TEnum, TConfig> : IStatData
     public virtual void Reset()
     {
         foreach (TEnum stat in Enum.GetValues(typeof(TEnum)))
-            _data[stat] = _config.GetBaseValue(stat);
+            _data[stat] = Mathf.FloorToInt(_config.GetBaseValue(stat));
 
         _level = 1;
         RaiseResetUpdateEvent();

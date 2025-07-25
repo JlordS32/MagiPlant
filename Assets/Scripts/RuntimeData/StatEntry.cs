@@ -15,22 +15,10 @@ public class StatEntry<TEnum> where TEnum : Enum
         float delta = UpgradeCurve.Evaluate(level);
         return UpgradeOperation switch
         {
-            UpgradeOperation.Add => BaseValue + delta,
-            UpgradeOperation.Multiply => BaseValue * delta,
-            UpgradeOperation.Exponent => Mathf.Pow(BaseValue, delta),
+            UpgradeOperation.Add => Mathf.FloorToInt(BaseValue + delta),
+            UpgradeOperation.Multiply => Mathf.FloorToInt(BaseValue * delta),
+            UpgradeOperation.Exponent => Mathf.FloorToInt(Mathf.Pow(BaseValue, delta)),
             _ => BaseValue,
         };
-    }
-
-    public float[] GetValuesInRange(int startLevel, int endLevel)
-    {
-        int count = Mathf.Max(0, endLevel - startLevel + 1);
-        float[] values = new float[count];
-        for (int i = 0; i < count; i++)
-        {
-            int level = startLevel + i;
-            values[i] = GetValue(level);
-        }
-        return values;
     }
 }
