@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81bca9b5e7f77dc49bfb8ffa25f0c770, type: 3}
+  m_Name: Currencies
+  m_EditorClassIdentifier: 
+  entries:
+  - Name: Water
+    Type: 0
+    Icon: {fileID: 2898741735427580725, guid: 3c4f16a7505ffbb4db5dc1f69dd5cddf, type: 3}
+  - Name: Sunlight
+    Type: 1
+    Icon: {fileID: 9111377408940653073, guid: 3c4f16a7505ffbb4db5dc1f69dd5cddf, type: 3}

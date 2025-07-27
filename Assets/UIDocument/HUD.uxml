@@ -5,12 +5,12 @@
             <ui:Label text="00:00" emoji-fallback-support="true" name="TimeLabel" class="heading time" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
         </ui:VisualElement>
         <ui:VisualElement name="Currency" style="flex-grow: 1; position: absolute; top: 2%; right: 1%; align-items: stretch; white-space: normal; flex-direction: row;">
-            <ui:VisualElement name="SunCurency" style="flex-grow: 1; margin-right: 58px; align-items: center; justify-content: center; width: 150px;">
-                <ui:VisualElement name="Icon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/ardo_sprite_assets/Zombie%2001.png?fileID=-492648906605594914&amp;guid=da459e62906a05b4fa722355da70a6e3&amp;type=3#Zombie 01_6&quot;); position: relative; width: 80px; height: 80px; top: auto; right: auto;" />
+            <ui:VisualElement name="SunCurrency" style="flex-grow: 1; margin-right: 58px; align-items: center; justify-content: center; width: 150px;">
+                <ui:VisualElement name="Icon" style="flex-grow: 1; position: relative; width: 80px; height: 80px; top: auto; right: auto;" />
                 <ui:Label text="0" name="SunLabel" selectable="true" class="text" />
             </ui:VisualElement>
             <ui:VisualElement name="WaterCurrency" style="flex-grow: 1; width: 150px; justify-content: center; align-items: center;">
-                <ui:VisualElement name="Icon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/ardo_sprite_assets/Zombie%2001.png?fileID=1128907280&amp;guid=da459e62906a05b4fa722355da70a6e3&amp;type=3#Zombie 01_38&quot;); position: relative; width: 80px; height: 80px; top: auto; right: auto;" />
+                <ui:VisualElement name="Icon" style="flex-grow: 1; position: relative; width: 80px; height: 80px; top: auto; right: auto;" />
                 <ui:Label text="0" name="WaterLabel" double-click-selects-word="false" class="text" />
             </ui:VisualElement>
         </ui:VisualElement>

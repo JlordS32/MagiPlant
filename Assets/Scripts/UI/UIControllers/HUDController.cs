@@ -11,15 +11,28 @@ public class HUDController : MonoBehaviour
     Label _timeLabel;
     Label _expLabel;
     Label _levelLabel;
+    VisualElement _sunCurrencyUI;
+    VisualElement _waterCurrencyUI;
 
     void Start()
     {
         var root = _hudDocument.rootVisualElement;
-        _sunLabel = root.Q<Label>("SunLabel");
-        _waterLabel = root.Q<Label>("WaterLabel");
-        _timeLabel = root.Q<Label>("TimeLabel");
-        _expLabel = root.Q<Label>("ExpLabel");
-        _levelLabel = root.Q<Label>("LevelLabel");
+        var hud = root.Q<VisualElement>("HUD");
+        if (hud == null) { Debug.LogError("HUD not found"); return; }
+
+        _sunCurrencyUI = hud.Q<VisualElement>("SunCurrency");
+        _waterCurrencyUI = hud.Q<VisualElement>("WaterCurrency");
+
+        _sunLabel = hud.Q<Label>("SunLabel");
+        _waterLabel = hud.Q<Label>("WaterLabel");
+        _timeLabel = hud.Q<Label>("TimeLabel");
+        _expLabel = hud.Q<Label>("ExpLabel");
+        _levelLabel = hud.Q<Label>("LevelLabel");
+
+        var sunIcon = _sunCurrencyUI.Q<VisualElement>("Icon");
+        sunIcon.style.backgroundImage = new StyleBackground(IconManager.Instance.GetCurrencyIcon(CurrencyType.Sunlight));
+        var waterIcon = _waterCurrencyUI.Q<VisualElement>("Icon");
+        waterIcon.style.backgroundImage = new StyleBackground(IconManager.Instance.GetCurrencyIcon(CurrencyType.Water));
     }
 
     void Update()
