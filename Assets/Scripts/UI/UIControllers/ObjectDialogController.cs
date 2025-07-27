@@ -11,6 +11,8 @@ public class ObjectDialogController : MonoBehaviour
 
     VisualElement _modal;
     VisualElement _statContainer;
+    VisualElement _descriptionContainer;
+    Label _title;
     Button _closeBtn;
     Camera _cam;
     IStatData _data;
@@ -33,7 +35,9 @@ public class ObjectDialogController : MonoBehaviour
     {
         var root = _dialogDocument.rootVisualElement;
         _modal = root.Q<VisualElement>("Modal");
+        _title = root.Q<Label>("Title");
         _statContainer = root.Q<VisualElement>("StatContainer");
+        _descriptionContainer = root.Q<VisualElement>("Description");
         _closeBtn = root.Q<Button>("CloseButton");
 
         _closeBtn.RegisterCallback<ClickEvent>(Hide);
@@ -47,6 +51,7 @@ public class ObjectDialogController : MonoBehaviour
         // Enable Object UI Controller back
         ObjectUIController.Instance.ToggleObjectUI(true);
         _statContainer.Clear();
+        _descriptionContainer.Clear();
     }
 
     // WARNING: Unused param
@@ -55,15 +60,30 @@ public class ObjectDialogController : MonoBehaviour
     {
         _data = placedObject.GetData();
 
+        // Set title
+        _title.text = $"{placedObject.Entry.BuildEntryName} (Level {_data.Level})";
+
         foreach (var stat in _data.GetStats())
         {
-            float current = stat.Value;
-            float max = _data.GetMaxLevelValue(stat.Key);
-            float baseVal = _data.GetBaseValue(stat.Key);
+            VisualElement progressBarElement = _progressBar.CloneTree();
+            var bar = progressBarElement.Q<ProgressBar>("ProgressBar");
+            var label = progressBarElement.Q<Label>("Name");
 
-            Label statLabel = new($"{stat.Key} : {current} / {max} (base: {baseVal})");
-            _statContainer.Add(statLabel);
+            label.text = $"{stat.Key}: ";
+            bar.title = $"{stat.Value}";
+            bar.value = stat.Value;
+            bar.lowValue = _data.GetBaseValue(stat.Key);
+            bar.highValue = _data.GetMaxLevelValue(stat.Key);
+
+            _statContainer.Add(progressBarElement);
         }
+
+        TextElement desc = new()
+        {
+            text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        };
+
+        _descriptionContainer.Add(desc);
 
         ToggleModal(true);
     }

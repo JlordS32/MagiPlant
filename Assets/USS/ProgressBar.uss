@@ -25,3 +25,8 @@
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 }
+
+.text {
+    -unity-font-definition: url("project://database/Assets/Fonts/Minecraftia-Regular.ttf?fileID=12800000&guid=dd91240ca23e7bc48a7441cd07ef9aa1&type=3#Minecraftia-Regular");
+    color: rgb(255, 255, 255);
+}
