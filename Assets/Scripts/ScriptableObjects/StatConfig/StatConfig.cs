@@ -9,6 +9,8 @@ public abstract class StatConfig<TEnum> : StatConfig
     [Header("Base Parameters")]
     public int MaxLevel;
     public DebugCategory _debugCategory;
+    [TextArea]
+    public string Description;
 
     public StatEntry<TEnum>[] Stats;
     protected Dictionary<TEnum, StatEntry<TEnum>> _statLookup;

@@ -17,9 +17,14 @@ MonoBehaviour:
     Category: 0
     Prefab: {fileID: 8324354819731710817, guid: 751c4affecd636a4fad2f459cd76099a, type: 3}
     Thumbnail: {fileID: -1319315252296537693, guid: 85b10beb11cde0040826127200e41a44, type: 3}
-    Cost: 1
+    Cost: 5
   - BuildEntryName: Double Tower
     Category: 0
     Prefab: {fileID: 4696009240900588352, guid: 74b4244f46e04324d83c61677cb515df, type: 3}
     Thumbnail: {fileID: 8133266208652056809, guid: 85b10beb11cde0040826127200e41a44, type: 3}
-    Cost: 1
+    Cost: 5
+  - BuildEntryName: Sniper Tower
+    Category: 0
+    Prefab: {fileID: 6039712439561370871, guid: 5d2d714bad3bb4b4e9a539dc3960e180, type: 3}
+    Thumbnail: {fileID: 8133266208652056809, guid: 85b10beb11cde0040826127200e41a44, type: 3}
+    Cost: 5
