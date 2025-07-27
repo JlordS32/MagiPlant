@@ -52,10 +52,8 @@ public abstract class Data<TEnum, TConfig> : IStatData
         _config = config;
 
         // Initialising all stats to 0
-        foreach (TEnum d in Enum.GetValues(typeof(TEnum)))
-        {
-            _data[d] = 0f;
-        }
+        foreach (var stat in config.Stats)
+            _data[stat.Stat] = 0f;
 
         // // Set initial values based on config
         Reset();

@@ -1,12 +1,12 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/USS/Dialog.uss?fileID=7433441132597879392&amp;guid=cc87c061becd0d549a726af4147329ac&amp;type=3#Dialog" />
-    <ui:VisualElement name="Modal" style="flex-grow: 1;">
+    <ui:VisualElement name="Modal" class="hidden" style="flex-grow: 1;">
         <ui:VisualElement name="Backdrop" class="backdrop" style="flex-grow: 1;" />
         <ui:VisualElement name="Dialog" class="dialog">
             <ui:Label text="Label" name="Title" class="title font" />
-            <ui:VisualElement name="Details" style="flex-grow: 1; flex-direction: row;">
+            <ui:VisualElement name="Details" class="font" style="flex-grow: 1; flex-direction: row;">
                 <ui:VisualElement name="StatContainer" style="flex-grow: 1;" />
-                <ui:VisualElement name="Description" style="flex-grow: 1;" />
+                <ui:VisualElement name="Description" style="max-width: 400px; flex-grow: 1; margin-left: 50px;" />
             </ui:VisualElement>
             <ui:Button text="&#10;" name="CloseButton" class="closeBtn" style="background-color: rgba(118, 76, 76, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);" />
         </ui:VisualElement>
