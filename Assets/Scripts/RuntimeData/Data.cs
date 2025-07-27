@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Data<TEnum, TConfig> : IStatData
@@ -33,7 +34,6 @@ public abstract class Data<TEnum, TConfig> : IStatData
         Debugger.LogError(_config.DebugCategory, $"Invalid stat key: {statName}");
         return 0f;
     }
-
     float IStatData.GetBaseValue(string statName)
     {
         if (Enum.TryParse(typeof(TEnum), statName, out var result) && result is TEnum stat)
@@ -42,9 +42,8 @@ public abstract class Data<TEnum, TConfig> : IStatData
         Debugger.LogError(_config.DebugCategory, $"Invalid stat key: {statName}");
         return 0f;
     }
-
-
     int IStatData.GetMaxLevel() => _config.MaxLevel;
+    string IStatData.GetDescription() => _config.Description;
 
     // Initalise
     protected void Init(TConfig config)
