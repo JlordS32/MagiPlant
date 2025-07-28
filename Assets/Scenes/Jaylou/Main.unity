@@ -644,6 +644,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6651870812812231024, guid: be43335f66e1fa8429afbe156a073235, type: 3}
+      propertyPath: _entries.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6651870812812231024, guid: be43335f66e1fa8429afbe156a073235, type: 3}
+      propertyPath: _lookups.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6651870812812231024, guid: be43335f66e1fa8429afbe156a073235, type: 3}
+      propertyPath: '_lookups.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 2a0446e4c1ce4374a93c1599abd3c5b0, type: 2}
+    - target: {fileID: 6651870812812231024, guid: be43335f66e1fa8429afbe156a073235, type: 3}
+      propertyPath: _entries.Array.data[0].Name
+      value: Currency
+      objectReference: {fileID: 0}
+    - target: {fileID: 6651870812812231024, guid: be43335f66e1fa8429afbe156a073235, type: 3}
+      propertyPath: _entries.Array.data[0].Lookup
+      value: 
+      objectReference: {fileID: 11400000, guid: 2a0446e4c1ce4374a93c1599abd3c5b0, type: 2}
     - target: {fileID: 8174159907157760096, guid: be43335f66e1fa8429afbe156a073235, type: 3}
       propertyPath: m_Name
       value: IconManager

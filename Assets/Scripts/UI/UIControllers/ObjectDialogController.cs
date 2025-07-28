@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -10,13 +9,9 @@ public class ObjectDialogController : MonoBehaviour
     [SerializeField] VisualTreeAsset _progressBar;
 
     VisualElement _modal;
-    VisualElement _statContainer;
-    VisualElement _descriptionContainer;
-    Label _title;
     Button _closeBtn;
     Camera _cam;
     IStatData _data;
-
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -35,11 +30,9 @@ public class ObjectDialogController : MonoBehaviour
     {
         var root = _dialogDocument.rootVisualElement;
         _modal = root.Q<VisualElement>("Modal");
-        _title = root.Q<Label>("Title");
-        _statContainer = root.Q<VisualElement>("StatContainer");
-        _descriptionContainer = root.Q<VisualElement>("Description");
         _closeBtn = root.Q<Button>("CloseButton");
 
+        // Setup
         _closeBtn.RegisterCallback<ClickEvent>(Hide);
         _modal.AddToClassList("hidden");
     }
@@ -50,18 +43,28 @@ public class ObjectDialogController : MonoBehaviour
 
         // Enable Object UI Controller back
         ObjectUIController.Instance.ToggleObjectUI(true);
-        _statContainer.Clear();
-        _descriptionContainer.Clear();
     }
 
-    // WARNING: Unused param
-    // TODO: Show the stats on the GUI
-    public void Show(PlacedObject placedObject)
+    public void Show(VisualTreeAsset content, PlacedObject placedObject)
     {
+        if (content == null || placedObject == null)
+        {
+            Debugger.LogError(DebugCategory.UI, "Missing references on either content or place objects!");
+        }
+
+        // SETTING UP new #Content below
+        // Fetch references first
+        VisualElement contentDoc = content.CloneTree();
+        VisualElement contents = contentDoc.Q<VisualElement>("Content");
+        VisualElement statContainer = contents.Q<VisualElement>("StatContainer");
+        VisualElement descContainer = contents.Q<VisualElement>("Description");
+        Label title = contents.Q<Label>("Title");
+
+        // Get data
         _data = placedObject.GetData();
 
         // Set title
-        _title.text = $"{placedObject.Entry.BuildEntryName} (Level {_data.Level})";
+        title.text = $"{placedObject.Entry.BuildEntryName} (Level {_data.Level})";
 
         foreach (var stat in _data.GetStats())
         {
@@ -75,7 +78,7 @@ public class ObjectDialogController : MonoBehaviour
             bar.lowValue = _data.GetBaseValue(stat.Key);
             bar.highValue = _data.GetMaxLevelValue(stat.Key);
 
-            _statContainer.Add(progressBarElement);
+            statContainer.Add(progressBarElement);
         }
 
         TextElement desc = new()
@@ -83,7 +86,14 @@ public class ObjectDialogController : MonoBehaviour
             text = _data.GetDescription() ?? ""
         };
 
-        _descriptionContainer.Add(desc);
+        descContainer.Add(desc);
+
+        // Replace #Content
+        VisualElement oldContent = _modal.Q<VisualElement>("Content");
+        var parent = oldContent.parent;
+        var index = parent.IndexOf(oldContent);
+        parent.RemoveAt(index);
+        parent.Insert(index, contents); // Insert the new #Content
 
         ToggleModal(true);
     }
