@@ -91,6 +91,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiDocument: {fileID: 0}
+  _infoDialog: {fileID: 9197481963319205126, guid: 61c1d9693291fe348ad505adc8877fc7, type: 3}
+  _upgradeDialog: {fileID: 9197481963319205126, guid: 61c1d9693291fe348ad505adc8877fc7, type: 3}
 --- !u!114 &7218447435030563110
 MonoBehaviour:
   m_ObjectHideFlags: 0

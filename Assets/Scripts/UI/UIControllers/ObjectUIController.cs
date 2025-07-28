@@ -7,6 +7,11 @@ public class ObjectUIController : MonoBehaviour
     public static ObjectUIController Instance { get; private set; }
 
     [SerializeField] UIDocument _uiDocument;
+
+    [Header("Dialog Content")]
+    [SerializeField] VisualTreeAsset _infoDialog;
+    [SerializeField] VisualTreeAsset _upgradeDialog;
+
     VisualElement _panel;
     Label _objectNameLabel;
     Button _upgradeBtn;
@@ -57,7 +62,7 @@ public class ObjectUIController : MonoBehaviour
             if (_currentPlacedObject != null)
             {
                 ToggleObjectUI(false);
-                ObjectDialogController.Instance.Show(_currentPlacedObject);
+                ObjectDialogController.Instance.Show(_infoDialog, _currentPlacedObject);
             }
         });
     }
