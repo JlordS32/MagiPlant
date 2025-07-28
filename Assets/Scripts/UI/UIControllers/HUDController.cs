@@ -30,9 +30,9 @@ public class HUDController : MonoBehaviour
         _levelLabel = hud.Q<Label>("LevelLabel");
 
         var sunIcon = _sunCurrencyUI.Q<VisualElement>("Icon");
-        sunIcon.style.backgroundImage = new StyleBackground(IconManager.Instance.GetCurrencyIcon(CurrencyType.Sunlight));
+        sunIcon.style.backgroundImage = new StyleBackground(IconManager.Instance.GetIcon(CurrencyType.Sunlight));
         var waterIcon = _waterCurrencyUI.Q<VisualElement>("Icon");
-        waterIcon.style.backgroundImage = new StyleBackground(IconManager.Instance.GetCurrencyIcon(CurrencyType.Water));
+        waterIcon.style.backgroundImage = new StyleBackground(IconManager.Instance.GetIcon(CurrencyType.Water));
     }
 
     void Update()
