@@ -62,7 +62,7 @@ public class BuildManager : MonoBehaviour, IPhaseListener
             if (_previewPrefab) Destroy(_previewPrefab);
         }
 
-        Debugger.LogWarning(DebugCategory.GamePhase, $"BuildManager phase changed: {phase}, enabled: {enabled}");
+        Debugger.LogWarning(DebugCategory.GamePhase, $"BuildManager phase changed: {phase}, build enabled: {_canBuild}");
     }
     #endregion
 
@@ -92,6 +92,8 @@ public class BuildManager : MonoBehaviour, IPhaseListener
         if (_previewPrefab == null)
         {
             _previewPrefab = Instantiate(_selectedPrefab, transform);
+            // ensure preview object is prepared immediately
+            SetPreviewMode(_previewPrefab, _previewColor.NotPlaceable);
         }
         else
         {
@@ -135,7 +137,7 @@ public class BuildManager : MonoBehaviour, IPhaseListener
             spriteRenderer.sortingLayerName = "UIWorld";
         }
 
-        foreach (var collider in gameObject.GetComponents<Collider2D>())
+        foreach (var collider in gameObject.GetComponentsInChildren<Collider2D>())
         {
             collider.enabled = false;
         }
